@@ -1,0 +1,444 @@
+
+Antigua	{Антигуа}
+Barbados	{Барбадос}
+Bermudes	{Бермуды}
+Beliz	{Юкатан}
+Cuba   {Куба}
+Cuba1   {Куба}
+Cuba2   {Куба}
+Caiman 	{Кайман}
+Cumana {Мэйн}
+Caracas {Мэйн}
+Curacao	{Кюрасао}
+Cartahena {Мэйн}
+Dominica	{Доминика}
+Guadeloupe	{Гваделупа}
+Hispaniola {Эспаньола}
+Hispaniola1	{Эспаньола}
+Hispaniola2 {Мари-Галант}
+Jamaica	{Ямайка}
+Maracaibo {Мэйн}
+Martinique	{Мартиника}
+SentMartin	{Синт-Мартен}
+Nevis	{Невис}
+StCristopher	{Сент-Кристофер}
+PuertoRico	{Пуэрто-Рико}
+PortoBello {Мэйн}
+Pearl {Жемчужный Берег}
+Panama {Панама}
+SantaCatalina {Мэйн}
+Terks	{Барбуда}
+Tortuga	{Тортуга}
+Trinidad	{Тринидад и Тобаго}
+Tenotchitlan {оз. Тескоко}
+Mein {Мэйн}
+RockIsland {Рифы Семи Ветров}
+Providence {Провиденсия}
+SantaQuiteria {Аруба}
+IslaDeVieques {Санта-Крус}
+IslaDeCoche {Мискитос}
+IslaMona {Исла-Мона}
+Inagua {Инагуа}
+Crooked {Крукед}
+
+SentJons_town {Сент-Джонс}
+Pirates_town	{Пиратское поселение}
+Bridge_town	{Бриджтаун}
+Beliz_town	{Белиз}
+Santiago_town	{Сантьяго-де-Куба}
+PuertoPrincipe_town	{Баракоа}
+Havana_town	{Гавана}
+Cumana_town	{Кумана}
+Caracas_town	{Каракас}
+Villemstad_town	{Виллемстад}
+Cartahena_town	{Картахена}
+BasTer_town	{Бас Тер}
+SantoDomingo_town	{Санто-Доминго}
+LaVega_town	{Ла-Вега}
+PortPax_town	{Порт-о-Пренс}
+PortRoyal_town	{Порт-Ройал}
+Maracaibo_town	{Маракайбо}
+FortFrance_town	{Фор-де-Франс}
+LeFransua_town	{Ле-Франсуа}
+Marigo_town	{Филипсбург}
+Charles_town	{Чарлстаун}
+SanJuan_town	{Сан-Хуан}
+PortoBello_town	{Пуэрто-Бельо}
+Panama_town	{Панама}
+SantaCatalina_town	{Блуфилдс}
+Tortuga_town	{Тортуга}
+PortSpein_town	{Сан-Хосе}
+Tenotchitlan_town	{Теночтитлан}
+FortOrange_town {Форт Оранж}
+Estate {Имение Оглторпа, Англия}
+DesMoines {Дес-Мойнес}
+SentCristopher_town	{Капстервиль}
+Providence_town {Сан-Андрес}
+SantaRosa_town {Санта-Роса}
+Paara_town {Паара}
+Kodringtown_town {Кодрингтон}
+Barthelemy_town {Бартелеми}
+Labadera_town {Лабадера}
+
+
+Shore1	{мыс Бун}
+Shore2	{залив Уиллогби}
+Shore3	{залив Руны}
+Shore4	{мыс Гаррисон}
+Shore5	{мыс Раггед Пойнт}
+Shore6	{мыс Каточе}
+Shore7	{залив Косумель}
+Shore8	{бухта Четумаль}
+Shore9	{бухта Аматике}
+Shore10	{лагуна Каратаска}
+Shore11	{мыс Камагуэй}
+Shore12	{залив Анна Мария}
+Shore13	{залив Батабано}
+Shore14	{бухта Хувентуд}
+Shore15	{мыс Сан Антонио}
+Shore16	{Пустынный пляж}
+Shore17	{залив Эсмеральды}
+Shore18	{берег Бока де ла Сьерпе}
+Shore19	{бухта Карупано}
+Shore20	{пляж Лос Текес}
+Shore21	{мыс Лас Камарагуас}
+Shore22	{Пальмовый берег}
+Shore23	{мыс Кальвинистов}
+Shore24	{берег Приют Контрабандиста}
+Shore25	{бухта Ковеньяс}
+Shore26	{пляж Касл Брус}
+Shore27	{мыс Скотс Хед}
+Shore28	{бухта Морн л'О}
+Shore29	{пляж Капстер}
+Shore30	{бухта Гран Бур}
+Shore31	{мыс Недоступный}
+Shore32	{мыс Исабела}
+Shore33	{бухта Самана}
+Shore34	{бухта Гонаив}
+Shore35	{мыс Негрил}
+Shore36	{бухта Портленд}
+Shore37	{бухта Гуахира}
+Shore38	{пляж Ламантен}
+Shore39	{бухта Ле Марен}
+Shore40	{берег Спасения}
+Shore41	{бухта Неистового ветра}
+Shore42	{бухта Ньюкасл}
+Shore43	{пляж Бат}
+Shore44	{бухта Агуадилья}
+Shore45	{пляж Фахардо}
+Shore46	{лагуна Чирики}
+Shore47	{залив Москитос}
+Shore48	{Дарьенский залив}
+Shore49	{залив Папагайо}
+Shore50	{залив Никоя}
+Shore51	{залив Коронадо}
+Shore52	{залив Гольфо Дульсе}
+Shore53	{берег Москитов}
+Shore54	{мыс Перлас}
+Shore55	{залив Сан Хуан дель Норте}
+Shore56	{залив Ту Фут}
+Shore57	{мыс Клифтонс}
+Shore58	{пляж Глаз Рыбы}
+Shore59	{бухта Скарборо}
+Shore60	{мыс Галера}
+Shore61	{Тепейакак}
+Shore62	{Истапалапу}
+Shore63	{залив Сан Мигель}
+Shore64 {утёс Отчаяния}
+Shore65 {бухта Ингальядо}
+Shore66 {пляж Санта-Мария дель Мар}
+Shore67 {берег Маалмок}
+Shore68 {мыс Синт-Питер}
+Shore69 {залив Сабанета}
+Shore70 {мыс Мачете}
+Shore71 {мыс Ла Энтрада}
+Shore72 {мыс Сокровищ}
+Shore73 {бухта Крэддок}
+Shore74 {залив Родни}
+Shore75 {мыс Спейсайд}
+Shore76 {пролив Садинас}
+Shore77 {бухта Бокерон}
+Shore78 {бухта Аргайл}
+Shore79 {бухта Сабало}
+Shore80 {залив Полумесяц}
+Shore81 {Каменный пляж}
+Shore82 {пляж Сан-Батол}
+Shore83 {Волнистая бухта}
+
+Shore_ship1	{бухта разбитого корыта}
+Shore_ship2	{залив Гибели}
+Shore_ship3	{мыс Несбывшихся надежд}
+
+Mayak1 {Маяк Тринидада и Тобаго}
+Mayak2 {Маяк Барбадоса}
+Mayak3 {Маяк Порт Рояля}
+Mayak4 {Маяк Гваделупы}
+Mayak5 {Маяк Невиса}
+Mayak6 {Маяк Тортуги}
+Mayak7 {Маяк Порт-о-Пренса}
+Mayak8 {Маяк Санто-Доминго}
+Mayak9 {Маяк Сантьяго-де-Куба}
+Mayak10 {Маяк Гаваны}
+Mayak11 {Маяк Картахены}
+Mayak12 {Маяк Инагуа}
+
+Bridgetown {Бриджтаун}
+Bridgetown Town {Бриджтаун}
+Bridgetown Fort {форт Карлайл}
+Bridgetown Port {порт Бриджтауна}
+
+SanJuan {Сан-Хуан}
+SanJuan Town {Сан-Хуан}
+SanJuan Fort {форт Сан-Фелипе Кастильо}
+SanJuan Port {порт Сан-Хуана}
+
+Santiago {Сантьяго-де-Куба}
+Santiago Town {Сантьяго-де-Куба}
+Santiago Fort {форт Мирамар}
+Santiago Port {порт Сантьяго-де-Куба}
+
+PuertoPrincipe {Баракоа}
+PuertoPrincipe Town {Баракоа}
+PuertoPrincipe Port {порт Баракоа}
+
+SentJons {Сент-Джонс}
+SentJons Town {Сент-Джонс}
+SentJons Fort {форт Джеймс}
+SentJons Port {порт Сент-Джонса}
+
+PortRoyal {Порт-Ройал}
+PortRoyal Town {Порт-Ройал}
+PortRoyal Fort {форт Кларенс}
+PortRoyal Port {порт Порт-Ройала}
+
+FortOrange {Форт Оранж}
+FortOrange Town {Форт Оранж}
+
+Villemstad {Виллемстад}
+Villemstad Town {Виллемстад}
+Villemstad Fort {форт Бикенберг}
+Villemstad Port {порт Виллемстада}
+
+BasTer {Бас-Тер}
+BasTer Town {Бас-Тер}
+BasTer Fort {форт Уэль}
+BasTer Port {порт Бас-Тер}
+
+SantaRosa {Санта-Роса}
+SantaRosa Town {Санта-Роса}
+SantaRosa Fort {форт Хамаль}
+SantaRosa Port {порт Санта-Росы}
+
+LaVega {Ла-Вега}
+LaVega Town {Ла-Вега}
+LaVega Port {порт Ла-Веги}
+
+SantoDomingo {Санто-Доминго}
+SantoDomingo Town {Санто-Доминго}
+SantoDomingo Fort {форт Сан-Кристобаль}
+SantoDomingo Port {порт Санто-Доминго}
+
+PortPax {Порт-о-Пренс}
+PortPax Town {Порт-о-Пренс}
+PortPax Fort {форт Мартиссан}
+PortPax Port {порт Порт-о-Пренс}
+
+Pirates	{Пиратское поселение}
+Pirates Town {Пиратское поселение}
+Pirates Port {порт Пиратского поселения}
+
+FortFrance {Фор-де-Франс}
+FortFrance Town {Фор-де-Франс}
+FortFrance Fort {форт Дезэ}
+FortFrance Port {порт Фор-де-Франс}
+
+LeFransua {Ле-Франсуа}
+LeFransua Town {Ле-Франсуа}
+LeFransua Port {порт Ле-Франсуа}
+
+Havana	{Гавана}
+Havana Town {Гавана}
+Havana Fort {форт Морро}
+Havana Port {порт Гаваны}
+
+Charles	{Чарлстаун}
+Charles Town {Чарлстаун}
+Charles Fort {форт Харборо}
+Charles Port {порт Чарлстауна}
+
+SentCristopher	{Капстервиль}
+SentCristopher Town {Капстервиль}
+SentCristopher Fort {форт Филипп}
+SentCristopher Port {порт Капстервиля}
+
+PortoBello Town {Пуэрто-Бельо}
+PortoBello Fort {форт Номбре де Диос}
+PortoBello Port {порт Пуэрто-Бельо}
+
+PortSpein {Сан-Хосе}
+PortSpein Town {Сан-Хосе}
+PortSpein Fort {форт Гаспарильо}
+PortSpein Port {порт Сан-Хосе}
+
+Tortuga	{Тортуга}
+Tortuga Town {Тортуга}
+Tortuga Fort {форт Ля-Рош}
+Tortuga Port {порт Тортуги}
+
+Marigo {Филипсбург}
+Marigo Town {Филипсбург}
+Marigo Fort {форт Галисбе}
+Marigo Port {порт Филипсбурга}
+
+Panama Town {Панама}
+Panama Fort {форт Вьехо}
+Panama Port {порт Панамы}
+
+Cartahena Town {Картахена}
+Cartahena Fort {форт Сан-Фелипе-де-Барахас}
+Cartahena Port {порт Картахены}
+
+Maracaibo Town {Маракайбо}
+Maracaibo Fort {форт Эль Триунфо}
+Maracaibo Port {порт Маракайбо}
+
+Caracas Town {Каракас}
+Caracas Fort {форт Лас Салинас}
+Caracas Port {порт Каракаса}
+
+Cumana Town {Кумана}
+Cumana Fort {форт Сотильо}
+Cumana Port {порт Куманы}
+
+SantaCatalina Town {Блуфилдс}
+SantaCatalina Fort {форт Эль Блуфф}
+SantaCatalina Port {порт Блуфилдса}
+
+Beliz Town {Белиз}
+Beliz Fort {форт Ярборо}
+Beliz Port {порт Белиза}
+
+SanAndres {Сан-Андрес}
+SanAndres Town {Сан-Андрес}
+SanAndres Fort {форт Санта-Каталина}
+SanAndres Port {порт Сан-Андреса}
+
+Paara {Паара}
+Paara Town {Паара}
+
+Barthelemy {Бартелеми}
+Barthelemy Town {Бартелеми}
+
+Labadera {Лабадера}
+Labadera Town {Лабадера}
+
+Kodringtown {Кодрингтон}
+Kodringtown Town {Кодрингтон}
+
+Boarding deck {Верхняя палуба} 
+Fort inside {Форт}
+Sea {Море}
+Jungle {Джунгли}
+Street {Улицы}
+ExitTown {Выход в джунгли}
+Port {Порт}
+Tavern {Таверна}
+Tavern upstairs {Комната в таверне}
+Store {Магазин}
+Shipyard	{Верфь}
+Hall {Холл}
+Townhall {Резиденция}
+TownhallRoom {Комната в резиденции}
+GovernorGeneralTownhall {Резиденция генерал-губернатора}
+Residence {Резиденция}
+PortOffice {Портовое управление}
+Church {Церковь}
+Incquisitio {Инквизиция}
+Incas Temple {Храм инков}
+Usurer House {Дом ростовщика}
+House {Дом}
+Room {Комната}
+Cabinet {Кабинет}
+Bedroom {Спальня}
+Exit {Выход}
+The cavern {Пещера}
+Passage (Мост)
+Beach {Пляж}
+Cave {Пещера}
+Cave entrance {Вход в пещеру}
+Grot {Грот}
+Prison {Тюрьма}
+Ammo {Оружейная}
+Lighthouse Inside {Дом смотрителя}
+Mines {Шахты}
+Dungeon {Подземелье}
+Gate {Выход из города}
+Brothel {Бордель}
+Brothel Room {Комната уединения}
+Village {Деревня}
+Plantation {Плантация}
+UnderWater {Под водой}
+Shack {Лачуга}
+
+Grotto	{Грот}
+
+cabine	{Каюта}
+My_Campus	{Кают-компания}
+My_Deck_Medium	{Пушечная палуба}
+My_Deck	{Трюм}
+
+Morgan's House {Дом Моргана}
+Morris's House {Дом Джона Морриса}
+Aaron's House {Дом Аарона Мендеса Чумакейро}
+Comendant's House {Дом коменданта Гаваны}
+DEstre House {Дом Анри д'Эстре}
+InesHouse {Дом Инес де Лас Сьеррас}
+Olone House {Дом Франсуа Олоне}
+Ascold House {Дом Аскольда}
+Isabella's House {Дом Изабеллы}
+Rosita's House {Дом Роситы Фернандес}
+Loy_House {дом Эдварда Лоу}
+Orry_House {дом Орри Брюса}
+MK_House {дом Мастера Ключей}
+
+LostShipsCity {ГПК}
+LostShipsCity Town {ГПК}
+LSC South {Юг Города потерянных кораблей}
+LSC North {Север Города потерянных кораблей}
+LSC Town {Улицы ГПК}
+
+Ava Cabin {Галеон "Эва"}
+Caroline cabin {Фрегат "Каролина"}
+CeresSmithy cabin {Флейт "Церес Смити"}
+EsmeraldaStoreBig cabin {Галеон "Эсмеральда"}
+FenixPlatform cabin {платформа "Феникс"}
+FernandaDiffIndoor cabin {Флейт "Фернандо Диффиндур"}
+FleuronTavern cabin {Каравелла "Флерон"}
+FurieShipInside2 cabin {Пинас "Фурия"}
+GloriaChurch cabin {Галеон "Глория"}
+PlutoStoreSmall cabin {Флейт "Плуто"}
+ProtectorFisher cabin {Корвет "Протектор"}
+SanAugustineResidence cabin {Варшип "Сан Августин"}
+SanGabrielMechanic cabin {Барк "Сан Габриэль"}
+SantaFlorentinaShipInside4 cabin {Бриг "Санта Флорентина"}
+TartarusPrison cabin {Бэттлшип "Тартарус"}
+VelascoShipInside1 cabin {Галеон "Веласко"}
+
+Tenochtitlan {Теночтитлан}
+Xochiquetzal {Храм Шочикецаль}
+Mictlantecuhtli {Храм Миктлантекутли}
+Quetzalcoatl {Храм Кецалькоатль}
+Mixcoatl {Храм Мишкоатль}
+Tezcatlipoca {Храм Тескатлипока}
+Chalchiuhtlicue {Храм Чалчиуитликуэ}
+Huitzilopochtli {Храм Уицилопочтли}
+Tlaloc {Храм Тлалок}
+Mayahuel {Храм Майяуэль}
+Tonacatecuhtli {Храм Тонакатекутли}
+TempleGreatInside {Храм Великой Жизненной Силы}
+TempleRoundInside {Храм Белых Богов}
+TempleSecondInside {Жертвенный храм}
+TempleUnderwater {Лабиринт}
+
+
+
