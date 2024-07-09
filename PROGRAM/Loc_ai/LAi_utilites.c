@@ -887,7 +887,14 @@ void CreateCitizens(aref loc)
 			}
 			ChangeCharacterAddressGroup(chr, loc.id, "reload", "gate");
 			LAi_SetCarrierType(chr);
-			LAi_group_MoveCharacter(chr, slai_group);
+			if (sti(Colonies[iColony].HeroOwn) == true)
+			{
+				LAi_group_MoveCharacter(chr, LAI_GROUP_PLAYER_OWN);
+			}
+			else
+			{
+				LAi_group_MoveCharacter(chr, slai_group);
+			}
 		}
 	}
 	// грузчики <--
@@ -1184,7 +1191,8 @@ void CreateMayak(aref loc)
 			ref chr;
 			aref st, soldierLoc;
 			int iChar, i;
-			string slai_group, locatorName;
+			string slai_group, locatorName, nShortName;
+			nShortName = NationShortName(iNation);
 			slai_group = GetNationNameByType(iNation)  + "_mayak"; 
 			// солдаты -->
 			if (checkAttribute(loc, "soldiers") && CheckAttribute(loc, "locators.soldiers"))
@@ -1202,7 +1210,7 @@ void CreateMayak(aref loc)
 					}
 					else
 					{
-						chr = GetCharacter(NPC_GenerateCharacter("GenChar_", "mush_eng_1", "man", "mushketer", sti(pchar.rank), iNation, 2, false, F_MILITARY));
+						chr = GetCharacter(NPC_GenerateCharacter("GenChar_", "mush_" + nShortName + "_1", "man", "mushketer", sti(pchar.rank), iNation, 2, false, F_MILITARY)); //to_do: rand(9)+1
 						chr.id = "GenChar_" + chr.index;
 						chr.MusketerDistance = 0;
 					}					

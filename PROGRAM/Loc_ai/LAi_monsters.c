@@ -59,6 +59,7 @@ void LAi_GenerateFantomFromMe(aref chr)
 		sld.RebirthPhantom = true; 
 		sld.dialog.filename = "Common_Soldier.c";
 		sld.dialog.currentnode = "first time";
+		sld.greeting = chr.greeting;
 		LAi_CharacterReincarnation(sld, true, true);
 		LAi_SetReincarnationRankStep(sld, MOD_SKILL_ENEMY_RATE+2); //задаем шаг на увеличение ранга фантомам на реинкарнацию
 		if (CheckAttribute(chr, "chr_ai.reincarnation.step"))
