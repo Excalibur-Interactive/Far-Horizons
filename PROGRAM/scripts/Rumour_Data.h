@@ -22,5 +22,3 @@ string NO_RUMOUR_TEXT[SIMPLE_RUMOUR_NUM] = {
 /// Слухи нищих
 string POOR_RUMOUR_TEXT[10] = {
 };
-
-

@@ -20,34 +20,101 @@ float frandSmall(float _x)
 // рандом 0.0 ... 1.0
 float Random()
 {
-	return rand(32768) / 32768.0; // 65536
+	return rand(32768) / 32768.0;
 }
 
 // коммент - не нравится мне cRand() - он возвращает не псевдослучайное число,
-// а зависящее от конкретного дня месяца, да еще и подряд может быть несколько
-// одинаковых чисел, например, cRand(5) будет давать 5 дней подряд одно и тоже.
-// функция ниже вернет псевдослучайное число, потом запоминает его в PChar и пока не наступит
+// а зависящее от конкретного дня месяца, да ещё и подряд может быть несколько
+// одинаковых чисел, например, cRand(5) будет давать 5 дней подряд одно и то же.
+// функция ниже вернёт псевдослучайное число, потом запоминает его в PChar и пока не наступит
 // новый день будет возвращать его-же. PChar.dayRandom устанавливается в первом шаге обновления дня
 int dRand(int _max)
 {
-    // Если вызывается раньше WorldSituationsUpdate -->
-    if(!CheckAttribute(pchar, "dayRandom"))
-    {
-        float dayRandom;
-        dayRandom = Random();
-        PChar.dayRandom = dayRandom;
-        if(PChar.dayRandom == 1.0) return _max;
-        return MakeInt(stf(PChar.dayRandom) * (_max + 1));
-    }
-    // <--
-    
-    if(PChar.dayRandom == 1.0) return _max;
-    return MakeInt(stf(PChar.dayRandom) * (_max + 1)); // Rosarak. fix для равномерного распределения
+	// Если вызывается раньше WorldSituationsUpdate -->
+	if(!CheckAttribute(pchar, "dayRandom"))
+	{
+		float dayRandom;
+		dayRandom = Random();
+		PChar.dayRandom = dayRandom;
+		if(PChar.dayRandom == 1.0) return _max;
+		return MakeInt(stf(PChar.dayRandom) * (_max + 1));
+	}
+	// <--
+	
+	if(PChar.dayRandom == 1.0) return _max;
+	return MakeInt(stf(PChar.dayRandom) * (_max + 1)); // Rosarak. fix для равномерного распределения
 }
 // <-- Warship 30.07.09
 
+// Rosarak. Циклическая смена суточного рандома при смене аргумента
+// При false, если аргумент уже использовался, вернёт первое значение на нём
+// Следите, чтобы при next == true не вызывалась промежуточно, когда значение не используется
+int dRandEx(int _num, bool next)
+{
+	int iArg; 
+	string attr;
+	
+	// Если вызывается раньше WorldSituationsUpdate -->
+	if(!CheckAttribute(pchar, "Random"))
+	{
+		PChar.Random = (rand(9)+1);
+	
+		for(iArg = 0; iArg < sti(PChar.Random); iArg++)
+		{
+			attr = iArg;
+			PChar.Random.nums.(attr) = Random();
+		}
+	}
+	// <--
+			
+	// Первая запись
+	if(!CheckAttribute(PChar,"Random.args"))
+	{
+		PChar.Random.args.0 = _num;
+		PChar.Random.args.last = 0;
+		if(stf(PChar.Random.nums.0) != 1.0)
+		{
+			PChar.Random.args.0.value = MakeInt(stf(PChar.Random.nums.0) * (_num + 1));
+			return sti(PChar.Random.args.0.value);
+		}
+		PChar.Random.args.0.value = _num;
+		return _num;
+	}
+	
+	
+	if(!next) // Был ли такой аргумент
+	{
+		iArg = 0; 
+		attr   = iArg;
+		while( CheckAttribute(PChar,"Random.args."+attr) )
+		{
+			if(sti(PChar.Random.args.(attr)) == _num)
+			{
+				if(attr == "0") return sti(PChar.Random.args.0.value); // через скобки между атрибутами 0 нельзя
+				return sti(PChar.Random.args.(attr).value);
+			}
+			iArg++;
+			attr = iArg;
+		}
+	}
+	
+	// Новый аргумент
+	iArg = (sti(PChar.Random.args.last)+1);
+	attr = iArg;
+	PChar.Random.args.(attr) = _num;
+	PChar.Random.args.last = iArg;
+	string cycle = (iArg % sti(PChar.Random)); // Двигаемся по кругу
+	if(stf(PChar.Random.nums.(cycle)) != 1.0)
+	{
+		PChar.Random.args.(attr).value = MakeInt(stf(PChar.Random.nums.(cycle)) * (_num + 1));
+		return sti(PChar.Random.args.(attr).value);
+	}
+	PChar.Random.args.(attr).value = _num;
+	return _num;
+}
+
 // cRand() - античитовый рандом Ёдди. юзать не рекомендуется, за место него - dRand()
-//античитовый рендом
+// античитовый рендом
 int cRand(int num)
 {
 	if (num < 1) return 0;
@@ -58,7 +125,7 @@ int cRand(int num)
 	int iDel = 30.0 / (num + 1) + 0.5; //делитель месяца
 	int step = iDel; //шаг увеличения уровня сравнения в месяце
 
-	for (i=0; i<num; i++)
+	for (int i=0; i<num; i++)
 	{
 		if (iData < iDel) 
 		{
@@ -88,105 +155,43 @@ int func_min(int a, int b)
 	return a;
 }
 
-// Rosarak. Циклическая смена суточного рандома при смене аргумента
-// При false, если аргумент уже использовался, вернёт первое значение на нём
-int dRandEx(int _num, bool next)
-{
-    // Если вызывается раньше WorldSituationsUpdate -->
-    if(!CheckAttribute(pchar, "Random"))
-    {
-        PChar.Random = (rand(9)+1);
-        string yy;
-        for(int y = 0; y < sti(PChar.Random); y++)
-        {
-            yy = y;
-            PChar.Random.nums.(yy) = Random();
-        }
-    }
-    // <--
-            
-    // Первая запись
-    if(!CheckAttribute(PChar,"Random.args"))
-    {
-        PChar.Random.args.0 = _num;
-        PChar.Random.args.last = 0;
-        if(stf(PChar.Random.nums.0) != 1.0)
-        {
-            PChar.Random.args.0.value = MakeInt(stf(PChar.Random.nums.0) * (_num + 1));
-            return sti(PChar.Random.args.0.value);
-        }
-        PChar.Random.args.0.value = _num;
-        return _num;
-    }
-    
-    int arg_i = 0; string arg = 0;
-    if(!next) // Был ли такой аргумент
-    {
-        while( CheckAttribute(PChar,"Random.args."+arg) )
-        {
-            if(sti(PChar.Random.args.(arg)) == _num)
-            {
-                if(arg == "0") return sti(PChar.Random.args.0.value); // через скобки между атрибутами 0 нельзя
-                return sti(PChar.Random.args.(arg).value);
-            }
-            arg_i++;
-            arg = arg_i;
-        }
-    }
-    
-    // Новый аргумент
-    arg_i = (sti(PChar.Random.args.last)+1);
-    arg = arg_i;
-    PChar.Random.args.(arg) = _num;
-    PChar.Random.args.last = arg_i;
-    string cycle = (arg_i % sti(PChar.Random)); // Двигаемся по кругу
-    if(stf(PChar.Random.nums.(cycle)) != 1.0)
-    {
-        PChar.Random.args.(arg).value = MakeInt(stf(PChar.Random.nums.(cycle)) * (_num + 1));
-        return sti(PChar.Random.args.(arg).value);
-    }
-    PChar.Random.args.(arg).value = _num;
-    return _num;
-}
-
 //Mett: универсальная функция для диапазона чисел
 void wRange(ref _num, ref _min, ref _max)
 {
-    if(_num < _min) _num = _min; //мин порог
-    if(_num > _max) _num = _max; //макс порог
+	if(_num < _min) _num = _min; //мин порог
+	if(_num > _max) _num = _max; //макс порог
 }
 
 //Mett: диапазон чисел для float
 float wRangeFloat(float _num, float _min, float _max)
 {
-    if(_num < _min) _num = _min; //мин порог
-    if(_num > _max) _num = _max; //макс порог
-    return _num;
+	if(_num < _min) _num = _min; //мин порог
+	if(_num > _max) _num = _max; //макс порог
+	return _num;
 }
 
 //Mett: диапазон чисел для int
 int wRangeInt(int _num, int _min, int _max)
 {
-    if(_num < _min) _num = _min; //мин порог
-    if(_num > _max) _num = _max; //макс порог
-    return _num;
+	if(_num < _min) _num = _min; //мин порог
+	if(_num > _max) _num = _max; //макс порог
+	return _num;
 }
 
 //Mett: расчет процентов от числа для float
 float wPercentFloat(float _num, float _percent)
 {
-    float _value = _num * _percent * 0.01;
-    return _value;
+	float _value = _num * _percent * 0.01;
+	return _value;
 }
 
 //Mett: расчет процентов от числа для int
 int wPercentInt(int _num, int _percent)
 {
-    int _value = _num * _percent / 100;
-    return _value;
+	int _value = _num * _percent / 100;
+	return _value;
 }
 
-// evganat - функции округления -->
 int round_up(float x) // evganat - округление вверх
 {
 	if (makefloat(makeint(x)) == x)
@@ -212,8 +217,6 @@ int round_near(float x) // evganat - округление до ближайше�
 	}
 	return makeint(x);
 }
-// evganat - функции округления <--
-
 
 int iClamp(int min, int max, int val)
 {
