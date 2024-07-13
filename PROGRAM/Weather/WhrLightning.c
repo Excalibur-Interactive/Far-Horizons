@@ -8,26 +8,30 @@ float fLightningScaleX,	fLightningScaleY;
 
 void WhrDeleteLightningEnvironment()
 {
+    WhrStopLightning();
+    
 	if (isEntity(&Lightning)) 
 	{ 
 		DeleteClass(&Lightning);
 		DeleteAttribute(&Lightning,"");
 	}
 
-	DelEventHandler(WHR_LIGHTNING_SOUND,"Lightning_Sound");
-	DelEventHandler(WHR_LIGHTNING_DOIT, "Lightning_DoIt");
+//	DelEventHandler(WHR_LIGHTNING_SOUND,"Lightning_Sound");
+//	DelEventHandler(WHR_LIGHTNING_DOIT, "Lightning_DoIt");
 }
 
 void WhrCreateLightningEnvironment()
 {
-	aref aCurWeather = GetCurrentWeather();
-	aref aLightning; 	makearef(aLightning,aCurWeather.Lightning);
+    Whr_DebugLog("WhrCreateLightningEnvironment()");
+//	aref aCurWeather = GetCurrentWeather();
+//	aref aLightning; 	makearef(aLightning,aCurWeather.Lightning);
 	
 	DeleteAttribute(&Lightning,"");
 	Lightning.Clear = "";
+    Lightning.Enable = false;
 	DelEventHandler(WHR_LIGHTNING_DOIT,"Lightning_DoIt");
 
-	if (sti(aLightning.Enable) != true) return;
+//	if (sti(aLightning.Enable) != true) return;
 
 	if (!isEntity(&Lightning)) 
 	{ 
@@ -36,6 +40,7 @@ void WhrCreateLightningEnvironment()
 
 	LayerAddObject(SEA_REFLECTION, &Lightning, 10);
 
+/*
 	SetEventHandler(WHR_LIGHTNING_SOUND,"Lightning_Sound",0);
 	SetEventHandler(WHR_LIGHTNING_DOIT,"Lightning_DoIt",0);
 
@@ -48,6 +53,49 @@ void WhrCreateLightningEnvironment()
 	Lightning.isDone = "";
 
 	PostEvent(WHR_LIGHTNING_DOIT,1000 + rand(1000));
+*/    
+}
+
+void WhrStartLightning()
+{
+    if(CheckAttribute(&WeatherParams,"Lighting") && sti(WeatherParams.Lighting) == 1) 
+    {    
+        Whr_DebugLog("Lightning already started");
+        return;
+    }
+    
+    Whr_DebugLog("WhrStartLightning !!");
+    
+	aref aCurWeather = GetCurrentWeather();
+	aref aLightning; 	makearef(aLightning,aCurWeather.Lightning);    
+    
+    SetEventHandler(WHR_LIGHTNING_SOUND,"Lightning_Sound",0);
+	SetEventHandler(WHR_LIGHTNING_DOIT,"Lightning_DoIt",0);
+
+	Lightning.Texture = Whr_GetString(aLightning,"Texture");
+	Lightning.Flash.Texture = Whr_GetString(aLightning,"Flash.Texture");
+	Lightning.SubTexX = Whr_GetLong(aLightning,"SubTexX");
+	Lightning.SubTexY = Whr_GetLong(aLightning,"SubTexY");
+	fLightningScaleX = Whr_GetFloat(aLightning,"ScaleX");
+	fLightningScaleY = Whr_GetFloat(aLightning,"ScaleY");
+    Lightning.Enable = true;
+	Lightning.isDone = "";
+
+	PostEvent(WHR_LIGHTNING_DOIT,1000 + rand(1000));
+    
+    WeatherParams.Lighting = true;
+}
+
+void WhrStopLightning()
+{
+    if(CheckAttribute(&WeatherParams,"Lighting") && sti(WeatherParams.Lighting) == 1)
+    {    
+        Lightning.Enable = false;
+        DelEventHandler(WHR_LIGHTNING_SOUND,"Lightning_Sound");
+        DelEventHandler(WHR_LIGHTNING_DOIT, "Lightning_DoIt");
+        
+        DeleteAttribute(&WeatherParams,"Lighting");
+    }   
 }
 
 void MoveLightningToLayers(int sExecuteLayer, int sRealizeLayer)
@@ -63,10 +111,14 @@ void MoveLightningToLayers(int sExecuteLayer, int sRealizeLayer)
 
 void Lightning_DoIt()
 {
-	if (!isEntity(&Lightning)) { return; }
+	if (!isEntity(&Lightning)) 
+    { 
+        Whr_DebugLog("No Lightning entity !!!");
+        return; 
+    }
 
 	// next lightning
-	PostEvent(WHR_LIGHTNING_DOIT, 200 + rand(1200));
+	PostEvent(WHR_LIGHTNING_DOIT, 500 + rand(5000));
 	
 	// if interface launched, return
 	if (sti(InterfaceStates.Launched) && CurrentInterface != INTERFACE_MAINMENU) { return; }

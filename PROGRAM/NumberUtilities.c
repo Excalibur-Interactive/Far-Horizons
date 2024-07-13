@@ -213,3 +213,32 @@ int round_near(float x) // evganat - округление до ближайше�
 	return makeint(x);
 }
 // evganat - функции округления <--
+
+
+int iClamp(int min, int max, int val)
+{
+	if(val < min) val = min;
+	else
+	{
+		if(val > max) val = max;
+	}
+	return val;
+}
+
+float fClamp(float min, float max, float val)
+{
+	if(val < min) val = min;
+	else
+	{
+		if(val > max) val = max;
+	}
+	return val;
+}
+
+int iabs(int num)
+{
+	if (num < 0)
+		return -num;
+	else
+		return num;
+}

@@ -1550,6 +1550,7 @@ void WorldSituationsUpdate()
 			break;
 		
 			case 1:
+				Whr_RainFogGenerator(); // генератор дождей и туманов в локациях
 				SalaryNextDayUpdate();  // запрлата
 				Log_QuestInfo("WorldSituationsUpdate SalaryNextDayUpdate");
 			break;

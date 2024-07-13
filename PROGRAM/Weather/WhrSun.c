@@ -29,6 +29,7 @@ void WhrFillSunGlowData(int nw1, int nw2)
 	DeleteAttribute(&SunGlow,"");
 
 	aref aSun1;			makearef(aSun1, Weathers[nw1].Sun);
+	aref aMoon1;		makearef(aMoon1, Weathers[nw1].Sun);
 	aref aGlow1;		makearef(aGlow1, aSun1.Glow);
 	aref aFlare1;		makearef(aFlare1, aSun1.Flare);
 	aref aOverflow1;	makearef(aOverflow1, aSun1.Overflow);
@@ -57,6 +58,17 @@ void WhrFillSunGlowData(int nw1, int nw2)
 				SunGlow.Glow.DecayTime = Whr_GetColor(aGlow1,"DecayTime");
 				SunGlow.Glow.TechniqueNoZ = Whr_GetString(aGlow1,"TechniqueNoZ");
 				SunGlow.Glow.TechniqueZ = Whr_GetString(aGlow1,"TechniqueZ");
+				SunGlow.Glow.Color = Whr_GetColor(aGlow1,"Color");
+			}
+
+			if (sti(aMoon1.Glow.Enable) != false)
+			{
+				SunGlow.Glow.Dist = Whr_GetFloat(aGlow1,"Dist");
+				SunGlow.Glow.Size = Whr_GetFloat(aGlow1,"Size");
+				SunGlow.Glow.Texture = Whr_GetString(aGlow1,"Texture");
+				SunGlow.Glow.DecayTime = Whr_GetColor(aGlow1,"DecayTime");
+				SunGlow.Glow.TechniqueNoZ = Whr_GetString(aGlow1,"TechniqueNoZ");
+				SunGlow.Glow.TechniqueZ = Whr_GetString(aGlow1,"TechniqueNoZ");
 				SunGlow.Glow.Color = Whr_GetColor(aGlow1,"Color");
 			}
 
@@ -96,7 +108,7 @@ void WhrFillSunGlowData(int nw1, int nw2)
 				SunGlow.Reflection.Size = Whr_GetFloat(aReflection1, "Size");
 				SunGlow.Reflection.Color = Whr_GetColor(aReflection1, "Color");
 			}
-			SunGlow.Moon = aSun1.Moon;
+			SunGlow.Moon = aMoon1.Moon;
 		}
 	}
 	else
@@ -110,6 +122,17 @@ void WhrFillSunGlowData(int nw1, int nw2)
 			SunGlow.Glow.DecayTime = Whr_GetColor(aGlow1,"DecayTime");
 			SunGlow.Glow.TechniqueZ = Whr_GetString(aGlow1,"TechniqueZ");
 			SunGlow.Glow.TechniqueNoZ = Whr_GetString(aGlow1,"TechniqueNoZ");
+		}
+
+		if (sti(aMoon1.Glow.Enable) != false)
+		{
+			SunGlow.Glow.Dist = Whr_GetFloat(aGlow1,"Dist");
+			SunGlow.Glow.Size = Whr_GetFloat(aGlow1,"Size");
+			SunGlow.Glow.Texture = Whr_GetString(aGlow1,"Texture");
+			SunGlow.Glow.DecayTime = Whr_GetColor(aGlow1,"DecayTime");
+			SunGlow.Glow.TechniqueNoZ = Whr_GetString(aGlow1,"TechniqueNoZ");
+			SunGlow.Glow.TechniqueZ = Whr_GetString(aGlow1,"TechniqueNoZ");
+			SunGlow.Glow.Color = Whr_GetColor(aGlow1,"Color");
 		}
 
 		if (sti(aSun1.Flare.Enable) != false)
@@ -148,8 +171,7 @@ void WhrFillSunGlowData(int nw1, int nw2)
 			SunGlow.Reflection.Dist = Whr_GetFloat(aReflection1, "Dist");
 			SunGlow.Reflection.Color = Whr_GetColor(aReflection1, "Color");
 		}
-
-		SunGlow.Moon = aSun1.Moon;
+		SunGlow.Moon = aMoon1.Moon;
 	}
 
 	if( stf(Environment.Time) < 5.5 || stf(Environment.Time) > 20.5 ) {
@@ -184,6 +206,11 @@ void WhrFillSunGlowData(int nw1, int nw2)
 			SunGlow.Glow.SunSize 	= 0;
 			SunGlow.Glow.Size 		= 175;
 			SunGlow.Glow.GlowTexture = "weather\sun\glow\sun.tga";
+			if (!bMainMenu) 
+			{
+				SunGlow.Overflow.Color = argb(0,50,50,50);
+				SunGlow.Overflow.Texture = "weather\sun\overflow\overflow_morning.tga";
+			}
 			SunGlow.Reflection.Size = 750;
 			SunGlow.Reflection.Texture = "weather\sun\reflection\refl_morning.tga";
 		} else {
@@ -231,6 +258,7 @@ void WhrFillSunGlowData(int nw1, int nw2)
 			SunGlow.Glow.SunSize 	= 0;
 			SunGlow.Glow.Size 		= 175;
 			SunGlow.Glow.GlowTexture = "weather\sun\glow\sun.tga";
+			if (!bMainMenu) SunGlow.Overflow.Texture = "weather\sun\overflow\overflow_evening.tga";
 			SunGlow.Reflection.Size = 750;
 			SunGlow.Reflection.Texture = "weather\sun\reflection\refl_evening.tga";
 		} else {
@@ -239,7 +267,8 @@ void WhrFillSunGlowData(int nw1, int nw2)
 			SunGlow.Glow.SunSize 	= 0;
 			SunGlow.Glow.Size 		= 175;
 			SunGlow.Glow.GlowTexture = "weather\sun\glow\sun.tga";
-			SunGlow.Glow.Color = argb(0,205,205,205);
+			if (!bMainMenu) SunGlow.Overflow.Texture = "weather\sun\overflow\overflow_evening.tga";
+			// SunGlow.Glow.Color = argb(0,205,205,205);
 			SunGlow.Reflection.Size = 550;
 			SunGlow.Reflection.Texture = "weather\sun\reflection\refl_evening.tga";
 		} else {
@@ -251,6 +280,7 @@ void WhrFillSunGlowData(int nw1, int nw2)
 		{
 			if (stf(Environment.date.day) < 3 || stf(Environment.date.day) > 29) {
 				SunGlow.Reflection.Size = 0;
+				SunGlow.Overflow.Color = argb(0,10,10,10);
 			} else {
 				SunGlow.Reflection.Size = 550;
 			}
@@ -310,7 +340,11 @@ void WhrFillSunGlowData(int nw1, int nw2)
 				SunGlow.Glow.SunSize 	= 0;
 				SunGlow.Glow.Size 		= 175;
 				SunGlow.Glow.GlowTexture = "weather\sun\glow\sun.tga";
-				SunGlow.Glow.Color = argb(0,205,205,205);
+				if (!bMainMenu) 
+				{
+					SunGlow.Overflow.Color = argb(0,50,50,50);
+					SunGlow.Overflow.Texture = "weather\sun\overflow\overflow_morning.tga";
+				}
 				SunGlow.Reflection.Size = 650;
 				SunGlow.Reflection.Texture = "weather\sun\reflection\refl_evening.tga";
 			} else {
@@ -318,6 +352,11 @@ void WhrFillSunGlowData(int nw1, int nw2)
 				SunGlow.Glow.SunSize 	= 0;
 				SunGlow.Glow.Size 		= 175;
 				SunGlow.Glow.GlowTexture = "weather\sun\glow\sun.tga";
+				if (!bMainMenu) 
+				{
+					SunGlow.Overflow.Color = argb(0,50,50,50);
+					SunGlow.Overflow.Texture = "weather\sun\overflow\overflow_morning.tga";
+				}
 				SunGlow.Reflection.Size = 750;
 				SunGlow.Reflection.Texture = "weather\sun\reflection\refl_morning.tga";
 			} else {
@@ -365,6 +404,7 @@ void WhrFillSunGlowData(int nw1, int nw2)
 				SunGlow.Glow.SunSize 	= 0;
 				SunGlow.Glow.Size 		= 175;
 				SunGlow.Glow.GlowTexture = "weather\sun\glow\sun.tga";
+				if (!bMainMenu) SunGlow.Overflow.Texture = "weather\sun\overflow\overflow_evening.tga";
 				SunGlow.Reflection.Size = 750;
 				SunGlow.Reflection.Texture = "weather\sun\reflection\refl_evening.tga";
 			} else {
@@ -373,7 +413,8 @@ void WhrFillSunGlowData(int nw1, int nw2)
 				SunGlow.Glow.SunSize 	= 0;
 				SunGlow.Glow.Size 		= 175;
 				SunGlow.Glow.GlowTexture = "weather\sun\glow\sun.tga";
-				SunGlow.Glow.Color = argb(0,205,205,205);
+				if (!bMainMenu) SunGlow.Overflow.Texture = "weather\sun\overflow\overflow_evening.tga";
+				// SunGlow.Glow.Color = argb(0,205,205,205);
 				SunGlow.Reflection.Size = 550;
 				SunGlow.Reflection.Texture = "weather\sun\reflection\refl_evening.tga";
 			} else {
@@ -385,6 +426,7 @@ void WhrFillSunGlowData(int nw1, int nw2)
 			{
 				if (stf(Environment.date.day) < 3 || stf(Environment.date.day) > 29) {
 					SunGlow.Reflection.Size = 0;
+					SunGlow.Overflow.Color = argb(0,10,10,10);
 				} else {
 					SunGlow.Reflection.Size = 550;
 				}

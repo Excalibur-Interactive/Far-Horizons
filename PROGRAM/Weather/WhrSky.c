@@ -123,7 +123,7 @@ void FillSkyDir(aref aSky)
 			
 			satr = "d" + sti(Weathers[i].Hour.Min);
 			
-			if(Whr_CheckStorm())		// если идет шторм
+			if(Whr_CheckStorm())		// если идёт шторм
 			{
 				if(sti(Weathers[i].Storm))
 				{
@@ -133,7 +133,7 @@ void FillSkyDir(aref aSky)
 				}
 				else continue;	
 			}
-			else						// если шторма нет, т.е. штатная погода
+			else	                    // если шторма нет, т.е. штатная погода
 			{
 				if(!sti(Weathers[i].Storm))
 				{
@@ -151,10 +151,6 @@ void FillSkyDir(aref aSky)
 							sDir = Whr_SetRainSkyData( Weathers[i].Hour.Min, &fog, &sunAmb );
 							Weathers[i].Fog.Color 				= fog;
 							Weathers[i].Sun.Ambient 			= sunAmb;
-							Weathers[i].Sun.Flare.Enable 		= false;
-							Weathers[i].Sun.Glow.Enable 		= false;
-							Weathers[i].Sun.Overflow.Enable 	= false;
-							Weathers[i].Sun.Reflection.Enable 	= false;
 							Whr_DebugLog("RainDir : " + sDir + " hour :" + sti(Weathers[i].Hour.Min) );	
 						}
 					}					
