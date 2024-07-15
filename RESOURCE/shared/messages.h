@@ -99,6 +99,7 @@
 #define MSG_LOCATION_MODEL_LAMPS 30113 // "l" add the current model to the ignore list for tracing rays from lamps
 // "lf" set the effect of generating the matrix for reflection, f is the scaling factor
 #define MSG_LOCATION_MODEL_REFLECTION 30114
+#define MSG_LOCATION_MODEL_SET_ROT_ANGLE 30115 //  "lfff" set the base rotation angle of the last loaded model
 // Install patches
 #define MSG_LOCATION_SET_CHRS_PATCH 30120 // "ls" load the character patch
 #define MSG_LOCATION_SET_CAM_PATCH 30121  // "ls" load camera patch
@@ -195,6 +196,11 @@
 #define MSG_CHARACTER_HEADLOOK_CHARACTER 30382  // "li" follow another character
 #define MSG_CHARACTER_HEADLOOK_POINT 30383      // "lfff" follow a point
 
+// evganat - новые месседжи
+#define MSG_CHARACTER_GETCURANIMATION 30384	// "le"
+#define MSG_CHARACTER_STOPSTRAFE 30385 // "l"
+#define MSG_CHARACTER_VIEWSTRPOS 30386 // "lfffsfff"
+
 // Setting tasks for the character
 #define MSG_NPCHARACTER_SETTASK 30400
 #define MSG_NPCHARACTER_PUSHTASK 30401
@@ -214,6 +220,8 @@
 #define MSG_CAMERA_SET_RADIUS 30521 // "lf" set radius
 
 #define MSG_CAMERA_SET_PERSPECTIVE 30530 // "lf" set perspective
+
+#define MSG_CAMERA_SPECIALMODE	30531	// "ll" evganat - спецрежим камеры вкл/выкл
 
 // Blots on the ship
 #define MSG_BLOTS_SETMODEL 30600 // "li" set the model, model_id
@@ -247,6 +255,10 @@
 #define MSG_WORLDMAP_SET_NATION_FLAG 31150 // "ll" nation
 // Print line with coordinates
 #define MSG_WORLDMAP_SET_COORDINATES 31151 // "ls" coordinates string
+// Show or hide WdmWindUI: wind, date, moral, supplies, coordinates, flag
+#define MSG_WORLDMAP_WIND_UI_SET_SHOW 31152 // "ll" status
+// Update WdmWindUI on the map: wind, date, moral, supplies, coordinates, flag
+#define MSG_WORLDMAP_UPDATE 31153 // "l" 
 
 // ============================================================================================
 // Effects
