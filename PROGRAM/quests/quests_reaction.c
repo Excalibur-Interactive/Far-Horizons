@@ -531,9 +531,13 @@ void QuestComplete(string sQuestName, string qname)
     			LAi_SetActorType(PChar);
                 LAi_ActorAnimation(PChar, "hit_attack_2", "pchar_back_to_player", 1.0);
             }
-			LAi_ApplyCharacterDamage(pchar, iTemp);
-			SendMessage(pchar, "lfff", MSG_CHARACTER_VIEWDAMAGE, iTemp, MakeFloat(MakeInt(pchar.chr_ai.hp)), MakeFloat(MakeInt(pchar.chr_ai.hp_max)));
-			LAi_CheckKillCharacter(pchar);
+			if (!LAi_IsImmortal(pchar))
+			{
+				LAi_ApplyCharacterDamage(pchar, iTemp);
+				SendMessage(pchar, "lfff", MSG_CHARACTER_VIEWDAMAGE, iTemp, MakeFloat(MakeInt(pchar.chr_ai.hp)), MakeFloat(MakeInt(pchar.chr_ai.hp_max)));
+				LAi_CheckKillCharacter(pchar);
+				SendMessage(pchar, "l", MSG_CHARACTER_STOPSTRAFE);
+			}
 		break;
 		// диалог с ГГ генератор
         case "TalkSelf_Start":

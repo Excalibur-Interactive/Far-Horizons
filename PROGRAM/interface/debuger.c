@@ -731,7 +731,7 @@ void CalculateInfoDataF2()
 {
 	totalInfo = descF2;
 	
-	CreateSiege("");
+	
 	
     totalInfo = totalInfo + NewStr() + NewStr() +
                 "Команда отработала успешно!";

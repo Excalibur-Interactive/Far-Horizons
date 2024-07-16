@@ -47,14 +47,14 @@ bool DialogMain(ref Character)
 	//Проверим на существование текущего нода
 	if(!CheckAttribute(Character, "Dialog.CurrentNode"))
 	{
-		Trace("Dialog: Character <" + Character.id + "> can't have field Dialog.CurrentNode, exit from dialog!")
+		Trace("Dialog: Character <" + Character.id + "> can't have field Dialog.CurrentNode, exit from dialog!");
 		return false;
 	}
 	//Если персонаж не готов говорить выходим
 	if(!LAi_Character_CanDialog(mainChr, Character)) return false;
 	//Если персонаж не готов говорить выходим
 	if(!LAi_Character_CanDialog(Character, mainChr)) return false;
-	//Сохраняем ссыклу на того с кем говорим
+	//Сохраняем ссылку на того, с кем говорим
 	CharacterRef = Character;
 	// Попытка загрузить текст дилога
 	if( !LoadDialogFiles(Character.Dialog.Filename) ) {
@@ -64,6 +64,7 @@ bool DialogMain(ref Character)
 		}
 	}
 	//Можем начинать диалог
+	DelPerkFromActiveList("TimeSpeed");				
 	dialogRun = true;
 	dialogSelf = false;
 	LAi_Character_StartDialog(mainChr, Character);
@@ -92,6 +93,7 @@ void StartDialogMain()
 	startDialogMainCounter++;
 	if(startDialogMainCounter < 3) return;
 	
+	SendMessage(pchar, "l", MSG_CHARACTER_STOPSTRAFE);
 	DelEventHandler("frame", "StartDialogMain");
 
 	CreateEntity(&Dialog, "dialog");
@@ -161,7 +163,7 @@ void SelfDialog(ref Character)
 	//Проверим на существование текущего нода
 	if(!CheckAttribute(Character, "Dialog.CurrentNode"))
 	{
-		Trace("SelfDialog: Character <" + Character.id + "> can't have field Dialog.CurrentNode, exit from dialog!")
+		Trace("SelfDialog: Character <" + Character.id + "> can't have field Dialog.CurrentNode, exit from dialog!");
 		return false;
 	}
 	//Сохраняем ссыклу на того с кем говорим
@@ -176,6 +178,8 @@ void SelfDialog(ref Character)
 	//Если персонаж не готов говорить выходим
 	LAi_Character_CanDialog(Character, Character);
 	//Можем начинать диалог
+	SendMessage(pchar, "l", MSG_CHARACTER_STOPSTRAFE);
+	DelPerkFromActiveList("TimeSpeed");
 	dialogRun = true;
 	dialogSelf = true;
 	SendMessage(Character, "lsl", MSG_CHARACTER_EX_MSG, "InDialog", 1);
@@ -204,7 +208,7 @@ void SelfDialog(ref Character)
 void DialogExit()
 {
 	//Если диалога уже не ведётся, выйдем
-	if(dialogRun == false) return;
+	if(!dialogRun) return;
 	DelEventHandler("frame", "DialogPlayGreeting");
 	//Освобождаем ресурсы
 	DeleteClass(&Dialog);
@@ -234,7 +238,9 @@ void DialogExit()
 			locCameraTarget(mainChr);
 			locCameraFollow();
 		}
-	}else{
+	}
+	else
+	{
 		LAi_Character_EndDialog(CharacterRef, CharacterRef);
 		SendMessage(CharacterRef, "lsl", MSG_CHARACTER_EX_MSG, "InDialog", 0);
 	}
@@ -280,12 +286,6 @@ bool LoadDialogFiles(string dialogPath)
 	}
 
 	return retVal;
-}
-
-
-string DText(string sString)
-{
-	return sString;
 }
 
 // boal -->

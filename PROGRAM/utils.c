@@ -9,85 +9,7 @@ int AddStr2Array(ref rNames, int iNum, string sStr)
 	iNum++;
 	return iNum;
 }
-// boal 101004 -->
-string GetSubStringByNum(string sStr, int iSelect)
-{
-	string sTemp;
-	int iFindPos = findSubStr(&sStr, ",", 0);
-	if (iFindPos < 0) return sStr;	// one word in string
-	int iNumFind = 1;
-    while (iFindPos > 0)
-	{
-		iNumFind++;
-		iFindPos = findSubStr(&sStr, ",", iFindPos + 1);
-	}
-	if (iNumFind <= iSelect)
-	{
-        return GetSubStringByNum(sStr, 0);
-	}
-	int	iLastPos = 0;
-	iFindPos = 0;
-	for (int i=0; i<iNumFind; i++)
-	{
-		iFindPos = findSubStr(&sStr, ",", iFindPos + 1);
-		if (i == iSelect)
-		{
-			if (iFindPos < 0)
-            {
-                iFindPos = strlen(&sStr);
-            }
-            if (iLastPos >=  iFindPos) iFindPos = iLastPos + 2;
-			sTemp = strcut(&sStr, iLastPos, iFindPos - 1);
-			return sTemp;
-		}
-		iLastPos = iFindPos + 1;
-	}
 
-	return GetSubStringByNum(sStr, 0);
-}
-// boal <--
-string GetRandSubString(string sStr)
-{
-	string sTemp;
-
-    if (strlen(sStr) > 0)//fix
-    {
-    	//int iFindPos = findSubStr(&sStr, ",", 0);
-    	int iFindPos = findSubStr(sStr, ",", 0);
-    	if (iFindPos < 0) return sStr;	// one word in string
-    	int iNumFind = 1;
-    	while (iFindPos > 0)
-    	{
-    		iNumFind++;
-    		//iFindPos = findSubStr(&sStr, ",", iFindPos + 1);
-    		iFindPos = findSubStr(sStr, ",", iFindPos + 1);
-    	}
-    	int iSelect = rand(iNumFind - 1);
-    	int	iLastPos = 0;
-    	iFindPos = 0; // вот где собака порылась!!!!! считай я убил Вано :) Boal
-    	for (int i=0; i<iNumFind; i++)
-    	{
-    		iFindPos = findSubStr(sStr, ",", iFindPos + 1);
-    		if (i == iSelect)
-    		{
-    			if (iFindPos == -1)
-                {
-                    iFindPos = strlen(sStr);
-                }
-                // заколебало!!!
-                if (iLastPos >=  iFindPos) return "";
-    			sTemp = strcut(sStr, iLastPos, iFindPos - 1);
-    			return sTemp;
-    		}
-    		iLastPos = iFindPos + 1;
-    	}
-
-    	return "If you see this, you can kick Vano :)";
-	}
-	return   "";
-}
-
-// Warship 06.08.09 Строка от -999 до 999 прописью
 String GetRussianNumberString(int _num)
 {
 	if(_num < -999 || _num > 999) return "Error";
@@ -127,6 +49,26 @@ String GetRussianNumberString(int _num)
 	}
 	
 	return numString + hundreds + tens + ones;
+}
+
+string NewStr()
+{
+    int idLngFile = LanguageOpenFile("ItemsDescribe.txt");
+    string sTemp;
+    sTemp = LanguageConvertString(idLngFile,"new_string");
+    LanguageCloseFile(idLngFile);
+
+    return sTemp;
+}
+
+string  xiStr(string _str) // сокращение
+{
+	return XI_ConvertString(_str);
+}
+
+string  xiDStr(string _str) // сокращение
+{
+	return GetConvertStr(_str, "DialogSource.txt");
 }
 
 float GetDotProduct(float fA1, float fA2)
@@ -257,16 +199,6 @@ void Log_QuestInfo(string _info)
 	}
 }
 
-string NewStr()
-{
-    int idLngFile = LanguageOpenFile("ItemsDescribe.txt");
-    string sTemp;
-    sTemp = LanguageConvertString(idLngFile,"new_string");
-    LanguageCloseFile(idLngFile);
-
-    return sTemp;
-}
-
 Object objGrass[5];	// evganat - трава
 // evganat - трава
 void CreateGrass(string sDataFile, string sTextureFile, float fScale, float fW,float fH, float fMinDist,float fMaxDist, float fMinLod, int curGrass)	
@@ -351,16 +283,6 @@ void RefreshLandTime()
 {
     objLandInterface.textinfo.datatext.text = XI_convertString("Date:") + GetQuestBookData();
 }
-// boal 16.03.2004 <--
-string stripblank(string str)
-{
-	string retstr = "";
-	int iMax = strlen(str);
-	for(int i = 0; i < iMax; i++) {
-		if(GetSymbol(str,i) != " ") { retstr += GetSymbol(str,i); }}
-	return retstr;
-}
-// boal <--
 
 void ResetTimeScale()
 {
@@ -376,42 +298,9 @@ void FreeChangeFlagMode(string _tmp)
 	DeleteAttribute(pchar, "DisableChangeFlagMode");
 }
 
-string  xiStr(string _str) // просто сокращение
-{
-	return XI_ConvertString(_str);
-}
-
-string  xiDStr(string _str) // просто сокращение
-{
-	return GetConvertStr(_str, "DialogSource.txt");
-}
-
 void Dev_Trace(string _str) // логи только в дев версии
 {
     if (MOD_BETTATESTMODE	==	"On")	Trace(_str);
-}
-
-// Warship -->
-String FindStringAfterChar(string _string, string _char)
-{
-	int i = FindSubStr(_string, _char , 0);
-	if(i == -1) return "";
-	string sRetStr = strcut(_string, i+1, strlen(_string)-1);
-	return sRetStr;
-}
-
-String FindStringBeforeChar(string _string, string _char) // Поиск строки перед символом
-{
-	int i = FindSubStr(_string, _char , 0);
-	if(i == -1) return "";
-	string sRetStr = strcut(_string, 0, i-1);
-	return sRetStr;
-}
-
-bool HasSubStr(string _Str, string _sFindStr)
-{
-	bool bHas = FindSubStr(_Str, _sFindStr, 0) != -1;
-	return bHas;
 }
 
 // Просто сокращения
@@ -433,14 +322,6 @@ void Log_Clear()
 {
 	ClearAllLogStrings();
 }
-// Строка в 10 пробелов. Пригодится
-// Сейчас уже и не помню даже, для чего конкретно она нужна была
-string TenSpaceStr()
-{
-	string sTemp = XI_ConvertString("TenSpace");
-	return sTemp;
-}
-// <--
 
 int GetCurrentModelrNumber()
 {
@@ -456,50 +337,6 @@ int GetCurrentModelrNumber()
 	}
 	trace("GetCurrentModelrNumber   n : " + n);
 	return n;
-}
-
-string strleft(string str, int num)
-{
-	if (num < 1) return "";
-	int len = strlen(str);
-	if (num > len) num = len;
-	return strcut(str,0,num-1);
-}
-
-string strright(string str, int num)
-{
-	if (num < 1) return "";
-	int len = strlen(str);
-	int start = len - num;
-	if (start < 0) start = 0;
-	return strcut(str,start,len-1);
-}
-
-int GetCountSubString(string sStr)
-{
-	int iFindPos = findSubStr(&sStr, ",", 0);
-	if (iFindPos < 0) return 0;
-	
-	int iNumFind = 1;
-    while (iFindPos > 0)
-	{
-		iNumFind++;
-		iFindPos = findSubStr(&sStr, ",", iFindPos + 1);
-	}
-
-	return iNumFind;
-}
-
-string StrReplace(string strSource, string from, string into)
-{
-	int pos = findSubStr(strSource, from, 0);
-	if (pos < 0) return strSource;
-	if (HasSubStr(into, from)) return strSource;
-	string ret = "";
-	if (pos > 0) ret = strcut(strSource, 0, pos - 1);
-	ret += into;
-	if (pos + strlen(from) <= strlen(strSource) - 1) ret += strcut(strSource, pos + strlen(from), strlen(strSource) - 1);
-	return strreplace(ret, from, into);
 }
 
 string GetSailsType(int _type)

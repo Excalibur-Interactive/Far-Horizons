@@ -3,7 +3,7 @@
 #include "storm-engine\events.h"
 #include "globals.c"
 #include "animals.c"
-#include "NumberUtilities.c" // Warship 26.07.09. Работа с числами
+#include "NumberUtilities.c"
 #include "sea_ai\sea.c"
 #include "ships\ships.c"
 #include "Encounters\Encounters.c"
@@ -26,6 +26,8 @@
 #include "calendar.c"
 #include "teleport.c"
 #include "utils.c"
+#include "utils_new.c"
+#include "scripts\strings.c"
 #include "weather\WhrWeather.c"
 #include "controls\controls.c"
 #include "ITEMS\items.h"

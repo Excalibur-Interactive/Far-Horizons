@@ -176,6 +176,69 @@ void LAi_CharacterFightGo()
 	call func(chr);
 }
 
+//EvgAnat. Пробитие блоков
+#event_handler("Event_CheckBlockFailed", "LAi_CheckBlockFailed");
+bool LAi_CheckBlockFailed()
+{
+	aref attack = GetEventData();
+	aref enemy = GetEventData();
+	
+	/*Rosarak. Меч и мушкет всегда пробивают кулаки (TO_DO)
+	if(IsCharacterWithFists(enemy) && !IsCharacterWithFists(attack))
+	{
+		return true;
+	}*/
+	
+	if(CheckCharacterPerk(attack, "sliding"))
+	{
+		if(rand(99) < 20)
+			return true;
+	}
+	
+	return false;
+}
+
+//EvgAnat. Логика ошеломлений
+#event_handler("Check_ChrStun", "LAi_CheckStun");
+bool LAi_CheckStun()
+{
+    aref attack = GetEventData();
+    aref enemy = GetEventData();
+    string sAction = GetEventData(); //"fast", "force", "break", "feint", "round"
+	
+	//Если враг не дерётся
+	if(!LAi_CheckFightMode(enemy)) return true;
+	
+	/*Если клинком ударили по безоружному (с кулаками) (TO_DO)
+	if(IsCharacterWithFists(enemy) && !IsCharacterWithFists(attack))
+	{
+		return true;
+	}*/
+	
+	//Пробивающий удар
+	if(sAction == "break") return true;
+	
+	//TO_DO: MOD_SKILL_ENEMY_RATE
+	
+	/*if(!IsMainCharacter(enemy)) TO_DO
+	{
+		if(CheckCharacterPerk(enemy, "SwordplayProfessional"))	return rand(9) > 5; //40%
+		if(CheckCharacterPerk(enemy, "AdvancedDefense"))		return rand(9) > 3; //60%
+		if(CheckCharacterPerk(enemy, "BasicDefense"))			return rand(9) > 2; //70%
+	}
+	else
+	{
+		if(CheckCharacterPerk(enemy, "SwordplayProfessional"))	return rand(9) > 7; //20%
+		if(CheckCharacterPerk(enemy, "AdvancedDefense"))		return rand(9) > 6; //30%
+		if(CheckCharacterPerk(enemy, "BasicDefense"))			return rand(9) > 5; //40%
+		return rand(9) > 4; //50%
+	}
+	
+	return rand(9) > 0; //90%*/
+
+	return rand(9) > 4; //50%
+}
+
 void LAi_CharacterFightStay()
 {
 	//Параметры

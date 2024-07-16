@@ -707,9 +707,9 @@ void DeleteNPCInRumourGroups(ref chr)
 	for(int i = 0; i < MAX_RUMOURS; i++)									// to_do: здесь и в RumourGroupCheck лучше через атрибут, а не HasSubStr
 	{
 		if(!RumourGroupCheck(i,chr))
-		{	//для одной строки GetCountSubString возвращает 0
+		{
 			sTemp = Rumour[i].group.npc;
-			if(GetCountSubString(sTemp))
+			if(GetCountSubString(sTemp) > 1)
 			{
 				//GenChar_22, конечно, подстрока GenChar_222, но из-за статиков они все трёхзначные, так что исключено
 				if(FindSubStr(sTemp, chr.id, 0) == 0) sTemp = StrReplace(sTemp, chr.id + ",", "");
