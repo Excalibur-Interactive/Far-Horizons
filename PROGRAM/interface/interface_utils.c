@@ -129,9 +129,10 @@ void StartAboveForm(bool _pauseTime)
     
 	EngineLayersOffOn(true);
     if (_pauseTime)
-    {
 		SetTimeScale(0.0);
-	}
+	else
+		SendMessage(pchar, "l", MSG_CHARACTER_STOPSTRAFE);
+	
 	locCameraSleep(true);
 	LAi_CharacterDisableDialog(pchar);
 }

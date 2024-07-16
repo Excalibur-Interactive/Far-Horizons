@@ -62,12 +62,12 @@
 
 # Звуки/музыка
 *.mp3
+*.wav
+*.ogg
 
 # Шейдеры
 *.sha
 *.scc
-*.wav
-*.ogg
 
 # Архивы
 *.7z
@@ -78,18 +78,18 @@
 # Папки
 *Program/__cache__/
 *SAVE/
-# *RESOURCE/animation/
 *RESOURCE/foam/
 *RESOURCE/MODELS/
 *RESOURCE/Particles/
 *RESOURCE/Sea/
-*RESOURCE/shared/
 *RESOURCE/Sounds/
-*RESOURCE/techniques/
-# *RESOURCE/Textures/
+*RESOURCE/Textures/
 *RESOURCE/VIDEOS/
 *RESOURCE_Copy/
 *modules/
+# *RESOURCE/animation/
+# *RESOURCE/shared/
+# *RESOURCE/techniques/
 options
 options_start
 
@@ -98,7 +98,10 @@ engine.ini
 
 .vscode
 .idea
+.gitattributes
 *.iml
 *.ilk
-.gitattributes
 *.bak
+*.vso
+*.pso
+*.fx
