@@ -240,6 +240,7 @@ void DialogExit()
 		}
 	}
 	else
+	{
 		LAi_Character_EndDialog(CharacterRef, CharacterRef);
 		SendMessage(CharacterRef, "lsl", MSG_CHARACTER_EX_MSG, "InDialog", 0);
 	}
