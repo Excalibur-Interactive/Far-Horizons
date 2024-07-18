@@ -40,7 +40,7 @@ void ActiveF12Control()
     int res = LAi_FindNearestVisCharacter(mainCh, 15);
     if (res != -1)
     {
-        ref findCh = GetCharacter(res);
+		ref findCh = GetCharacter(res);
 		if(CheckAttribute(findCh, "NoF12")) return;
 		
 		bool bChar = findCh.chr_ai.group == LAI_GROUP_PLAYER || bBettaTestMode;//Экку Korsar - некоторую инфу можно узнать только, если персонаж в команде игрока.
@@ -51,12 +51,14 @@ void ActiveF12Control()
 		    if(CheckAttribute(findCh, "equip.blade")) dopinfo = " (Фехтовальщик)";
 		}
 		
-	    string sEBG;
+		string sEBG = "";
+		if(bBettaTestMode) sEBG = " Индекс: " + findCh.index;
+		
     	ref rIFID;
 		
         res = findCh.chr_ai.hp;
         Log_SetStringToLog("" + GetFullName(findCh) + dopinfo);
-        Log_SetStringToLog(""+ XI_ConvertString("Rank") +" " + findCh.rank + " "+ XI_ConvertString("Health") +" "+ res + "/" + LAi_GetCharacterMaxHP(findCh));
+        Log_SetStringToLog(""+ XI_ConvertString("Rank") +" " + findCh.rank + " "+ XI_ConvertString("Health") +" "+ res + "/" + LAi_GetCharacterMaxHP(findCh) + sEBG);
 		
 		if (bChar && CheckAttribute(findCh, "equip.blade"))
         {
