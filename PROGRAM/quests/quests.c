@@ -1717,7 +1717,7 @@ void SetFunctionTimerCondition(string _name, int _year, int _month, int _day, bo
 	}
 }
 
-// Прерывание на таймер с функцией с учетом часов <-- ugeen
+// Прерывание на таймер с функцией с учетом часов
 void SetFunctionTimerConditionParam(string _name, int _year, int _month, int _day, int _hour, bool _again)
 {
     while (_hour > 23)
@@ -1740,7 +1740,14 @@ void SetFunctionTimerConditionParam(string _name, int _year, int _month, int _da
 		DeleteAttribute(Pchar, "quest."+_name+".again");
 	}
 }
-// -- > ugeen
+
+// Установка прерывание на определённое время (час)
+void SetFunctionHourCondition(string _quest, int _targetHour)
+{
+	PChar.Quest.(_quest).win_condition.l1 = "HardHour";
+	PChar.Quest.(_quest).win_condition.l1.hour = _targetHour;
+	PChar.Quest.(_quest).function = _quest;
+}
 
 void SetFunctionLocationCondition(string _name, string _location, bool _again)
 {

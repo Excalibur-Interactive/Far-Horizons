@@ -1581,26 +1581,29 @@ void GenerateAndAddItems(ref _chr, string _itemID, int _qty)
 	}
 }
 
-bool CheckCharacterItem(ref _refCharacter,string itemName)
+bool CheckCharacterItem(ref _refCharacter, string itemName)
 {
+	if(CheckAttribute(_refCharacter, "Items." + itemName) && sti(_refCharacter.Items.(itemName)) > 0)
+		return true;
+
 	ref tmpRef;
-	if(!IsGenerableItem(itemName))
-	{
-		if( CheckAttribute(_refCharacter,"Items."+itemName) && sti(_refCharacter.Items.(itemName))>0 )	return true;
-		else return false;
-	}
-	else
+	if (IsGenerableItem(itemName))
 	{
 		for(int i = ITEMS_QUANTITY; i < TOTAL_ITEMS; i++)
 		{
 			tmpRef = &Items[i];
-			if(CheckAttribute(tmpRef, "ID"))
+			if(CheckAttribute(tmpRef, "DefItemID"))
 			{
-				if(CheckAttribute(tmpRef, "DefItemID") && tmpRef.DefItemID == itemName) return true;
+				if(tmpRef.DefItemID == itemName)
+				{
+					string sItm = tmpRef.ID;
+					if (CheckAttribute(_refCharacter, "Items." + sItm) && (sti(_refCharacter.Items.(sItm)) > 0))
+						return true;
+				}	
 			}
 		}
-		return false;
-	}	
+	}
+	return false;
 }
 
 int GetCharacterItem(ref _refCharacter,string itemName)

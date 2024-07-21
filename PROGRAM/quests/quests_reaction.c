@@ -1838,15 +1838,9 @@ void Flag_PIRATE()
 	LAi_group_ClearAllTargets();
 	DoQuestCheckDelay("NationUpdate", 3.0);
 	UpdateRelations();
-	if(bSeaActive)
-	{
-	    RefreshBattleInterface();
-		SetSchemeForSea();
-	}
-	if(isEntity(worldMap))
-	{
-		SetSchemeForMap();
-	}
+	RefreshBattleInterface();
+	wdmSetNationFlag(sti(pchar.nation));
+	SetSchemeAfterFlagRise();
 }            
 
 void Flag_FRANCE()
@@ -1867,15 +1861,9 @@ void Flag_FRANCE()
     LAi_group_ClearAllTargets();
     DoQuestCheckDelay("NationUpdate", 3.0);
     UpdateRelations();
-    if(bSeaActive)
-	{
-	    RefreshBattleInterface();
-		SetSchemeForSea();
-	}
-	if(isEntity(worldMap))
-	{
-		SetSchemeForMap();
-	}
+	RefreshBattleInterface();
+	wdmSetNationFlag(sti(pchar.nation));
+	SetSchemeAfterFlagRise();
 }
 
 void Flag_ENGLAND()
@@ -1895,15 +1883,9 @@ void Flag_ENGLAND()
     LAi_group_ClearAllTargets();
     DoQuestCheckDelay("NationUpdate", 3.0);
     UpdateRelations();
-    if(bSeaActive)
-	{
-	    RefreshBattleInterface();
-		SetSchemeForSea();
-	}
-	if(isEntity(worldMap))
-	{
-		SetSchemeForMap();
-	}
+	RefreshBattleInterface();
+	wdmSetNationFlag(sti(pchar.nation));
+	SetSchemeAfterFlagRise();
 }
 
 void Flag_SPAIN()
@@ -1923,15 +1905,9 @@ void Flag_SPAIN()
     LAi_group_ClearAllTargets();
     DoQuestCheckDelay("NationUpdate", 3.0);
     UpdateRelations();
-    if(bSeaActive)
-	{
-	    RefreshBattleInterface();
-		SetSchemeForSea();
-	}
-	if(isEntity(worldMap))
-	{
-		SetSchemeForMap();
-	}
+	RefreshBattleInterface();
+	wdmSetNationFlag(sti(pchar.nation));
+	SetSchemeAfterFlagRise();
 }
 
 void Flag_HOLLAND()
@@ -1951,15 +1927,9 @@ void Flag_HOLLAND()
     LAi_group_ClearAllTargets();
     DoQuestCheckDelay("NationUpdate", 3.0);
     UpdateRelations();
-    if(bSeaActive)
-	{
-	    RefreshBattleInterface();
-		SetSchemeForSea();
-	}
-	if(isEntity(worldMap))
-	{
-		SetSchemeForMap();
-	}
+	RefreshBattleInterface();
+	wdmSetNationFlag(sti(pchar.nation));
+	SetSchemeAfterFlagRise();
 }
 
 void Flag_Rerise()

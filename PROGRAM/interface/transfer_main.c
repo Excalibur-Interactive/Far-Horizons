@@ -279,6 +279,10 @@ void IDoExit(int exitCode)
     {
         RefreshBattleInterface();
     }
+    if(IsEntity(&worldMap))
+	{
+		BI_UpdateWmInterface();
+	}
     DoQuestCheckDelay("NationUpdate", 1.5);
 	        
 	PostEvent("StopQuestCheckProcessFreeze", 100);
