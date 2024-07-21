@@ -251,9 +251,9 @@ void SetSchemeForLocation (ref loc)
 				{
 					iColony = FindColony(loc.fastreload);
 				}
-				if (iColony != -1 && sti(Colonies[iColony].nation) == PIRATE)
+				if (iColony != -1)
 				{
-					SetMusicAlarm("music_pir_tavern"); // 1.2.3
+			    	SetMusicAlarm(NationShortName(sti(Colonies[iColony].nation)) + "_music_tavern");
 				}
 				else
 				{

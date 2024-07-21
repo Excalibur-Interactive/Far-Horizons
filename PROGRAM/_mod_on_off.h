@@ -2,7 +2,7 @@
 #define VERSION_NUM_PRE  99940
 
 #define VERSION_NUMBER1       "Far Horizons: Blood & Sand  " // Корсары: ГПК modding base #1
-#define VERSION_NUMBER2       "ver. 0.0.7 (11.05.24)"
+#define VERSION_NUMBER2       "ver. 0.0.8 (21.07.24)"
 #define VERSION_NUMBER3       "Blood & Sand Team"
 #define MOD_BETTATESTMODE     "On"
 
