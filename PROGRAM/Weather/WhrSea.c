@@ -683,58 +683,18 @@ int Whr_SetWaterColor(float fMaxSeaHeight)
 			// цвет моря на суше с пляжами
 			if(Whr_CheckSeashore())
 			{
-				if (GetTime() >=  0.0) iWaterColor = argb(  0,  3, 16, 16 );
-				if (GetTime() >=  1.0) iWaterColor = argb(  0,  4, 18, 18 );
-				if (GetTime() >=  2.0) iWaterColor = argb(  0,  6, 26, 26 );
-				if (GetTime() >=  3.0) iWaterColor = argb(  0,  9, 35, 35 );
-				if (GetTime() >=  4.0) iWaterColor = argb(  0, 12, 46, 46 );
-				if (GetTime() >=  5.0) iWaterColor = argb(  0, 14, 61, 58 );
-				if (GetTime() >=  6.0) iWaterColor = argb(  0, 18, 78, 70 );
-				if (GetTime() >=  7.0) iWaterColor = argb(  0, 21, 98, 84 );
-				if (GetTime() >=  8.0) iWaterColor = argb(  0, 26,118,102 );
-				if (GetTime() >=  9.0) iWaterColor = argb(  0, 30,140,121 );
-				if (GetTime() >= 10.0) iWaterColor = argb(  0, 35,165,143 );
-				if (GetTime() >= 11.0) iWaterColor = argb(  0, 41,188,165 );
-				if (GetTime() >= 12.0) iWaterColor = argb(  0, 44,203,179 );
-				if (GetTime() >= 13.0) iWaterColor = argb(  0, 43,202,178 );
-				if (GetTime() >= 14.0) iWaterColor = argb(  0, 38,178,155 );
-				if (GetTime() >= 15.0) iWaterColor = argb(  0, 31,145,126 );
-				if (GetTime() >= 16.0) iWaterColor = argb(  0, 25,114, 98 );
-				if (GetTime() >= 17.0) iWaterColor = argb(  0, 20, 94, 81 );
-				if (GetTime() >= 18.0) iWaterColor = argb(  0, 17, 74, 68 );
-				if (GetTime() >= 19.0) iWaterColor = argb(  0, 14, 58, 56 );
-				if (GetTime() >= 20.0) iWaterColor = argb(  0, 11, 44, 45 );
-				if (GetTime() >= 21.0) iWaterColor = argb(  0,  8, 32, 34 );
-				if (GetTime() >= 22.0) iWaterColor = argb(  0,  6, 23, 24 );
-				if (GetTime() >= 23.0) iWaterColor = argb(  0,  3, 17, 17 );
-			} else {
+				if (GetTime() < 6.0 || GetTime() >= 20.0) iWaterColor = argb(0,5,10,20);
+				if (GetTime() >= 6.0 && GetTime() < 10.0) iWaterColor = argb(0,5,30,60);
+				if (GetTime() >= 10.0 && GetTime() < 20.0) iWaterColor = argb(0,0,55,90);
+			} 
+			else 
+			{
 				// цвет моря на суше в порту, у форта, в гпк, у островов, в пещерах и гротах
 				if(Whr_CheckSeaTown() || Whr_CheckSeaFix() || Whr_CheckSeaHeightFix() || Whr_CheckLSC() || fMaxSeaHeight == 3.0 || fMaxSeaHeight == 5.0 || Whr_CheckCave() || Whr_CheckGrotto() || bMainMenu)
 				{
-					if (GetTime() >=  0.0) iWaterColor = argb(  0,  0, 11, 11 );
-					if (GetTime() >=  1.0) iWaterColor = argb(  0,  0, 14, 14 );
-					if (GetTime() >=  2.0) iWaterColor = argb(  0,  0, 17, 17 );
-					if (GetTime() >=  3.0) iWaterColor = argb(  0,  0, 22, 22 );
-					if (GetTime() >=  4.0) iWaterColor = argb(  0,  0, 29, 29 );
-					if (GetTime() >=  5.0) iWaterColor = argb(  0,  0, 39, 39 );
-					if (GetTime() >=  6.0) iWaterColor = argb(  0,  0, 54, 54 );
-					if (GetTime() >=  7.0) iWaterColor = argb(  0,  0, 68, 68 );
-					if (GetTime() >=  8.0) iWaterColor = argb(  0,  0, 82, 82 );
-					if (GetTime() >=  9.0) iWaterColor = argb(  0,  0, 94, 94 );
-					if (GetTime() >= 10.0) iWaterColor = argb(  0,  0,108,108 );
-					if (GetTime() >= 11.0) iWaterColor = argb(  0,  0,120,120 );
-					if (GetTime() >= 12.0) iWaterColor = argb(  0,  0,128,128 );
-					if (GetTime() >= 13.0) iWaterColor = argb(  0,  0,126,126 );
-					if (GetTime() >= 14.0) iWaterColor = argb(  0,  0,119,119 );
-					if (GetTime() >= 15.0) iWaterColor = argb(  0,  0, 98, 98 );
-					if (GetTime() >= 16.0) iWaterColor = argb(  0,  0, 80, 80 );
-					if (GetTime() >= 17.0) iWaterColor = argb(  0,  0, 66, 66 );
-					if (GetTime() >= 18.0) iWaterColor = argb(  0,  0, 51, 51 );
-					if (GetTime() >= 19.0) iWaterColor = argb(  0,  0, 38, 38 );
-					if (GetTime() >= 20.0) iWaterColor = argb(  0,  0, 27, 27 );
-					if (GetTime() >= 21.0) iWaterColor = argb(  0,  0, 20, 20 );
-					if (GetTime() >= 22.0) iWaterColor = argb(  0,  0, 15, 15 );
-					if (GetTime() >= 23.0) iWaterColor = argb(  0,  0, 12, 12 );
+					if (GetTime() < 6.0 || GetTime() >= 20.0) iWaterColor = argb(0,5,10,20);
+					if (GetTime() >= 6.0 && GetTime() < 10.0) iWaterColor = argb(0,5,30,60);
+					if (GetTime() >= 10.0 && GetTime() < 20.0) iWaterColor = argb(0,0,55,90);
 				}
 			} else {
 				// остальное море
@@ -766,61 +726,23 @@ int Whr_SetWaterColor(float fMaxSeaHeight)
 		}
 		else// цвет моря в хорошую погоду
 		{
-			// цвет моря на суше с пляжами
+		// цвет моря на суше с пляжами
 		if(Whr_CheckSeashore())
 		{
-				if (GetTime() >=  0.0) iWaterColor = argb(  0,  4, 20, 20 );
-				if (GetTime() >=  1.0) iWaterColor = argb(  0,  5, 23, 23 );
-				if (GetTime() >=  2.0) iWaterColor = argb(  0,  8, 32, 33 );
-				if (GetTime() >=  3.0) iWaterColor = argb(  0, 11, 43, 45 );
-				if (GetTime() >=  4.0) iWaterColor = argb(  0, 15, 58, 58 );
-				if (GetTime() >=  5.0) iWaterColor = argb(  0, 18, 77, 73 );
-				if (GetTime() >=  6.0) iWaterColor = argb(  0, 22, 99, 88 );
-				if (GetTime() >=  7.0) iWaterColor = argb(  0, 27,122,106 );
-				if (GetTime() >=  8.0) iWaterColor = argb(  0, 31,147,126 );
-				if (GetTime() >=  9.0) iWaterColor = argb(  0, 37,175,151 );
-				if (GetTime() >= 10.0) iWaterColor = argb(  0, 84,206,188 );
-				if (GetTime() >= 11.0) iWaterColor = argb(  0, 90,229,208 );
-				if (GetTime() >= 12.0) iWaterColor = argb(  0, 95,245,224 );
-				if (GetTime() >= 13.0) iWaterColor = argb(  0, 94,243,223 );
-				if (GetTime() >= 14.0) iWaterColor = argb(  0, 87,218,199 );
-				if (GetTime() >= 15.0) iWaterColor = argb(  0, 78,185,169 );
-				if (GetTime() >= 16.0) iWaterColor = argb(  0, 31,144,123 );
-				if (GetTime() >= 17.0) iWaterColor = argb(  0, 25,117,101 );
-				if (GetTime() >= 18.0) iWaterColor = argb(  0, 21, 93, 85 );
-				if (GetTime() >= 19.0) iWaterColor = argb(  0, 18, 73, 70 );
-				if (GetTime() >= 20.0) iWaterColor = argb(  0, 14, 55, 55 );
-				if (GetTime() >= 21.0) iWaterColor = argb(  0, 10, 41, 42 );
-				if (GetTime() >= 22.0) iWaterColor = argb(  0,  7, 29, 30 );
-				if (GetTime() >= 23.0) iWaterColor = argb(  0,  4, 21, 21 );
-			} else {
+			if (GetTime() < 6.0 || GetTime() >= 21.0) iWaterColor = argb(0,5,10,20);
+			if (GetTime() >= 6.0 && GetTime() < 10.0) iWaterColor = argb(0,5,30,60);
+			if (GetTime() >= 10.0 && GetTime() < 19.0) iWaterColor = argb(0,0,80,130);
+			if (GetTime() >= 19.0 && GetTime() < 21.0) iWaterColor = argb(0,0,55,90);
+		} 
+		else 
+		{
 		// цвет моря на суше в порту, у форта, в гпк, у островов, в пещерах и гротах
 		if(Whr_CheckSeaTown() || Whr_CheckSeaFix() || Whr_CheckSeaHeightFix() || Whr_CheckLSC() || fMaxSeaHeight == 3.0 || fMaxSeaHeight == 5.0 || Whr_CheckCave() || Whr_CheckGrotto() || bMainMenu)
 		{
-				if (GetTime() >=  0.0) iWaterColor = argb(  0,  0, 14, 14 );
-				if (GetTime() >=  1.0) iWaterColor = argb(  0,  0, 18, 18 );
-				if (GetTime() >=  2.0) iWaterColor = argb(  0,  0, 21, 21 );
-				if (GetTime() >=  3.0) iWaterColor = argb(  0,  0, 27, 27 );
-				if (GetTime() >=  4.0) iWaterColor = argb(  0,  0, 36, 36 );
-				if (GetTime() >=  5.0) iWaterColor = argb(  0,  0, 49, 49 );
-				if (GetTime() >=  6.0) iWaterColor = argb(  0,  0, 66, 66 );
-				if (GetTime() >=  7.0) iWaterColor = argb(  0,  0, 85, 85 );
-				if (GetTime() >=  8.0) iWaterColor = argb(  0,  0,102,102 );
-				if (GetTime() >=  9.0) iWaterColor = argb(  0,  0,118,118 );
-				if (GetTime() >= 10.0) iWaterColor = argb(  0,  0,136,136 );
-				if (GetTime() >= 11.0) iWaterColor = argb(  0,  0,150,150 );
-				if (GetTime() >= 12.0) iWaterColor = argb(  0,  0,160,160 );
-				if (GetTime() >= 13.0) iWaterColor = argb(  0,  0,158,158 );
-				if (GetTime() >= 14.0) iWaterColor = argb(  0,  0,144,144 );
-				if (GetTime() >= 15.0) iWaterColor = argb(  0,  0,121,121 );
-				if (GetTime() >= 16.0) iWaterColor = argb(  0,  0,100,100 );
-				if (GetTime() >= 17.0) iWaterColor = argb(  0,  0, 82, 82 );
-				if (GetTime() >= 18.0) iWaterColor = argb(  0,  0, 64, 64 );
-				if (GetTime() >= 19.0) iWaterColor = argb(  0,  0, 47, 47 );
-				if (GetTime() >= 20.0) iWaterColor = argb(  0,  0, 34, 34 );
-				if (GetTime() >= 21.0) iWaterColor = argb(  0,  0, 25, 25 );
-				if (GetTime() >= 22.0) iWaterColor = argb(  0,  0, 19, 19 );
-				if (GetTime() >= 23.0) iWaterColor = argb(  0,  0, 15, 15 );
+			if (GetTime() < 6.0 || GetTime() >= 21.0) iWaterColor = argb(0,5,10,20);
+			if (GetTime() >= 6.0 && GetTime() < 10.0) iWaterColor = argb(0,5,30,60);
+			if (GetTime() >= 10.0 && GetTime() < 19.0) iWaterColor = argb(0,0,80,130);
+			if (GetTime() >= 19.0 && GetTime() < 21.0) iWaterColor = argb(0,0,55,90);
 			}
 			} else {			
 				// остальное море
