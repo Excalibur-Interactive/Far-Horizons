@@ -89,9 +89,9 @@ void ProcessDialogEvent()
 	    		Link.l6.go = "TalkSelf_TownAttack";
 	        }
 	        
-	        if(!bDisableMapEnter && PChar.location != "Deck_Near_Ship" && findsubstr(PChar.location, "_shipyard" , 0) == -1 && PChar.location != "CommonPackhouse_2" && !CheckAttribute(pchar,"GenQuest.CannotWait")) // 21.03.09 Warship fix Во время линейки Блада отдыхать нельзя
+	        if(!bDisableMapEnter && PChar.location != "Deck_Near_Ship" && findsubstr(PChar.location, "_shipyard" , 0) == -1 && PChar.location != "CommonPackhouse_2" && !CheckAttribute(pchar,"GenQuest.CannotWait"))
 	        {
-	        	Link.l7 = "Мне не мешало бы отдохнуть...";
+	        	Link.l7 = "Мне бы не помешало отдохнуть...";
 	    		Link.l7.go = "TalkSelf_StartWait";
 	    	}
 			
