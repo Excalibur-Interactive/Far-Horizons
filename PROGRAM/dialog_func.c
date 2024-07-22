@@ -1,11 +1,9 @@
 #include "scripts\utils.c"
 
-// boal -->
 #define CARDS_RULE  "Правила простые. Играем в 'двадцать одно'. В колоде 36 карт, от тузов до шестерок. Туз -11, король - 4, дама - 3, валет - 2, остальные как написано. Нужно набрать 21 очко. \n Раздаем по одной карте, далее набираем себе недостающие (клик по колоде). Ход передается кликом по портрету с профилем в правом верхнем углу окошка. Если перебор, то игра заканчивается. Каждая карта - это наша ставка. Начать игру можно, если у тебя есть деньги хотя бы для трех ставок. Повтор игры клик по колоде, выход - крестик или Esc."
 #define DICE_RULE   "Играем в 'покер-джокер'. Пять кубиков у каждого, бросаем по очереди все пять. Можно перебросить любое число кубиков, сделав ставку за каждый, но только один раз. Нужно выкинуть максимальный результат. \n Результаты по возрастанию: одна пара (2), две пары (2+2), триада (3), фул (3+2), каре (4), стрит (кубики подряд) и покер (5). Если одинаково выпало, то победил тот, у кого старше комбинация. \n Управление: клик по стакану - бросок кубиков, клик по кубику - на переброс (деньги на ставку должны быть), клик по портрету - передать ход (когда переброс не нужен)."
 #define MAX_TITLENEXTRATE   13 // счетчик для званий
 #define MAX_TITLE           5
-// boal <--
 
 object Address_Form;
 
@@ -72,8 +70,6 @@ void Set_inDialog_Attributes()
 	Address_Form.Dut.man = "минхер";
 	Address_Form.Pir.man = "сэр";
 }
-
-// boal -->
 
 string RandSwear()
 {
@@ -151,16 +147,12 @@ string RandPhraseSimple(string Var1, string Var2);
 	RandP = Rand(1);
 	switch(RandP)
 	{
-		case 0:
-			return /*"First phrase selected" + */ Var1;
-		break;
-
-		case 1:
-			return /*"Second phrase selected" + */Var2;
-		break;
+		case 0: return Var1; break;
+		case 1: return Var2; break;
 	}
 	return "ERROR";
 }
+
 // выбор фразы из трех
 string LinkRandPhrase (string Var1, string Var2, string Var3)
 {
@@ -168,23 +160,9 @@ string LinkRandPhrase (string Var1, string Var2, string Var3)
 	RandP = Rand(2);
 	switch(RandP)
 	{
-		case 0:
-
-			return /*"First phrase selected" + */ Var1;
-
-		break;
-
-		case 1:
-
-			return /*"Second phrase selected" + */Var2;
-
-		break;
-
-		case 2:
-
-			return /*"Third phrase selected" + */Var3;
-
-		break;
+		case 0: return Var1; break;
+		case 1: return Var2; break;
+		case 2: return Var3; break;
 	}
 	return "ERROR";
 }
@@ -253,7 +231,7 @@ string NationNameMan(int pNation)
 		break;
 	}
 }
-// boal 13.03.2004 <--
+
 string NationNamePeople(int pNation)
 {
     switch(pNation)
@@ -293,7 +271,7 @@ string NationNamePeopleAcc(int pNation)
 			return "голландцами";
 		break;
 		case PIRATE:
-			return "паратами";
+			return "пиратами";
 		break;
 	}
 }
@@ -926,6 +904,7 @@ string PCharRepPhrase (string bad, string good)
 {
 	return NPCharRepPhrase(pchar, bad, good);
 }
+
 // boal для НПС
 string NPCharRepPhrase(ref _pchar, string bad, string good)
 {
