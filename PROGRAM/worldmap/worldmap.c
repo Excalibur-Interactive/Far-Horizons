@@ -148,7 +148,13 @@ void wdmCreateWorldMap()
 	worldMap.rumText.color = argb(255, 255, 255, 255);
 	worldMap.rumText.pos.x = cx + 24.0 * fHtRatio;
 	worldMap.rumText.pos.y = cy + 30.0 * fHtRatio;
-	
+
+	worldMap.nationFlag.texture = "WorldMap/Interfaces/WorldMapEnsigns.tga";
+	worldMap.nationFlag.leftPos = sti(showWindow.right) - RecalculateHIcon(makeint(118 * fHtRatio));
+	worldMap.nationFlag.topPos = sti(showWindow.top) + RecalculateVIcon(makeint(400 * fHtRatio));
+	worldMap.nationFlag.width = 64 * fHtRatio;
+	worldMap.nationFlag.height = 64 * fHtRatio;
+
 	worldMap.resizeRatio = fHtRatio;
 	
 	//Удалим все устаревшие энкаунтеры
@@ -164,21 +170,24 @@ void wdmCreateWorldMap()
 	worldMap.isLoaded = "true";
 	//Обновляем параметры
 	worldMap.update = "";
+
 	//Фейдер
 	CreateEntity(&wdm_fader, "fader");
 	if(IsEntity(wdm_fader) == 0) Trace("Fader not created!!!");	
 	float fadeInTime = 0.5;
 	SendMessage(&wdm_fader, "lfl", FADER_IN, fadeInTime, true);
 	SendMessage(&wdm_fader, "ls",FADER_PICTURE0,"loading\sea.tga");
+
 	//Установим звуковую схему
 	SetSchemeForMap();
 	//Сообщим, что загрузились
 	PostEvent("EventWorldMapInit", 830); //fix boal
 	ReloadProgressEnd();
-	PostEvent("EventTimeUpdate", 1000);
-	PostEvent("EventCoordUpdate", 1000);
+	PostEvent("EventTimeUpdate", 100);
+	PostEvent("EventCoordUpdate", 100);
 	//Создаём накопившиеся квестовые энкоунтеры
 	worldMap.addQuestEncounters = "updateQuest";
+	wdmSetNationFlag(sti(pchar.nation));
 	InitWmInterface();
 }
 
@@ -231,6 +240,11 @@ float wdmGetDays(int year, int month, int day, int hour)
 	//Считаем полные дни
 	float days = year + day + (hour/24.0);
 	return days;
+}
+
+void wdmSetNationFlag(int iNation)
+{
+	SendMessage(&worldMap, "ll", MSG_WORLDMAP_SET_NATION_FLAG, iNation);
 }
 
 void wdmMarkDeleteEncounters()

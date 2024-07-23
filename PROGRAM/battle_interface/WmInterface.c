@@ -37,6 +37,7 @@ void WM_ProcessControlPress()
 
 void BI_UpdateWmInterface()
 {
+	WM_SetShipData(); //После перемещения команды или обмена
 	SendMessage(&BattleInterface,"l",BI_MSG_REFRESH);
 	PostEvent("BI_UpdateWmInterface",1000);
 }

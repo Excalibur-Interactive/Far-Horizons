@@ -64,9 +64,8 @@ bool ProcessCondition(aref condition)
 
 	switch(sConditionName)
 	{
-		// boal оптимизация -->
 		case "MapEnter":
-    		return IsEntity(worldMap);
+    		return IsEntity(&worldMap);
     	break;
 
     	case "ExitFromLocation":
@@ -94,6 +93,29 @@ bool ProcessCondition(aref condition)
 				if(GetHour() >= stf(condition.date.hour)) return true;
 			}
     		return true;
+    	break;
+
+		case "Night":
+    		return Whr_IsNight();
+    	break;
+		
+		case "Day":
+    		return Whr_IsDay();
+    	break;
+
+		case "Hour":
+			if (stf(environment.time) >= stf(condition.start.hour) && stf(environment.time) < stf(condition.finish.hour)) return true;
+    		return false;
+    	break;
+
+		case "HardHour":
+			if (stf(environment.time) >= stf(condition.hour)) return true;
+    		return false;
+    	break;
+
+		case "Nation":
+			if (sti(pchar.nation) == sti(condition.nation)) return true;
+    		return false;
     	break;
 
     	case "locator":
@@ -128,7 +150,6 @@ bool ProcessCondition(aref condition)
 			return CharacterIsDead(refCharacter);
     	break;
 
-		//navy --> универсальное прерывание на тип локации.
 		case "Location_Type":
 			if (IsEntity(loadedLocation))
 			{
@@ -136,7 +157,6 @@ bool ProcessCondition(aref condition)
 			}
 			return false;
 		break;
-		//navy <--
 
 		case "Nation_City":
 			if (IsEntity(loadedLocation))
@@ -160,6 +180,18 @@ bool ProcessCondition(aref condition)
     		return TestIntValue(GetCargoGoods(refCharacter,sti(condition.goods)),sti(condition.quantity),condition.operation);
     	break;
 
+		case "Rank":
+			return TestIntValue(sti(refCharacter.rank),sti(condition.value),condition.operation);
+		break;
+
+		case "Alarm":
+			return TestIntValue(LAi_grp_playeralarm, sti(condition.value), condition.operation);
+    	break;
+
+		case "Money":
+			return TestIntValue(sti(pchar.money), sti(condition.value), condition.operation);
+    	break;
+
     	case "item":  // to_do  пока в квесте воровства  есть, но не используется
 			// Warship Для новой системы предметов это неприемлемо
 			// Ugeen -- > для новой системы предметов переписал функцию CheckCharacterItem(), теперь будет приемлимо
@@ -171,12 +203,11 @@ bool ProcessCondition(aref condition)
     		return false;
     	break;
 
-        //a&m --> 03/02
         case "Character_sink":
     		if( CheckAttribute(refCharacter,"Killer.status") && sti(refCharacter.Killer.status) != KILL_BY_ABORDAGE ) return true;
     		return false;
     	break;
-        //a&m <--  03/02
+
         case "Ship_location":
     		if( CheckAttribute(refCharacter,"location.from_sea") && refCharacter.location.from_sea==condition.location ) return true;
     		return false;
@@ -185,8 +216,7 @@ bool ProcessCondition(aref condition)
 			sTmpString = condition.group;
 			return Group_isDead(sTmpString);
 		break;
-	// boal <--
-	
+
 		case "ComeToIsland":
 			if(CheckAttribute(refCharacter,"ComeToIsland") && refCharacter.ComeToIsland=="1")
 			{
@@ -250,7 +280,7 @@ bool ProcessCondition(aref condition)
 		break;
 		
 		case "Coordinates":
-			if(IsEntity(worldMap)) // если на глобальной карте
+			if(IsEntity(&worldMap)) // если на глобальной карте
 			{
 				if( GetMapCoordDegreeX(makefloat(worldMap.playerShipX)) == sti(condition.coordinate.degreeX) &&
 				    GetMapCoordDegreeZ(makefloat(worldMap.playerShipZ)) == sti(condition.coordinate.degreeZ) &&

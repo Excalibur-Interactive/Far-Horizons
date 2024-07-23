@@ -332,3 +332,9 @@ void LAi_NPC_EquipPerk(ref chr, string kind)
 		}
 	}
 }
+
+bool isMushket(string name)
+{
+	if(HasSubStr(name, "mushket")) return true;
+	return false;
+}

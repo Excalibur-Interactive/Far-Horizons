@@ -437,9 +437,8 @@ void LAi_KillCharacter(aref chr)
 //Убит ли персонаж
 bool LAi_IsDead(aref chr)
 {
-	if (chr.id == "0") return true; // boal если фантома нет, то НПС умер
-	if(CheckAttribute(chr, "chr_ai.hp") == false) return true;
-	if(stf(chr.chr_ai.hp) < 1.0) return true;
+	if(CheckAttribute(chr, "id") && chr.id == "0") return true; // boal если фантома нет, то НПС умер
+	if(!CheckAttribute(chr, "chr_ai.hp") || stf(chr.chr_ai.hp) < 1.0) return true;
 	return false;
 }
 

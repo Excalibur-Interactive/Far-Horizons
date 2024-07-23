@@ -14,7 +14,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			dialog.text = "Я что, работаю на тайную агентурную сеть для "+NationNameGenitive(sti(NPChar.nation))+"?";
 			link.l1 = "Ну ладно... тогда пока.";
 			link.l1.go = "exit";
-			link.l2 = "Тогда другой вопрос";
+			link.l2 = "Тогда другой вопрос.";
 			link.l2.go = "new question";
 		break;
 		
@@ -24,7 +24,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 
             link.l1 = "Вот бестолочь! Пока.";
 			link.l1.go = "exit";
-			link.l2 = "Тогда другой вопрос";
+			link.l2 = "Тогда другой вопрос.";
 			link.l2.go = "new question";
 		break;
 	}

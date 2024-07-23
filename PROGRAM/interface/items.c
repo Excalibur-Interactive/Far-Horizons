@@ -1692,29 +1692,26 @@ void EquipPress()
 	    	break;
 		}
 		
-		if(HasSubStr(itmRef.id, "Mushket")) // Пытаемся одеть мушкет... на тетку не оденеться, нет анимации
+		if(HasSubStr(itmRef.id, "Mushket"))
 		{
-			if(pchar.sex != "woman")
+			if(!CheckAttribute(PChar, "IsMushketer")) // Не мушкетер. Делаем мушкетером
 			{
-				if(!CheckAttribute(PChar, "IsMushketer")) // Не мушкетер. Делаем мушкетером
-				{
-					SetMainCharacterToMushketer(itmRef.id, true);
-				}
-				else // Мушкетер. Делаем обычным фехтовальщиком
-				{
-					SetMainCharacterToMushketer("", false);
-				}
+				SetMainCharacterToMushketer(itmRef.id, true);
+			}
+			else // Мушкетер. Делаем обычным фехтовальщиком
+			{
+				SetMainCharacterToMushketer("", false);
 			}
 		}
 		else
 		{
-    	    if(IsEquipCharacterByItem(pchar, itmRef.id))
+    	    if(IsEquipCharacterByItem(PChar, itmRef.id))
 	        {
-			    RemoveCharacterEquip(pchar, itmGroup);
+			    RemoveCharacterEquip(PChar, itmGroup);
 		    }
     	    else
 	        {
-			    EquipCharacterByItem(pchar, itmRef.id);
+			    EquipCharacterByItem(PChar, itmRef.id);
 		    }
 		}
 		FillItemsSelected();

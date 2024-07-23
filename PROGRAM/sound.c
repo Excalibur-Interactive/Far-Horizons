@@ -706,3 +706,14 @@ void LoadSceneSound()
 	if (i != -1)
 		SetSchemeForLocation(&Locations[i]);
 }
+
+// belamour. Фикс звуковой схемы после смены флага
+void SetSchemeAfterFlagRise()
+{
+	if(IsEntity(&worldMap)) SetSchemeForMap ();
+	else
+	{
+		if(IsEntity(&AISea)) SetSchemeForSea();
+		else LoadSceneSound();
+	}
+}
