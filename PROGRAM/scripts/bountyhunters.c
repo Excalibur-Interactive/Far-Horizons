@@ -169,6 +169,7 @@ void LandHunterReactionResult(ref loc)  // отработает после вх�
 	                sld = characterFromID(sCapId + "1");
 	                LAi_type_actor_Reset(sld);
 	                LAi_ActorDialog(sld, pchar, "", 4.0, 0);
+					DoQuestCheckDelay("MainHeroFightModeOff", 3);
 		    		chrDisableReloadToLocation = true;
 		    		DoQuestCheckDelay("OpenTheDoors", 5.0);
 	            }

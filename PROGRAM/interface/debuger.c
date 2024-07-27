@@ -726,12 +726,12 @@ void CalculateInfoDataF1()
     SetFormatedText("DEBUGER_INFO",totalInfo);
 }
 
-string descF2 = "Создать рандомную осаду города";
+string descF2 = "Кастомная кнопка";
 void CalculateInfoDataF2()
 {
 	totalInfo = descF2;
 	
-	
+	log_info(pchar.location);
 	
     totalInfo = totalInfo + NewStr() + NewStr() +
                 "Команда отработала успешно!";

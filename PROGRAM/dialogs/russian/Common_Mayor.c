@@ -533,7 +533,15 @@ void ProcessDialogEvent()
 
 		case "Where_guber":
             offref = characterFromID(NationShortName(sti(NPChar.nation))+"_guber");
-
+			
+			if(NPChar.location == "Havana_townhall" && offref.location == "Havana_GovernorGeneralTownhall")
+			{
+				dialog.text = "Его " + RandPhraseSimple("Милость", "Светлость") + " генерал-губернатор "+NationNameGenitive(sti(NPChar.nation))+ " " + GetFullName(offref)+
+						  " располагается в своём поместье, вход туда ведёт через сад.";
+				link.l1 = "Большое спасибо!";
+				link.l1.go = "exit";
+				break;
+			}
             if (NPChar.location == offref.location)
             {
                 dialog.text = "Раскрой глаза, невежа!! Его " + RandPhraseSimple("Милость", "Светлость") + " генерал-губернатор "+NationNameGenitive(sti(NPChar.nation))+ " " + GetFullName(offref)+

@@ -66,7 +66,7 @@ int dRandEx(int _num, bool next)
 		}
 	}
 	// <--
-			
+	
 	// Первая запись
 	if(!CheckAttribute(PChar,"Random.args"))
 	{
@@ -81,9 +81,8 @@ int dRandEx(int _num, bool next)
 		return _num;
 	}
 	
-	
 	if(!next) // Был ли такой аргумент
-	{
+	{	//to_do: рефактор на чек атрибута
 		iArg = 0; 
 		attr   = iArg;
 		while( CheckAttribute(PChar,"Random.args."+attr) )

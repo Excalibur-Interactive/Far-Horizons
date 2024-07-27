@@ -2259,7 +2259,7 @@ void EquipCharacterByItem(ref chref, string itemID)
 	
 	chref.equip.(groupName) = itemID;
 
-	if(IsEntity(chref))
+	if(IsEntity(&chref) || groupName == CIRASS_ITEM_TYPE)
 	{
 		SetEquipedItemToCharacter(chref, groupName, itemID);
 	}

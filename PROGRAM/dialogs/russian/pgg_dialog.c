@@ -213,7 +213,7 @@ void ProcessDialogEvent()
 			break;
 		}
 		//если отношение ниже 70, то в 70% случаев откажет...
-		if (PGG_ChangeRelation2MainCharacter(NPChar, 0) < 70 && rand(100) < 70)
+		if (PGG_ChangeRelation2MainCharacter(NPChar, 0) < 70 && drandEx(100, true) < 70)
 		{
 			Dialog.Text = RandPhraseSimple("Хм.. пожалуй, нет...", "Нет, я капитан, и не хочу быть офицером.");
 			link.l1 = RandPhraseSimple("Ну, как хочешь...", "Что ж, счастливо оставаться.");
@@ -295,7 +295,7 @@ void ProcessDialogEvent()
 			break;
 		}
 		//если отношение ниже 70, то в 70% случаев откажет...
-		if (PGG_ChangeRelation2MainCharacter(NPChar, 0) < 70 && rand(100) < 70)
+		if (PGG_ChangeRelation2MainCharacter(NPChar, 0) < 70 && drandEx(100, true) < 70)
 		{
 			Dialog.Text = RandPhraseSimple("Хм.. пожалуй, нет...", "Нет, спасибо. Не люблю плавать под чьим-то началом.");
 			link.l1 = RandPhraseSimple("Ну, как хочешь...", "Что ж, счастливо оставаться.");

@@ -80,6 +80,7 @@ void QuestComplete(string sQuestName, string qname)
         case "Battle_Hunters_Land":
             Lai_SetPlayerType(pchar);
             LAi_SetFightMode(Pchar, true);
+			DeleteAttribute(pchar, "PostEventQuest.questDelay.MainHeroFightModeOff");
 			for (i=1; i<= sti(PChar.HunterCost.Qty); i++)
 			{
 	            sld = characterFromID(PChar.HunterCost.TempHunterType + "LandHunter0" + i);

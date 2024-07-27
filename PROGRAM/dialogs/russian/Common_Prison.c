@@ -125,7 +125,7 @@ void ProcessDialogEvent()
 				dialog.text = LinkRandPhrase("Хо-хо, до чего же весело!!", "Режь их, "+ GetSexPhrase("приятель","подруга") +", режь!!!", "Эх, дьявол! Уж не думал, что увижу труп своего надсмотрщика!");
 				link.l1 = RandPhraseSimple("Хех!", "Аргх...");
 				link.l1.go = "NoMoreTalkExit";
-				if (rand(10) > 6 && !CheckAttribute(pchar, "quest.GivePrisonFree") && !CheckAttribute(pchar, "quest.GivePrisonFree_Over") && !CheckAttribute(pchar, "quest.DeliverToBander"))
+				if (drandEx(10, true) > 7 && !CheckAttribute(pchar, "quest.GivePrisonFree") && !CheckAttribute(pchar, "quest.GivePrisonFree_Over") && !CheckAttribute(pchar, "quest.DeliverToBander"))
 				{
 					dialog.text = RandPhraseSimple("Постой, "+ GetSexPhrase("дружище","подруга") +"!! Выпусти меня!", "Послушай, "+ GetSexPhrase("приятель","подруга") +", будь так добр"+ GetSexPhrase("","а") +", открой камеру.");
 					link.l1 = "С какой это стати?";
@@ -137,7 +137,7 @@ void ProcessDialogEvent()
 				dialog.text = LinkRandPhrase("Меня взяли за грабеж, дело шьют...", "Агрх, холен"+ GetSexPhrase("ый","ая") +" ты... Тебя бы ко мне в камеру на недельку! Кхе-хе-хе...", "Я ни в чем не виноват!");
 				link.l1 = RandPhraseSimple("Заткнись!", "Мне нет до тебя дела...");
 				link.l1.go = "NoMoreTalkExit";
-				if (rand(10) > 6 && !CheckAttribute(pchar, "quest.GivePrisonFree_Over") && !CheckAttribute(pchar, "quest.GivePrisonFree") && !CheckAttribute(pchar, "quest.DeliverToBander") && !sti(colonies[FindColony(npchar.city)].HeroOwn))
+				if (drandEx(10, true) > 7 && !CheckAttribute(pchar, "quest.GivePrisonFree_Over") && !CheckAttribute(pchar, "quest.GivePrisonFree") && !CheckAttribute(pchar, "quest.DeliverToBander") && !sti(colonies[FindColony(npchar.city)].HeroOwn))
 				{
 					dialog.text = RandPhraseSimple("Постой, "+ GetSexPhrase("приятель","подруга") +", не проходи мимо моей камеры так быстро!", "Не торопись, "+ GetSexPhrase("дружище","подруга") +", давай поговорим.");
 					link.l1 = "С какой это стати?";

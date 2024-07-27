@@ -1144,7 +1144,7 @@ void ProcessControls()
 		break;
 		
 		// boal -->
-		case "ChrBackward": //ChrStrafeLeft ChrStrafeRight
+		/* case "ChrBackward": //ChrStrafeLeft ChrStrafeRight
             if (bLandInterfaceStart && LAi_IsFightMode(pchar))
             {
 				pchar.chr_ai.energy = stf(pchar.chr_ai.energy) - 3;
@@ -1166,7 +1166,7 @@ void ProcessControls()
 				pchar.chr_ai.energy = stf(pchar.chr_ai.energy) - 3;
  				if (stf(pchar.chr_ai.energy) < 0) pchar.chr_ai.energy = 0;
 	        }
-		break;
+		break; */
 		
 		case "UsePotionv1":
             if (bLandInterfaceStart)
