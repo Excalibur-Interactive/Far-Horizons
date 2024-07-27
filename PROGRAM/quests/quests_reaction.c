@@ -1607,6 +1607,7 @@ void QuestComplete(string sQuestName, string qname)
 		case "PlaySex_2":
 			PlayStereoSound("sex\sex" + sGlobalTemp + ".wav");
             AddTimeToCurrent(2, rand(30));
+			LAi_SetCurHPMax(pchar);
 			//массаж хозяйки борделя
 			if(CheckAttribute(&TEV, "SensualMassage.Bonus"))
 			{

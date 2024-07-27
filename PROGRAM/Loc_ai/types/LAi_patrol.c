@@ -7,10 +7,7 @@
 		goto
 */
 
-
-
 #define LAI_TYPE_PATROL		"patrol"
-
 
 //Инициализация
 void LAi_type_patrol_Init(aref chr)
@@ -109,7 +106,8 @@ void LAi_type_patrol_CharacterUpdate(aref chr, float dltTime)
 	}
 	else chr.chr_ai.type.bottle = fCheck;
 	// boal  лечимся <--
-	float radius;
+	float radius, time;
+	int i;
 	if(chr.chr_ai.tmpl != LAI_TMPL_FIGHT && !LAi_grp_alarmactive)
 	{
 		//Ищем цель
@@ -117,17 +115,18 @@ void LAi_type_patrol_CharacterUpdate(aref chr, float dltTime)
 		if(trg < 0)
 		{
 			//Патрулирование
-			float time = stf(chr.chr_ai.type.player) - dltTime;
+			time = stf(chr.chr_ai.type.player) - dltTime;
 			chr.chr_ai.type.player = time;
 			if(time <= 0.0)
 			{
 				//Анализируем окружающих персонажей
-				if (isDay() || GetRelation2BaseNation(sti(chr.nation)) != RELATION_ENEMY) radius = 3.0; //eddy. дневной и ночной патруль - разные, ночью смотрят дальше
+				if (isDay() || GetRelation2BaseNation(sti(chr.nation)) != RELATION_ENEMY)
+					radius = 3.0; //eddy. дневной и ночной патруль - разные, ночью смотрят дальше
 				else radius = 6.0;
 				int num = FindNearCharacters(chr, radius, -1.0, 180.0, 0.1, true, true);
 				if(num > 0)
 				{
-					for(int i = 0; i < num; i++)
+					for(i = 0; i < num; i++)
 					{
 						if(nMainCharacterIndex == sti(chrFindNearCharacters[i].index))
 						{							
@@ -151,7 +150,7 @@ void LAi_type_patrol_CharacterUpdate(aref chr, float dltTime)
 						trg = sti(chrFindNearCharacters[0].index);
 					}
 				}
-			}			
+			}
 			//Анализируем состояние ходьбы
 			if(chr.chr_ai.tmpl == LAI_TMPL_GOTO)
 			{
@@ -173,12 +172,16 @@ void LAi_type_patrol_CharacterUpdate(aref chr, float dltTime)
 			{
 				if(trg >= 0) CharacterTurnByChr(chr, &Characters[trg]);
 				return;
-			}else{
+			}
+			else
+			{
 				LAi_type_patrol_Goto(chr);
 				return;
 			}
 
-		}else{
+		}
+		else
+		{
 			//Начинаем атаку
 			chr.chr_ai.type.state = "fight";
 			if(!LAi_tmpl_SetFight(chr, &Characters[trg]))
@@ -188,7 +191,9 @@ void LAi_type_patrol_CharacterUpdate(aref chr, float dltTime)
 			}
 			else chr.chr_ai.type.checkTarget = rand(4) + 3; //таймер на проверялку расстояния до таргета
 		}
-	}else{
+	}
+	else
+	{
 		//Проверим на правильность цель
 		bool isValidate = false;
 		trg = LAi_tmpl_fight_GetTarget(chr);
@@ -221,7 +226,9 @@ void LAi_type_patrol_CharacterUpdate(aref chr, float dltTime)
 					LAi_type_patrol_Stay(chr);
 				}
 				else chr.chr_ai.type.checkTarget = rand(4) + 3; //таймер на проверялку расстояния до таргета
-			}else{
+			}
+			else
+			{
 				LAi_type_patrol_Stay(chr);
 			}
 		}
@@ -311,12 +318,10 @@ void LAi_type_patrol_EndDialog(aref chr, aref by)
 	}
 }
 
-
 //Персонаж выстрелил
 void LAi_type_patrol_Fire(aref attack, aref enemy, float kDist, bool isFindedEnemy)
 {
 }
-
 
 //Персонаж атакован
 void LAi_type_patrol_Attacked(aref chr, aref by)
@@ -329,15 +334,15 @@ void LAi_type_patrol_Attacked(aref chr, aref by)
 	if (LAi_tmpl_fight_GetTarget(chr) == sti(by.index)) return;
 	//Своих пропускаем
 	if(!LAi_group_IsEnemy(chr, by)) return;
-    //boal fix ai -->
-    float dist = -1.0;
+	//boal fix ai -->
+	float dist = -1.0;
 	
 	if(!GetCharacterDistByChr3D(chr, by, &dist)) return;
 	if(dist < 0.0) return;
 	if(dist > 20.0) return;
 	//Натравливаем
 	LAi_tmpl_SetFight(chr, by);
-    // boal <--
+	// boal <--
 	if (rand(100) > 95 && !LAi_IsDead(chr) && !LAi_IsDead(pchar)) LAi_CharacterPlaySound(chr, "warrior");
 }
 
@@ -352,10 +357,10 @@ void LAi_type_patrol_Stay(aref chr)
 //Отправить персонажа в новую точку
 void LAi_type_patrol_Goto(aref chr)
 {
-    //Идём в новую точку
-    string newloc;
-    string group = "goto";
-    if (!CheckAttribute(chr, "CityType")) Log_SetStringToLog("Ghf: " + chr.id);
+	//Идём в новую точку
+	string newloc;
+	string group = "goto";
+	if (!CheckAttribute(chr, "CityType")) Log_SetStringToLog("Ghf: " + chr.id);
     // Rebbebion, тяжёлая пехота
     if (CheckAttribute(chr, "PatrolElite"))
     {
@@ -392,24 +397,27 @@ void LAi_type_patrol_Goto(aref chr)
 //Проверить персонажа с заданной вероятностью
 void LAi_type_patrol_TestControl(aref chr)
 {
+	bool bFightMode = LAi_CheckFightMode(pchar);
+	//Пираты вообще не спрашивают
+	if(sti(chr.nation) == PIRATE) return;
+	//Солдаты не спрашивают при отсутствии войны у наций и отсутствии НЗГ
+	if(GetNationRelation(sti(chr.nation), GetBaseHeroNation()) != RELATION_ENEMY && ChangeCharacterNationReputation(pchar, sti(chr.nation), 0) > -10 && !bFightMode && GetNationRelation2MainCharacter(sti(chr.nation)) != RELATION_ENEMY) return;						   
 	chr.chr_ai.type.player = 5 + rand(10);
 	int iRand;
-	bool bFightMode = LAi_CheckFightMode(pchar);
-	if (GetNationRelation2MainCharacter(sti(chr.nation)) == RELATION_ENEMY || GetNationRelation(sti(chr.nation), GetBaseHeroNation()) == RELATION_ENEMY) iRand = 2;
-	else iRand = GetRelation2BaseNation(sti(chr.nation)); // 0- друг 1- нейтрал 2- враг
+	if (GetNationRelation2MainCharacter(sti(chr.nation)) == RELATION_ENEMY || GetNationRelation(sti(chr.nation), GetBaseHeroNation()) == RELATION_ENEMY) iRand = RELATION_ENEMY;
+	else iRand = GetRelation2BaseNation(sti(chr.nation)); // 1 - друг, 2 - нейтрал, 3 - враг
 	
-	if (isDay()) 
+	if (isDay())
 	{
 		// в друж. городе не цепляемся
-		if (rand(iRand) < 2 || CharIsFromStockPirCity(chr))  //Экку Korsar - Что-бы пираты не прикапывались в стоковых поселках 
+		if (iRand == RELATION_FRIEND)
 		{
 			//проверяем, нет ли обнаженки оружия
-			if (bFightMode)	
+			if (bFightMode)
 			{	//Пытаемся начать диалог
 				LAi_SetFightMode(pchar, false);
 				if(LAi_Character_CanDialog(chr, pchar))
 				{
-					chr.Oldgreeting = chr.greeting;
 					chr.greeting = "";
 					LAi_CharacterPlaySound(chr, "sold_weapon_off");
 					chr.chr_ai.type.state = "dialog";
@@ -419,7 +427,7 @@ void LAi_type_patrol_TestControl(aref chr)
 			}
 			return;  
 		}
-		if (CheckNationLicence(sti(chr.nation))) iRand = 10;
+		if (CheckNationLicence(sti(chr.nation)) && !bFightMode) iRand = 10;
 		else
 		{
 			if (iRand == RELATION_NEUTRAL)
@@ -430,13 +438,15 @@ void LAi_type_patrol_TestControl(aref chr)
 					LAi_SetFightMode(pchar, false);
 					if(LAi_Character_CanDialog(chr, pchar))
 					{
+						chr.greeting = "";
+						LAi_CharacterPlaySound(chr, "sold_weapon_off");				 
 						chr.chr_ai.type.state = "dialog";
 						chr.Dialog.CurrentNode = "SoldierNotBlade";
 						LAi_tmpl_SetDialog(chr, pchar, -1.0);
 					}
 					chr.chr_ai.type.player = 100;
 					return;
-				}					
+				}
 				chr.chr_ai.type.player = 100;
 				iRand = 60;
 			}
@@ -447,9 +457,9 @@ void LAi_type_patrol_TestControl(aref chr)
 			}
 		}
 	}
-	else 
+	else
 	{
-		if (iRand == RELATION_FRIEND || iRand == RELATION_NEUTRAL || CharIsFromStockPirCity(chr)) //Экку Korsar - Что-бы пираты не прикапывались в стоковых поселках
+		if (iRand == RELATION_FRIEND || iRand == RELATION_NEUTRAL)
 		{
 			//проверяем, нет ли обнаженки оружия
 			if (bFightMode)	
@@ -461,7 +471,7 @@ void LAi_type_patrol_TestControl(aref chr)
 					chr.Dialog.CurrentNode = "SoldierNotBlade";
 					LAi_tmpl_SetDialog(chr, pchar, -1.0);
 				}
-			}			
+			}
 			return; // в друж. городе не цепляемся
 		}
 		//eddy. ночной враг цепляется только так и шансов скрыться мало даже при супер прокачке скрытности.
@@ -484,7 +494,7 @@ void LAi_type_patrol_TestControl(aref chr)
 				}
 				chr.chr_ai.type.player = 80;
 				return;
-			}			
+			}
 			chr.chr_ai.type.player = 60;
 			iRand = 80; //ночью нейтрал
 		}
@@ -514,11 +524,11 @@ void LAi_type_patrol_TestControl(aref chr)
 			}
 			if (GetBaseHeroNation() == sti(chr.nation) && GetRelation2BaseNation(sti(chr.nation)) == RELATION_ENEMY)
 			{
-			    AddCharacterExpToSkill(pchar, SKILL_SNEAK, 10);
+				AddCharacterExpToSkill(pchar, SKILL_SNEAK, 10);
 			}
 		}
 		return;
-	}		
+	}
 	//Пытаемся начать диалог
 	LAi_SetFightMode(pchar, false);
 	if(LAi_Character_CanDialog(chr, pchar))

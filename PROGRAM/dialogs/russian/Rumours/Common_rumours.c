@@ -168,29 +168,27 @@ void ProcessCommonDialogRumors(ref NPChar, aref Link, aref NextDiag);
 		break;
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		case "rumours_tavern":  // homo 03/08/06
-
-                 Dialog.Text = NPCStringReactionRepeat(LinkRandPhrase("Сведения стоят денег. За скромные 1000 песо я расскажу все, что знаю.",
-                "Что-то я запамятовал. Но, возможно, 1000 монет освежат мою память.",
-                "Я готов рассказать все, что знаю. Но не бесплатно - 1000 песо, на меньшее я не согласен."),
-                "Больше мне нечего добавить. А теперь прошу меня извинить, но дела не ждут.",
-                "", "", "block", 1, npchar, Dialog.CurrentNode);
-             
-    			link.l1 = HeroStringReactionRepeat(RandPhraseSimple(RandSwear() + "Платить за пустую болтовню? Нет уж, поищи кого-нибудь другого.",
-                                         "За такие деньги я сам"+ GetSexPhrase("","а") +" все узнаю."), "Давай поговорим о чем-нибудь другом.", "Давай поговорим о чем-нибудь другом.", "Давай поговорим о чем-нибудь другом.", npchar, Dialog.CurrentNode);
-                link.l1.go = HeroStringReactionRepeat("rumours_tavern_no", "first time", "first time", "first time", npchar, Dialog.CurrentNode);//"rumours_tavern_no";
-                NextDiag.CurrentNode = NextDiag.TempNode;
-    			if (makeint(pchar.money) >= 1000 )
-    			{
-    				link.l2 = HeroStringReactionRepeat(RandPhraseSimple("Ты их получишь, если я получу действительно ценные сведения.", "Я заплачу, но только при условии, что ты мне расскажешь действительно что-то важное."),
-                     "", "", "" , npchar, Dialog.CurrentNode);
-    				link.l2.go = HeroStringReactionRepeat("rumours_tavern_yes", "exit", "exit", "exit", npchar, Dialog.CurrentNode);
-    			}
-    			else
-    			{
-                    link.l2 =  HeroStringReactionRepeat("У меня нет такой суммы.", "", "", "", npchar, Dialog.CurrentNode);
-    				link.l2.go = HeroStringReactionRepeat("rumours_tavern_no", "exit", "exit", "exit", npchar, Dialog.CurrentNode);
-    			}
-
+			Dialog.Text = NPCStringReactionRepeat(LinkRandPhrase("Сведения стоят денег. За скромные 1000 песо я расскажу все, что знаю.",
+			"Что-то я запамятовал. Но, возможно, 1000 монет освежат мою память.",
+			"Я готов рассказать все, что знаю. Но не бесплатно - 1000 песо, на меньшее я не согласен."),
+			"Больше мне нечего добавить. А теперь прошу меня извинить, но дела не ждут.",
+			"", "", "block", 1, npchar, Dialog.CurrentNode);
+		 
+			link.l1 = HeroStringReactionRepeat(RandPhraseSimple(RandSwear() + "Платить за пустую болтовню? Нет уж, поищи кого-нибудь другого.",
+									 "За такие деньги я сам"+ GetSexPhrase("","а") +" все узнаю."), "Давай поговорим о чем-нибудь другом.", "Давай поговорим о чем-нибудь другом.", "Давай поговорим о чем-нибудь другом.", npchar, Dialog.CurrentNode);
+			link.l1.go = HeroStringReactionRepeat("rumours_tavern_no", "first time", "first time", "first time", npchar, Dialog.CurrentNode);//"rumours_tavern_no";
+			NextDiag.CurrentNode = NextDiag.TempNode;
+			if (makeint(pchar.money) >= 1000)
+			{
+				link.l2 = HeroStringReactionRepeat(RandPhraseSimple("Ты их получишь, если я получу действительно ценные сведения.", "Я заплачу, но только при условии, что ты мне расскажешь действительно что-то важное."),
+				 "", "", "" , npchar, Dialog.CurrentNode);
+				link.l2.go = HeroStringReactionRepeat("rumours_tavern_yes", "exit", "exit", "exit", npchar, Dialog.CurrentNode);
+			}
+			else
+			{
+				link.l2 =  HeroStringReactionRepeat("У меня нет такой суммы.", "", "", "", npchar, Dialog.CurrentNode);
+				link.l2.go = HeroStringReactionRepeat("rumours_tavern_no", "exit", "exit", "exit", npchar, Dialog.CurrentNode);
+			}
 		break;
 		
 		case "rumours_tavern_yes":		

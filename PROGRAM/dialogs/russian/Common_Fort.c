@@ -297,13 +297,31 @@ void ProcessDialogEvent()
 
 		//замечение по обнаженному оружию
 		case "SoldierNotBlade":
-			dialog.text = LinkRandPhrase("Какого черта ты бегаешь по городу с обнаженным клинком? Немедленно убери оружие!", "Приказываю вам немедленно убрать оружие в ножны!", "Эй, "+ GetSexPhrase("приятель","подруга") +", прекрати пугать народ! Убери оружие в ножны.");
-			link.l1 = LinkRandPhrase("Хорошо.", "Ладно.", "Как скажешь...");
-			link.l1.go = "exit";
-			link.l2 = LinkRandPhrase("Черта с два!", "Помечтай...", "После дождичка, в четверг.");
-			link.l2.go = "fight";
-			npchar.greeting = "soldier_common";
-			NextDiag.TempNode = "First Time";
+			if(GetNationRelation2MainCharacter(sti(NPChar.nation)) == RELATION_ENEMY && sti(NPChar.nation) != PIRATE)
+			{
+				if(sti(pchar.nation) == PIRATE)
+				{
+					dialog.text = RandPhraseSimple("Пираты в городе?! Ну дела... Хватай е" + GetSexPhrase("го", "ё") + "!!", "Это пират!! Держи е" + GetSexPhrase("го", "ё") + "!!!");
+					link.l1 = RandPhraseSimple("Пират, ну и что?..", "Хех, попробуйте схватить.");
+					link.l1.go = "fight";
+					break;
+				}
+				dialog.text = RandPhraseSimple("Шпион? Сдать оружие!! Следовать за мной!", "Вражеский агент!! Немедленно схватить е" + GetSexPhrase("го", "ё")  + "!");
+				link.l1 = RandPhraseSimple("Заткнись, малахольный!", "Как бы не так!");
+				link.l1.go = "fight";
+			}
+			else
+			{
+				dialog.text = LinkRandPhrase("Чего вы клинком размахиваете?! Немедленно уберите оружие!", "Приказываю вам немедленно убрать оружие!", "Эй, " + GetAddress_Form(NPChar) + ", не пугайте народ! Уберите оружие.");
+				link.l1 = LinkRandPhrase("Хорошо, убираю...", "Уже убрал"+ GetSexPhrase("","а") +".", "Как скажешь...");
+				if (GetNationRelation(sti(NPChar.nation), GetBaseHeroNation()) != RELATION_ENEMY) link.l1.go = "exit";
+				else link.l1.go = "First Time"; //Не миновать нам проверки!
+				link.l2 = LinkRandPhrase("Черта с два!", "Сейчас пущу его в дело!", "Уберу, когда время придёт.");
+				link.l2.go = "fight";
+				NextDiag.TempNode = "First Time";
+				if (CheckAttribute(NPChar, "protector")) NPChar.greeting = "soldier_arest";
+				else NPChar.greeting = "soldier_common";
+			}
 		break;
 	}
 }

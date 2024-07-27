@@ -8,10 +8,7 @@
 		goto
 */
 
-
-
 #define LAI_TYPE_GUARDIAN	"guardian"
-
 
 //Инициализация
 void LAi_type_guardian_Init(aref chr)
@@ -34,7 +31,7 @@ void LAi_type_guardian_Init(aref chr)
 		chr.chr_ai.type.enemy = "";
 		chr.chr_ai.type.etime = "0";
 		chr.chr_ai.type.wait = "";
-		chr.chr_ai.type.dlgwas = "0.0" //для таймера на инициализацию диалога. eddy
+		chr.chr_ai.type.dlgwas = "0.0"; //для таймера на инициализацию диалога. eddy
 		chr.chr_ai.type.bottle = rand(10)+2;
 		//Установим шаблон стояния
 		LAi_tmpl_stay_InitTemplate(chr);
@@ -112,7 +109,7 @@ void LAi_type_guardian_CharacterUpdate(aref chr, float dltTime)
 		chr.chr_ai.type.bottle = 5.0;
 		if (LAi_CanUseBottle(chr))
 		{
-			string btl = "";		
+			string btl = "";
 			float dhlt;
 			if(LAi_GetCharacterRelHP(chr) < 0.75)
 			{
@@ -189,16 +186,17 @@ void LAi_type_guardian_CharacterUpdate(aref chr, float dltTime)
 			}
 			else
 			{
-				//eddy. активация диалога у гарда c атрибутом протектора если не враг и если это не колония базовой нации.
-				if (CheckAttribute(chr, "protector") && !LAi_grp_alarmactive)
+				if (!LAi_grp_alarmactive && sti(chr.nation) != PIRATE)
 				{
 					time = stf(chr.chr_ai.type.dlgwas) - dltTime;
-					chr.chr_ai.type.dlgwas = time;					
+					chr.chr_ai.type.dlgwas = time;
 					//Анализируем окружающих персонажей
 					int num = FindNearCharacters(chr, 4.0, -1.0, 180.0, 0.1, true, true);
+					int i;
+					bool bFightMode = LAi_CheckFightMode(pchar);
 					if(num > 0)
 					{
-						for(int i = 0; i < num; i++)
+						for(i = 0; i < num; i++)
 						{
 							if(nMainCharacterIndex == sti(chrFindNearCharacters[i].index))
 							{
@@ -208,11 +206,11 @@ void LAi_type_guardian_CharacterUpdate(aref chr, float dltTime)
 						if(i < num)
 						{
 							//Нашли главного персонажа
-							if(stf(chr.chr_ai.type.dlgwas) <= 0.0)
+							if(stf(chr.chr_ai.type.dlgwas) <= 0.0 || bFightMode)
 							{
-								if(!CheckAttribute(pchar, "NoPatrolTest") && !CheckAttribute(pchar, "questTemp.Fear."+ chr.city))
+								if(Dis(!CheckAttribute(pchar, "NoPatrolTest") && !CheckAttribute(pchar, "questTemp.Fear."+ chr.city), bFightMode))
 							    {
-							    	LAi_type_guardian_TestControl(chr);
+							    	LAi_type_guardian_TestControl(chr, bFightMode);
 								    return;
 							    }
 							}
@@ -221,7 +219,7 @@ void LAi_type_guardian_CharacterUpdate(aref chr, float dltTime)
 						{
 							trg = sti(chrFindNearCharacters[0].index);
 						}
-					}					
+					}
 				}
 				//Проверяем дистанцию до точки охраны
 				dist = -1.0;
@@ -344,7 +342,7 @@ void LAi_type_guardian_Attacked(aref chr, aref by)
 		LAi_tmpl_dialog_StopNPC(chr);
 	}
 	//если наносящий удар уже таргет, нефиг крутить код и переназначать цель
-	if (LAi_tmpl_fight_GetTarget(chr) == sti(by.index)) return;	
+	if (LAi_tmpl_fight_GetTarget(chr) == sti(by.index)) return;
 	//Своих пропускаем
 	if(!LAi_group_IsEnemy(chr, by)) return;
     //boal fix ai -->
@@ -412,14 +410,14 @@ void LAi_type_guardian_Return_Event()
 {
 	aref chr = GetEventData();
 	if(!TestRef(chr)) return;
-	chr.chr_ai.type.wait = "";	
+	chr.chr_ai.type.wait = "";
 	chr.chr_ai.type.enemy = "";
 	LAi_tmpl_runto_InitTemplate(chr);
 	LAi_tmpl_runto_SetLocator(chr, chr.chr_ai.type.group, chr.chr_ai.type.locator, -1.0);
 }
 
 //Проверить персонажа с заданной вероятностью
-void LAi_type_guardian_TestControl(aref chr)
+void LAi_type_guardian_TestControl(aref chr, bool FightMode)
 {
 	int SpyChance = 100;
 	
@@ -430,8 +428,8 @@ void LAi_type_guardian_TestControl(aref chr)
 		if(CheckCharacterPerk(pchar, "AGOS")) SpyChance = 50;
 	}
 	
-	if (!CheckAttribute(chr, "protector.CheckAlways")) //флаг "опрашивать всегда" через паузу, не один раз.
-	{						
+	if (CheckAttribute(chr, "protector") && !CheckAttribute(chr, "protector.CheckAlways") && !FightMode) //флаг "опрашивать всегда" через паузу, не один раз.
+	{					
 		if (GetBaseHeroNation() == sti(chr.nation) && GetRelation2BaseNation(sti(chr.nation)) != RELATION_ENEMY && GetNationRelation2MainCharacter(sti(chr.nation)) != RELATION_ENEMY) return;
 		if (!CheckAttribute(pchar, "CheckStateOk")) pchar.CheckStateOk = true; //флаг "уже проверили на входе"
 		else return;
@@ -443,9 +441,18 @@ void LAi_type_guardian_TestControl(aref chr)
 		LAi_SetFightMode(pchar, false);
 		if(LAi_Character_CanDialog(chr, pchar))
 		{
-			chr.chr_ai.type.state = "dialog";
-			LAi_tmpl_SetDialog(chr, pchar, -1.0);
-			chr.chr_ai.type.dlgwas = "100"; //уже поговорили
+			if (FightMode)
+			{
+				if (isDay())
+				{
+					chr.greeting = "";
+					LAi_CharacterPlaySound(chr, "sold_weapon_off");
+				}
+				chr.Dialog.CurrentNode = "SoldierNotBlade";
+				chr.chr_ai.type.state = "dialog";
+				LAi_tmpl_SetDialog(chr, pchar, -1.0);
+				if(CheckAttribute(chr, "protector")) chr.chr_ai.type.dlgwas = "100"; //уже поговорили
+			}
 		}
 	}
 }

@@ -46,6 +46,7 @@ void ProcessDialogEvent()
 	}
     //homo 26/06/06
 	ProcessCommonDialogRumors(NPChar, Link, Diag);
+	
 	switch(Dialog.CurrentNode)
 	{
         case "Exit":

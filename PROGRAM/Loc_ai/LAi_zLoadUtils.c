@@ -54,7 +54,7 @@ void CreatPlantation(aref loc)
 			if (model[iMassive] != "")
 			{
 				chr = GetCharacter(NPC_GenerateCharacter("Slave_"+i, model[iMassive], "man", "man", 7, ENGLAND, 2, false, F_SLAVE));
-				// Rebbebion, ПЕРЕНАЗНАЧИТЬ!!!!!!
+				// Rebbebion, TO_DO: ПЕРЕНАЗНАЧИТЬ!!!!!!
 				//chr.dialog.filename = "Quest\CapBloodLine\questNPC.c";
                 chr.greeting = "Gr_slave";
                 chr.CityType = "citizen";
