@@ -28,7 +28,7 @@
 #define GOOD_CITRUSES       19 // цитрусы
 #define GOOD_COPRA          20 // копра
 #define GOOD_WHEAT          21 // пшеница
-#define GOOD_SUGAR          22 // сахар
+#define GOOD_SUGAR          22 // сахарный тростник
 #define GOOD_COTTON         23 // хлопок
 
 // четвёртый ряд текстуры
