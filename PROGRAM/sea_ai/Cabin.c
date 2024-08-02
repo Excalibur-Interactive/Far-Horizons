@@ -197,7 +197,6 @@ void Return2SeaAfterCabin()
 	SendMessage(&boarding_fader, "l", FADER_STARTFRAME);
 }
 
-
 void Return2SeaClearNPC()
 {
 	if (bDeckBoatStarted)
@@ -209,8 +208,8 @@ void Return2SeaClearNPC()
 	{
     	SetOfficersLocationToNone(); // офицеры в сад
     	SetPrisonerLocationToNone(); //пленных туда же
-    	SetOfficersInCampusToNone():
-		CompanionSaveTasks(); //компаньонов тоже.
+    	SetOfficersInCampusToNone();
+		CompanionSaveTasks(); //компаньонов тоже
     	DeleteQuestAttribute("SetNPCInShipDeck");
     	DeleteQuestAttribute("SetNPCInShipCabin");
     	DeleteQuestAttribute("SetNPCInShipCampus");

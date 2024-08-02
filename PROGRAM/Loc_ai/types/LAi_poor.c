@@ -202,7 +202,7 @@ void LAi_type_poor_CharacterUpdate(aref chr, float dltTime)
 				LAi_tmpl_afraid_SetAfraidCharacter(chr, &Characters[idx], true);
 				LAi_SetAfraidDead(chr);
 			}
-			//если нпс прошелся и встал после выполнения, то переводим в темплейт stay
+			//если нпс прошёлся и встал после выполнения, то переводим в темплейт stay
 			if (chr.chr_ai.tmpl.state == "stay")
 			{
 				LAi_tmpl_stay_InitTemplate(chr);

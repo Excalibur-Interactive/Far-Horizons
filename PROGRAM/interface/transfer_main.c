@@ -1158,7 +1158,7 @@ void ShipChangeCaptan()
 			if ((GetCrewQuantity(xi_refCharacter) + GetCrewQuantity(pchar)) < (GetMinCrewQuantity(xi_refCharacter) + GetMinCrewQuantity(pchar)))
 			{
 				SetFormatedText("REMOVE_WINDOW_CAPTION", XI_ConvertString("Capture Ship"));
-				SetFormatedText("REMOVE_WINDOW_TEXT", "Необходимо наличие матросов на минимальные команды для обоих кораблей.\n Назначение капитана невозможно.");
+				SetFormatedText("REMOVE_WINDOW_TEXT", "Необходимо наличие матросов на минимальные команды для обоих кораблей.\nНазначение капитана невозможно.");
 				sMessageMode = "ShipChangeCaptanMessage";
 				ShowOkMessage();
 			}
