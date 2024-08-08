@@ -600,12 +600,12 @@ bool SetLocationQuestRandItem(int _index, aref _location, string _locatorName, a
         if (!CheckAttribute(pchar , "GenQuestRandItem." + lastSpawnTimeString +".stay"))
         {
 			//--> fix eddy. нельзя было положить в несколько локаторов
-			DeleteAttribute(pchar , "GenQuestRandItem." + lastSpawnTimeString + "." + _locatorName); // если токо один раз
+			DeleteAttribute(pchar , "GenQuestRandItem." + lastSpawnTimeString + "." + _locatorName); // если только один раз
 			makearef(checkAref,  pchar.GenQuestRandItem.(lastSpawnTimeString));
 			if (GetAttributesNum(checkAref) == 0) DeleteAttribute(pchar , "GenQuestRandItem." + lastSpawnTimeString);
         }
         // только один предмет!!!!!!!!!!!!
-        n = SetRandItemShow(_index, al, itemId); // вывести 3д модель в лакацию, если модель вообще есть
+        n = SetRandItemShow(_index, al, itemId); // вывести 3д модель в локацию, если модель вообще есть
 		if (n != -1)
 		{
             Log_TestInfo("SetLocationQuestRandItem");

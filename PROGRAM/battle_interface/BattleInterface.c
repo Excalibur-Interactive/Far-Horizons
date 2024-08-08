@@ -1750,16 +1750,15 @@ ref ProcessSailDamage()
 	float sailPower = GetEventData();
 
 	ref chref = GetCharacter(chrIdx);
-
+	string groupName = ""+groupNum;
+	aref arSail;
+	makearef(arSail,chref.ship.sails.(reyName).(groupName));
+	
 	if (LAi_IsImmortal(chref)) 
 	{ 
 		BI_g_fRetVal = 0.0;
 		return &BI_g_fRetVal;
 	}
-
-	string groupName = ""+groupNum;
-	aref arSail;
-	makearef(arSail,chref.ship.sails.(reyName).(groupName));
 
 	float sailDmg = 0.0;
 	float sailDmgMax = GetCharacterShipSP(chref) * sailPower;

@@ -145,7 +145,7 @@ int LocationInitCaracas(int n)
 	locations[n].reload.jail.autoreload = "0";
 	locations[n].reload.jail.label = "Prison";
 
-    // --> Комоны, загрушки. Номера с начинаются с 20.
+    // --> Комоны, заглушки. Номера с начинаются с 20.
 	locations[n].reload.l20.name = "houseSp2";
 	locations[n].reload.l20.go = "CommonPirateHouse";
 	locations[n].reload.l20.emerge = "reload1";

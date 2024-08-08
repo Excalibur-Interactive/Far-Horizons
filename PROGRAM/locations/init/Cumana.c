@@ -130,7 +130,7 @@ int LocationInitCumana(int n)
 	locations[n].reload.gate.label = "ExitTown";
 	locations[n].locators_radius.reload.gate_back = 1.9;
 
-    // --> Комоны, загрушки. Номера с начинаются с 20.
+    // --> Комоны, заглушки. Номера с начинаются с 20.
 	locations[n].reload.l20.name = "houseSp2";
 	locations[n].reload.l20.go = "CommonPirateHouse";
 	locations[n].reload.l20.emerge = "reload1";
@@ -661,7 +661,7 @@ int LocationInitCumana(int n)
 	locations[n].reload.l2.label = "Jungle";
 	locations[n].locators_radius.reload.reload1_back = 2.2;
 
-   // --> Комоны, загрушки. Номера с начинаются с 20
+   // --> Комоны, заглушки. Номера с начинаются с 20
 	locations[n].reload.l21.name = "houseSp21";
 	locations[n].reload.l21.go = "CommonStoneHouse";
 	locations[n].reload.l21.emerge = "reload1";

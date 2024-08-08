@@ -149,7 +149,7 @@ int LocationInitSantiago(int n)
 	locations[n].reload.l13.autoreload = "0";
 	locations[n].reload.l13.label = "House";
 
-    // --> Комоны, загрушки. Номера с начинаются с 20.
+    // --> Комоны, заглушки. Номера с начинаются с 20.
 	locations[n].reload.l20.name = "houseSp3";
 	locations[n].reload.l20.go = "CommonPirateHouse";
 	locations[n].reload.l20.emerge = "reload1";

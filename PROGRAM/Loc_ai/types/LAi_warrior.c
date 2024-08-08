@@ -9,11 +9,7 @@
 		dialog
 */
 
-
-
 #define LAI_TYPE_WARRIOR	"warrior"
-
-
 
 //Установить войну командира
 void LAi_warrior_SetCommander(aref chr, aref commander)
@@ -157,7 +153,9 @@ void LAi_type_warrior_CharacterUpdate(aref chr, float dltTime)
 				//Переходим в режим ожидания
 				LAi_tmpl_stay_InitTemplate(chr);
 				LAi_type_warrior_SetWateState(chr);
-			}else{
+			}
+			else
+			{
 				//Натравливаем на новую цель
 				LAi_tmpl_SetFight(chr, &Characters[trg]);
 				chr.chr_ai.type.checkTarget = rand(3) + 2; //таймер на проверялку расстояния до таргета
@@ -167,7 +165,9 @@ void LAi_type_warrior_CharacterUpdate(aref chr, float dltTime)
 				}
 			}
 		}
-	}else{
+	}
+	else
+	{
 		//Ищем новую цель
 		trg = LAi_group_GetTarget(chr);
 		if(trg >= 0)
@@ -179,7 +179,9 @@ void LAi_type_warrior_CharacterUpdate(aref chr, float dltTime)
 			{
 				LAi_type_warrior_PlaySound(chr);
 			}
-		}else{
+		}
+		else
+		{
 			if(chr.chr_ai.tmpl == LAI_TMPL_STAY)
 			{
 				//Стоим и ждём цели
@@ -259,12 +261,10 @@ void LAi_type_warrior_EndDialog(aref chr, aref by)
 	LAi_CharacterRestoreAy(chr);
 }
 
-
 //Персонаж выстрелил
 void LAi_type_warrior_Fire(aref attack, aref enemy, float kDist, bool isFindedEnemy)
 {
 }
-
 
 //Персонаж атакован
 void LAi_type_warrior_Attacked(aref chr, aref by)
@@ -299,15 +299,21 @@ void LAi_type_warrior_SetWateState(aref chr)
 			{
 				//Возвращаемся к командиру
 				LAi_tmpl_SetFollow(chr, &Characters[cmd], -1.0);
-			}else{
+			}
+			else
+			{
 				//Гуляем в поисках цели
 				LAi_tmpl_walk_InitTemplate(chr);
 			}
-		}else{
+		}
+		else
+		{
 			//Гуляем в поисках цели
 			LAi_tmpl_walk_InitTemplate(chr);
 		}
-	}else{
+	}
+	else
+	{
 		//Ожидаем цель стоя на месте
 		if(chr.chr_ai.tmpl != LAI_TMPL_STAY)
 		{
@@ -324,14 +330,9 @@ void LAi_type_warrior_PlaySound(aref chr)
 	{
 		switch(chr.sex)
 		{
-		case "man":
-			sname = "warrior";
-			break;
-		case "woman":
-			break;
-		case "skeleton":
-			sname = "skeleton";
-			break;
+			case "man":		sname = "warrior";	break;
+			case "woman":						break;
+			case "skeleton":sname = "skeleton";	break;
 		}
 	}
 	if(sname == "") return;
