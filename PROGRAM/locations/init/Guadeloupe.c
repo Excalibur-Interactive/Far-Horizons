@@ -146,7 +146,7 @@ int LocationInitGuadeloupe(int n)
 	locations[n].reload.l12.autoreload = "0";
 	locations[n].reload.l12.label = "Ascold House";
 
-    // --> Комоны, загрушки. Номера с начинаются с 20.
+    // --> Комоны, заглушки. Номера с начинаются с 20.
 	locations[n].reload.l20.name = "houseS2";
 	locations[n].reload.l20.go = "CommonCobHouse";
 	locations[n].reload.l20.emerge = "reload1";

@@ -161,7 +161,7 @@ int LocationInitCuracao(int n)
 	locations[n].reload.l12.autoreload = "0";
 	locations[n].reload.l12.label = "House";
 
-    // --> Комоны, загрушки. Номера с начинаются с 20.
+    // --> Комоны, заглушки. Номера с начинаются с 20.
 	locations[n].reload.l20.name = "houseSp1";
 	locations[n].reload.l20.go = "CommonDoubleflourHouse_2";
 	locations[n].reload.l20.emerge = "reload1";

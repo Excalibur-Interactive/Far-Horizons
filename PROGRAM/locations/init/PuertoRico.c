@@ -139,7 +139,7 @@ int LocationInitPuertoRico(int n)
 	locations[n].reload.l11.disable= true; //закроем до встречи Атиллы
 	locations[n].locators_radius.item.detector1 = 6.0; //детектор
 
-    // --> Комоны, загрушки. Номера с начинаются с 20.
+    // --> Комоны, заглушки. Номера с начинаются с 20.
 	locations[n].reload.l20.name = "houseS1";
 	locations[n].reload.l20.go = "CommonFlamHouse";
 	locations[n].reload.l20.emerge = "reload1";

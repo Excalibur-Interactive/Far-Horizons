@@ -104,7 +104,7 @@
 	locations[n].reload.l12.autoreload = "0";
 	locations[n].reload.l12.label = "Orry_House";
 
-	// --> Комоны, загрушки. Номера с начинаются с 20.
+	// --> Комоны, заглушки. Номера с начинаются с 20.
 	locations[n].reload.l20.name = "houseH1";
 	locations[n].reload.l20.go = "CommonHut";
 	locations[n].reload.l20.emerge = "reload1";

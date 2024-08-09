@@ -959,7 +959,7 @@ void ChoosePerk()
 
     if (CheckAttribute(&ChrPerksList, "list." + perkName + ".OfficerType"))
     {
-        descr += "\n\n Способность будет работать и в том случае, если назначен офицер " + XI_ConvertString(ChrPerksList.list.(perkName).OfficerType)+ ", у которого она есть.";
+        descr += "\n\nСпособность будет работать и в том случае, если назначен офицер " + XI_ConvertString(ChrPerksList.list.(perkName).OfficerType)+ ", у которого она есть.";
     }
     SetFormatedText("PERK_WINDOW_TEXT", descr);
     SetVAligmentFormatedText("PERK_WINDOW_TEXT");

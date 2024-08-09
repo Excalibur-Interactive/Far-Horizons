@@ -710,7 +710,7 @@ void FillPassengersList()	// таблица пассажиров
 		GameInterface.TABLE_PASSENGERS.(row).td1.icon.texture = sPath;
 		GameInterface.TABLE_PASSENGERS.(row).td1.icon.width = 59;
 		GameInterface.TABLE_PASSENGERS.(row).td1.icon.height = 59;
-		GameInterface.TABLE_PASSENGERS.(row).td2.str = GetFullName(rPsg) + " \n " + ColorText(XI_ConvertString("companion"), "yellow");
+		GameInterface.TABLE_PASSENGERS.(row).td2.str = GetFullName(rPsg) + "\n" + ColorText(XI_ConvertString("companion"), "yellow");
 		GameInterface.TABLE_PASSENGERS.(row).td2.color = argb(255,255,255,255);
 		GameInterface.TABLE_PASSENGERS.(row).UserData.index = iPsg;
 		k++;
@@ -728,9 +728,9 @@ void FillPassengersList()	// таблица пассажиров
 		GameInterface.TABLE_PASSENGERS.(row).td1.icon.width = 59;
 		GameInterface.TABLE_PASSENGERS.(row).td1.icon.height = 59;
 		if(GetOfficerRole(rPsg) == "")
-			GameInterface.TABLE_PASSENGERS.(row).td2.str = GetFullName(rPsg) + " \n " + ColorText(XI_ConvertString("officer"), "orange");
+			GameInterface.TABLE_PASSENGERS.(row).td2.str = GetFullName(rPsg) + "\n" + ColorText(XI_ConvertString("officer"), "orange");
 		else
-			GameInterface.TABLE_PASSENGERS.(row).td2.str = GetFullName(rPsg) + " \n " + ColorText(XI_ConvertString(GetOfficerRole(rPsg)), "orange");
+			GameInterface.TABLE_PASSENGERS.(row).td2.str = GetFullName(rPsg) + "\n" + ColorText(XI_ConvertString(GetOfficerRole(rPsg)), "orange");
 		GameInterface.TABLE_PASSENGERS.(row).td2.color = argb(255,255,255,255);
 		GameInterface.TABLE_PASSENGERS.(row).UserData.index = iPsg;
 		k++;
@@ -746,7 +746,7 @@ void FillPassengersList()	// таблица пассажиров
 		GameInterface.TABLE_PASSENGERS.(row).td1.icon.texture = sPath;
 		GameInterface.TABLE_PASSENGERS.(row).td1.icon.width = 59;
 		GameInterface.TABLE_PASSENGERS.(row).td1.icon.height = 59;
-		GameInterface.TABLE_PASSENGERS.(row).td2.str = GetFullName(rPsg) + " \n " + ColorText(XI_ConvertString("passengership"), "green");
+		GameInterface.TABLE_PASSENGERS.(row).td2.str = GetFullName(rPsg) + "\n" + ColorText(XI_ConvertString("passengership"), "green");
 		GameInterface.TABLE_PASSENGERS.(row).td2.color = argb(255,255,255,255);
 		GameInterface.TABLE_PASSENGERS.(row).UserData.index = iPsg;
 		k++;
@@ -763,7 +763,7 @@ void FillPassengersList()	// таблица пассажиров
 		GameInterface.TABLE_PASSENGERS.(row).td1.icon.texture = sPath;
 		GameInterface.TABLE_PASSENGERS.(row).td1.icon.width = 59;
 		GameInterface.TABLE_PASSENGERS.(row).td1.icon.height = 59;
-		GameInterface.TABLE_PASSENGERS.(row).td2.str = GetFullName(rPsg) + " \n " + ColorText(XI_ConvertString("prisonership"), "red");
+		GameInterface.TABLE_PASSENGERS.(row).td2.str = GetFullName(rPsg) + "\n" + ColorText(XI_ConvertString("prisonership"), "red");
 		GameInterface.TABLE_PASSENGERS.(row).td2.color = argb(255,255,255,255);
 		GameInterface.TABLE_PASSENGERS.(row).UserData.index = iPsg;
 		k++;

@@ -159,7 +159,7 @@ int LocationInitMartinique(int n)
 	locations[n].reload.l14.autoreload = "0";
 	locations[n].reload.l14.label = "Dungeon";
 
-    // --> Комоны, загрушки. Номера с начинаются с 20.
+    // --> Комоны, заглушки. Номера с начинаются с 20.
 	locations[n].reload.l20.name = "houseF4";
 	locations[n].reload.l20.go = "CommonRoom_MH";
 	locations[n].reload.l20.emerge = "reload1";

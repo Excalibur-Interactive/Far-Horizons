@@ -163,7 +163,7 @@ int LocationInitBarbados(int n)
 	locations[n].reload.gate1.autoreload = "0";
 	locations[n].reload.gate1.label = "Plantation";
 
-    // --> Комоны, загрушки. Номера с начинаются с 20.
+    // --> Комоны, заглушки. Номера с начинаются с 20.
 	locations[n].reload.l20.name = "houseS2";
 	locations[n].reload.l20.go = "CommonCobHouse";
 	locations[n].reload.l20.emerge = "reload1";

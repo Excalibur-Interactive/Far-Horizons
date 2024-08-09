@@ -141,7 +141,7 @@ int LocationInitPortPax(int n)
 	locations[n].reload.l11.autoreload = "0";
 	locations[n].reload.l11.label = "House";
 
-    // --> Комоны, загрушки. Номера с начинаются с 20.
+    // --> Комоны, заглушки. Номера с начинаются с 20.
 	locations[n].reload.l20.name = "houseSp3";
 	locations[n].reload.l20.go = "CommonDoubleflourHouse_1";
 	locations[n].reload.l20.emerge = "reload1";
