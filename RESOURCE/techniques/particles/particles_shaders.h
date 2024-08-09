@@ -54,4 +54,7 @@
     mul r1, r0, v0 \
     mul r0.rgb, r1, r1.aaaa \
     dp3 r1.rgba, t2, r1.aaaa \
-    mov r0.a, r1.a}
+    mov r0.a, r1.a \
+    dp3 r1, t3_bx2, v1_bx2 \
+    add r1, r1, c0 \
+    mul r0.rgb, r0, r1}
