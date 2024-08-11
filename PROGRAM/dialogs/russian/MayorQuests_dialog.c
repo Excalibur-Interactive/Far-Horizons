@@ -263,7 +263,7 @@ void ProcessDialogEvent()
 		case "DestroyPirate_Abordage": //абордаж
 			if (CheckAttribute(pchar, "GenQuest.DestroyPirate.wasTalkInDeck"))
 			{
-				dialog.text = "Ты все-таки решил"+ GetSexPhrase("","а") +" вернуться...";
+				dialog.text = "Ты всё-таки решил"+ GetSexPhrase("","а") +" вернуться...";
 				Link.l1 = "Да, забыл"+ GetSexPhrase("","а") +" кое-что...";
 				Link.l1.go = "DP_Abordage_1";
 			}

@@ -68,6 +68,7 @@
 #define MSG_BATTLE_LAND_SET_MSGICONS 46103 // "e" &aref[4]
 #define MSG_BATTLE_LAND_SET_ICONTEX 46104  // "ls" texIdx, texName
 #define MSG_BATTLE_LAND_MAKE_COMMAND 46105 // "s" command_name
+#define MSG_BATTLE_LAND_TEXTINFO_SET 46106
 
 // spyglass interface commands
 #define MSG_ISG_VISIBLE 46201      // "l" (set visible interface)

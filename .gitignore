@@ -88,8 +88,6 @@
 *RESOURCE_Copy/
 *modules/
 # *RESOURCE/animation/
-# *RESOURCE/shared/
-# *RESOURCE/techniques/
 options
 options_start
 
@@ -104,4 +102,3 @@ engine.ini
 *.bak
 *.vso
 *.pso
-*.fx

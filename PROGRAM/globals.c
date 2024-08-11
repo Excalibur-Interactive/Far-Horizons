@@ -218,7 +218,7 @@ int EventReturn_iGrassQuality()
 int EventReturn_isGrassLightsOn()
 {
 	// trace("EventReturn_isGrassLightsOn"); это я перевел на 1 раз за все время создания травы
-	// 1 - светится, 0 - темная
+	// 1 - светится, 0 - тёмная
 	if (bSeaActive || bStorm || bTornado)
 	{
 		return 0;

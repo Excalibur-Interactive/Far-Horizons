@@ -178,8 +178,8 @@ void SelfDialog(ref Character)
 	//Если персонаж не готов говорить выходим
 	LAi_Character_CanDialog(Character, Character);
 	//Можем начинать диалог
-	SendMessage(pchar, "l", MSG_CHARACTER_STOPSTRAFE);
 	DelPerkFromActiveList("TimeSpeed");
+	SendMessage(pchar, "l", MSG_CHARACTER_STOPSTRAFE);
 	dialogRun = true;
 	dialogSelf = true;
 	SendMessage(Character, "lsl", MSG_CHARACTER_EX_MSG, "InDialog", 1);
