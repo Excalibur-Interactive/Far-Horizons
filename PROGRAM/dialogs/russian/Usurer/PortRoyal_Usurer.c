@@ -71,9 +71,9 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
             //ChangeCharacterReputation(pchar, -2); // за попытку шантажа TO_DO eddy
             AddCharacterExpToSkill(pchar, "Accuracy", 80);
             AddCharacterExpToSkill(pchar, "Commerce", 50);
-            AddCharacterExpToSkill(pchar, "Sneak ", 70);
-            AddCharacterExpToSkill(pchar, "Fencing  ", 100);
-            AddCharacterExpToSkill(pchar, "Defence  ", 50);
+            AddCharacterExpToSkill(pchar, "Sneak", 70);
+            AddCharacterExpToSkill(pchar, "Fencing", 100);
+            AddCharacterExpToSkill(pchar, "Defence", 50);
             AddQuestRecord("Eng_Line_6_MorrisWillams", "22");
             CloseQuestHeader("Eng_Line_6_MorrisWillams");
 			ChangeCharacterAddressGroup(&characters[GetCharacterIndex("Morris_Willams")], "PortRoyal_tavern", "sit", "sit1");
@@ -85,4 +85,3 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 	}
 	UnloadSegment(NPChar.FileDialog2);  // если где-то выход внутри switch  по return не забыть сделать анлод
 }
-

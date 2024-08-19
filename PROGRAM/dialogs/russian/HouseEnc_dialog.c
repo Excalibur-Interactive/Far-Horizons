@@ -263,9 +263,7 @@ void ProcessDialogEvent()
 				dialog.text = "Вот это да! Эй, стража, тут вор подбирается!!!";
 				link.l1 = "Какой вор?! Я поговорить "+ GetSexPhrase("хотел","хотела") +"!..";
 				link.l1.go = "fight";
-				AddCharacterExpToSkill(pchar, "FencingLight", 5);
 				AddCharacterExpToSkill(pchar, "Fencing", 5);
-				AddCharacterExpToSkill(pchar, "FencingHeavy", 5);
 				ChangeCharacterReputation(pchar, -1);
 			}
 			else

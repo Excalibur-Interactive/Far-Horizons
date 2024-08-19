@@ -278,7 +278,7 @@ float LAi_GetCharacterFightLevel(aref character)
 {
 	//Fencing skill
 	float fgtlevel = 0.0;
-	fgtlevel = GetCharacterSkill(character, LAi_GetBladeFencingType(character)); // new RPG
+	fgtlevel = GetCharacterSkill(character, SKILL_FENCING);
 	//Level
 	fgtlevel = fgtlevel/SKILL_MAX;
 	return fgtlevel;
@@ -497,7 +497,7 @@ ref LAi_CreateFantomCharacterEx(string model, string ani, string group, string l
 	chr.chr_ai.alarmreact = LAI_DEFAULT_ALARMREACT;
 	chr.chr_ai.grpalarmr  = LAI_DEFAULT_GRPALARMR;
 	chr.chr_ai.charge  = LAI_DEFAULT_CHARGE;
-	chr.chr_ai.FencingType  = "Fencing"; //fix
+	chr.chr_ai.FencingType  = "Middle"; //fix
 	SetEnergyToCharacter(chr); // boal
 	if(LAi_numloginedcharacters >= MAX_CHARS_IN_LOC)
 	{

@@ -47,14 +47,14 @@
 #define OBJECTS_IN_BOX			  9
 #define MAPS_IN_ATLAS			  25 // ugeen 21.06.09  -не забываем увеличивать при появлении новых карт 	
 
-#define FencingLight_MinAttack        10.0    // минимальная атака для легих клинков
-#define FencingLight_MaxAttack        55.0    // максимальная атака для легих клинков
+#define Light_MinAttack        10.0    // минимальная атака для легих клинков
+#define Light_MaxAttack        55.0    // максимальная атака для легих клинков
 
-#define Fencing_MinAttack             15.0    // минимальная атака для средних клинков
-#define Fencing_MaxAttack             75.0    // максимальная атака для средних клинков
+#define Middle_MinAttack       15.0    // минимальная атака для средних клинков
+#define Middle_MaxAttack       75.0    // максимальная атака для средних клинков
 
-#define FencingHeavy_MinAttack        20.0   // минимальная атака для тяжелых клинков
-#define FencingHeavy_MaxAttack        100.0   // максимальная атака для тяжелых клинков
+#define Heavy_MinAttack        20.0   // минимальная атака для тяжелых клинков
+#define Heavy_MaxAttack        100.0   // максимальная атака для тяжелых клинков
 
 int GENERATED_ITEMS = 0; // кол-во живых нагенеренных, нужно для ленивой очистки
 int TOTAL_ITEMS = 1000; // mitrokosta новая система предметов

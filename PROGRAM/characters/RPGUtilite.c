@@ -116,11 +116,9 @@ int GetFreePoints_ShipRate(ref _chref)
 }
 /////////////////////////////////////////////////////////////////////////
 
-void SetSelfSkill(ref _refCharacter, int _fl, int _f, int _fh, int _p, int _fr)
+void SetSelfSkill(ref _refCharacter,, int _f, int _p, int _fr)
 {
-    _refCharacter.Skill.FencingLight  = _fl;
     _refCharacter.Skill.Fencing       = _f;
-    _refCharacter.Skill.FencingHeavy  = _fh;
     _refCharacter.Skill.Pistol        = _p;
     _refCharacter.Skill.Fortune       = _fr;
 }
@@ -167,13 +165,12 @@ void SetPIRATES(ref sld, int P, int I, int R, int A, int T, int E, int S)
 	SetSPECIAL(sld, P, I, E, A, T, R, S);
 }
 
-// Rebbebion, новые функции для установки личных и корабельных умений соответственно. Ну что за фигня, блин, зачем в функцию распределения КОРАБЕЛЬНЫХ умений вносить СКРЫТНОСТЬ и АВТОРИТЕТ?? Да ещё и вразнобой... Переделываем...
-void SetPersonalSkills(ref sld, int ld, int fl, int fs, int fh, int p, int fr, int sn)
+// Rebbebion, новые функции для установки личных и корабельных умений соответственно.
+// Ну что за фигня, блин, зачем в функцию распределения КОРАБЕЛЬНЫХ умений вносить СКРЫТНОСТЬ и АВТОРИТЕТ?? Да ещё и вразнобой... Переделываем...
+void SetPersonalSkills(ref sld, int ld, int fs, int p, int fr, int sn)
 {
 	sld.Skill.Leadership = ld;
-	sld.Skill.FencingL   = fl;
-	sld.Skill.FencingS   = fs;
-	sld.Skill.FencingH   = fh;
+	sld.Skill.Fencing   = fs;
 	sld.Skill.Pistol     = p;
 	sld.Skill.Fortune    = fr;
     sld.Skill.Sneak      = sn;
@@ -285,12 +282,11 @@ void InitRPGType()
     NullCharacter.SPECIALType.Luck = true;
     
     NullCharacter.SelfType.Leadership = true;
-	NullCharacter.SelfType.FencingLight = true;
     NullCharacter.SelfType.Fencing = true;
-    NullCharacter.SelfType.FencingHeavy = true;
     NullCharacter.SelfType.Pistol = true;
     NullCharacter.SelfType.Fortune = true;
     NullCharacter.SelfType.Sneak = true;
+	
     // остальные корабельные
     NullCharacter.ShipType.Commerce = true;
     NullCharacter.ShipType.Accuracy = true;
@@ -335,29 +331,27 @@ string GetSkillNameByIdx(int idx)
     
     switch (idx)
     {
-        case 1:    ret = SKILL_F_LIGHT;   break;
-        case 2:    ret = SKILL_FENCING;   break;
-        case 3:    ret = SKILL_F_HEAVY;   break;
-        case 4:    ret = SKILL_PISTOL;    break;
-        case 5:    ret = SKILL_FORTUNE;   break;
+        case 1:    ret = SKILL_FENCING;   break;
+        case 2:    ret = SKILL_PISTOL;    break;
+        case 3:    ret = SKILL_FORTUNE;   break;
         
-        case 6:    ret = SKILL_LEADERSHIP; break;
-        case 7:    ret = SKILL_COMMERCE;   break;
-        case 8:    ret = SKILL_ACCURACY;   break;
-        case 9:    ret = SKILL_CANNONS;    break;
-        case 10:   ret = SKILL_SAILING;    break;
-        case 11:   ret = SKILL_REPAIR;     break;
-        case 12:   ret = SKILL_GRAPPLING;  break;
-        case 13:   ret = SKILL_DEFENCE;    break;
-        case 14:   ret = SKILL_SNEAK;      break;
+        case 4:    ret = SKILL_LEADERSHIP; break;
+        case 5:    ret = SKILL_COMMERCE;   break;
+        case 6:    ret = SKILL_ACCURACY;   break;
+        case 7:    ret = SKILL_CANNONS;    break;
+        case 8:   ret = SKILL_SAILING;    break;
+        case 9:   ret = SKILL_REPAIR;     break;
+        case 10:   ret = SKILL_GRAPPLING;  break;
+        case 11:   ret = SKILL_DEFENCE;    break;
+        case 12:   ret = SKILL_SNEAK;      break;
         
-        case 15:   ret = SPECIAL_S;   break;
-        case 16:   ret = SPECIAL_P;   break;
-        case 17:   ret = SPECIAL_A;   break;
-        case 18:   ret = SPECIAL_C;   break;
-        case 19:   ret = SPECIAL_I;   break;
-        case 20:   ret = SPECIAL_E;   break;
-        case 21:   ret = SPECIAL_L;   break;
+        case 13:   ret = SPECIAL_S;   break;
+        case 14:   ret = SPECIAL_P;   break;
+        case 15:   ret = SPECIAL_A;   break;
+        case 16:   ret = SPECIAL_C;   break;
+        case 17:   ret = SPECIAL_I;   break;
+        case 18:   ret = SPECIAL_E;   break;
+        case 19:   ret = SPECIAL_L;   break;
     }
     return ret;
 }
@@ -372,12 +366,10 @@ string GetSkillNameByTRIdx(string _type, int idx)
 		    switch (idx)
 		    {
                 case 1:    ret = SKILL_LEADERSHIP; break;
-				case 2:    ret = SKILL_F_LIGHT;   break;
-		        case 3:    ret = SKILL_FENCING;   break;
-		        case 4:    ret = SKILL_F_HEAVY;   break;
-		        case 5:    ret = SKILL_PISTOL;    break;
-		        case 6:    ret = SKILL_FORTUNE;   break;
-                case 7:    ret = SKILL_SNEAK;      break;
+		        case 2:    ret = SKILL_FENCING;   break;
+		        case 3:    ret = SKILL_PISTOL;    break;
+		        case 4:    ret = SKILL_FORTUNE;   break;
+                case 5:    ret = SKILL_SNEAK;      break;
 		    }
 		break;
 		
@@ -592,14 +584,14 @@ void InitStartParam(ref _chref)
     
     ClearCharacterExpRate(_chref);
     
-    for (i=1; i<15; i++)
+    for (i=1; i<13; i++)
     {
         skillName = GetSkillNameByIdx(i);
         _chref.skill.(skillName) = makeint(MOD_EXP_RATE / GetCharacterExpRate(_chref, skillName) + 0.5);
     }
     LAi_SetHP(_chref, GetCharacterBaseHPValue(_chref), GetCharacterBaseHPValue(_chref));
 }
-// порог следующего скила (множетель)
+// порог следующего скила (множитель)
 float GetCharacterExpRate(ref _chref, string _skill)
 {
     string  skill_rate = _skill + "_rate";
@@ -610,14 +602,8 @@ float GetCharacterExpRate(ref _chref, string _skill)
 
         switch (_skill)
         {
-            case SKILL_F_LIGHT:
-                divBy = GetCharacterSPECIAL(_chref, SPECIAL_A)*0.9 + GetCharacterSPECIAL(_chref, SPECIAL_P)*0.1;
-            break;
             case SKILL_FENCING:
                 divBy = GetCharacterSPECIAL(_chref, SPECIAL_S)*0.6 + GetCharacterSPECIAL(_chref, SPECIAL_A)*0.4;
-            break;
-            case SKILL_F_HEAVY:
-                divBy = GetCharacterSPECIAL(_chref, SPECIAL_S)*0.9 + GetCharacterSPECIAL(_chref, SPECIAL_E)*0.1;
             break;
             case SKILL_PISTOL:
                 divBy = GetCharacterSPECIAL(_chref, SPECIAL_A)*0.5 + GetCharacterSPECIAL(_chref, SPECIAL_L)*0.5;
@@ -860,13 +846,13 @@ int SetCharacterSkillBySpecialPotion(ref rChar, String sSkillName) // 280313
 	{
 		if (CheckAttribute(rChar, "SpeciaPotionEffect.loa"))
 		{
-			if(sSkillName == SKILL_F_HEAVY)		iValue = 15;
+			//if(sSkillName == SKILL_F_HEAVY)		iValue = 15;
 			if(sSkillName == SKILL_FENCING)		iValue = 5;
 		}
 		
 		if (CheckAttribute(rChar, "SpeciaPotionEffect.Legba"))
 		{
-			if(sSkillName == SKILL_F_LIGHT)		iValue = 10;
+			//if(sSkillName == SKILL_F_LIGHT)		iValue = 10;
 			if(sSkillName == SKILL_PISTOL)		iValue = 10;
 		}
 	}
@@ -1038,7 +1024,7 @@ void ClearCharacterExpRate(ref _chref)
     int    i;
     string name;
 
-    for (i=1; i<15; i++)
+    for (i=1; i<13; i++)
     {
         name = GetSkillNameByIdx(i);
         DeleteAttribute(_chref, "skill." + name + "_rate");
@@ -1050,7 +1036,7 @@ void RefreshCharacterSkillExpRate(ref _chref)
     int    i;
     string name;
 
-    for (i=1; i<15; i++)
+    for (i=1; i<13; i++)
     {
         name = GetSkillNameByIdx(i);
         AddCharacterExpToSkill(_chref, name, 0.0);

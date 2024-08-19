@@ -60,7 +60,7 @@ float LAi_CalcDamageForBlade(aref attack, aref enemy, string attackType, bool is
 	
 	if(CheckCharacterTalent(pchar, "Agility"))
 	{
-	    if(rItm.FencingType == "FencingLight") kAttackDmg = kAttackDmg * 1.25;
+	    if(rItm.FencingType == "Light") kAttackDmg = kAttackDmg * 1.25;
 	    else kAttackDmg = kAttackDmg * 0.75;
 	}
 	
@@ -308,7 +308,7 @@ float LAi_CalcUseEnergyForBlade(aref character, string actionType)
 	
 	if(energy > 0)  // оптимизация
 	{
-		float fSkill = LAi_GetCharacterFightLevel(character);  // stf(character.skill.fencing) - не так это далеют!!
+		float fSkill = LAi_GetCharacterFightLevel(character);  // stf(character.skill.fencing) - не так это делают!!
 		fSkill = (1.0 - (0.3 * fSkill));
 		energy = energy * fSkill * LAi_GetBladeEnergyType(character);  // энергоемкость от веса
 	}
@@ -683,7 +683,7 @@ void LAi_ApplyCharacterAttackDamage(aref attack, aref enemy, string attackType, 
 	    {
 	       re = stf(enemy.rank);
 	    }
-        AddCharacterExpToSkill(attack, LAi_GetBladeFencingType(attack), makefloat(10.0 + ((1 + re) / (1+ra))*6.5));
+        AddCharacterExpToSkill(attack, SKILL_FENCING, makefloat(10.0 + ((1 + re) / (1+ra))*6.5));
         AddCharacterExpToSkill(attack, SKILL_DEFENCE, 1);
         AddCharacterExpToSkill(attack, SKILL_FORTUNE, 1);
         AddCharacterExpToSkill(attack, SKILL_LEADERSHIP, 1);
@@ -700,7 +700,7 @@ void LAi_ApplyCharacterAttackDamage(aref attack, aref enemy, string attackType, 
 	
 	if (!noExp)
     {
-        AddCharacterExpToSkill(attack, LAi_GetBladeFencingType(attack), Makefloat(exp*0.2));
+        AddCharacterExpToSkill(attack, SKILL_FENCING, Makefloat(exp*0.2));
     }
 	
 }

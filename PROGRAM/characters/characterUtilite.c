@@ -1986,7 +1986,7 @@ string FindCharacterItemByGroup(ref chref, string groupID)
 		if (groupID == BLADE_ITEM_TYPE)
 		{
 			// формула лучшего выбора
-			curBladeValue = (stf(refItm.dmg_min)*3 + (stf(refItm.dmg_max)*GetCharacterSkill(chref, refItm.FencingType)) / SKILL_MAX) / GetEnergyBladeDrain(stf(refItm.Weight));
+			curBladeValue = (stf(refItm.dmg_min)*3 + (stf(refItm.dmg_max) / SKILL_MAX)) / GetEnergyBladeDrain(stf(refItm.Weight));
 			if (curBladeValue > maxBladeValue)
 			{
 			    maxBladeValue = curBladeValue;
@@ -2205,9 +2205,12 @@ void SetEquipedItemToCharacter(ref chref, string groupID, string itemID)
 		}
 		// boal -->
 		if(CheckAttribute(arItm,"FencingType"))
-		{	LAi_BladeFencingType(chref, arItm.FencingType);
-		} else
-		{	LAi_BladeFencingType(chref, "Fencing");
+		{	
+			LAi_BladeFencingType(chref, arItm.FencingType);
+		} 
+		else
+		{	
+			LAi_BladeFencingType(chref, "Middle");
 		}
 		if(CheckAttribute(arItm,"Weight")) //eddy.при загрузки локации если у ГГ нет оружия - ошибка
 		{

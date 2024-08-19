@@ -24,7 +24,7 @@ int CreateBermudesCharacters(int n)
 	ch.quest.type = "hovernor";
 	ch.reputation = "35";
     SetRandSPECIAL(ch);
-    SetSelfSkill(ch, 90, 90, 90, 70, 90);
+    SetSelfSkill(ch, 90, 70, 90);
     SetShipSkill(ch, 90, 80, 70, 10, 10, 20, 10, 10, 50);
 	GiveItem2Character(ch, GUN_COMMON);
 	ch.equip.gun = GUN_COMMON;
@@ -54,7 +54,7 @@ int CreateBermudesCharacters(int n)
 	SetCharacterPerk(ch, "AdvancedDefense");
 	SetCharacterPerk(ch, "CriticalHit");
 	SetCharacterPerk(ch, "Sliding");
-    SetSelfSkill(ch, 90, 90, 90, 60, 70);
+    SetSelfSkill(ch, 90, 60, 70);
     SetShipSkill(ch, 100, 10, 100, 100, 90, 60, 80, 90, 50);
 	LAi_NoRebirthDisable(ch);
 	LAi_RebirthOldName(ch);
