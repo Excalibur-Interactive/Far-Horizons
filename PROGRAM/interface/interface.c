@@ -1476,7 +1476,7 @@ string GetVideoFileName(string baseName)
 		baseName = "Credits_ru";
 	}
 
-	if( GetTargetPlatform()=="pc" ) return baseName+".wmv";
+	if( GetTargetPlatform()=="pc" ) return baseName+".mp4";
 	return baseName+".xmv";
 }
 
