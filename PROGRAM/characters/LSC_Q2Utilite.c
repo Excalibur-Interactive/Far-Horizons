@@ -4,9 +4,7 @@ void SetRandSelfSkill(ref _ch, int _min, int _max)
 {
 	int iDelta = _max-_min;
 	_ch.skill.Leadership = _min + rand(iDelta);
-	_ch.skill.FencingLight = _min + rand(iDelta);
 	_ch.skill.Fencing = _min + rand(iDelta);
-	_ch.skill.FencingHeavy = _min + rand(iDelta);
 	_ch.skill.Pistol = _min + rand(iDelta);
 	_ch.skill.Fortune = _min + rand(iDelta);
 	_ch.skill.Sneak = _min + rand(iDelta);

@@ -112,7 +112,7 @@ void ActiveF12Control()
 			
             if(CheckAttribute(findCh, "chr_ai.FencingType"))
             {
-                Log_SetStringToLog("Тип фехтования  - " + findCh.chr_ai.FencingType));
+                Log_SetStringToLog("Тип клинка - " + findCh.chr_ai.FencingType));
             }
             else
             {

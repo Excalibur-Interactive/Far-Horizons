@@ -35,9 +35,7 @@ string  LoyalityTable[MORALE_TABLE_SIZE];
 #define SPECIAL_MAX         10
 #define SKILL_TO_OLD        10.0
 // личные
-#define SKILL_F_LIGHT		"FencingLight"  //1
 #define SKILL_FENCING		"Fencing"
-#define SKILL_F_HEAVY		"FencingHeavy"
 #define SKILL_PISTOL		"Pistol" // boal
 #define SKILL_FORTUNE	    "Fortune"     //5
 // корабельные

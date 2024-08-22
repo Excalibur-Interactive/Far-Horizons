@@ -432,7 +432,7 @@ void PGG_UpdateStats(ref chr, string sExpType)
 			fMod = MOD_SKILL_ENEMY_RATE + rand(MOD_SKILL_ENEMY_RATE + 12);
 			fMod = fMod*EXP_MODIFIER; 
 
-			AddCharacterExpToSkill(chr, GetEquipedBladeType(chr), fMod*261);
+			AddCharacterExpToSkill(chr, SKILL_FENCING, fMod*261);
 			AddCharacterExpToSkill(chr, SKILL_PISTOL, fMod*34.444);
 			AddCharacterExpToSkill(chr, SKILL_FORTUNE, fMod*11.369);
 			AddCharacterExpToSkill(chr, SKILL_LEADERSHIP, fMod*11.759);
@@ -536,7 +536,7 @@ int PGG_AddShipsBattleExp(ref chr, int _shipsNum)
 		}
 
 		i = sti(chr.ship.crew.quantity);
-		AddCharacterExpToSkill(chr, GetEquipedBladeType(chr), fMod*FRAND(233.4));
+		AddCharacterExpToSkill(chr, SKILL_FENCING, fMod*FRAND(233.4));
 		AddCharacterExpToSkill(chr, SKILL_PISTOL, fMod*3.48);
 		AddCharacterExpToSkill(chr, SKILL_FORTUNE, fMod*(2.4 + fTmp*20));
 		AddCharacterExpToSkill(chr, SKILL_LEADERSHIP, fMod*(2.4 + fTmp*25));
@@ -740,8 +740,7 @@ void PGG_UpdateEquip(ref chr)
 	}
 }
 
-
-//получить тип экипированной сабли.
+//получить тип экипированной сабли
 string GetEquipedBladeType(ref chr)
 {
 	string sBlade = GetCharacterEquipByGroup(chr, BLADE_ITEM_TYPE);
@@ -750,7 +749,7 @@ string GetEquipedBladeType(ref chr)
 		ref rItm = ItemsFromID(sBlade);
 		return rItm.FencingType;
 	}
-	return SKILL_FENCING;
+	return "Middle";
 }
 
 //настроить параметры корабля

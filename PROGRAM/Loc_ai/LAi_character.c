@@ -158,9 +158,7 @@ void LAi_AlcoholSetDrunk(aref chr, float alcoholDegree, float time)
 	//много рома в таверне
 	if (alcoholDegree > 70)
 	{
-		chr.chr_ai.drunk.skill.FencingLight = -20;
 		chr.chr_ai.drunk.skill.Fencing 	    = -20;
-		chr.chr_ai.drunk.skill.FencingHeavy = -20;
 		chr.chr_ai.drunk.skill.Pistol       = -20;
 		chr.chr_ai.drunk.skill.Fortune      = -20;
 		chr.chr_ai.drunk.skill.Sneak        = -20;
@@ -171,14 +169,14 @@ void LAi_AlcoholSetDrunk(aref chr, float alcoholDegree, float time)
 		//Ром
 		if (alcoholDegree > 50)
 		{
-			chr.chr_ai.drunk.skill.FencingLight = -10;
-			chr.chr_ai.drunk.skill.FencingHeavy = 10;
+			//chr.chr_ai.drunk.skill.FencingLight = -10;
+			//chr.chr_ai.drunk.skill.FencingHeavy = 10;
 		}
 		//вино
 		else
 		{
-			chr.chr_ai.drunk.skill.FencingLight = 10;
-			chr.chr_ai.drunk.skill.FencingHeavy = -10;
+			//chr.chr_ai.drunk.skill.FencingLight = 10;
+			//chr.chr_ai.drunk.skill.FencingHeavy = -10;
 		}
 		chr.chr_ai.drunk.skill.Fortune = 5;
 		chr.chr_ai.drunk.skill.Pistol = -20;

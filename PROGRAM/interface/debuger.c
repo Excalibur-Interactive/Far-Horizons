@@ -604,9 +604,7 @@ void CalculateInfoDataS6()
 		totalInfo += "Все личные умения по 100." + NewStr();
 	}
 	
-    mc.skill.FencingLight = iSkill;
     mc.skill.Fencing = iSkill;
-    mc.skill.FencingHeavy = iSkill;
     mc.skill.Pistol = iSkill;
 	mc.skill.Sneak = iSkill;
 	mc.skill.Leadership = iSkill;

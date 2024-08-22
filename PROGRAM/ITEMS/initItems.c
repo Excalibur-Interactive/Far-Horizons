@@ -11,71 +11,71 @@ int InitItems()
 	// в начате идут все без заполнения трупов
 	
 	//Легкое оружие
-	n = InitStdBlade(n, "unarmed",  "items_CommonWeapon",  1, "quest",     "Quest",                          "FencingLight",  "Placeholder",    false,false, 1); //Кулаки
+	n = InitStdBlade(n, "unarmed",  "items_CommonWeapon",  1, "quest",     "Quest",                          "Light",  "Placeholder",    false,false, 1); //Кулаки
 	
-	n = InitStdBlade(n, "blade_01", "items_CommonWeapon", 1, "poor",      "Pirate,Slave",                    "FencingLight",  "Spear",          true, false, 1); //Гарпун
-	n = InitStdBlade(n, "blade_02", "items_CommonWeapon", 2, "poor",      "Citizen",                         "FencingLight",  "Dagger",         true, false, 1); //Стилет
-	n = InitStdBlade(n, "blade_03", "items_CommonWeapon", 3, "poor",      "Soldier,Citizen",                 "FencingLight",  "Rapier",         true, false, 1); //Итальянская рапира
-	n = InitStdBlade(n, "blade_04", "items_CommonWeapon", 4, "poor",      "Pirate,Soldier,Citizen",          "FencingLight",  "LightSword",     true, false, 1); //Корд
-	n = InitStdBlade(n, "blade_05", "items_CommonWeapon", 5, "poor",      "Pirate,Soldier,Citizen",          "FencingLight",  "SmallSword",     true, false, 1); //Эспадрон
+	n = InitStdBlade(n, "blade_01", "items_CommonWeapon", 1, "poor",      "Pirate,Slave",                    "Light",  "Spear",          true, false, 1); //Гарпун
+	n = InitStdBlade(n, "blade_02", "items_CommonWeapon", 2, "poor",      "Citizen",                         "Light",  "Dagger",         true, false, 1); //Стилет
+	n = InitStdBlade(n, "blade_03", "items_CommonWeapon", 3, "poor",      "Soldier,Citizen",                 "Light",  "Rapier",         true, false, 1); //Итальянская рапира
+	n = InitStdBlade(n, "blade_04", "items_CommonWeapon", 4, "poor",      "Pirate,Soldier,Citizen",          "Light",  "LightSword",     true, false, 1); //Корд
+	n = InitStdBlade(n, "blade_05", "items_CommonWeapon", 5, "poor",      "Pirate,Soldier,Citizen",          "Light",  "SmallSword",     true, false, 1); //Эспадрон
 	
-	n = InitStdBlade(n, "blade_06", "items_RareWeapon", 1,  "ordinary",  "Indian",                         "FencingLight",  "Spear",          true, false, 1); //Нааб-Те
-	n = InitStdBlade(n, "blade_07", "items_RareWeapon", 2,  "ordinary",  "Officer",                        "FencingLight",  "Dagger",         true, false, 1); //Ханджар
-	n = InitStdBlade(n, "blade_08", "items_RareWeapon", 3,  "ordinary",  "Officer",                        "FencingLight",  "Rapier",         true, false, 1); //Колишемард
-	n = InitStdBlade(n, "blade_09", "items_RareWeapon", 4,  "ordinary",  "Officer",                        "FencingLight",  "LightSword",     true, false, 1); //Саксонский клинок
-	n = InitStdBlade(n, "blade_10", "items_RareWeapon", 5,  "ordinary",  "Officer",                        "FencingLight",  "SmallSword",     true, false, 1); //Бильбо
+	n = InitStdBlade(n, "blade_06", "items_RareWeapon", 1,  "ordinary",  "Indian",                         "Light",  "Spear",          true, false, 1); //Нааб-Те
+	n = InitStdBlade(n, "blade_07", "items_RareWeapon", 2,  "ordinary",  "Officer",                        "Light",  "Dagger",         true, false, 1); //Ханджар
+	n = InitStdBlade(n, "blade_08", "items_RareWeapon", 3,  "ordinary",  "Officer",                        "Light",  "Rapier",         true, false, 1); //Колишемард
+	n = InitStdBlade(n, "blade_09", "items_RareWeapon", 4,  "ordinary",  "Officer",                        "Light",  "LightSword",     true, false, 1); //Саксонский клинок
+	n = InitStdBlade(n, "blade_10", "items_RareWeapon", 5,  "ordinary",  "Officer",                        "Light",  "SmallSword",     true, false, 1); //Бильбо
 	
-	n = InitStdBlade(n, "blade_11", "ITEMS_LIGHTWEAPONS", 17, "good",      "Elite",                          "FencingLight",  "Dagger",         true, false, 1); //Чинкуэда
-	n = InitStdBlade(n, "blade_12", "ITEMS_LIGHTWEAPONS", 18, "good",      "Elite",                          "FencingLight",  "Rapier",         true, false, 1); //Бретта
-	n = InitStdBlade(n, "blade_13", "ITEMS_LIGHTWEAPONS", 19, "good",      "Elite",                          "FencingLight",  "LightSword",     true, false, 1); //Ятаган
+	n = InitStdBlade(n, "blade_11", "ITEMS_LIGHTWEAPONS", 17, "good",      "Elite",                          "Light",  "Dagger",         true, false, 1); //Чинкуэда
+	n = InitStdBlade(n, "blade_12", "ITEMS_LIGHTWEAPONS", 18, "good",      "Elite",                          "Light",  "Rapier",         true, false, 1); //Бретта
+	n = InitStdBlade(n, "blade_13", "ITEMS_LIGHTWEAPONS", 19, "good",      "Elite",                          "Light",  "LightSword",     true, false, 1); //Ятаган
 	
-	n = InitStdBlade(n, "blade_14", "items_LegendaryWeapon", 1, "Excellent", "Quest",                          "FencingLight",  "Dagger",         true, false, 1); //Джамбия
-	n = InitStdBlade(n, "blade_15", "items_LegendaryWeapon", 2, "Excellent", "Quest",                          "FencingLight",  "LightSword",     true, false, 1); //Фламбердж
-	n = InitStdBlade(n, "blade_16", "items_LegendaryWeapon", 3, "Excellent", "Quest",                          "FencingLight",  "SmallSword",     true, false, 1); //Саксенфедер
+	n = InitStdBlade(n, "blade_14", "items_LegendaryWeapon", 1, "Excellent", "Quest",                          "Light",  "Dagger",         true, false, 1); //Джамбия
+	n = InitStdBlade(n, "blade_15", "items_LegendaryWeapon", 2, "Excellent", "Quest",                          "Light",  "LightSword",     true, false, 1); //Фламбердж
+	n = InitStdBlade(n, "blade_16", "items_LegendaryWeapon", 3, "Excellent", "Quest",                          "Light",  "SmallSword",     true, false, 1); //Саксенфедер
 	
 	//Среднее оружие
-	n = InitStdBlade(n, "blade_17", "items_CommonWeapon",  9,   "poor",       "Slave",                         "Fencing",      "Pickaxe",         true, false, 1); //Кирка
-	n = InitStdBlade(n, "blade_18", "items_CommonWeapon",  10,  "poor",      "Pirate,Slave",                   "Fencing",      "Saber",           true, false, 1); //Дюсcак
-	n = InitStdBlade(n, "blade_19", "items_CommonWeapon",  11,  "poor",      "Pirate,Slave",                   "Fencing",      "Cleaver",         true, false, 1); //Мачете
-	n = InitStdBlade(n, "blade_20", "items_CommonWeapon",  12,  "poor",      "Pirate,Slave,Citizen",           "Fencing",      "LightAxe",        true, false, 1); //Клевец
-	n = InitStdBlade(n, "blade_21", "items_CommonWeapon",  13,  "poor",      "Pirate,Soldier,Citizen",         "Fencing",      "Bastard",         true, false, 1); //Кортелас 
-	n = InitStdBlade(n, "blade_22", "items_CommonWeapon",  14,  "poor",      "Slave",                          "Fencing",      "Tomahawk",        true, false, 1); //Томагавк
+	n = InitStdBlade(n, "blade_17", "items_CommonWeapon",  9,   "poor",       "Slave",                         "Middle",      "Pickaxe",         true, false, 1); //Кирка
+	n = InitStdBlade(n, "blade_18", "items_CommonWeapon",  10,  "poor",      "Pirate,Slave",                   "Middle",      "Saber",           true, false, 1); //Дюсcак
+	n = InitStdBlade(n, "blade_19", "items_CommonWeapon",  11,  "poor",      "Pirate,Slave",                   "Middle",      "Cleaver",         true, false, 1); //Мачете
+	n = InitStdBlade(n, "blade_20", "items_CommonWeapon",  12,  "poor",      "Pirate,Slave,Citizen",           "Middle",      "LightAxe",        true, false, 1); //Клевец
+	n = InitStdBlade(n, "blade_21", "items_CommonWeapon",  13,  "poor",      "Pirate,Soldier,Citizen",         "Middle",      "Bastard",         true, false, 1); //Кортелас 
+	n = InitStdBlade(n, "blade_22", "items_CommonWeapon",  14,  "poor",      "Slave",                          "Middle",      "Tomahawk",        true, false, 1); //Томагавк
 	
-	n = InitStdBlade(n, "blade_23", "items_RareWeapon", 6,  "ordinary",  "Pirate,Soldier",                "Fencing",      "Saber",           true, false, 1); //Морская сабля
-	n = InitStdBlade(n, "blade_24", "items_RareWeapon", 7,  "ordinary",  "Pirate,Soldier",                "Fencing",      "Cleaver",         true, false, 1); //Морской тесак
-	n = InitStdBlade(n, "blade_25", "items_RareWeapon", 9,  "ordinary",  "Indian",                        "Fencing",      "LightAxe",        true, false, 1); //Тлакомакан
-	n = InitStdBlade(n, "blade_26", "items_RareWeapon", 10, "ordinary",  "Officer",                       "Fencing",      "Bastard",         true, false, 1); //Кракемарт
-	n = InitStdBlade(n, "blade_27", "items_RareWeapon", 11, "ordinary",  "Officer",                       "Fencing",      "LightFalchion",   true, false, 1); //Сторта
+	n = InitStdBlade(n, "blade_23", "items_RareWeapon", 6,  "ordinary",  "Pirate,Soldier",                "Middle",      "Saber",           true, false, 1); //Морская сабля
+	n = InitStdBlade(n, "blade_24", "items_RareWeapon", 7,  "ordinary",  "Pirate,Soldier",                "Middle",      "Cleaver",         true, false, 1); //Морской тесак
+	n = InitStdBlade(n, "blade_25", "items_RareWeapon", 9,  "ordinary",  "Indian",                        "Middle",      "LightAxe",        true, false, 1); //Тлакомакан
+	n = InitStdBlade(n, "blade_26", "items_RareWeapon", 10, "ordinary",  "Officer",                       "Middle",      "Bastard",         true, false, 1); //Кракемарт
+	n = InitStdBlade(n, "blade_27", "items_RareWeapon", 11, "ordinary",  "Officer",                       "Middle",      "LightFalchion",   true, false, 1); //Сторта
 	
-	n = InitStdBlade(n, "blade_28", "ITEMS_MEDIUMWEAPONS", 17, "good",      "Elite",                          "Fencing",      "Saber",           true, false, 1); //Карабела
-	n = InitStdBlade(n, "blade_29", "ITEMS_MEDIUMWEAPONS", 18, "good",      "Elite",                          "Fencing",      "Cleaver",         true, false, 1); //Кацтбальгер
-	n = InitStdBlade(n, "blade_30", "ITEMS_MEDIUMWEAPONS", 19, "good",      "Elite",                          "Fencing",      "Bastard",         true, false, 1); //Скаллоп
+	n = InitStdBlade(n, "blade_28", "ITEMS_MEDIUMWEAPONS", 17, "good",      "Elite",                          "Middle",      "Saber",           true, false, 1); //Карабела
+	n = InitStdBlade(n, "blade_29", "ITEMS_MEDIUMWEAPONS", 18, "good",      "Elite",                          "Middle",      "Cleaver",         true, false, 1); //Кацтбальгер
+	n = InitStdBlade(n, "blade_30", "ITEMS_MEDIUMWEAPONS", 19, "good",      "Elite",                          "Middle",      "Bastard",         true, false, 1); //Скаллоп
 	
-	n = InitStdBlade(n, "blade_31", "items_LegendaryWeapon", 4, "Excellent", "Quest",                          "Fencing",      "Saber",           true, false, 1); //Скимитар
-	n = InitStdBlade(n, "blade_32", "items_LegendaryWeapon", 5, "Excellent", "Quest",                          "Fencing",      "Klewang",         true, false, 1); //Сингапурский клеванг
-	n = InitStdBlade(n, "blade_33", "items_LegendaryWeapon", 6, "Excellent", "Quest",                          "Fencing",      "Katana",          true, false, 1); //Катана
+	n = InitStdBlade(n, "blade_31", "items_LegendaryWeapon", 4, "Excellent", "Quest",                          "Middle",      "Saber",           true, false, 1); //Скимитар
+	n = InitStdBlade(n, "blade_32", "items_LegendaryWeapon", 5, "Excellent", "Quest",                          "Middle",      "Klewang",         true, false, 1); //Сингапурский клеванг
+	n = InitStdBlade(n, "blade_33", "items_LegendaryWeapon", 6, "Excellent", "Quest",                          "Middle",      "Katana",          true, false, 1); //Катана
 	
 	//Тяжелое оружие
-	n = InitStdBlade(n, "blade_34", "items_CommonWeapon", 17,  "poor",      "Soldier",                        "FencingHeavy", "Falchion",        true, false, 1); //Французский фальчион
-	n = InitStdBlade(n, "blade_35", "items_CommonWeapon", 18,  "poor",      "Pirate,Slave,Soldier,Citizen",   "FencingHeavy", "HeavyAxe",        true, false, 1); //Боевой топор
-	n = InitStdBlade(n, "blade_36", "items_CommonWeapon", 19,  "poor",      "Pirate,Soldier,Citizen",         "FencingHeavy", "Godendag",        true, false, 1); //Годендаг
-	n = InitStdBlade(n, "blade_37", "items_CommonWeapon", 20,  "poor",      "Soldier,Citizen",                "FencingHeavy", "Sword",           true, false, 1); //Гросс-мессер
-	n = InitStdBlade(n, "blade_38", "items_CommonWeapon", 21,  "poor",      "Soldier",                        "FencingHeavy", "HeavySmallSword", true, false, 1); //Ритершверт
-	n = InitStdBlade(n, "blade_39", "items_CommonWeapon", 22,  "poor",      "Pirate,Soldier",                 "FencingHeavy", "Broadsword",      true, false, 1); //Морской палаш
+	n = InitStdBlade(n, "blade_34", "items_CommonWeapon", 17,  "poor",      "Soldier",                        "Heavy", "Falchion",        true, false, 1); //Французский фальчион
+	n = InitStdBlade(n, "blade_35", "items_CommonWeapon", 18,  "poor",      "Pirate,Slave,Soldier,Citizen",   "Heavy", "HeavyAxe",        true, false, 1); //Боевой топор
+	n = InitStdBlade(n, "blade_36", "items_CommonWeapon", 19,  "poor",      "Pirate,Soldier,Citizen",         "Heavy", "Godendag",        true, false, 1); //Годендаг
+	n = InitStdBlade(n, "blade_37", "items_CommonWeapon", 20,  "poor",      "Soldier,Citizen",                "Heavy", "Sword",           true, false, 1); //Гросс-мессер
+	n = InitStdBlade(n, "blade_38", "items_CommonWeapon", 21,  "poor",      "Soldier",                        "Heavy", "HeavySmallSword", true, false, 1); //Ритершверт
+	n = InitStdBlade(n, "blade_39", "items_CommonWeapon", 22,  "poor",      "Pirate,Soldier",                 "Heavy", "Broadsword",      true, false, 1); //Морской палаш
 	
-	n = InitStdBlade(n, "blade_40", "items_RareWeapon", 12,  "ordinary",  "Officer",                       "FencingHeavy", "HeavyAxe",        true, false, 1); //Секира
-	n = InitStdBlade(n, "blade_41", "items_RareWeapon", 13, "ordinary",  "Indian",                         "FencingHeavy", "Macuahuitl",      true, false, 1); //Макуауитль
-	n = InitStdBlade(n, "blade_42", "items_RareWeapon", 14, "ordinary",  "Officer",                        "FencingHeavy", "Sword",           true, false, 1); //Голландский меч
-	n = InitStdBlade(n, "blade_43", "items_RareWeapon", 15, "ordinary",  "Officer",                        "FencingHeavy", "HeavySmallSword", true, false, 1); //Скьявона
-	n = InitStdBlade(n, "blade_44", "items_RareWeapon", 16, "ordinary",  "Officer",                        "FencingHeavy", "Broadsword",      true, false, 1); //Клэйбэг
+	n = InitStdBlade(n, "blade_40", "items_RareWeapon", 12,  "ordinary",  "Officer",                       "Heavy", "HeavyAxe",        true, false, 1); //Секира
+	n = InitStdBlade(n, "blade_41", "items_RareWeapon", 13, "ordinary",  "Indian",                         "Heavy", "Macuahuitl",      true, false, 1); //Макуауитль
+	n = InitStdBlade(n, "blade_42", "items_RareWeapon", 14, "ordinary",  "Officer",                        "Heavy", "Sword",           true, false, 1); //Голландский меч
+	n = InitStdBlade(n, "blade_43", "items_RareWeapon", 15, "ordinary",  "Officer",                        "Heavy", "HeavySmallSword", true, false, 1); //Скьявона
+	n = InitStdBlade(n, "blade_44", "items_RareWeapon", 16, "ordinary",  "Officer",                        "Heavy", "Broadsword",      true, false, 1); //Клэйбэг
 	
-	n = InitStdBlade(n, "blade_45", "ITEMS_HEAVYWEAPONS", 17, "good",      "Elite",                          "FencingHeavy", "Sword",           true, false, 1); //Клеймор
-	n = InitStdBlade(n, "blade_46", "ITEMS_HEAVYWEAPONS", 18, "good",      "Elite",                          "FencingHeavy", "Sword",           true, false, 1); //Мальтийский меч
+	n = InitStdBlade(n, "blade_45", "ITEMS_HEAVYWEAPONS", 17, "good",      "Elite",                          "Heavy", "Sword",           true, false, 1); //Клеймор
+	n = InitStdBlade(n, "blade_46", "ITEMS_HEAVYWEAPONS", 18, "good",      "Elite",                          "Heavy", "Sword",           true, false, 1); //Мальтийский меч
 	
-	n = InitStdBlade(n, "blade_47", "items_LegendaryWeapon", 7, "Excellent", "Quest",                          "FencingHeavy", "Ngala",           true, false, 1); //Нгала
-	n = InitStdBlade(n, "blade_48", "items_LegendaryWeapon", 9, "Excellent", "Quest",                          "FencingHeavy", "Sword",           true, false, 1); //Танат
-	n = InitStdBlade(n, "blade_49", "items_LegendaryWeapon", 10, "Excellent", "Quest",                          "FencingHeavy", "Broadsword",      true, false, 1); //Кханда
-	n = InitStdBlade(n, "blade_50", "items_LegendaryWeapon", 11, "Excellent", "Quest",                          "FencingHeavy", "HeavyAxe",        true, false, 1); //Скандинавский лабрис
+	n = InitStdBlade(n, "blade_47", "items_LegendaryWeapon", 7, "Excellent", "Quest",                          "Heavy", "Ngala",           true, false, 1); //Нгала
+	n = InitStdBlade(n, "blade_48", "items_LegendaryWeapon", 9, "Excellent", "Quest",                          "Heavy", "Sword",           true, false, 1); //Танат
+	n = InitStdBlade(n, "blade_49", "items_LegendaryWeapon", 10, "Excellent", "Quest",                          "Heavy", "Broadsword",      true, false, 1); //Кханда
+	n = InitStdBlade(n, "blade_50", "items_LegendaryWeapon", 11, "Excellent", "Quest",                          "Heavy", "HeavyAxe",        true, false, 1); //Скандинавский лабрис
 	
 	
 	n = InitStdGun(n, "pistol1",            "pistol1",  "items_placeholder", 3,  "Soldier,Officer", 800,   20.0, 120.0, false,  50, 2.0, 1,       "poor"); //Пуффер

@@ -475,24 +475,24 @@ String GenerateItem(String _itemId)
 	
 	switch (realItem.FencingType) 
 	{
-		case "FencingLight" :
+		case "Light" :
 			realItem.Weight 	= 2.0 + fRandSmall(1.0); 
-			MinAttack		= FencingLight_MinAttack;
-			MaxAttack		= FencingLight_MaxAttack;
+			MinAttack		= Light_MinAttack;
+			MaxAttack		= Light_MaxAttack;
 			FTypeMultiplier = 0.5;
 		break;
 		
-		case "Fencing" :
+		case "Middle" :
 			realItem.Weight 	= 2.4 + fRandSmall(1.2);		
-			MinAttack		= Fencing_MinAttack;
-			MaxAttack		= Fencing_MaxAttack;
+			MinAttack		= Middle_MinAttack;
+			MaxAttack		= Middle_MaxAttack;
 			FTypeMultiplier = 1.0;
 		break;
 		
-		case "FencingHeavy" :
+		case "Heavy" :
 			realItem.Weight 	= 3.0 + fRandSmall(1.5); 
-			MinAttack		= FencingHeavy_MinAttack;
-			MaxAttack		= FencingHeavy_MaxAttack;
+			MinAttack		= Heavy_MinAttack;
+			MaxAttack		= Heavy_MaxAttack;
 			FTypeMultiplier = 1.5;
 		break;
 	}

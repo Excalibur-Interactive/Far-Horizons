@@ -291,7 +291,7 @@ void ProcessDialogEvent()
 			link.l1.go = "SeekCap_2";
 		break;
 		case "SeekCap_2":
-			dialog.text = "Дьявол! Ну, для меня еще не все потеряно. Я все-таки попытаюсь отправить тебя на тот свет...";
+			dialog.text = "Дьявол! Ну, для меня еще не все потеряно. Я всё-таки попытаюсь отправить тебя на тот свет...";
 			link.l1 = "Ну, попытайся...";
 			link.l1.go = "SeekCap_3";
 		break;
@@ -845,7 +845,7 @@ void ProcessDialogEvent()
 					link.l1.go = "SCQR_womanRevenge";
 				break;
 				case "womanPiratesover":
-					dialog.text = "Вы все-таки освободили моего мужа! Умоляю вас, скажите мне, это так?!!";
+					dialog.text = "Вы всё-таки освободили моего мужа! Умоляю вас, скажите мне, это так?!!";
 					link.l1 = "Да, сейчас он находится у меня на корабле. Можете его забирать, если " + npchar.quest.SeekCap.name + " " + npchar.quest.SeekCap.lastname + " и есть ваш муж...";
 					link.l1.go = "SCQR_womanPirates";
 				break;
@@ -1158,7 +1158,7 @@ void ProcessDialogEvent()
 			link.l1.go = "FriendCap_inDeck_2";
 		break;
 		case "FriendCap_inDeck_2":
-			dialog.text = "О-о-о, нашелся все-таки! Очень хорошо... Вы меня извините за грубый прием, я, знаете ли, грешным делом подумал, что вы пират.";
+			dialog.text = "О-о-о, нашелся всё-таки! Очень хорошо... Вы меня извините за грубый прием, я, знаете ли, грешным делом подумал, что вы пират.";
 			link.l1 = "Так и есть. Но тебе пока ничего не угрожает. Меня просили передать тебе сообщение, что я и сделал"+ GetSexPhrase("","а") +". Твой земляк, кстати, живет и работает в " + XI_ConvertString("Colony"+npchar.quest.cribCity+"Dat") + ".";
 			link.l1.go = "FriendCap_inDeck_3";
 		break;
@@ -1339,7 +1339,7 @@ void ProcessDialogEvent()
 			link.l1.go = "RevengeCap_board_2";
 		break;
 		case "RevengeCap_board_2":
-			dialog.text = "Ну что же, я так просто умирать не намерен. За разговор спасибо, он прибавил мне сил. "+ GetSexPhrase("Но прихвостня ","И подружку ") +"этой фурии я хочу все-таки отправить на тот свет!";
+			dialog.text = "Ну что же, я так просто умирать не намерен. За разговор спасибо, он прибавил мне сил. "+ GetSexPhrase("Но прихвостня ","И подружку ") +"этой фурии я хочу всё-таки отправить на тот свет!";
 			link.l1 = "Попробуйте, что я еще могу сказать?..";
 			link.l1.go = "RevengeCap_board_3";
 		break;

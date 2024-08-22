@@ -506,8 +506,6 @@ void FantomMakeCoolFighter(ref _Character, int _Rank, int _Fencing, int _Pistol,
 {
     _Character.rank = GetCoffDiff(_Rank, 1000);
     _Character.skill.Fencing = GetCoffDiff(_Fencing, SKILL_MAX);
-    _Character.Skill.FencingLight  = GetCoffDiff(sti(_Character.skill.Fencing), SKILL_MAX);
-    _Character.Skill.FencingHeavy  = GetCoffDiff(sti(_Character.skill.Fencing), SKILL_MAX); 
     _Character.skill.Pistol = GetCoffDiff(_Pistol, SKILL_MAX);
     _Character.skill.Fortune = GetCoffDiff(_Pistol, SKILL_MAX); //zagolski. если умеет хорошо стрелять из пистоля, то умеет и хорошо от него защищаться
 	_Character.chr_ai.hp = stf(_Character.chr_ai.hp) + GetCoffDiff(_AddHP, 5000);

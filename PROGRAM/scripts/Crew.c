@@ -70,7 +70,7 @@ int GetMoneyForOfficer(ref Npchar)
     {
 	    int i, sum;
 	    sum = 0;
-	    for (i=1; i<15; i++)
+	    for (i=1; i<13; i++)
 	    {
 	        sum += GetSkillValue(Npchar, SKILL_TYPE, GetSkillNameByIdx(i));
 	    }
