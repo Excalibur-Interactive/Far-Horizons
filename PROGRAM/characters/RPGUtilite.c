@@ -40,7 +40,7 @@ float GetCharacterMaxEnergyValue(ref _refCharacter)
   		ret = ret + stf(_refCharacter.PerkValue.Tireless);
 	}
 	
-	if(CheckAttribute(_refCharacter, "SpeciaPotionEffect.itzamma"))
+	if(CheckAttribute(_refCharacter, "SpeciaPotionEffect.itzamna"))
 	{
 		ret = ret * 1.15;
 	}
@@ -59,7 +59,7 @@ float GetCharacterMaxEnergyABSValue(ref _refCharacter)
   		ret = ret + stf(_refCharacter.PerkValue.Tireless);
 	}
 	
-	if(CheckAttribute(_refCharacter, "SpeciaPotionEffect.itzamma"))
+	if(CheckAttribute(_refCharacter, "SpeciaPotionEffect.itzamna"))
 	{
 		ret = ret * 1.15;
 	}

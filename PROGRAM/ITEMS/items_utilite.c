@@ -959,7 +959,7 @@ int InitStdBlade(int ItemIndex, string ModelID, string picTexture, int picIndex,
 	return bladeIndex;
 }
 
-int InitStdGun(int ItemIndex, string id, string ModelID, string picTexture, int	picIndex, string TargetGroup, int Price, float DmgMin, float DmgMax, bool MultiDamage, float Accuracy, float Weight, int Charges, int Quality)
+int InitStdGun(int ItemIndex, string id, string ModelID, string picTexture, int	picIndex, string TargetGroup, int Price, string subtype, float DmgMin, float DmgMax, bool MultiDamage, float Accuracy, float Weight, int Charges, int Quality)
 {
 	ref	gun;
 	int	gunIndex;
@@ -988,6 +988,7 @@ int InitStdGun(int ItemIndex, string id, string ModelID, string picTexture, int	
 	gun.Accuracy        = Accuracy;
 	gun.accuracy 		= 50.0; // by default
 	gun.ChargeSpeed 	= 10.0; // by default
+	gun.subtype			= subtype;
 	
 	switch(Quality)
 	{
@@ -1128,6 +1129,8 @@ int InitStdItem(int	ItemIndex, string id, string ModelID, string picTexture, int
 	rItem.rare 				= Rare;
 	rItem.minlevel 			= MinLevel;
 	rItem.Weight 			= Weight;
+	if(HasSubStr(rItem.id, "jewelry"))
+		rItem.jewel = true;
 	
 	if(PriceDublon > 0) 
 	{
@@ -1229,7 +1232,7 @@ int InitStdAmulet(int ItemIndex, string id, string 	ModelID, string picTexture, 
 	return amuletIndex;
 }
 
-int InitStdSuit(int	ItemIndex, string id, string ModelID, string picTexture, int picIndex, int Price, float Weight, string Rare, int MinLevel, bool isClothes, float CirassLevel_blade, float CirassLevel_gun, float Critical)
+int InitStdSuit(int	ItemIndex, string id, string ModelID, string picTexture, int picIndex, int Price, float Weight, string Rare, int MinLevel, bool isClothes, float CirassLevel_blade, float CirassLevel_gun, float Critical, string needPerk)
 {
 	ref	suit;
 	int	suitIndex;
@@ -1252,11 +1255,16 @@ int InitStdSuit(int	ItemIndex, string id, string ModelID, string picTexture, int
 	suit.Clothes 			= isClothes;
 	suit.B_CirassLevel 		= CirassLevel_blade;
 	suit.G_CirassLevel 		= CirassLevel_gun;
+	suit.needPerk 			= needPerk;
 	
 	if(Critical > 0.0)
 	{
 		suit.critical			= Critical;
+		suit.info.critical = makeint(100 - Critical*100);
 	}	
+	
+	suit.info.barmor = makeint(CirassLevel_blade*100);
+	suit.info.garmor = makeint(CirassLevel_gun*100);
 	
 	suit.ItemType 			= "SUPPORT";
 	

@@ -78,36 +78,36 @@ int InitItems()
 	n = InitStdBlade(n, "blade_50", "items_LegendaryWeapon", 11, "Excellent", "Quest",                          "Heavy", "HeavyAxe",        true, false, 1); //Скандинавский лабрис
 	
 	
-	n = InitStdGun(n, "pistol1",            "pistol1",  "items_placeholder", 3,  "Soldier,Officer", 800,   20.0, 120.0, false,  50, 2.0, 1,       "poor"); //Пуффер
-	n = InitStdGun(n, "pistol2",            "pistol2",  "items_placeholder", 3,  "Soldier,Officer", 800,   20.0, 120.0, false,  50, 2.0, 1,       "poor"); //Кремниевый пистолет
-	n = InitStdGun(n, "pistol3",            "pistol3",  "items_placeholder", 3,  "Soldier,Officer", 800,   20.0, 120.0, true,   50, 2.0, 1,       "poor"); //Тромбон
-	n = InitStdGun(n, "pistol4",            "pistol4",  "items_placeholder", 3,  "Officer",         800,   20.0, 120.0, false,  50, 2.0, 2,   "ordinary"); //Бок-пистолет 
-	n = InitStdGun(n, "pistol5",            "pistol5",  "items_placeholder", 3,  "Officer",         800,   20.0, 120.0, false,  50, 2.0, 1,   "ordinary"); //Дуэльный пистолет 
-	n = InitStdGun(n, "pistol6",            "pistol6",  "items_placeholder", 3,  "Elite",           800,   20.0, 120.0, false,  50, 2.0, 3,       "good"); //Трёхствольный пистолет 
-	n = InitStdGun(n, "pistol7",            "pistol7",  "items_placeholder", 3,  "Elite",           800,   20.0, 120.0, false,  50, 2.0, 1,       "good"); //Кавалерийский пистолет 
-	n = InitStdGun(n, "pistol8",            "pistol8",  "items_placeholder", 3,  "Elite",           800,   20.0, 120.0, false,  50, 2.0, 4,       "good"); //Четырёхствольный пистолет 
-	n = InitStdGun(n, "pistol9",            "pistol9",  "items_placeholder", 3,  "Quest",           800,   20.0, 120.0, true,   50, 2.0, 1,  "Excellent"); //Бландербуз 
-	n = InitStdGun(n, "pistol10",           "pistol10", "items_placeholder", 3,  "Quest",           800,   20.0, 120.0, false,  50, 2.0, 1,  "Excellent"); //Двузарядный пистолет 
-	n = InitStdGun(n, "pistol11",           "pistol11", "items_placeholder", 3,  "Quest",           800,   20.0, 120.0, false,  50, 2.0, 5,  "Excellent"); //Револьвер
+	n = InitStdGun(n, "pistol1",  "pistol1", "items_placeholder", 3, "Soldier,Officer", 800, "single-barrel",	20.0, 120.0, false,  50, 2.0, 1,	"poor"); //Пуффер
+	n = InitStdGun(n, "pistol2",  "pistol2", "items_placeholder", 3, "Soldier,Officer", 800, "single-barrel",	20.0, 120.0, false,  50, 2.0, 1,	"poor"); //Кремниевый пистолет
+	n = InitStdGun(n, "pistol3",  "pistol3", "items_placeholder", 3, "Soldier,Officer", 800, "grapeshooter",  20.0, 120.0, true,   50, 2.0, 1,       "poor"); //Тромбон
+	n = InitStdGun(n, "pistol4",  "pistol4", "items_placeholder", 3, "Officer",         800, "multi-barrel",   20.0, 120.0, false,  50, 2.0, 2,   "ordinary"); //Бок-пистолет 
+	n = InitStdGun(n, "pistol5",  "pistol5", "items_placeholder", 3, "Officer",         800, "single-barrel",	20.0, 120.0, false,  50, 2.0, 1,"ordinary"); //Дуэльный пистолет 
+	n = InitStdGun(n, "pistol6",  "pistol6", "items_placeholder", 3, "Elite",           800, "multi-barrel",   20.0, 120.0, false,  50, 2.0, 3,       "good"); //Трёхствольный пистолет 
+	n = InitStdGun(n, "pistol7",  "pistol7", "items_placeholder", 3, "Elite",           800, "single-barrel",	20.0, 120.0, false,  50, 2.0, 1,       "good"); //Кавалерийский пистолет 
+	n = InitStdGun(n, "pistol8",  "pistol8", "items_placeholder", 3, "Elite",           800, "multi-barrel",   20.0, 120.0, false,  50, 2.0, 4,       "good"); //Четырёхствольный пистолет 
+	n = InitStdGun(n, "pistol9",  "pistol9", "items_placeholder", 3, "Quest",           800, "grapeshooter",  20.0, 120.0, true,   50, 2.0, 1,  "Excellent"); //Бландербуз 
+	n = InitStdGun(n, "pistol10", "pistol10","items_placeholder", 3, "Quest",           800, "single-barrel",	20.0, 120.0, false,  50, 2.0, 1,"Excellent"); //Двузарядный пистолет 
+	n = InitStdGun(n, "pistol11",	"pistol11", "items_placeholder", 3,  "Quest",       800, "revolver",   20.0, 120.0, false,  50, 2.0, 5,  "Excellent"); //Револьвер
 	
-	n = InitStdGun(n, "mushket_matchlock",  "mushket1", "items_placeholder", 2,  "Mushketer",       10000, 60.0, 180.0, false, 50, 10.0, 1,      "poor"); //Фитильный мушкет
-	n = InitStdGun(n, "mushket_Arquebus",   "mushket2", "items_placeholder", 2,  "Mushketer",       10000, 60.0, 180.0, true,  50, 10.0, 1,  "ordinary"); //Аркебуза
-	n = InitStdGun(n, "mushket_Bayonet",    "mushket3", "items_placeholder", 2,  "Mushketer",       10000, 60.0, 180.0, false, 50, 10.0, 1,  "ordinary"); //Штыковой карабин
-	n = InitStdGun(n, "mushket_Portuguese", "mushket4", "items_placeholder", 2,  "Q_Mush",          10000, 60.0, 180.0, false, 50, 10.0, 1,      "good"); //Португальский мушкетон
-	n = InitStdGun(n, "mushket_sklopetta",  "mushket5", "items_placeholder", 2,  "Q_Mush",          10000, 60.0, 180.0, true,  50, 10.0, 1,      "good"); //Склопетта
-	n = InitStdGun(n, "mushket_Shtuzer",    "mushket6", "items_placeholder", 2,  "Quest",           10000, 60.0, 180.0, false, 50, 10.0, 1, "Excellent"); //Винтовальный штуцер
-	n = InitStdGun(n, "mushket_2x2",        "mushket7", "items_placeholder", 2,  "Quest",           10000, 60.0, 180.0, false, 50, 10.0, 1, "Excellent"); //Двуствольный штуцер
-	n = InitStdGun(n, "mushket_Bombard",    "mushket8", "items_placeholder", 2,  "Quest",           10000, 60.0, 180.0, true,  50, 10.0, 1, "Excellent"); //Итальянская бомбарда
+	n = InitStdGun(n, "mushket_matchlock",  "mushket1", "items_placeholder", 2,  "Mushketer",       10000, "single-barrel", 60.0, 180.0, false, 50, 10.0, 1,      "poor"); //Фитильный мушкет
+	n = InitStdGun(n, "mushket_Arquebus",   "mushket2", "items_placeholder", 2,  "Mushketer",       10000, "grapeshooter", 60.0, 180.0, true,  50, 10.0, 1,  "ordinary"); //Аркебуза
+	n = InitStdGun(n, "mushket_Bayonet",    "mushket3", "items_placeholder", 2,  "Mushketer",       10000, "single-barrel", 60.0, 180.0, false, 50, 10.0, 1,  "ordinary"); //Штыковой карабин
+	n = InitStdGun(n, "mushket_Portuguese", "mushket4", "items_placeholder", 2,  "Q_Mush",          10000, "grapeshooter", 60.0, 180.0, false, 50, 10.0, 1,      "good"); //Португальский мушкетон
+	n = InitStdGun(n, "mushket_sklopetta",  "mushket5", "items_placeholder", 2,  "Q_Mush",          10000, "bombard", 60.0, 180.0, true,  50, 10.0, 1,      "good"); //Склопетта
+	n = InitStdGun(n, "mushket_Shtuzer",    "mushket6", "items_placeholder", 2,  "Quest",           10000, "single-barrel", 60.0, 180.0, false, 50, 10.0, 1, "Excellent"); //Винтовальный штуцер
+	n = InitStdGun(n, "mushket_2x2",        "mushket7", "items_placeholder", 2,  "Quest",           10000, "multi-barrel", 60.0, 180.0, false, 50, 10.0, 1, "Excellent"); //Двуствольный штуцер
+	n = InitStdGun(n, "mushket_Bombard",    "mushket8", "items_placeholder", 2,  "Quest",           10000, "bombard", 60.0, 180.0, true,  50, 10.0, 1, "Excellent"); //Итальянская бомбарда
 	
-	n = InitStdSuit(n, "cirass1", "0", "items_placeholder", 11, 1500, 5, "common",    1, false, 0.05, 0.0, 0.9);   //Кожаный корсет
-	n = InitStdSuit(n, "cirass2", "0", "items_placeholder", 11, 1500, 5, "rare",      1, false, 0.15, 0.15, 0.85); //Укреплённая бригантина
-	n = InitStdSuit(n, "cirass3", "0", "items_placeholder", 11, 1500, 5, "epic",      1, false, 0.25, 0.25, 0.75); //Миланская кираса
+	n = InitStdSuit(n, "cirass1", "0", "items_placeholder", 11, 1500, 5, "common",    1, false, 0.05, 0.0, 0.9, "");   //Кожаный корсет
+	n = InitStdSuit(n, "cirass2", "0", "items_placeholder", 11, 1500, 5, "rare",      1, false, 0.15, 0.15, 0.85, "BasicDefence"); //Укреплённая бригантина
+	n = InitStdSuit(n, "cirass3", "0", "items_placeholder", 11, 1500, 5, "epic",      1, false, 0.25, 0.25, 0.75, "BasicDefense"); //Миланская кираса
 	
-	n = InitStdSuit(n, "cirass4", "0", "items_placeholder", 11, 1500, 5, "rare",      1, false, 0.35, 0.35, 0.65); //Траншейный доспех
-	n = InitStdSuit(n, "cirass5", "0", "items_placeholder", 11, 1500, 5, "Epic",      1, false, 0.5, 0.5, 0.5);    //Рейтарский доспех
+	n = InitStdSuit(n, "cirass4", "0", "items_placeholder", 11, 1500, 5, "rare",      1, false, 0.35, 0.35, 0.65, "Knight"); //Траншейный доспех
+	n = InitStdSuit(n, "cirass5", "0", "items_placeholder", 11, 1500, 5, "Epic",      1, false, 0.5, 0.5, 0.5, "Knight");    //Рейтарский доспех
 	
-	n = InitStdSuit(n, "cirass6", "0", "items_placeholder", 11, 1500, 5, "Legendary", 1, true, 0.55, 0.55, 0.55);  //Доспех королевского мушкетёра
-	n = InitStdSuit(n, "cirass7", "0", "items_placeholder", 11, 1500, 5, "Legendary", 1, true, 0.55, 0.55, 0.55);  //Костюм Лиги Теней
+	n = InitStdSuit(n, "cirass6", "0", "items_placeholder", 11, 1500, 5, "Legendary", 1, true, 0.55, 0.55, 0.55, "");  //Доспех королевского мушкетёра
+	n = InitStdSuit(n, "cirass7", "0", "items_placeholder", 11, 1500, 5, "Legendary", 1, true, 0.55, 0.55, 0.55, "");  //Костюм Лиги Теней
 	
 	//(Все коммоны, кроме "Трозо" падают со всех, кроме Вуду и индианов) (На земле и в сундуках)
 	n = InitStdAmulet(n, "totem_01", "purseL", "ITEMS_TALISMAN", 1, 1500, "common",    0.5, 1, "");          //Гонтер
@@ -372,6 +372,7 @@ int InitItems()
 	itm.picIndex = 2;
 	itm.picTexture = "ITEMS_JEWELRY";
 	itm.price = 3;
+	itm.jewel = true;
 	itm.Weight = 0.1;
 	itm.rare = "common";
 	n++;
@@ -386,6 +387,7 @@ int InitItems()
 	itm.price = 100;
 	itm.Weight = 0.1;
 	itm.rare = "rare";
+	itm.jewel = true;
 	itm.multiobject = true;
 	itm.multiobject.qty = 150;
 	itm.fixedprice = true;
@@ -401,6 +403,7 @@ int InitItems()
 	itm.picIndex = 4;
 	itm.picTexture = "ITEMS_JEWELRY";
 	itm.price = 0;
+	itm.subdescribe = true;
 	itm.Weight = 1.0;
 	itm.rare = "rare";
 	itm.ItemType = "SUPPORT";
@@ -415,6 +418,7 @@ int InitItems()
 	itm.picTexture = "ITEMS_QUEST1";
 	itm.price = 0;
 	itm.Weight = 0.1;
+	itm.days = 90;
 	itm.rare = "Legendary";
 	itm.ItemType = "QUESTITEMS";
 	n++;
@@ -1066,7 +1070,7 @@ int InitItems()
 	itm.potion.pic = 21;
 	itm.potion.tex = 0; 
 	itm.potion.special = true; 
-	itm.potion.special.effect = "itzamma"; 
+	itm.potion.special.effect = "itzamna"; 
 	itm.potion.special.time = 3;
 	itm.potion.special.Health = -1;
 	itm.minlevel = 1;
@@ -1113,6 +1117,7 @@ int InitItems()
 	itm.Weight = 1;
 	itm.potion.special = true; 
 	itm.potion.special.effect = "berserker_potion";
+	itm.potion.special.sec = 12;
 	itm.potion.special.Health = -1;
 	itm.minlevel = 1;
 	itm.rare = "Epic";
@@ -1296,6 +1301,7 @@ int InitItems()
 	itm.Weight = 0.1;
 	itm.minlevel = 1;
 	itm.rare = "common";
+	itm.ammo_type = "bullet";
 	itm.SortIndex = 1;
 	itm.ItemType = "SUPPORT";
 	n++;
@@ -1312,6 +1318,7 @@ int InitItems()
 	itm.price = 8;
 	itm.minlevel = 1;
 	itm.rare = "common";
+	itm.ammo_type = "powder";
 	itm.SortIndex = 1;
 	itm.ItemType = "SUPPORT";
 	n++;
@@ -1328,6 +1335,7 @@ int InitItems()
 	itm.Weight = 0.1;
 	itm.minlevel = 1;
 	itm.rare = "common";
+	itm.ammo_type = "grape";
 	itm.SortIndex = 1;
 	itm.ItemType = "SUPPORT";
 	n++;
@@ -1344,6 +1352,7 @@ int InitItems()
 	itm.Weight = 0.1;
 	itm.minlevel = 1;
 	itm.rare = "common";
+	itm.ammo_type = "bullet";
 	itm.SortIndex = 1;
 	itm.multiobject = true;		
 	itm.multiobject.qty = 1;
@@ -1362,6 +1371,7 @@ int InitItems()
 	itm.Weight = 0.1;
 	itm.minlevel = 1;
 	itm.rare = "common";
+	itm.ammo_type = "grape";
 	itm.SortIndex = 1;
 	itm.multiobject = true;		
 	itm.multiobject.qty = 1;
@@ -1380,6 +1390,7 @@ int InitItems()
 	itm.Weight = 0.1;
 	itm.minlevel = 1;
 	itm.rare = "Epic";
+	itm.ammo_type = "bomb";
 	itm.SortIndex = 1;
 	itm.multiobject = true;		
 	itm.multiobject.qty = 1;
@@ -1398,6 +1409,7 @@ int InitItems()
 	itm.Weight = 0.1;
 	itm.minlevel = 1;
 	itm.rare = "Epic";
+	itm.ammo_type = "bomb";
 	itm.SortIndex = 1;
 	itm.multiobject = true;		
 	itm.multiobject.qty = 1;
@@ -1416,6 +1428,7 @@ int InitItems()
 	itm.Weight = 0.1;
 	itm.minlevel = 1;
 	itm.rare = "Legendary";
+	itm.ammo_type = "bomb";
 	itm.SortIndex = 1;
 	itm.multiobject = true;		
 	itm.multiobject.qty = 1;
@@ -1434,6 +1447,7 @@ int InitItems()
 	itm.Weight = 0.1;
 	itm.minlevel = 1;
 	itm.rare = "Legendary";
+	itm.ammo_type = "bullet";
 	itm.SortIndex = 1;
 	itm.multiobject = true;		
 	itm.multiobject.qty = 1;
@@ -1452,6 +1466,7 @@ int InitItems()
 	itm.Weight = 0.1;
 	itm.minlevel = 1;
 	itm.rare = "Legendary";
+	itm.ammo_type = "bullet";
 	itm.SortIndex = 1;
 	itm.multiobject = true;		
 	itm.multiobject.qty = 1;
@@ -1810,90 +1825,129 @@ void InitRandItems()
 
 void InitGunChargeExts()
 {
+	ref rGun;
 	InitGunChargeExt("pistol1", "t1", "bullet", "gunpowder", 10, 1);
 	InitGunChargeExt("pistol1", "t2", "cartridge", "", 5, 0);
 	InitGunChargeExt("pistol1", "t3", "silver_bullet", "gunpowder", 10, 0);
 	InitGunChargeExt("pistol1", "t4", "Silver_cartridge", "", 5, 0);
+	rGun = ItemsFromID("pistol1");
+	rGun.ammo_type = "bullet";
 	
 	InitGunChargeExt("pistol2", "t1", "bullet", "gunpowder", 10, 1);
 	InitGunChargeExt("pistol2", "t2", "cartridge", "", 5, 0);
 	InitGunChargeExt("pistol2", "t3", "silver_bullet", "gunpowder", 10, 0);
 	InitGunChargeExt("pistol2", "t4", "Silver_cartridge", "", 5, 0);
+	rGun = ItemsFromID("pistol2");
+	rGun.ammo_type = "bullet";
 	
 	InitGunChargeExt("pistol3", "t1", "grapeshot", "gunpowder", 10, 1);
+	rGun = ItemsFromID("pistol3");
+	rGun.ammo_type = "grape";
 	
 	InitGunChargeExt("pistol4", "t1", "bullet", "gunpowder", 10, 1);
 	InitGunChargeExt("pistol4", "t2", "cartridge", "", 5, 0);
 	InitGunChargeExt("pistol4", "t3", "silver_bullet", "gunpowder", 10, 0);
 	InitGunChargeExt("pistol4", "t4", "Silver_cartridge", "", 5, 0);
+	rGun = ItemsFromID("pistol4");
+	rGun.ammo_type = "bullet";
 	
 	InitGunChargeExt("pistol5", "t1", "bullet", "gunpowder", 10, 1);
 	InitGunChargeExt("pistol5", "t2", "cartridge", "", 5, 0);
 	InitGunChargeExt("pistol5", "t3", "silver_bullet", "gunpowder", 10, 0);
 	InitGunChargeExt("pistol5", "t4", "Silver_cartridge", "", 5, 0);
+	rGun = ItemsFromID("pistol5");
+	rGun.ammo_type = "bullet";
 	
 	InitGunChargeExt("pistol6", "t1", "bullet", "gunpowder", 10, 1);
 	InitGunChargeExt("pistol6", "t2", "cartridge", "", 5, 0);
 	InitGunChargeExt("pistol6", "t3", "silver_bullet", "gunpowder", 10, 0);
 	InitGunChargeExt("pistol6", "t4", "Silver_cartridge", "", 5, 0);
+	rGun = ItemsFromID("pistol6");
+	rGun.ammo_type = "bullet";
 	
 	InitGunChargeExt("pistol7", "t1", "bullet", "gunpowder", 10, 1);
 	InitGunChargeExt("pistol7", "t2", "cartridge", "", 5, 0);
 	InitGunChargeExt("pistol7", "t3", "silver_bullet", "gunpowder", 10, 0);
 	InitGunChargeExt("pistol7", "t4", "Silver_cartridge", "", 5, 0);
+	rGun = ItemsFromID("pistol7");
+	rGun.ammo_type = "bullet";
 	
 	InitGunChargeExt("pistol8", "t1", "bullet", "gunpowder", 10, 1);
 	InitGunChargeExt("pistol8", "t2", "cartridge", "", 5, 0);
 	InitGunChargeExt("pistol8", "t3", "silver_bullet", "gunpowder", 10, 0);
 	InitGunChargeExt("pistol8", "t4", "Silver_cartridge", "", 5, 0);
+	rGun = ItemsFromID("pistol8");
+	rGun.ammo_type = "bullet";
 	
 	InitGunChargeExt("pistol9", "t1", "grapeshot", "gunpowder", 10, 1);
 	InitGunChargeExt("pistol9", "t2", "GunEchin", "", 10, 1);
+	rGun = ItemsFromID("pistol9");
+	rGun.ammo_type = "grape";
 	
 	InitGunChargeExt("pistol10", "t1", "bullet", "gunpowder", 10, 1);
 	InitGunChargeExt("pistol10", "t2", "cartridge", "", 5, 0);
 	InitGunChargeExt("pistol10", "t3", "silver_bullet", "gunpowder", 10, 0);
 	InitGunChargeExt("pistol10", "t4", "Silver_cartridge", "", 5, 0);
+	rGun = ItemsFromID("pistol10");
+	rGun.ammo_type = "bullet";
 	
 	InitGunChargeExt("pistol11", "t1", "bullet", "gunpowder", 10, 1);
 	InitGunChargeExt("pistol11", "t2", "cartridge", "", 5, 0);
 	InitGunChargeExt("pistol11", "t3", "silver_bullet", "gunpowder", 10, 0);
 	InitGunChargeExt("pistol11", "t4", "Silver_cartridge", "", 5, 0);
+	rGun = ItemsFromID("pistol11");
+	rGun.ammo_type = "bullet";
 	
 	
 	InitGunChargeExt("mushket_matchlock", "t1", "bullet", "gunpowder", 10, 1);
 	InitGunChargeExt("mushket_matchlock", "t2", "cartridge", "", 5, 0);
 	InitGunChargeExt("mushket_matchlock", "t3", "silver_bullet", "gunpowder", 10, 0);
 	InitGunChargeExt("mushket_matchlock", "t4", "Silver_cartridge", "", 5, 0);
+	rGun = ItemsFromID("mushket_matchlock");
+	rGun.ammo_type = "bullet";
 	
 	InitGunChargeExt("mushket_Arquebus",  "t1", "grapeshot", "gunpowder", 10, 1);
 	InitGunChargeExt("mushket_Arquebus",  "t2", "GunEchin", "", 10, 0);
+	rGun = ItemsFromID("mushket_Arquebus");
+	rGun.ammo_type = "grape";
 	
 	InitGunChargeExt("mushket_Bayonet",   "t1", "bullet", "gunpowder", 10, 1);
 	InitGunChargeExt("mushket_Bayonet",   "t2", "cartridge", "", 5, 0);
 	InitGunChargeExt("mushket_Bayonet",   "t3", "silver_bullet", "gunpowder", 10, 0);
 	InitGunChargeExt("mushket_Bayonet",   "t4", "Silver_cartridge", "", 5, 0);
+	rGun = ItemsFromID("mushket_Bayonet");
+	rGun.ammo_type = "bullet";
 	
 	InitGunChargeExt("mushket_Portuguese","t1", "grapeshot", "gunpowder", 10, 1);
 	InitGunChargeExt("mushket_Portuguese","t2", "GunEchin", "", 10, 0);
+	rGun = ItemsFromID("mushket_Portuguese");
+	rGun.ammo_type = "grape";
 	
 	InitGunChargeExt("mushket_sklopetta", "t1", "Grenade", "", 10, 1);
 	InitGunChargeExt("mushket_sklopetta", "t2", "Petard", "", 10, 0);
 	InitGunChargeExt("mushket_sklopetta", "t3", "Poison_bomb", "", 10, 0);
+	rGun = ItemsFromID("mushket_sklopetta");
+	rGun.ammo_type = "bomb";
 	
 	InitGunChargeExt("mushket_Shtuzer",   "t1", "bullet", "gunpowder", 10, 1);
 	InitGunChargeExt("mushket_Shtuzer",   "t2", "cartridge", "", 5, 0);
 	InitGunChargeExt("mushket_Shtuzer",   "t3", "silver_bullet", "gunpowder", 10, 0);
 	InitGunChargeExt("mushket_Shtuzer",   "t4", "Silver_cartridge", "", 5, 0);
+	rGun = ItemsFromID("mushket_Shtuzer");
+	rGun.ammo_type = "bullet";
 	
 	InitGunChargeExt("mushket_2x2",       "t1", "bullet", "gunpowder", 10, 1);
 	InitGunChargeExt("mushket_2x2",       "t2", "cartridge", "", 5, 0);
 	InitGunChargeExt("mushket_2x2",       "t3", "silver_bullet", "gunpowder", 10, 0);
 	InitGunChargeExt("mushket_2x2",       "t4", "Silver_cartridge", "", 5, 0);
+	rGun = ItemsFromID("mushket_2x2");
+	rGun.ammo_type = "bullet";
 	
 	InitGunChargeExt("mushket_Bombard",   "t1", "Grenade", "", 10, 1);
 	InitGunChargeExt("mushket_Bombard",   "t2", "Petard", "", 10, 1);
 	InitGunChargeExt("mushket_Bombard",   "t3", "Poison_bomb", "", 10, 1);
+	rGun = ItemsFromID("mushket_Bombard");
+	rGun.ammo_type = "bomb";
 }
 
 void InitMultiObjectAmulets()

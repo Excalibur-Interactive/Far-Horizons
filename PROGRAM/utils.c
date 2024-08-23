@@ -349,3 +349,24 @@ string GetSailsType(int _type)
 	}
 	return "Пенька";
 }
+
+// evganat - возвращает нужную единицу измерения в родительном падеже
+string GetQuantStringGen(string quantTag, int iQuant)	
+{
+	string sForm1, sForm2, sForm3;
+	switch(quantTag)
+	{
+		case "hour":		sForm1 = "час";			sForm2 = "часа";		sForm3 = "часов";		break;
+		case "second":		sForm1 = "секунда";		sForm2 = "секунды";		sForm3 = "секунд";		break;
+		case "attack":		sForm1 = "удар";		sForm2 = "удара";		sForm3 = "ударов";		break;
+		case "day":			sForm1 = "день";		sForm2 = "дня";			sForm3 = "дней";		break;
+	}
+	
+	if(iQuant % 100 >= 11 && iQuant % 100 <= 19)
+		return sForm3;
+	if(iQuant % 10 == 1)
+		return sForm1;
+	if(iQuant % 10 >= 2 && iQuant % 10 <= 4)
+		return sForm2;
+	return sForm3;
+}

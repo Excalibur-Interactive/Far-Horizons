@@ -247,7 +247,7 @@ void LAi_UseSpecialPotion(aref chr, string sSpecial, int iHealthChange, int iTim
 			chr.chr_ai.hp_max = sti(chr.chr_ai.hp_max)*1.30;
 		}
 		
-		if(sSpecial == "itzamma") 
+		if(sSpecial == "itzamna") 
 		{
 			SetEnergyToCharacter(chr);
 		}
@@ -749,6 +749,14 @@ bool LAi_SetCharacterUseBullet(ref rChar, string sBullet)
 	
 	if(sGun != "") 
 	{
+		if(HasSubStr(sGun, "mushket"))
+		{
+			rChar.bullets.mushket = sBullet;
+		}
+		else
+		{
+			rChar.bullets.pistol = sBullet;
+		}
 		ref rItm = ItemsFromID(sGun); 
 		makearef(rType, rItm.type);
 		iNum = GetAttributesNum(rType);		

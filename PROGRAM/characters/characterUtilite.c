@@ -3078,6 +3078,7 @@ bool SetMainCharacterToMushketer(string sMushket, bool _ToMushketer) // если
 		//if(!CanEquipMushketOnLocation(PChar.Location)) return false; //мушкеты в тавернах - Gregg
 
 		sLastGun = GetCharacterEquipByGroup(PChar, GUN_ITEM_TYPE);
+		PChar.bullets.pistol = LAi_GetCharacterBulletType(pchar);	// evganat
 		PChar.DefaultAnimation = PChar.model.Animation;
 		PChar.IsMushketer = true; // Ставим флаг "ГГ - мушкетер"
 		PChar.IsMushketer.MushketID = sMushket; // Запомним, какой мушкет надели
@@ -3102,11 +3103,14 @@ bool SetMainCharacterToMushketer(string sMushket, bool _ToMushketer) // если
 		}
 		Characters_RefreshModel(PChar); // Обновим модель. Важно: обновлять модель нужно ДО экипировки мушкетом
 		EquipCharacterByItem(PChar, sMushket); // Экипируем мушкет
+		if(CheckAttribute(pchar, "bullets.mushket"))	// evganat
+			LAi_SetCharacterBulletType(pchar, pchar.bullets.mushket);
 		PChar.Equip.TempGunID = sLastGun; // Пистоль оставляем экипированным, но в другой группе
 
 	}
 	else // Делаем ГГ обычным фехтовальщиком
 	{
+		PChar.bullets.mushket = LAi_GetCharacterBulletType(pchar);	// evganat
 		PChar.model = FindStringBeforeChar(PChar.model, "_mush"); // Вернем модель и анимацию
 		PChar.model.Animation = PChar.DefaultAnimation;
 		Characters_RefreshModel(PChar);
@@ -3115,7 +3119,8 @@ bool SetMainCharacterToMushketer(string sMushket, bool _ToMushketer) // если
 		{
 			EquipCharacterByItem(PChar, PChar.IsMushketer.LastGunID); // Оденем прошлый пистоль
 		}
-
+		if(CheckAttribute(pchar, "bullets.pistol"))	// evganat
+			LAi_SetCharacterBulletType(pchar, pchar.bullets.pistol);
 		DeleteAttribute(PChar, "IsMushketer");
 		DeleteAttribute(PChar, "Equip.TempGunID");
 	}

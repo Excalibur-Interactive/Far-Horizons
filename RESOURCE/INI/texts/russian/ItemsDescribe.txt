@@ -8,8 +8,19 @@ weapon blade parameters{Оружие: урон мин/макс #ddmg_min#/#ddmg_
 weapon blade parameters1{Урон: #ddmg_min#/#ddmg_max#}
 weapon blade type {Тип: #sFencingTypeName#}
 weapon blade type1 {#sFencingTypeName#}
+
+single-barrel{Одноствольный}
+multi-barrel{Многоствольный}
+grapeshooter{Картечница}
+revolver{Револьвер}
+bombard{Бомбарда}
 weapon gun parameters{Оружие: урон мин/макс #ddmg_min#/#ddmg_max#, время перезарядки #dchargespeed# сек., точность #daccuracy#%}
 weapon gun parameters1{Урон: #ddmg_min#/#ddmg_max#}
+
+cuirass armor{Броня +#dbarmor#%}
+cuirass block{Шанс блока крита #dcritical#%}
+
+poison chance{Шанс отравления #dchance#%}
 
 
 youve_got {Найден предмет - }
@@ -38,6 +49,7 @@ itmdescr_purse1
 {
 Обычный кошелёк с несколькими золотыми монетами.
 }
+subdescr_purse1{Содержит случайное количество дублонов}
 
 itmname_unarmed	{Кулаки}
 itmdescr_unarmed
@@ -137,48 +149,56 @@ itmdescr_potion6
 {
 Сомнительное на вид варево, полностью лишённое запаха и вкуса, приготовленное жрецами майя для ритуала поклонения богине луны. По слухам (а аборигены пока успешно хранят тайну), восстанавливает утраченное здоровье.
 }
+subdescr_potion6{Полностью восстанавливает статус здоровья}
 
 itmname_berserker_potion	{Тинктура Бонди}
 itmdescr_berserker_potion
 {
 Пьянящая настойка, впервые созданная шаманами вуду и способствующая мгновенному проявлению огромной силы и выносливости, существенному увеличению ловкости и быстроты реакции, нечувствительности к боли и повышенной агрессивности. Вредит здоровью.																																						
 }
+subdescr_berserker_potion{Эффект 'Берсерк'}
 
 itmname_potionjaguar {Отвар Ягуара}
 itmdescr_potionjaguar
 {
 Отвар вудуистов. Благодаря его уникальным свойствам зрение становится подобно ягуару. Увеличивает точность стрельбы из ручного и корабельного оружия на 15%. Вредит здоровью.
 }
+subdescr_Jaguar{Меткость +15%}
 
 itmname_potionishtab {Эликсир Иш-Таб}
 itmdescr_potionishtab
 {
 Один из знаменитых эликсиров Майя, значительно укрепляющий тело выпившего. Увеличивает количество жизни персонажа на 30%. Вредит здоровью.
 }
+subdescr_ishtab{Здоровье +30%}
 
 itmname_potionitzamna {Зелье Ицамна}
 itmdescr_potionitzamna
 {
 Зелье бодрости, как называют его местные травники. Увеличивает энергию персонажа на 15%. Вредит здоровью.
 }
+subdescr_itzamna{Энергия +15%}
 
 itmname_potioneekatl {Эссенция Эекатля}
 itmdescr_potioneekatl
 {
 По ацтекским поверьям, в этой жидкости содержится частица бога ветра Эекатля. К счастью, это всего лишь поверье. Увеличивает возможный переносимый вес персонажа на 15%. Действует три часа. Вредит здоровью.
 }
+subdescr_eekatl{Макс. вес +15%}
 
 itmname_potionquetzalcoatl {Благословение Кетцалькоатля}
 itmdescr_potionquetzalcoatl
 {
 Отвратительное на вкус пойло, придуманное ацтекскими жрецами Кетцалькоатля и призванное укрепить "дух" лучших из воинов. Ускоряет восстановление здоровья персонажа на 15% и существенно замедляет снижение оного. Действует в течении шести часов. Вредит здоровью.
 }
+subdescr_quetzalcoatl{Крепость здоровья +15%}
 
 itmname_potiontlaloc {Сила Тлалока}
 itmdescr_potiontlaloc
 {
 Ацтекское зелье, дарующее воинам прилив сил. Ускоряет восстановление энергии персонажа на 15%. Действует шесть часов. Вредит здоровью.
 }
+subdescr_tlaloc{Восст. энергии +15%}
 
 itmname_potionwineGood	{Отличное вино}
 itmdescr_potionwineGood
@@ -191,24 +211,28 @@ itmdescr_potionloa
 {
 Отвар по старинному рецепту африканских шаманов Вуду. Временно повышает силу и выносливость, а также умения тяжёлого и среднего оружия.
 }
+subdescr_loa{Знач. прирост силы}
 
 itmname_potionlegba {Дух Легбы}
 itmdescr_potionlegba
 {
 Отвар по старинному рецепту африканских шаманов Вуду. Временно повышает реакцию и восприятие, а также умения стрельбы и лёгкого оружия.
 }
+subdescr_legba{Знач. прирост ловкости}
 
 itmname_potionhuitzilopochtli {Дар Уицилопочтли}
 itmdescr_potionhuitzilopochtli
 {
 Подарок ацтекского бога Уицилопочтли. На сутки даёт испившему его благословение: увеличивает на 25% силу пробивающего удара и на 25% шанс нанести критический удар. Можно принимать один раз в день.
 }
+subdescr_huitzilopochtli{Сила удара +25%}
 
 itmname_potionmictlantecuhtli {Длань Миктлантекутли}
 itmdescr_potionmictlantecuhtli
 {
 Подарок ацтекского бога Миклантекутли. Даёт испившему его благословение: при гибели возвращает вас в царство живых. Эффект одноразовый. Можно принимать один раз в день.
 }
+subdescr_mictlantecuhtli{Однократно спасает от гибели}
 
 itmname_bullet	{Свинцовые пули}
 itmdescr_bullet
@@ -217,6 +241,8 @@ itmdescr_bullet
 Подходят к огнестрельному оружию любого типа.
 Ущерб, наносимый пулей, сильно зависит от ваших мушкета или пистолета.
 }
+subdescr_bullet{Требуется для стрельбы из оружия}
+subdescr2_bullet{}
 
 itmname_GunPowder {Гранулированный порох}
 itmdescr_GunPowder
@@ -225,84 +251,107 @@ itmdescr_GunPowder
 Для одного выстрела из мушкета или пистолета требуется одна мера пороха.
 Гранулированный порох заметно ускоряет перезарядку и повышает наносимый противнику ущерб.
 }
+subdescr_GunPowder{Требуется для заряжания оружия}
+subdescr2_GunPowder{}
 
 itmname_grapeshot {Картечь}
 itmdescr_grapeshot
 {
 Мелкие свинцовые шарики, но за их размером скрывается невероятная сила, особенно против нескольких противников.
 }
+subdescr_grapeshot{Урон по площади}
+subdescr2_grapeshot{}
 
 itmname_Cartridge {Бумажный патрон}
 itmdescr_Cartridge
 {
 Изобретение шведских мушкетёрских полков, вдвое ускоряющее перезарядку оружия и наносимый им урон.
 }
+subdescr_Cartridge{Перезарядка х2}
+subdescr2_Cartridge{}
 
 itmname_GunEchin {Ежовый заряд}
 itmdescr_GunEchin
 {
 Грубо порубленные гвозди для стрельбы из картечниц крупного калибра. Обладают разрушительным воздействием на человеческие тела и оружейные стволы.
 }
+subdescr_GunEchin{Урон по площади х2}
+subdescr2_GunEchin{Перезарядка х2}
 
 itmname_Grenade {Граната}
 itmdescr_Grenade
 {
 Граната для стрельбы из склопетты. При взрыве наносит осколками серьёзные повреждения сразу нескольким целям. Не различает своих и чужих.
 }
+subdescr_Grenade{Урон по площади}
+subdescr2_Grenade{Снаряд для бомбарды}
 
 itmname_Petard {Петарда}
 itmdescr_Petard
 {
 Петарда для стрельбы из склопетты. При взрыве создает яркую вспышку и может контузить сразу несколько целей. Не различает своих и чужих.
 }
+subdescr_Petard{Оглушение по площади}
+subdescr2_Petard{Снаряд для бомбарды}
 
 itmname_Poison_bomb {Ядовитая бомба}
 itmdescr_Poison_bomb
 {
 Шаблон
 }
+subdescr_Poison_bomb{Отравление по площади}
+subdescr2_Poison_bomb{Снаряд для бомбарды}
 
 itmname_silver_bullet {Серебряные пули}
 itmdescr_silver_bullet
 {
 Шаблон
 }
+subdescr_silver_bullet{Урон по нежити х2}
+subdescr2_silver_bullet{}
 
 itmname_Silver_cartridge {Серебряный картридж}
 itmdescr_Silver_cartridge
 {
 Шаблон
 }
+subdescr_Silver_cartridge{Урон по нежити х2}
+subdescr2_Silver_cartridge{Перезарядка х2}
 
 itmname_Key1	{Ржавый ключ}
 itmdescr_Key1
 {
 Этот ключ, кажется, пережил свои лучшие дни, но его история может скрывать интересные тайны. Ржавые отпечатки времени искусственно создают небрежный шарм этого инструмента. Кто знает, быть может, где-то там ещё существует замок, который может открыть только он?
 }
+subdescr_Key1{Позволяет открывать простые замки}
 
 itmname_Key2	{Железный ключ}
 itmdescr_Key2
 {
 Ключ для обычных замков средней сложности.
 }
+subdescr_Key2{Позволяет открывать замки средней сложности}
 
 itmname_Key3	{Бронзовый ключ}
 itmdescr_Key3
 {
 Ключ для сложных замков.
 }
+subdescr_Key3{Позволяет открывать сложные замки}
 
 itmname_Key4	{Необычный ключ}
 itmdescr_Key4
 {
 Необычный ключ.
 }
+subdescr_Key4{Этот предмет необходим для задания}
 
 itmname_lockpick	{Отмычка}
 itmdescr_lockpick
 {
 Отмычка
 }
+subdescr_lockpick{Требуется для взлома замков}
 
 itmname_poison1	{Простейшая отрава}
 itmdescr_poison1
@@ -369,42 +418,49 @@ itmdescr_Instrument1
 {
 Шаблон
 }
+subdescr_Instrument1{Требуется для создания особых боеприпасов}
 
 itmname_Instrument2	{Сундук алхимика}
 itmdescr_Instrument2
 {
 Шаблон
 }
+subdescr_Instrument2{Требуется для создания особых зелий и ядов}
 
 itmname_Instrument3	{Тигель}
 itmdescr_Instrument3
 {
 Шаблон
 }
+subdescr_Instrument3{Требуется для создания особых боеприпасов}
 
 itmname_Instrument4 {Медный кувшин}
 itmdescr_Instrument4
 {
 Очень удобный сосуд для хранения воды или вина.
 }
+subdescr_Instrument4{Требуется для создания особых снарядов, зелий и ядов}
 
 itmname_Instrument5 {Ступка с пестиком}
 itmdescr_Instrument5
 {
 Позволяет измельчать в порошок травы и прочие ингредиенты для приготовления лечебных зелий. Только не стоит пытаться дробить пестиком металлы и драгоценные камни.
 }
+subdescr_Instrument5{Требуется для создания особых снарядов, зелий и ядов}
 
 itmname_Instrument6 {Бронзовая лампадка}
 itmdescr_Instrument6
 {
 Бронзовая лампадка позволит скоротать ночь за чтением любимой книги или сварить утренний кофе.
 }
+subdescr_Instrument6{Требуется для создания особых снарядов и ядов}
 
 itmname_Instrument7 {Серебряный кувшин}
 itmdescr_Instrument7
 {
 Красивый серебряный кувшин.
 }
+subdescr_Instrument7{Требуется для создания особых зелий}
 
 itmname_Mineral1	{Черепаховый гребень}
 itmdescr_Mineral1
