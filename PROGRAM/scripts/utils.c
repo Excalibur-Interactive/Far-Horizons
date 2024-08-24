@@ -1417,18 +1417,6 @@ int GetCostForChangeHull(ref refShip, int iType)
 	return iSum;
 }
 
-int GetRank(ref chr, int step)
-{
-	int iRank = sti(chr.rank) + step;
-	
-	if(iRank < 1)
-	{
-		iRank = 1;
-	}
-	
-	return iRank;
-}
-
 /////////////////////////////////////////////////////////////////////////////////
 // Злобные крабы в бухтах (Rebbebion, перенесено из КПС)
 /////////////////////////////////////////////////////////////////////////////////
@@ -1441,18 +1429,18 @@ void SetCrabsToShore(ref loc)
 
 	ref sld;
 	
-	for(int i = 1; i <= iQuantity; i++)
+	for (int i = 1; i <= iQuantity; i++)
 	{
-		int iRank = GetRank(pchar, 0) + MOD_SKILL_ENEMY_RATE;
 		if (GetCharacterIndex("FantomShoreCrab_"+i) == -1)
 		{
-			sld = GetCharacter(NPC_GenerateCharacter("FantomShoreCrab_" + i, "crabSmall", "crab", "crabSmall", iRank, PIRATE, -1, false, F_MONSTER));
+			sld = GetCharacter(NPC_GenerateCharacter("FantomShoreCrab_" + i, "crabSmall", "crab", "crabSmall", 1, PIRATE, -1, false, F_MONSTER));
 			sld.name = "Краб";
 			sld.lastname = "";
 			DeleteAttribute(sld, "items");
 			sld.items = "";
 			sld.SaveItemsForDead = true;
 			
+			LAi_SetHP(sld, 10, 10);
 			LAi_CharacterDisableDialog(sld);
 			LAi_SetCitizenTypeNoGroup(sld);
 			LAi_group_MoveCharacter(sld, LAI_GROUP_MONSTERS);
