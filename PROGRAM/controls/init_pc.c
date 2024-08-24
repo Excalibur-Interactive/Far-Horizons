@@ -117,6 +117,22 @@ void ExternControlsInit(bool bFirst)
 	
     
     // boal -->
+	// evganat - клавиши управления
+	CI_CreateAndSetControls( "FightModeControls", "Chr_S", CI_GetKeyCode("KEY_S"), 0, true );
+//	MapControlToGroup("Chr_S","FightModeControls");
+//	MapControlToGroup("Chr_S","BattleInterfaceControls");
+	CI_CreateAndSetControls( "FightModeControls", "Chr_A", CI_GetKeyCode("KEY_A"), 0, true );
+//	MapControlToGroup("Chr_A","FightModeControls");
+//	MapControlToGroup("Chr_A","BattleInterfaceControls");
+	CI_CreateAndSetControls( "FightModeControls", "Chr_D", CI_GetKeyCode("KEY_D"), 0, true );
+//	MapControlToGroup("Chr_D","FightModeControls");
+//	MapControlToGroup("Chr_D","BattleInterfaceControls");
+	CI_CreateAndSetControls( "FightModeControls", "Chr_W", CI_GetKeyCode("KEY_W"), 0, true );
+//	MapControlToGroup("Chr_W","FightModeControls");
+//	MapControlToGroup("Chr_W","BattleInterfaceControls");
+	
+	
+	
     CI_CreateAndSetControls( "PrimaryLand", "BOAL_DeadSearch", CI_GetKeyCode("KEY_1"), 0, true );
 	MapControlToGroup("BOAL_DeadSearch","FightModeControls");
 	// boal <--
