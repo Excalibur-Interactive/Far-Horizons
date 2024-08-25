@@ -1422,7 +1422,7 @@ int GetCostForChangeHull(ref refShip, int iType)
 /////////////////////////////////////////////////////////////////////////////////
 void SetCrabsToShore(ref loc)
 {
-	if(loc.type != "seashore" && loc.type != "mayak") return;
+	if(loc.type != "seashore" && loc.type != "mayak" && loc.id != "LaVega_port") return;
 	if(CheckAttribute(loc, "DisableCrabs")) return; // пока не надо, но пусть будет
 
 	int iQuantity = 2 + rand(3);
