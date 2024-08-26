@@ -38,7 +38,6 @@ void CalculateAppropriateSkillsParam(ref NPchar, float  MiddleK, int _complex)
     fValue = (20 * _complex / 4.0);
     Npchar.skill.Fencing      = makeint(MiddleK + (frandSmall(fValue) + frandSmall((20* _complex / 3.0)) - 20));
     Npchar.skill.Pistol       = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
-    Npchar.skill.Fortune      = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
 
     Npchar.skill.Leadership   = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
     Npchar.skill.Commerce     = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
@@ -124,7 +123,7 @@ void CalculateAppropriateSkills(ref NPchar)
     	
     	if (rank > (1400 / GetCharacterRankRate(Npchar)))
 		{
-            SetSelfSkill(Npchar, SKILL_MAX, SKILL_MAX, SKILL_MAX);
+            SetSelfSkill(Npchar, SKILL_MAX, SKILL_MAX);
             SetShipSkill(Npchar, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX);
 			return;
 		}
@@ -134,11 +133,11 @@ void CalculateAppropriateSkills(ref NPchar)
 
 void SetRankFromSkill(ref Npchar)
 {
-    Npchar.rank = 1 + makeint( (sti(Npchar.skill.Fortune) +
+    Npchar.rank = 1 + makeint(
                            sti(Npchar.skill.Pistol) + sti(Npchar.skill.Leadership) + sti(Npchar.skill.Fencing) +
                            sti(Npchar.skill.Sailing) + sti(Npchar.skill.Accuracy) + sti(Npchar.skill.Cannons) +
                            sti(Npchar.skill.Grappling) + sti(Npchar.skill.Repair) + sti(Npchar.skill.Defence) +
-                           sti(Npchar.skill.Commerce) + sti(Npchar.skill.Sneak) - 84) / GetCharacterRankRate(Npchar) );
+                           sti(Npchar.skill.Commerce) + sti(Npchar.skill.Sneak) - 84) / GetCharacterRankRate(Npchar);
     if (sti(Npchar.rank) < 1)
     {
         Npchar.rank = 1;
@@ -150,7 +149,7 @@ void CorrectSkillParam(ref Npchar)
     int i;
     string  skillName;
 
-    for (i=1; i<13; i++)
+    for (i=1; i<12; i++)
     {
         skillName = GetSkillNameByIdx(i);
         if(sti(Npchar.skill.(skillName)) > SKILL_MAX) Npchar.skill.(skillName) = SKILL_MAX;
@@ -171,7 +170,7 @@ int GetSkillSum(ref Npchar)
     string  skillName;
     
 	sum = 0;
-    for (i=1; i<13; i++)
+    for (i=1; i<12; i++)
     {
         skillName = GetSkillNameByIdx(i);
         sum += sti(Npchar.skill.(skillName));
@@ -185,7 +184,7 @@ int GetSPECIALSum(ref Npchar)
     string  skillName;
 
 	sum = 0;
-    for (i=13; i<20; i++)
+    for (i=12; i<19; i++)
     {
         skillName = GetSkillNameByIdx(i);
         sum += sti(Npchar.SPECIAL.(skillName));

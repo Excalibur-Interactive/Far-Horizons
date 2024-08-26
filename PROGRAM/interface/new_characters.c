@@ -16,8 +16,6 @@ bool bUpdateTextFrame = true;
 int idLngFile;
 float fOffsetX, fOffsetY;
 
-
-
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////// ИНИЦИАЛИЗАЦИЯ
 ////////////////////////////////////////////////////////////////////////////
@@ -464,7 +462,7 @@ void FillCharacterTables(ref chr)	// таблица навыков ГГ
 		GameInterface.(sNode).(sRow).td3.valign = "center";
 		GameInterface.(sNode).(sRow).td3.scale = 1.5;
 		GameInterface.(sNode).(sRow).td3.textoffset = "0,0";
-		GameInterface.(sNode).(sRow).td3.str = rand(99)+1;
+		GameInterface.(sNode).(sRow).td3.str = GetSkillValue(chr, SKILL_TYPE, sSkill);
 	}
 	for(i=1; i<=5; i++)
 	{
@@ -495,7 +493,7 @@ void FillCharacterTables(ref chr)	// таблица навыков ГГ
 		GameInterface.(sNode).(sRow).td3.valign = "center";
 		GameInterface.(sNode).(sRow).td3.scale = 1.5;
 		GameInterface.(sNode).(sRow).td3.textoffset = "0,0";
-		GameInterface.(sNode).(sRow).td3.str = rand(99)+1;
+		GameInterface.(sNode).(sRow).td3.str = GetSkillValue(chr, SKILL_TYPE, sSkill);
 	}
 	Table_UpdateWindow(sChar+"_TABLE_SELFSKILL");
 	Table_UpdateWindow(sChar+"_TABLE_SHIPSKILL");

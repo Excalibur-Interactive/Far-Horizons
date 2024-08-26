@@ -29,38 +29,43 @@ string  LoyalityTable[MORALE_TABLE_SIZE];
 #define PRISONER_MAX	20
 #define COMPANION_MAX	5
 
-// boal -->
 #define SKILL_MAX           100
 #define SKILL_MAX_TOTAL	    100 // делитель для скила для формул
 #define SPECIAL_MAX         10
 #define SKILL_TO_OLD        10.0
-// личные
-#define SKILL_FENCING		"Fencing"
-#define SKILL_PISTOL		"Pistol" // boal
-#define SKILL_FORTUNE	    "Fortune"     //5
-// корабельные
-#define SKILL_LEADERSHIP	"Leadership"    //6
-#define SKILL_COMMERCE		"Commerce"
-#define SKILL_ACCURACY		"Accuracy"
-#define SKILL_CANNONS		"Cannons"
-#define SKILL_SAILING		"Sailing"
-#define SKILL_REPAIR		"Repair"
-#define SKILL_GRAPPLING		"Grappling"
-#define SKILL_DEFENCE		"Defence"
-#define SKILL_SNEAK		    "Sneak"   //14
 
-// атрибуты
-#define SPECIAL_S	"Strength"   //15
+// ЛИЧНЫЕ УМЕНИЯ
+#define SKILL_FENCING		"Fencing"		//1
+#define SKILL_ATHLETICS		"Athletics"
+#define SKILL_PISTOL		"Pistol"
+#define SKILL_SNEAK			"Sneak"
+#define SKILL_SPEECHCRAFT	"Speechcraft"
+#define SKILL_ALCHEMY		"Alchemy"		//6
+
+// КОРАБЕЛЬНЫЕ УМЕНИЯ
+#define SKILL_SAILING		"Sailing"		//7
+#define SKILL_GRAPPLING		"Grappling"
+#define SKILL_CANNONS		"Cannons"
+#define SKILL_DEFENCE		"Defence"
+#define SKILL_REPAIR		"Repair"		//11
+
+// P.I.R.A.T.E.S.
+#define SPECIAL_S	"Strength"				//12
 #define SPECIAL_P	"Perception"
 #define SPECIAL_E	"Endurance"
 #define SPECIAL_C	"Charisma"
 #define SPECIAL_I	"Intellect"
 #define SPECIAL_A	"Agility"
-#define SPECIAL_L	"Luck"  //21
+#define SPECIAL_L	"Luck"					//18
+
+// --> УДАЛЯЕМ
+#define SKILL_ACCURACY		"Accuracy"
+#define SKILL_COMMERCE		"Commerce"
+#define SKILL_LEADERSHIP	"Leadership"
+// <-- УДАЛЯЕМ
 
 #define SPECIAL_TYPE	"SPECIAL"
 #define SKILL_TYPE	    "Skill"
-// boal <--
 
 #define KILL_BY_BALL		1
 #define KILL_BY_ABORDAGE	2

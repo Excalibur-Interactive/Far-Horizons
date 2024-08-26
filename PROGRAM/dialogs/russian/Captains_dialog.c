@@ -394,7 +394,7 @@ void ProcessDialogEvent()
 		break;
 		
         case "Talk_board":
-            if ((Group_GetCharactersNum(NPChar.EncGroupName) - Group_GetDeadCharactersNum(NPChar.EncGroupName)) > GetCompanionQuantity(PChar) && rand(11) > GetCharacterSkillToOld(PChar, SKILL_FORTUNE))
+            if ((Group_GetCharactersNum(NPChar.EncGroupName) - Group_GetDeadCharactersNum(NPChar.EncGroupName)) > GetCompanionQuantity(PChar) && rand(11) > etCharacterSPECIAL(PChar, SPECIAL_L))
             {
                 Dialog.text = "Ха-ха! Хорошая шутка. Тем более, что у меня больше кораблей. Убирайтесь на свой корабль и тоните вместе с ним.";
                 link.l1 = "Больше - не значит мощнее...";
@@ -686,12 +686,6 @@ void ProcessDialogEvent()
             AddMoneyToCharacter(PChar, ilt);
             ChangeCharacterNationReputation(pchar, sti(NPChar.nation), 20);
             ChangeCharacterReputation(PChar, 10);
-            AddCharacterExpToSkill(GetMainCharacter(), "Leadership", 80);
-            AddCharacterExpToSkill(GetMainCharacter(), "Sailing", 100);
-            AddCharacterExpToSkill(GetMainCharacter(), "Defence", 100);
-            AddCharacterExpToSkill(GetMainCharacter(), "Accuracy", 100);
-            AddCharacterExpToSkill(GetMainCharacter(), "Cannons", 100);
-            AddCharacterExpToSkill(GetMainCharacter(), "Fortune", 80);
             aData.loot = sti(aData.loot) - ilt;
             if (CheckAttribute(PChar, "quest.LeaveTown")) Pchar.quest.LeaveTown.over = "yes";
             //--> слухи

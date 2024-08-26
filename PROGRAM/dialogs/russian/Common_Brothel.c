@@ -19,6 +19,7 @@ void ProcessDialogEvent()
 		UnloadSegment(NPChar.FileDialog2);
 	}
     // вызов диалога по городам <--
+	
 	switch(Dialog.CurrentNode)
 	{
 		// ============= хозяйка борделя =============
@@ -759,9 +760,6 @@ void ProcessDialogEvent()
 			}
 			// изменение статусов
 			ChangeCharacterReputation(pchar, -1);
-			AddCharacterExpToSkill(pchar, "Leadership", 30);
-			AddCharacterExpToSkill(pchar, "Fencing", -15);
-			AddCharacterExpToSkill(pchar, "Pistol", -15);
 		break;
 
         case "Horse_AfterSex":

@@ -993,27 +993,6 @@ void CreateHabitues(aref loc)
 				}
 				// вне группы
 			}
-			// аганты наций и контриков, только в пиратских тавернах -->
-			if (iNation == PIRATE && sti(Colonies[iColony].HeroOwn) != true)
-			{
-				iChar = NPC_GeneratePhantomCharacter("citizen", iNation, MAN, 1);
-				chr = &characters[iChar];
-				SetNPCModelUniq(chr, "citizen", MAN);
-				chr.City = Colonies[iColony].id;
-				chr.CityType = "citizen";
-				sTemp = PlaceCharacter(chr, "sit", "random_free"); // может не быть вовсе, если все места заняты
-				ReSitCharacterOnFree(chr, loc.id, sTemp);
-
-				LAi_SetSitType(chr);
-				LAi_group_MoveCharacter(chr, slai_group);
-				chr.Name = "Дипломат";
-				chr.LastName = "";
-				chr.dialog.filename = "RelationAgent_dialog.c";
-				chr.dialog.currentnode = "first time";
-				chr.greeting = "Gr_RelationAgent";
-				LAi_group_MoveCharacter(chr, slai_group);
-			}
-			// аганты наций и контриков, только в пиатских тавернах <--
 			// офицеры -->
 			iCitizensQuantity = rand(6) - 3;
 			for (i = 0; i <iCitizensQuantity; i++)

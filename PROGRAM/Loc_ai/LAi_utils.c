@@ -297,7 +297,7 @@ float LAi_GetCharacterGunLevel(aref character)
 float LAi_GetCharacterLuckLevel(aref character)
 {
 	float fgtlevel = 0.0;
-	fgtlevel = GetCharacterSkill(character, SKILL_FORTUNE);
+	fgtlevel = GetCharacterSPECIAL(character, SPECIAL_L)*10;
 	fgtlevel = fgtlevel/SKILL_MAX;
 	return fgtlevel;
 }
@@ -830,7 +830,7 @@ void Dead_AddLoginedCharacter(aref chr)
 	ref     mchr = GetMainCharacter();
 	aref    arFromChar;
 	aref    arToChar;
-	float     nLuck   = GetCharacterSkillToOld(GetMainCharacter(), SKILL_FORTUNE);
+	float   nLuck = GetCharacterSPECIAL(PChar, SPECIAL_L);
     string  itemID;
     int     value, count;
     aref    typeRef;

@@ -1010,7 +1010,7 @@ void InitCharacter(ref ch, int n)
 	// boal -->
     SetRandSPECIAL(ch);
     //InitStartParam(ch);
-    SetSelfSkill(ch, 1, 1, 1);
+    SetSelfSkill(ch, 1, 1);
     SetShipSkill(ch, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 
 	ch.Skill.FreeSPECIAL  = 0;

@@ -608,7 +608,6 @@ void CalculateInfoDataS6()
     mc.skill.Pistol = iSkill;
 	mc.skill.Sneak = iSkill;
 	mc.skill.Leadership = iSkill;
-    mc.skill.Fortune = iSkill;
 	
     SetFormatedText("DEBUGER_INFO",totalInfo);
 }
@@ -729,7 +728,7 @@ void CalculateInfoDataF2()
 {
 	totalInfo = descF2;
 	
-	log_info(pchar.location);
+	
 	
     totalInfo = totalInfo + NewStr() + NewStr() +
                 "Команда отработала успешно!";

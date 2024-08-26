@@ -57,20 +57,16 @@ void CreateCharacters()
 	ch.quest.free_adventure.character_1 = "";
 	ch.quest.free_adventure.character_2 = "";
 
-	ch.quest.RelationAgentMet = "0";
-	ch.quest.gambling = "0";
 	ch.quest.friend_in_tavern = "";
-	ch.time_events_counter = 0;
-	ch.rumourquest = 0;
 	ch.abordage = 0;
 	ch.isSmuggPossible = 1;
 	
-	// Награда за голову -->
+	// НЗГ
     ch.reputation.Enghunter = "-5";
     ch.reputation.Frahunter = "-5";
     ch.reputation.Spahunter = "-5";
     ch.reputation.duthunter = "-5";
-    // Награда за голову <--
+    
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ОСТАЛЬНЫЕ ПЕРСОНАЖИ
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////

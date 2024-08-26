@@ -330,7 +330,7 @@ void FillBoxForTreasure(ref item, int i)
 
 void FillBoxForTreasureAddition(ref item)
 {
-    float   nLuck   = GetCharacterSkillToOld(Pchar, SKILL_FORTUNE);
+    float   nLuck   = GetCharacterSPECIAL(PChar, SPECIAL_L);
 
     if (5*nLuck > rand(55))
     {
@@ -436,7 +436,7 @@ void FillBoxForTreasureAddition(ref item)
 
 void FillBoxForTreasureSuper(ref item)
 {
-    float     nLuck   = GetCharacterSkillToOld(Pchar, SKILL_FORTUNE);
+    float     nLuck   = GetCharacterSPECIAL(PChar, SPECIAL_L);
 	int     i;
 	string  itmName;
 

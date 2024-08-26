@@ -21,7 +21,6 @@ void UpdateCrewExp()
 			}
 		}
 	}
-	
 }
 string GetExpName(int iExp)
 {
@@ -70,7 +69,7 @@ int GetMoneyForOfficer(ref Npchar)
     {
 	    int i, sum;
 	    sum = 0;
-	    for (i=1; i<13; i++)
+	    for (i=1; i<12; i++)
 	    {
 	        sum += GetSkillValue(Npchar, SKILL_TYPE, GetSkillNameByIdx(i));
 	    }

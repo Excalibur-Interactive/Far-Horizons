@@ -175,7 +175,6 @@ void ProcessDialogEvent()
 			link.l1 = "Топоры?..";
 			link.l1.go = "fight";
 			LAi_SetPlayerType(pchar);
-			AddCharacterExpToSkill(pchar, "Fencing", 10);
 			ChangeCharacterReputation(pchar, -1);
 			for (i=1; i<=sti(pchar.questTemp.different.ShipyardsMap.fightQty); i++)
 			{

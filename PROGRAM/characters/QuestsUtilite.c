@@ -424,30 +424,8 @@ void FillAboardCabinBox(ref _location, ref _npchar)
 				
     	iTemp = GetCharacterShipClass(_npchar);
 		iNation = sti(_npchar.nation);		
-
-		if(iNation == PIRATE)
-		{
-			nLuck   = GetCharacterSkillToOld(Pchar, SKILL_FORTUNE);			
-			if (nLuck > rand(250) && GetCharacterItem(pchar, "map_full") == 0)  // шанс 1/30 
-			{
-				if (GetCharacterItem(pchar, "map_part1") == 0)
-				{
-					_location.box1.items.map_part1 = 1;
-				}
-				else
-				{
-					if (GetCharacterItem(pchar, "map_part2") == 0)
-					{
-						_location.box1.items.map_part2 = 1;
-					}
-				}
-			}
-			FillCabinBoxMap(_location, 200 - (7 - iTemp) * 5); 
-		}
-		else
-		{
-			FillCabinBoxMap(_location, 250 - (7 - iTemp) * 5);
-		}
+		
+		FillCabinBoxMap(_location, 250 - (7 - iTemp) * 5);
 		
 		if (CheckAttribute(_npchar, "Ship.Mode") && _npchar.Ship.Mode == "Trade")  // торговец
 		{
@@ -507,7 +485,6 @@ void FantomMakeCoolFighter(ref _Character, int _Rank, int _Fencing, int _Pistol,
     _Character.rank = GetCoffDiff(_Rank, 1000);
     _Character.skill.Fencing = GetCoffDiff(_Fencing, SKILL_MAX);
     _Character.skill.Pistol = GetCoffDiff(_Pistol, SKILL_MAX);
-    _Character.skill.Fortune = GetCoffDiff(_Pistol, SKILL_MAX); //zagolski. если умеет хорошо стрелять из пистоля, то умеет и хорошо от него защищаться
 	_Character.chr_ai.hp = stf(_Character.chr_ai.hp) + GetCoffDiff(_AddHP, 5000);
 	_Character.chr_ai.hp_max = stf(_Character.chr_ai.hp_max) + GetCoffDiff(_AddHP, 5000);
 	SetCharacterPerk(_Character, "Energaiser"); // скрытый перк дает 1.5 к приросту энергии, дается ГГ и боссам уровней

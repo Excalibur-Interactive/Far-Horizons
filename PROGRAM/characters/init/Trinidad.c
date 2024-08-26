@@ -21,7 +21,7 @@ int CreateTrinidadCharacters(int n)
 	GiveItem2Character(ch, GUN_COMMON);
 	GiveItem2Character(ch, BLADE_LONG);
 	SetRandSPECIAL(ch);
-    SetSelfSkill(ch, 90, 60, 70);
+    SetSelfSkill(ch, 90, 60);
 	ch.standUp = true; //вставать и нападать на врага
 	LAi_SetHuberType(ch);
 	LAi_RemoveLoginTime(ch);
@@ -118,7 +118,7 @@ int CreateTrinidadCharacters(int n)
 	GiveItem2Character(ch, GUN_COMMON);
 	GiveItem2Character(ch, "blade_35");
 	SetRandSPECIAL(ch);
-    SetSelfSkill(ch, 90, 60, 70);
+    SetSelfSkill(ch, 90, 60);
 	ch.standUp = true; //вставать и нападать на врага
 	LAi_SetLoginTime(ch, 6.0, 21.99);
 	LAi_SetHuberType(ch);

@@ -363,7 +363,6 @@ float Fort_CannonDamage()
 	    AddCharacterExpToSkill(rBallCharacter, "Accuracy", -iExp / 3);
         AddCharacterExpToSkill(rBallCharacter, "Sailing", -iExp);
         AddCharacterExpToSkill(rBallCharacter, "Sneak", -iExp / 4);
-        AddCharacterExpToSkill(rBallCharacter, SKILL_FORTUNE, -iExp / 4);
         AddCharacterExpToSkill(rBallCharacter, "Cannons", -iExp / 4);
 	}
 	// boal 13.04.05 фикс пальбы по своему форту <--
@@ -403,8 +402,7 @@ float Fort_CannonDamage()
             // boal -->
             AddCharacterExpToSkill(rBallCharacter, "Accuracy", iExp / 4);
             AddCharacterExpToSkill(rBallCharacter, "Sailing", iExp / 2);
-            AddCharacterExpToSkill(rBallCharacter, "Sneak", iExp / 12);
-            AddCharacterExpToSkill(rBallCharacter, SKILL_FORTUNE, iExp / 12);
+            AddCharacterExpToSkill(rBallCharacter, "Sneak", iExp / 12);;
             AddCharacterExpToSkill(rBallCharacter, "Cannons", iExp / 4);
             // boal <--
         }
@@ -442,7 +440,6 @@ void Fort_SetAbordageMode(ref rKillerCharacter, ref rFortCharacter)
 		AddCharacterExpToSkillSquadron(rKillerCharacter, "Grappling", 300);
 		AddCharacterExpToSkillSquadron(rKillerCharacter, "Leadership", 150);
 		AddCharacterExpToSkillSquadron(rKillerCharacter, "Sneak", 35);
-		AddCharacterExpToSkillSquadron(rKillerCharacter, SKILL_FORTUNE, 35);
 		AddCharacterExpToSkillSquadron(rKillerCharacter, "Cannons", 75);
 	    // boal <--
 

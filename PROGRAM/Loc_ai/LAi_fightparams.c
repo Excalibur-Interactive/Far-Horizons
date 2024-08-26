@@ -570,7 +570,6 @@ void LAi_ApplyCharacterAttackDamage(aref attack, aref enemy, string attackType, 
 	
 	if(critical > 0.0)
 	{
-        AddCharacterExpToSkill(attack, SKILL_FORTUNE, 5);
 		if(sti(attack.index) == GetMainCharacterIndex())
 		{
 			Log_SetStringToLog(XI_ConvertString("Critical Hit"));
@@ -683,10 +682,6 @@ void LAi_ApplyCharacterAttackDamage(aref attack, aref enemy, string attackType, 
 	    {
 	       re = stf(enemy.rank);
 	    }
-        AddCharacterExpToSkill(attack, SKILL_FENCING, makefloat(10.0 + ((1 + re) / (1+ra))*6.5));
-        AddCharacterExpToSkill(attack, SKILL_DEFENCE, 1);
-        AddCharacterExpToSkill(attack, SKILL_FORTUNE, 1);
-        AddCharacterExpToSkill(attack, SKILL_LEADERSHIP, 1);
         // boal <--
         // boal statistic info 17.12.2003 -->
         Statistic_KillChar(attack, enemy, "_s");
@@ -824,7 +819,6 @@ void LAi_ApplyCharacterFireDamage(aref attack, aref enemy, float kDist)
 	    }
         AddCharacterExpToSkill(attack, SKILL_PISTOL, makefloat(15.0 + ((1 + re) / (1+ra))*12.0));
         AddCharacterExpToSkill(attack, SKILL_DEFENCE, 1);
-        AddCharacterExpToSkill(attack, SKILL_FORTUNE, 2);
         AddCharacterExpToSkill(attack, SKILL_LEADERSHIP, 1);
 		// boal skill <--
 		// boal statistic info 17.12.2003 -->

@@ -153,8 +153,6 @@ void Exit()
         interfaceResultCommand = RC_INTERFACE_SALARY_EXIT;
 
     	Statistic_AddValue(Pchar, "GameCards_Win", iHeroWin);
-    	AddCharacterExpToSkill(Pchar, SKILL_FORTUNE, iExpRate*5*iHeroWin);
-    	AddCharacterExpToSkill(Pchar, SKILL_FORTUNE, iExpRate*2*iHeroLose);
     	Statistic_AddValue(Pchar, "GameCards_Lose", iHeroLose);
     	
     	bQuestCheckProcessFreeze = true;
@@ -575,13 +573,13 @@ bool CheckGame()
     {
         ok1 = (CountCardsN() > 16) && (CountCardsN() <22);
         // жухло!!!!! -->
-        if ((GetCharacterSkillToOld(pchar, SKILL_FORTUNE) + makeint(isEquippedTalismanUse(pchar, "totem_02", 0.0, 1.0))) + iAddSkill < rand(12))
+        if ((GetCharacterSPECIAL(PChar, SPECIAL_L) + makeint(isEquippedTalismanUse(pchar, "totem_02", 0.0, 1.0))) + iAddSkill < rand(12))
         {
             if (ok1 && (CountCardsN() + NextCardPack()) <= 21)
             {
                 ok1 = false;
             }
-            if ((GetCharacterSkillToOld(pchar, SKILL_FORTUNE) - makeint(isEquippedTalismanUse(pchar, "totem_02", 0.0, 1.0))) - iAddSkill < rand(10) && CountCardsN() < 17 &&  (CountCardsN() + NextCardPack()) > 21)
+            if (GetCharacterSPECIAL(PChar, SPECIAL_L) - makeint(isEquippedTalismanUse(pchar, "totem_02", 0.0, 1.0))) - iAddSkill < rand(10) && CountCardsN() < 17 &&  (CountCardsN() + NextCardPack()) > 21)
             {
                 ok1 = true;
             }

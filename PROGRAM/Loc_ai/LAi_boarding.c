@@ -113,7 +113,6 @@ void LAi_StartBoarding(int locType, ref echr, bool isMCAttack)
 	int mclass = GetCharacterShipClass(mchr);
 	int mcrew = GetCrewQuantity(mchr);
 	
-	// Saving enemy captain rank for future use in CalculateAppropriateSkills (Gray 12.02.2005)
 	mchr.EnemyRank = echr.rank
 	
 	DeleteAttribute(pchar, "abordage_active");

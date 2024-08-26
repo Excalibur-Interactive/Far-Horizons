@@ -97,10 +97,10 @@ void ProcessCancelExit()
 
 void IDoExit(int exitCode)
 {
-    // boal проверка на перегруз 21.01.2004 -->
+	
 	CheckAndSetOverloadMode(GetMainCharacter());
-	// boal 21.01.2004 <--
-	// раздайте патроны, порутчик Голицын -->
+	
+	// раздайте патроны, поручик Голицын -->
 	int i, cn;
     for(i=1;i<4;i++)
 	{
@@ -120,7 +120,7 @@ void IDoExit(int exitCode)
 			}
 		}
 	}
-	// раздайте патроны, порутчик Голицын <--
+	// раздайте патроны, поручик Голицын <--
 	EndAboveForm(true);
 
 	DelEventHandler("InterfaceBreak","ProcessBreakExit");

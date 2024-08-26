@@ -162,8 +162,6 @@ void Exit()
         interfaceResultCommand = RC_INTERFACE_SALARY_EXIT;
 
     	Statistic_AddValue(Pchar, "GameDice_Win", iHeroWin);
-    	AddCharacterExpToSkill(Pchar, SKILL_FORTUNE, iExpRate*4*iHeroWin);
-    	AddCharacterExpToSkill(Pchar, SKILL_FORTUNE, iExpRate*2*iHeroLose);
     	Statistic_AddValue(Pchar, "GameDice_Lose", iHeroLose);
 		NPChar.Quest.HeroLose = (iHeroWin < iHeroLose); //navy -- в итоге проиграл или выйграл. (не по деньгам.)
 
@@ -1227,7 +1225,7 @@ void CompTurn()
         }
 
         // супер жухло!!!!! -->
-        if (sti(DiceState.Comp.Result.Type) > sti(DiceState.Hero.Result.Type) && GetCharacterSkillToOld(pchar, SKILL_FORTUNE) < rand(12) && rand(4) > 1)
+        if (sti(DiceState.Comp.Result.Type) > sti(DiceState.Hero.Result.Type) && GetCharacterSPECIAL(PChar, SPECIAL_L) < rand(12) && rand(4) > 1)
         {
 			//navy --> счетчик жульничеств
 			if (!CheckAttribute(npchar, "Quest.DiceCheats")) npchar.Quest.DiceCheats = 0;

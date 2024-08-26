@@ -432,11 +432,6 @@ void PGG_UpdateStats(ref chr, string sExpType)
 			fMod = MOD_SKILL_ENEMY_RATE + rand(MOD_SKILL_ENEMY_RATE + 12);
 			fMod = fMod*EXP_MODIFIER; 
 
-			AddCharacterExpToSkill(chr, SKILL_FENCING, fMod*261);
-			AddCharacterExpToSkill(chr, SKILL_PISTOL, fMod*34.444);
-			AddCharacterExpToSkill(chr, SKILL_FORTUNE, fMod*11.369);
-			AddCharacterExpToSkill(chr, SKILL_LEADERSHIP, fMod*11.759);
-			AddCharacterExpToSkill(chr, SKILL_DEFENCE, fMod*11.5);
 			//время кача в часах
 			fMod = MOD_SKILL_ENEMY_RATE + rand(12);
 			fMod = fMod*EXP_MODIFIER; 
@@ -538,7 +533,6 @@ int PGG_AddShipsBattleExp(ref chr, int _shipsNum)
 		i = sti(chr.ship.crew.quantity);
 		AddCharacterExpToSkill(chr, SKILL_FENCING, fMod*FRAND(233.4));
 		AddCharacterExpToSkill(chr, SKILL_PISTOL, fMod*3.48);
-		AddCharacterExpToSkill(chr, SKILL_FORTUNE, fMod*(2.4 + fTmp*20));
 		AddCharacterExpToSkill(chr, SKILL_LEADERSHIP, fMod*(2.4 + fTmp*25));
 		AddCharacterExpToSkill(chr, SKILL_DEFENCE, fMod*(1.0 + fTmp*40));
 		AddCharacterExpToSkill(chr, SKILL_COMMERCE, fMod * 50 * fTmp);
@@ -547,7 +541,6 @@ int PGG_AddShipsBattleExp(ref chr, int _shipsNum)
 		AddCharacterExpToSkill(chr, SKILL_GRAPPLING, ((1+i-rand(i))/3+0.5+110) + (fMod * 120 * fTmp));
 		AddCharacterExpToSkill(chr, SKILL_DEFENCE, (1+i-rand(i))/3+0.5+60); 
 		AddCharacterExpToSkill(chr, SKILL_SAILING, ((1+i-rand(i))/3+0.5+110) + (fMod * 120 * fTmp));
-		AddCharacterExpToSkill(chr, SKILL_FORTUNE, (1+i-rand(i))/3+0.5+60); 
 
 		//TODO: Что там по деньгам в каюте? Сколько вешать в граммах? :)
 		iMoney += 1000 + rand(2000);

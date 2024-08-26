@@ -480,7 +480,7 @@ void RandItems_SpawnRandItem(int _index, aref _location, aref al)
 		_location.(lastSpawnTimeString) = Items_MakeTime(GetTime(), GetDataDay(), GetDataMonth(), GetDataYear());
 	}
 	
-    if (GetCharacterSkillToOld(GetMainCharacter(), SKILL_FORTUNE) < rand(15)) return; // boal fix
+    if (GetCharacterSPECIAL(PChar, SPECIAL_L) < rand(15)) return; // boal fix
     
 	if (!CheckAttribute(randItem, "model") || randItem.model == "")
 	{
@@ -500,7 +500,7 @@ void RandItems_DrawRandItem(int _index, aref _location, aref al)
 	string randItemTypeString = "RandItemType"+_index;
 	int n = sti(_location.(randItemTypeString));
 	
-    if (GetCharacterSkillToOld(GetMainCharacter(), SKILL_FORTUNE) < rand(15)) return; // boal fix
+    if (GetCharacterSPECIAL(PChar, SPECIAL_L) < rand(15)) return; // boal fix
     
 	if (Items[n].model == "")
 	{
@@ -670,7 +670,7 @@ void OpenBoxProcedure()
 		Locations[locidx].(atrName).Money = 0;
 		makearef(ar,Locations[locidx].(atrName));
 	}
-	int iChance = (85 + GetCharacterSkillToOld(chr, SKILL_FORTUNE));
+	int iChance = (85 + GetCharacterSPECIAL(PChar, SPECIAL_L));
 	if(CheckCharacterPerk(pchar, "BreakAndSilence")) iChance = iChance* 0.5;
 	if(CheckCharacterPerk(pchar, "Lockpicking")) iChance = 0;
 	// God_hit_us  это такой прикол - задействовать в ловушки для сундуков(boal)
@@ -799,13 +799,13 @@ void Box_OnLoadLocation(ref _location)
     			int spawnItemsCount = OBJECTS_IN_BOX;
     			ref chr = GetMainCharacter();
 				aref rItem;
-    			spawnItemsCount = spawnItemsCount + spawnItemsCount * GetCharacterSkillToOld(chr, "Fortune") / 10.0;
+    			spawnItemsCount = spawnItemsCount + spawnItemsCount * GetCharacterSPECIAL(PChar, SPECIAL_L) / 10.0;
     			for (int j=0; j<spawnItemsCount; j++)
     			{
     				if (needRespawn || isAbordageBox)
     				{
     					string itemID;
-    					if (SpawnItem(chr, &itemID, isAbordageBox, GetCharacterSkillToOld(chr, "Fortune")))
+    					if (SpawnItem(chr, &itemID, isAbordageBox, GetCharacterSPECIAL(PChar, SPECIAL_L)))
     					{
 							Items_FindItem(itemID, &rItem);
     						if (CheckAttribute(_location, locatorName+".items."+itemID))

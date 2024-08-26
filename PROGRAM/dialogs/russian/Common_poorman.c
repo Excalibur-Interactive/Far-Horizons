@@ -126,8 +126,6 @@ void ProcessDialogEvent()
 				dialog.text = "Спасибо вам, "+ GetSexPhrase("досточтимый","досточтимая") +" " + GetAddress_Form(NPChar) + ". Желаю вам удачи!";
 				link.l1 = "Спасибо, приятель.";
 				link.l1.go = "exit";
-				AddCharacterExpToSkill(pchar, "Leadership", sti(iTemp/5000));
-				AddCharacterExpToSkill(pchar, "Fortune", sti(iTemp/5000));
 				pchar.money = sti(pchar.money) - iTemp;
 			}
 			if (iTemp > 100000)

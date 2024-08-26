@@ -263,7 +263,6 @@ void ProcessDialogEvent()
 				dialog.text = "Вот это да! Эй, стража, тут вор подбирается!!!";
 				link.l1 = "Какой вор?! Я поговорить "+ GetSexPhrase("хотел","хотела") +"!..";
 				link.l1.go = "fight";
-				AddCharacterExpToSkill(pchar, "Fencing", 5);
 				ChangeCharacterReputation(pchar, -1);
 			}
 			else
@@ -271,7 +270,6 @@ void ProcessDialogEvent()
 				dialog.text = "Хо! Ну, ты даешь "+ GetSexPhrase("приятель. Пришел","подруга. Пришла") +" на склад верфи с такой просьбой!";
 				link.l1 = "Мне не на склад надо, а на верфь. Сюда я ни ногой...";
 				link.l1.go = "ShipyardsMap_3";
-				AddCharacterExpToSkill(pchar, "Fortune", 10);
 			}
 		break;
 		case "ShipyardsMap_3":

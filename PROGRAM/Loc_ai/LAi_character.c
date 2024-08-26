@@ -1,4 +1,3 @@
-
 //------------------------------------------------------------------------------------------
 //Login
 //------------------------------------------------------------------------------------------
@@ -160,7 +159,7 @@ void LAi_AlcoholSetDrunk(aref chr, float alcoholDegree, float time)
 	{
 		chr.chr_ai.drunk.skill.Fencing 	    = -20;
 		chr.chr_ai.drunk.skill.Pistol       = -20;
-		chr.chr_ai.drunk.skill.Fortune      = -20;
+		//chr.chr_ai.drunk.skill.Fortune      = -20;
 		chr.chr_ai.drunk.skill.Sneak        = -20;
 		chr.chr_ai.drunk.skill.Leadership   = -20;
 	}
@@ -178,7 +177,7 @@ void LAi_AlcoholSetDrunk(aref chr, float alcoholDegree, float time)
 			//chr.chr_ai.drunk.skill.FencingLight = 10;
 			//chr.chr_ai.drunk.skill.FencingHeavy = -10;
 		}
-		chr.chr_ai.drunk.skill.Fortune = 5;
+		//chr.chr_ai.drunk.skill.Fortune = 5;
 		chr.chr_ai.drunk.skill.Pistol = -20;
 	}
 

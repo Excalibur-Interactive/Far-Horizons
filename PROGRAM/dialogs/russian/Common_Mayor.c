@@ -827,8 +827,6 @@ void ProcessDialogEvent()
             NPChar.NoGiveMoney = false;
 
             ChangeCharacterHunterScore(GetMainCharacter(), NationShortName(sti(NPChar.nation)) + "hunter", 30);
-            AddCharacterExpToSkill(GetMainCharacter(), SKILL_FORTUNE, 200);
-            AddCharacterExpToSkill(GetMainCharacter(), "Commerce", 200);
 
             Statistic_AddValue(Pchar, NationShortName(sti(NPChar.nation)) + "_GrabbingTown", 1);
             //  СЖ -->
@@ -907,21 +905,19 @@ void ProcessDialogEvent()
 		break;
 
 		case "arestFree_2":
-            if (GetCharacterSkillToOld(PChar, SKILL_FORTUNE) >= rand(7))
+            if (GetCharacterSPECIAL(PChar, SPECIAL_L) >= rand(7))
             {
     			dialog.text = "Пожалуй, можно уладить наш инцидент таким способом.";
     		    link.l1 = "Замечательно!";
     		    link.l1.go = "Exit";
     		    AddMoneyToCharacter(pchar, -ChangeCharacterHunterScore(Pchar, NationShortName(sti(NPChar.nation)) + "hunter", 0) * 6000);
     		    ChangeCharacterHunterScore(Pchar, NationShortName(sti(NPChar.nation)) + "hunter", -100);
-    		    AddCharacterExpToSkill(pchar, SKILL_FORTUNE, 100);
             }
             else
             {
     			dialog.text = "Нет! Ваши злодеяния можно искупить только единственным способом. Стража! Отведите е"+ GetSexPhrase("го","е") +" в форт.";
     		    link.l1 = "Постойте!";
     		    link.l1.go = "arest_2";
-    		    AddCharacterExpToSkill(pchar, SKILL_FORTUNE, 10);
             }
 		break;
 

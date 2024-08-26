@@ -130,7 +130,7 @@ void DailyRatsEatGoodsUpdate(ref chref)
     int iSeaGoods = LanguageOpenFile("ShipEatGood.txt");
     if (iQuantity > 60 && rand(4) != 2) // шанс не жрать, если весь спектр
     {
-        float fSkill = GetSummonSkillFromNameToOld(chref, SKILL_REPAIR) + GetSummonSkillFromNameToOld(chref,SKILL_FORTUNE);
+        float fSkill = GetSummonSkillFromNameToOld(chref, SKILL_REPAIR) + GetCharacterSPECIAL(chref, SPECIAL_L);
         
         iQuantity = 1+ rand(makeint(iQuantity / (10+fSkill)));
         RemoveCharacterGoodsSelf(chref, iGoods, iQuantity);
@@ -141,7 +141,6 @@ void DailyRatsEatGoodsUpdate(ref chref)
 		if (iQuantity > 400) iQuantity = 400;
 		
 		AddCharacterExpToSkill(chref, SKILL_REPAIR, iQuantity);
-        AddCharacterExpToSkill(chref, SKILL_FORTUNE, iQuantity/10);
     }
     LanguageCloseFile(iSeaGoods);
 }
