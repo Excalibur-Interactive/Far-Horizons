@@ -22,5 +22,5 @@ void Catherine_Start()
 	ChangeCrewExp(pchar, "Cannoners", 100);
 	ChangeCrewExp(pchar, "Soldiers", 100);
 	
-	LoadMainCharacterInFirstLocationGroup("LaVega_port", "reload", "sea");
+	LoadMainCharacterInFirstLocationGroup("FortFrance_ExitTown", "reload", "reload1");
 }

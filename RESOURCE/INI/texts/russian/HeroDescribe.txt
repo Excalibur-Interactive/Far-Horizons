@@ -80,14 +80,14 @@ heroLastNameDat_1 {д'Эсте}
 
 heroFace_1 {1}
 
-heroModel_1 {PGG_Angellica}
+heroModel_1 {Grandmaster}
 
 heroType_1 {Следопыт}
 
 heroNation_1 {Франция}
 
-sex_1 {woman}
-animation_1 {Angellica}
+sex_1 {man}
+animation_1 {man controls}
 
 hero_1
 {
