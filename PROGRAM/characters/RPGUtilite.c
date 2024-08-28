@@ -325,17 +325,18 @@ string GetSkillNameByIdx(int idx)
     
     switch (idx)
     {
-        case 1:    ret = SKILL_FENCING;   break;
-        case 2:    ret = SKILL_PISTOL;    break;
-        
-        case 3:    ret = SKILL_LEADERSHIP; break;
-        case 4:    ret = SKILL_COMMERCE;   break;
-        case 6:    ret = SKILL_CANNONS;    break;
-        case 7:    ret = SKILL_SAILING;    break;
-        case 8:    ret = SKILL_REPAIR;     break;
-        case 9:    ret = SKILL_GRAPPLING;  break;
-        case 10:   ret = SKILL_DEFENCE;    break;
-        case 11:   ret = SKILL_SNEAK;      break;
+		case 1:    ret = SKILL_FENCING;		break;
+		case 2:    ret = SKILL_ATHLETICS;	break;
+		case 3:    ret = SKILL_PISTOL;		break;
+		case 4:    ret = SKILL_SNEAK;		break;
+		case 5:    ret = SKILL_SPEECHCRAFT;	break;
+		case 6:    ret = SKILL_ALCHEMY;		break;
+
+		case 7:    ret = SKILL_SAILING;		break;
+		case 8:    ret = SKILL_GRAPPLING;	break;
+		case 9:    ret = SKILL_CANNONS;		break;
+		case 10:   ret = SKILL_DEFENCE;		break;
+		case 11:   ret = SKILL_REPAIR;		break;
         
         case 12:   ret = SPECIAL_S;   break;
         case 13:   ret = SPECIAL_P;   break;
@@ -357,22 +358,23 @@ string GetSkillNameByTRIdx(string _type, int idx)
 		case "SelfType" :
 		    switch (idx)
 		    {
-                case 1:    ret = SKILL_LEADERSHIP; break;
-		        case 2:    ret = SKILL_FENCING;   break;
-		        case 3:    ret = SKILL_PISTOL;    break;
-                case 4:    ret = SKILL_SNEAK;      break;
+				case 1:    ret = SKILL_FENCING;		break;
+				case 2:    ret = SKILL_ATHLETICS;	break;
+				case 3:    ret = SKILL_PISTOL;		break;
+				case 4:    ret = SKILL_SNEAK;		break;
+				case 5:    ret = SKILL_SPEECHCRAFT;	break;
+				case 6:    ret = SKILL_ALCHEMY;		break;
 		    }
 		break;
 		
 		case "ShipType" :
 		    switch (idx)
 		    {
-                case 1:    ret = SKILL_SAILING; break;
-		        case 3:    ret = SKILL_CANNONS;   break;
-		        case 4:    ret = SKILL_GRAPPLING;   break;
-		        case 5:    ret = SKILL_DEFENCE;    break;
-		        case 6:    ret = SKILL_REPAIR;   break;
-                case 7:    ret = SKILL_COMMERCE;      break;
+				case 1:    ret = SKILL_SAILING;		break;
+				case 2:    ret = SKILL_GRAPPLING;	break;
+				case 3:    ret = SKILL_CANNONS;		break;
+				case 4:   ret = SKILL_DEFENCE;		break;
+				case 5:   ret = SKILL_REPAIR;		break;
 		    }
 		break;
 		

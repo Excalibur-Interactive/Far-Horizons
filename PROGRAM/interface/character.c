@@ -350,7 +350,7 @@ void FillSkillTables()
     GameInterface.TABLE_SKILL_1.select = 0;
     GameInterface.TABLE_SKILL_1.hr.td1.str = "";
 	SetFormatedText("STR_2", XI_ConvertString("Personal skill"));
-	for (i=1; i<=7; i++)
+	for (i=1; i<=6; i++)
 	{
 	    row = "tr" + i;
 	    skillName = GetSkillNameByTRIdx("SelfType", i);
@@ -406,7 +406,7 @@ void FillSkillTables()
 	GameInterface.TABLE_SKILL_2.select = 0;
 	GameInterface.TABLE_SKILL_2.hr.td1.str = "";
 	SetFormatedText("STR_3", XI_ConvertString("Ship skill"));
-	for (i=1; i<=7; i++)
+	for (i=1; i<=5; i++)
 	{
 	    row = "tr" + i;
 	    skillName = GetSkillNameByTRIdx("ShipType", i);

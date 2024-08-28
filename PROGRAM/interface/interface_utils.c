@@ -331,7 +331,7 @@ void SetSPECIALMiniTable(string _tabName, ref _chr)
 		}
 	}
 	row = "tr3";
-	for (i=1; i<=7; i++)
+	for (i=1; i<=6; i++)
 	{
 	    col = "td" + i;
 	    skillName = GetSkillNameByTRIdx("SelfType", i);
@@ -342,7 +342,7 @@ void SetSPECIALMiniTable(string _tabName, ref _chr)
     	GameInterface.(_tabName).(row).(col).icon.height = 30;
 	}
 	row = "tr4";
-	for (i=1; i<=7; i++)
+	for (i=1; i<=6; i++)
 	{
 	    col = "td" + i;
 	    skillName = GetSkillNameByTRIdx("SelfType", i);
@@ -371,7 +371,7 @@ void SetSPECIALMiniTable(string _tabName, ref _chr)
 	}
 	
 	row = "tr5";
-	for (i=1; i<=7; i++)
+	for (i=1; i<=5; i++)
 	{
 	    col = "td" + i;
 	    skillName = GetSkillNameByTRIdx("ShipType", i);
@@ -382,7 +382,7 @@ void SetSPECIALMiniTable(string _tabName, ref _chr)
     	GameInterface.(_tabName).(row).(col).icon.height = 30;
 	}
 	row = "tr6";
-	for (i=1; i<=7; i++)
+	for (i=1; i<=5; i++)
 	{
 	    col = "td" + i;
 	    skillName = GetSkillNameByTRIdx("ShipType", i);
