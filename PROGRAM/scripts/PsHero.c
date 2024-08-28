@@ -502,7 +502,6 @@ int PGG_AddShipsBattleExp(ref chr, int _shipsNum)
 	float fTmp = 0.0;
 	float fMod = MOD_SKILL_ENEMY_RATE * EXP_MODIFIER * _shipsNum;
 
-	AddCharacterExpToSkill(chr, SKILL_ACCURACY, fMod*29.4 + FRAND(100.0));
 	AddCharacterExpToSkill(chr, SKILL_SAILING, fMod*7.0);
 	AddCharacterExpToSkill(chr, SKILL_CANNONS, makefloat((12+rand(80))*12.5));
 
@@ -523,7 +522,6 @@ int PGG_AddShipsBattleExp(ref chr, int _shipsNum)
 		//утопил
 		else
 		{
-			AddCharacterExpToSkill(chr, SKILL_ACCURACY, fMod * 40);
 			AddCharacterExpToSkill(chr, SKILL_SAILING, fMod * 70);
 			AddCharacterExpToSkill(chr, SKILL_CANNONS, fMod * 40);
 			AddCharacterExpToSkill(chr, SKILL_SAILING, fMod * 100);

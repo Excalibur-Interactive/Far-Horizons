@@ -159,10 +159,6 @@ void ProcessDialogEvent()
                         AddMoneyToCharacter(Pchar,(sti(aData.iSquadronPower)*1500));
                         ChangeCharacterNationReputation(pchar, sti(NPChar.nation), 20);
                         ChangeCharacterReputation(PChar, 10);
-                        AddCharacterExpToSkill(GetMainCharacter(), "Leadership", 80);
-                        AddCharacterExpToSkill(GetMainCharacter(), "Sailing", 100);
-                        AddCharacterExpToSkill(GetMainCharacter(), "Accuracy", 100);
-                        AddCharacterExpToSkill(GetMainCharacter(), "Cannons", 100);
                         //--> слухи
                         SiegeRumour("Поговаривают, что вы помогли нам отбиться от "+NationNameSK(sti(aData.nation))+"ой эскадры - и отстоять нашу колонию! Мы так благодарны вам, "+ GetAddress_Form(NPChar)+".", aData.Colony, sti(aData.conation), -1, 15, 3);
 			            //<-- слухи
@@ -230,10 +226,6 @@ void ProcessDialogEvent()
                     AddMoneyToCharacter(Pchar,(sti(aData.iSquadronPower)*3000));
                     ChangeCharacterNationReputation(pchar, sti(NPChar.nation), 20);
                     ChangeCharacterReputation(PChar, 10);
-                    AddCharacterExpToSkill(GetMainCharacter(), "Leadership", 80);
-                    AddCharacterExpToSkill(GetMainCharacter(), "Sailing", 100);
-                    AddCharacterExpToSkill(GetMainCharacter(), "Accuracy", 100);
-                    AddCharacterExpToSkill(GetMainCharacter(), "Cannons", 100);
                     //--> слухи
                     SiegeRumour("Поговаривают, что вы помогли нам отбиться от "+NationNameSK(sti(aData.nation))+"ой эскадры - и отстоять нашу колонию! Мы так благодарны вам, "+ GetAddress_Form(NPChar)+".", aData.Colony, sti(aData.conation), -1, 15, 3);
 		            //<-- слухи

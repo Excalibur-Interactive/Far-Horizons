@@ -636,7 +636,6 @@ void CalculateInfoDataS7()
 	
     mc.skill.Sailing = iSkill;
     mc.skill.Cannons = iSkill;
-    mc.skill.Accuracy = iSkill;
     mc.skill.Commerce = iSkill;
     mc.skill.Defence = iSkill;
     mc.skill.Repair = iSkill;

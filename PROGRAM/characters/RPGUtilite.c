@@ -122,11 +122,10 @@ void SetSelfSkill(ref _refCharacter,, int _f, int _p)
     _refCharacter.Skill.Pistol        = _p;
 }
 
-void SetShipSkill(ref _refCharacter, int _ld, int _cr, int _ac, int _cn, int _sl, int _re, int _gr, int _de, int _sn)
+void SetShipSkill(ref _refCharacter, int _ld, int _cr, int _cn, int _sl, int _re, int _gr, int _de, int _sn)
 {
     _refCharacter.Skill.Leadership = _ld;
     _refCharacter.Skill.Commerce   = _cr;
-    _refCharacter.Skill.Accuracy   = _ac;
     _refCharacter.Skill.Cannons    = _cn;
     _refCharacter.Skill.Sailing    = _sl;
     _refCharacter.Skill.Repair     = _re;
@@ -174,10 +173,9 @@ void SetPersonalSkills(ref sld, int ld, int fs, int p, int sn)
     sld.Skill.Sneak      = sn;
 }
 
-void SetShipSkills(ref sld, int sl, int ac, int cn, int gr, int de, int re, int cr)
+void SetShipSkills(ref sld, int sl, int cn, int gr, int de, int re, int cr)
 {
 	sld.Skill.Sailing    = sl;
-	sld.Skill.Accuracy   = ac;
 	sld.Skill.Cannons    = cn;
 	sld.Skill.Grappling  = gr;
 	sld.Skill.Defence    = de;
@@ -286,7 +284,6 @@ void InitRPGType()
 	
     // остальные корабельные
     NullCharacter.ShipType.Commerce = true;
-    NullCharacter.ShipType.Accuracy = true;
     NullCharacter.ShipType.Cannons = true;
     NullCharacter.ShipType.Sailing = true;
     NullCharacter.ShipType.Repair = true;
@@ -333,7 +330,6 @@ string GetSkillNameByIdx(int idx)
         
         case 3:    ret = SKILL_LEADERSHIP; break;
         case 4:    ret = SKILL_COMMERCE;   break;
-        case 5:    ret = SKILL_ACCURACY;   break;
         case 6:    ret = SKILL_CANNONS;    break;
         case 7:    ret = SKILL_SAILING;    break;
         case 8:    ret = SKILL_REPAIR;     break;
@@ -372,7 +368,6 @@ string GetSkillNameByTRIdx(string _type, int idx)
 		    switch (idx)
 		    {
                 case 1:    ret = SKILL_SAILING; break;
-				case 2:    ret = SKILL_ACCURACY;   break;
 		        case 3:    ret = SKILL_CANNONS;   break;
 		        case 4:    ret = SKILL_GRAPPLING;   break;
 		        case 5:    ret = SKILL_DEFENCE;    break;
@@ -608,9 +603,6 @@ float GetCharacterExpRate(ref _chref, string _skill)
             break;
             case SKILL_COMMERCE:
                 divBy = GetCharacterSPECIAL(_chref, SPECIAL_I)*0.8 + GetCharacterSPECIAL(_chref, SPECIAL_C)*0.2;
-            break;
-            case SKILL_ACCURACY:
-                divBy = GetCharacterSPECIAL(_chref, SPECIAL_P)*0.8 + GetCharacterSPECIAL(_chref, SPECIAL_L)*0.2;
             break;
             case SKILL_CANNONS:
                 divBy = GetCharacterSPECIAL(_chref, SPECIAL_I)*0.6 + GetCharacterSPECIAL(_chref, SPECIAL_S)*0.4;
@@ -950,7 +942,7 @@ int GetCharacterSkillSimple(ref _refCharacter, string skillName)
 		
 		skillN += SetCharacterSkillBySpecialPotion(_refCharacter, skillName);
 		
-		skillN = makeint(skillN * AddMultiplySkillByEquippedItem(_refCharacter, skillName, SKILL_ACCURACY,  "totem_12", 1.10));
+		skillN = makeint(skillN * AddMultiplySkillByEquippedItem(_refCharacter, skillName, SKILL_CANNONS,  "totem_12", 1.10));
 		skillN = makeint(skillN * AddMultiplySkillByEquippedItem(_refCharacter, skillName, SKILL_COMMERCE,  "totem_13", 1.15));
 		
 		if(IsCharacterEquippedTalisman(_refCharacter, "totem_14"))
@@ -959,11 +951,6 @@ int GetCharacterSkillSimple(ref _refCharacter, string skillName)
 	    }
 		
 		skillN = makeint(skillN * AddMultiplySkillByEquippedItem(_refCharacter, skillName, SKILL_LEADERSHIP,"totem_18", 1.15));
-		
-		if(CheckAttribute(_refCharacter, "SpeciaPotionEffect.Jaguar") && skillName == SKILL_ACCURACY) 
-		{
-			skillN = skillN * 1.15;
-		}
 		
 		if(CheckAttribute(_refCharacter, "SpeciaPotionEffect.Jaguar") && skillName == SKILL_PISTOL) 
 		{
@@ -1077,10 +1064,6 @@ int GetSummonSkillFromNameSimple(ref _refCharacter, string skillName)
 			break;
 
 			case SKILL_CANNONS:
-				iOfficer = sti(pchar.Fellows.Passengers.cannoner);
-			break;
-
-			case SKILL_ACCURACY:
 				iOfficer = sti(pchar.Fellows.Passengers.cannoner);
 			break;
 

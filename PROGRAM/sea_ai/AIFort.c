@@ -360,7 +360,6 @@ float Fort_CannonDamage()
 	{
 	    bImmortal = true;
 	    iExp = 200;
-	    AddCharacterExpToSkill(rBallCharacter, "Accuracy", -iExp / 3);
         AddCharacterExpToSkill(rBallCharacter, "Sailing", -iExp);
         AddCharacterExpToSkill(rBallCharacter, "Sneak", -iExp / 4);
         AddCharacterExpToSkill(rBallCharacter, "Cannons", -iExp / 4);
@@ -400,7 +399,6 @@ float Fort_CannonDamage()
         {
             //AddCharacterExp(rBallCharacter, iExp);
             // boal -->
-            AddCharacterExpToSkill(rBallCharacter, "Accuracy", iExp / 4);
             AddCharacterExpToSkill(rBallCharacter, "Sailing", iExp / 2);
             AddCharacterExpToSkill(rBallCharacter, "Sneak", iExp / 12);;
             AddCharacterExpToSkill(rBallCharacter, "Cannons", iExp / 4);

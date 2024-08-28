@@ -1011,7 +1011,7 @@ void InitCharacter(ref ch, int n)
     SetRandSPECIAL(ch);
     //InitStartParam(ch);
     SetSelfSkill(ch, 1, 1);
-    SetShipSkill(ch, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+    SetShipSkill(ch, 1, 1, 1, 1, 1, 1, 1, 1);
 
 	ch.Skill.FreeSPECIAL  = 0;
     ch.Health.HP        = 60.0; // отличное

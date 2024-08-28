@@ -84,7 +84,7 @@ void SetSpyGlassData()
 	int nFencingSkill = GetCharacterSkill(chref,SKILL_DEFENCE);   // защита
 	int nCannonSkill = GetCharacterSkill(chref,SKILL_GRAPPLING);    // абордаж
 	int nAccuracySkill = GetCharacterSkill(chref,SKILL_CANNONS); // орудия
-	int nNavigationSkill = GetCharacterSkill(chref,SKILL_ACCURACY); // меткость
+	int nNavigationSkill = GetCharacterSkill(chref,SKILL_CANNONS); // меткость SKILL_ACCURACY
 	int nBoardingSkill = GetCharacterSkill(chref,SKILL_SAILING);  // навигация
 	if( !CheckAttribute(arScopeItm,"scope.show.captain_skills") || sti(arScopeItm.scope.show.captain_skills)==0 ) {
 		nFencingSkill = -1;

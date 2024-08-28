@@ -41,7 +41,6 @@ void Ship_BortFire()
             AddCharacterExpToSkill(rCharacter, "Cannons", 1);
             ChangeCrewExp(rCharacter, "Cannoners", 0.1);
         }
-        //AddCharacterExpToSkill(rCharacter, "Accuracy", 1);
     }
     else
     {

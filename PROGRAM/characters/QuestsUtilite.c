@@ -448,14 +448,13 @@ int SetQuestCharacterRank()
 // <-- ugeen
 
 // ==> две функции Эдди для крутизны невероятной.
-void FantomMakeCoolSailor(ref _Character, int _ShipType, string _ShipName, int _CannonsType, int _Sailing, int _Accuracy, int _Cannons)
+void FantomMakeCoolSailor(ref _Character, int _ShipType, string _ShipName, int _CannonsType, int _Sailing, int _Cannons)
 {
     _Character.Ship.Cannons.Type = _CannonsType;
 	_Character.skill.Sailing  = GetCoffDiff(_Sailing, SKILL_MAX);
-	_Character.skill.Accuracy = GetCoffDiff(_Accuracy, SKILL_MAX);
 	_Character.skill.Cannons  = GetCoffDiff(_Cannons, SKILL_MAX);
-	//_Character.skill.Grappling  = GetCoffDiff((_Cannons+_Accuracy)/2, SKILL_MAX); //zagolski. расчет абордажа и защиты
-	//_Character.skill.Defence  = GetCoffDiff((_Sailing+_Accuracy)/2, SKILL_MAX);
+	//_Character.skill.Grappling
+	//_Character.skill.Defence
     
     _Character.DontRansackCaptain = true; //квестовые не сдаются
     _Character.SinkTenPercent     = false; // не тонуть при 10%, не убегать в бою

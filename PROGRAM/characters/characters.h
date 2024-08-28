@@ -59,7 +59,6 @@ string  LoyalityTable[MORALE_TABLE_SIZE];
 #define SPECIAL_L	"Luck"					//18
 
 // --> УДАЛЯЕМ
-#define SKILL_ACCURACY		"Accuracy"
 #define SKILL_COMMERCE		"Commerce"
 #define SKILL_LEADERSHIP	"Leadership"
 // <-- УДАЛЯЕМ

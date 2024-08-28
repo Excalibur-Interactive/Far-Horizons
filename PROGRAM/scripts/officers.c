@@ -300,7 +300,6 @@ void SetOfficerParam(ref Npchar, int _type)
     Npchar.quest.LeadershipModify  = 0;
 	Npchar.quest.FencingModify     = 0;
 	Npchar.quest.SailingModify     = 0;
-	Npchar.quest.AccuracyModify    = 0;
 	Npchar.quest.CannonsModify     = 0;
 	Npchar.quest.GrapplingModify   = 0;
 	Npchar.quest.RepairModify      = 0;
@@ -328,12 +327,10 @@ void SetOfficerParam(ref Npchar, int _type)
 
 		case 1:
 			Npchar.quest.officertype = "cannoner";
-			Npchar.quest.AccuracyModify      = frandSmall(2.0) + 2;
 			Npchar.quest.CannonsModify       = frandSmall(2.0) + 2;
 			Npchar.quest.SneakModify         = Rand(1);
 			
 			//Npchar.skill.Cannons_rate = makeint(MOD_EXP_RATE * upSkill);
-            //Npchar.skill.Accuracy_rate   = makeint(MOD_EXP_RATE * upSkill);
 		break;
 
 		case 2:
@@ -398,7 +395,6 @@ void SetOfficerParam(ref Npchar, int _type)
     Npchar.skill.Leadership    = MiddleK - frandSmall(10*MOD_SKILL_ENEMY_RATE / 1.5) + 7;
 	Npchar.skill.Fencing       = MiddleK - frandSmall(10*MOD_SKILL_ENEMY_RATE / 1.5) + 7;
 	Npchar.skill.Sailing       = MiddleK - frandSmall(10*MOD_SKILL_ENEMY_RATE / 1.5) + 7;
-	Npchar.skill.Accuracy      = MiddleK - frandSmall(10*MOD_SKILL_ENEMY_RATE / 1.5) + 7;
 	Npchar.skill.Cannons       = MiddleK - frandSmall(10*MOD_SKILL_ENEMY_RATE / 1.5) + 7;
 	Npchar.skill.Grappling     = MiddleK - frandSmall(10*MOD_SKILL_ENEMY_RATE / 1.5) + 7;
 	Npchar.skill.Repair        = MiddleK - frandSmall(10*MOD_SKILL_ENEMY_RATE / 1.5) + 7;
@@ -413,7 +409,6 @@ void SetOfficerParam(ref Npchar, int _type)
 	Npchar.skill.Leadership   = makeint(stf(Npchar.skill.Leadership)   + 10*stf(Npchar.quest.LeadershipModify));
 	Npchar.skill.Fencing      = makeint(stf(Npchar.skill.Fencing)      + 10*stf(Npchar.quest.FencingModify));
 	Npchar.skill.Sailing      = makeint(stf(Npchar.skill.Sailing)      + 10*stf(Npchar.quest.SailingModify));
-	Npchar.skill.Accuracy     = makeint(stf(Npchar.skill.Accuracy)     + 10*stf(Npchar.quest.AccuracyModify));
 	Npchar.skill.Cannons      = makeint(stf(Npchar.skill.Cannons)      + 10*stf(Npchar.quest.CannonsModify));
 	Npchar.skill.Grappling    = makeint(stf(Npchar.skill.Grappling)    + 10*stf(Npchar.quest.GrapplingModify));
 	Npchar.skill.Repair       = makeint(stf(Npchar.skill.Repair)       + 10*stf(Npchar.quest.RepairModify));

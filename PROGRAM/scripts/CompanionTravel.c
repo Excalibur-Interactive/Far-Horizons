@@ -205,7 +205,6 @@ void CompanionTravel_SetExperienceToTraveller(ref _NPC)
 	int iExp = (rand(1)+1)+(iRank/2);
 	AddCharacterExpToSkill(_NPC, "Leadership", iExp);
 	AddCharacterExpToSkill(_NPC, "Sailing", iExp);
-	AddCharacterExpToSkill(_NPC, "Accuracy", iExp/2);
 	AddCharacterExpToSkill(_NPC, "Cannons", iExp/2);
 }
 

@@ -214,7 +214,7 @@ float Ship_GetBortFireDelta()
 	float z = GetEventData();
 	float fDistance = GetDistance2D(x, z, stf(aCharacter.Ship.Pos.x), stf(aCharacter.Ship.Pos.z));
 	
-	float fAccuracy = 1.3 - stf(aCharacter.TmpSkill.Accuracy);
+	float fAccuracy = 1.3 - stf(aCharacter.TmpSkill.Cannons);
 	
 	// to_do
 	if (iArcadeSails == 1)
@@ -434,11 +434,6 @@ float Ship_MastDamage()
 			}
 		break;
 	}
-
-
-	//float fAccuracy = stf(rCharacter.TmpSkill.Accuracy);
-
-	//fDamage = fDamage * (1.0 + (0.3 * fAccuracy));
 
 	fDamage = Clampf(fDamage);
 
@@ -1853,7 +1848,6 @@ void Ship_ApplyHullHitpoints(ref rOurCharacter, float fHP, int iKillStatus, int 
 	float fCurHP;
 	float fMinus = 0.0;
 	float fPlus = 0.0;
-	//float fAccuracy = 0.0;
 	
     if (bSeaReloadStarted) { return; }
 	if (fHP <= 0.0) { return; }
@@ -1895,7 +1889,6 @@ void Ship_AddCharacterExp(ref rCharacter, int iExpQuantity)
 	}
 }
 
-
 void ShipDead(int iDeadCharacterIndex, int iKillStatus, int iKillerCharacterIndex)
 {
 	ref rDead, rKillerCharacter, rBaseShip, rKillerBaseShip, sld;
@@ -1919,16 +1912,12 @@ void ShipDead(int iDeadCharacterIndex, int iKillStatus, int iKillerCharacterInde
 			switch (iKillStatus)
 		    {
 			    case KILL_BY_TOUCH:
-	                AddCharacterExpToSkill(rKillerCharacter, "Sailing", stf(rKillerBaseShip.Class) / stf(rBaseShip.Class) * 90);
 	                ChangeCrewExp(rKillerCharacter, "Sailors", 1);
 	                // boal statistic info 17.12.2003 -->
 	                Statistic_AddValue(rKillerCharacter, "KillShip_" + rBaseShip.Class, 1);
 	                // boal statistic info 17.12.2003 <--
 			    break;
 			    case KILL_BY_BALL:
-			        AddCharacterExpToSkill(rKillerCharacter, "Accuracy", stf(rKillerBaseShip.Class) / stf(rBaseShip.Class) * 35);
-			        AddCharacterExpToSkill(rKillerCharacter, "Sailing", stf(rKillerBaseShip.Class) / stf(rBaseShip.Class) * 65);
-			        AddCharacterExpToSkill(rKillerCharacter, "Cannons", stf(rKillerBaseShip.Class) / stf(rBaseShip.Class) * 40);
 			        ChangeCrewExp(rKillerCharacter, "Sailors", 1);
 			        ChangeCrewExp(rKillerCharacter, "Cannoners", 2);
 			        // boal statistic info 17.12.2003 -->
@@ -1943,9 +1932,6 @@ void ShipDead(int iDeadCharacterIndex, int iKillStatus, int iKillerCharacterInde
                     //homo
 			    break;
 			    case KILL_BY_ABORDAGE:
-			        AddCharacterExpToSkill(rKillerCharacter, "Grappling", stf(rKillerBaseShip.Class) / stf(rBaseShip.Class) * 110);
-			        AddCharacterExpToSkill(rKillerCharacter, "Sailing", stf(rKillerBaseShip.Class) / stf(rBaseShip.Class) * 70);
-			        AddCharacterExpToSkill(rKillerCharacter, "Defence", stf(rKillerBaseShip.Class) / stf(rBaseShip.Class) * 60);
 			        ChangeCrewExp(rKillerCharacter, "Sailors", 0.5);
 					// в лаи_бординг ChangeCrewExp(rKillerCharacter, "Soldiers", 4);
 			        // boal statistic info 17.12.2003 -->
@@ -2318,10 +2304,6 @@ void Ship_HullHitEvent()
 		// boal  check skill -->
 		if (!isOurCompanion && IsCompanion(rBallCharacter))
 		{
-            AddCharacterExpToSkill(rBallCharacter, "Accuracy", 15);
-            AddCharacterExpToSkill(rBallCharacter, "Leadership", 2);
-            AddCharacterExpToSkill(rBallCharacter, "Sailing", 15);
-            AddCharacterExpToSkill(rBallCharacter, "Cannons", 15);
             ChangeCrewExp(rBallCharacter, "Sailors", 0.05);
 			ChangeCrewExp(rBallCharacter, "Cannoners", 0.5);
         }
@@ -2334,9 +2316,6 @@ void Ship_HullHitEvent()
 		// boal  check skill -->
 		if (!isOurCompanion && IsCompanion(rBallCharacter))
 		{
-            AddCharacterExpToSkill(rBallCharacter, "Accuracy", 2.5);
-            AddCharacterExpToSkill(rBallCharacter, "Sailing", 1);
-            AddCharacterExpToSkill(rBallCharacter, "Cannons", 1);
             ChangeCrewExp(rBallCharacter, "Cannoners", 0.01);
         }
         // boal <--
@@ -3495,17 +3474,16 @@ void Ship_UpdateTmpSkills(ref rCharacter)
     	aTmpSkill.Sailing   = MakeFloat(GetSummonSkillFromName(rCharacter, SKILL_SAILING)) / SKILL_MAX;
     	aTmpSkill.Repair    = MakeFloat(GetSummonSkillFromName(rCharacter, SKILL_REPAIR)) / SKILL_MAX;
     	aTmpSkill.Fencing   = MakeFloat(GetSummonSkillFromName(rCharacter, SKILL_FENCING)) / SKILL_MAX;
-    	aTmpSkill.Accuracy  = MakeFloat(GetSummonSkillFromName(rCharacter, SKILL_ACCURACY)) / SKILL_MAX;
     	aTmpSkill.Cannons   = MakeFloat(GetSummonSkillFromName(rCharacter, SKILL_CANNONS)) / SKILL_MAX;
 
         if (sti(rCharacter.index) == GetMainCharacterIndex())
         {
             if (SeaCameras.Camera == "SeaDeckCamera")
         	{
-        		aTmpSkill.Accuracy = Clampf(stf(aTmpSkill.Accuracy) + 0.15); // было 0.4
+        		aTmpSkill.Cannons = Clampf(stf(aTmpSkill.Cannons) + 0.10);
         	}
 
-        	if (rand(10) == 3)//boal fix отношений, редко обновляется дял профилактики
+        	if (rand(10) == 3) //boal fix отношений, редко обновляется для профилактики
         	{
         	    DoQuestCheckDelay("NationUpdate", 1.0);
         	}
@@ -3526,10 +3504,10 @@ void Ship_UpdateTmpSkills(ref rCharacter)
 
         if (sti(rCharacter.index) == GetMainCharacterIndex())
     	{
-            rCharacter.TmpSkill.Accuracy  = MakeFloat(GetSummonSkillFromName(rCharacter, SKILL_ACCURACY)) / SKILL_MAX;
+            rCharacter.TmpSkill.Cannons  = MakeFloat(GetSummonSkillFromName(rCharacter, SKILL_CANNONS)) / SKILL_MAX;
             if (SeaCameras.Camera == "SeaDeckCamera")
             {
-                rCharacter.TmpSkill.Accuracy = Clampf(stf(rCharacter.TmpSkill.Accuracy) + 0.15);
+                rCharacter.TmpSkill.Cannons = Clampf(stf(rCharacter.TmpSkill.Cannons) + 0.10);
             }
     	}
 	}
