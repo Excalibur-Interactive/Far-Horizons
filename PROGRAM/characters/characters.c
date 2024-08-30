@@ -354,6 +354,16 @@ void CheckAndSetOverloadMode(ref character)
 // boal <--
 void SetDefaultNormWalk(ref character)
 {
+	// evganat - новая система движения
+	character.actions.walkforward = "walk";
+	character.actions.walkback = "back walk";
+	character.actions.walkright = "right walk";
+	character.actions.walkleft = "left walk";
+	character.actions.runforward = "run";
+	character.actions.runback = "back run";
+	character.actions.runright = "right run";
+	character.actions.runleft = "left run";
+		
 	character.actions.walk = "walk";
 	character.actions.run = "run";
 	character.actions.backwalk = "back walk";
@@ -381,6 +391,16 @@ void SetDefaultNormWalk(ref character)
 
 void SetDefaultFight(ref character)
 {
+	// evganat - новая система движения
+	character.actions.fightwalkforward = "fight walk";
+	character.actions.fightwalkback = "back walk";
+	character.actions.fightwalkright = "right walk";
+	character.actions.fightwalkleft = "left walk";
+	character.actions.fightrunforward = "fight run";
+	character.actions.fightrunback = "back run";
+	character.actions.fightrunright = "right run";
+	character.actions.fightrunleft = "left run";
+		
 	character.actions.fightwalk = "fight walk";
 	character.actions.fightrun = "fight run";
 	character.actions.fightbackwalk = "fight back walk";

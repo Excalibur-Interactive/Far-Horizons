@@ -571,6 +571,7 @@ data = "Turn speed", "5.5"
 	start_time = 6318
 	end_time = 6333
 	speed = 0.8
+	loop = true
 	data = "Blend time", "0.2"		; sec
 	data = "Walk speed", "1.8"		; m/sec
 	data = "Turn speed", "5.5"		; rad/sec
@@ -582,6 +583,7 @@ data = "Turn speed", "5.5"
 	type = reverse
 	start_time = 6849
 	end_time = 6858
+	loop = true
 	speed = 0.8
 	data = "Blend time", "0.2"		; sec
 	data = "Walk speed", "-1.7"		; m/sec
@@ -679,7 +681,7 @@ data = "Turn speed", "5.5"
 ;===========================================================================
 
 ;  IDLES - ДЕЙСТВИЯ СТОЯ ====================================================
-; evganat - idle 1-11
+
 ; просто стоит - звука тут не будет №1
 [idle_1]
 	speed = 1.0
@@ -812,9 +814,10 @@ data = "Turn speed", "5.5"
 
 
 ;ПЕРЕМЕЩЕНИЯ ==============================================================
-; evganat - ходьба
+
 ;Ходьба вперёд
 [walk]
+	speed = 1.0
 	loop = true
 	type = normal
 	start_time = 2
@@ -837,6 +840,32 @@ data = "Turn speed", "5.5"
 	data = "Turn speed", "5.5"		; rad/sec
 	event = "LStep", 6, reverse
 	event = "RStep", 14, reverse
+
+;Ходьба влево
+[left walk]
+	speed = 1.8
+	loop = true
+	type = normal
+	start_time = 12872
+	end_time = 12903
+	data = "Blend time", "0.2"		; sec
+	data = "Walk speed", "1.2"		; m/sec
+	data = "Turn speed", "5.5"		; rad/sec
+	event = "LStep", 12882, reverse
+	event = "RStep", 12897, reverse
+
+;Ходьба вправо
+[right walk]
+	speed = 1.8
+	loop = true
+	type = normal
+	start_time = 12904
+	end_time = 12935
+	data = "Blend time", "0.2"		; sec
+	data = "Walk speed", "1.2"		; m/sec
+	data = "Turn speed", "5.5"		; rad/sec
+	event = "LStep", 12914, reverse
+	event = "RStep", 12929, reverse
 
 ;Идти вниз по лестнице
 [stairs down]
@@ -889,7 +918,7 @@ data = "Turn speed", "5.5"
 	data = "Blend time", "0.2"		; sec
 	data = "Walk speed", "-0.6"		; m/sec
 	data = "Turn speed", "5.5"		; rad/sec
-; evganat - бег
+
 ;Бег вперёд
 [run]
 	speed = 1.2
@@ -936,34 +965,11 @@ data = "Turn speed", "5.5"
 	type = normal
 	start_time = 12791
 	end_time = 12812	
-	data = "Blend time", "0.5"		; sec
+	data = "Blend time", "0.2"		; sec
 	data = "Walk speed", "-3.7"		; m/sec
 	data = "Turn speed", "5.5"		; rad/sec
 	event = "LStep", 12797, normal
 	event = "RStep", 12807, normal
-	
-;Остановка бега вперед, переход в айдл
-[stop forward]
-	type = normal
-	start_time = 12813
-	end_time = 12842
-	speed = 1.8
-	loop = false	
-	data = "Blend time", "0.2"		; sec
-	data = "Walk speed", "5.5"
-	data = "Turn speed", "5.5"
-
-;Выход из айдла, начало бега
-[start forward]
-	type = normal
-	start_time = 12843
-	end_time = 12871
-	speed = 1.8
-	loop = false	
-	data = "Blend time", "0.2"		; sec
-	data = "Walk speed", "5.5"
-	data = "Turn speed", "5.5"
-	event = "Start to forward", 12862, normal
 
 ;Бег по лестнице вверх  
 [run stairs up]
@@ -1017,7 +1023,6 @@ data = "Turn speed", "5.5"
 	data = "Walk speed", "-0.6"		; m/sec
 	data = "Turn speed", "5.5"		; rad/sec	
 	
-; evganat - повороты
 ;Разворот влево
 [turn left]
 	start_time = 220
@@ -1858,5 +1863,4 @@ data = "Turn speed", "5.5"
 	speed = 1.0
 	loop = false	
 	data = "Blend time", "0.2"		; sec
-	
 	
