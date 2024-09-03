@@ -68,12 +68,10 @@ void mOfficer_fc(string qName)
 			}
 			else
 			{
-		Log_SetStringToLog("Офицер " + GetFullName(sld) + " сбежал с корабля " + pchar.ship.name + "");
-
-		if (GetCrewQuantity(pchar) > 0)
-		{
-			AddCharacterExpToSkill(PChar, "Leadership", 200);
-			MunityOnShip("ShipMunity");
+				Log_SetStringToLog("Офицер " + GetFullName(sld) + " сбежал с корабля " + pchar.ship.name + "");
+				if (GetCrewQuantity(pchar) > 0)
+				{
+					MunityOnShip("ShipMunity");
 				}
 				else Pchar.questTemp.MunityOfficerIDX.begin = "0";
 			}
@@ -106,7 +104,6 @@ void mOfficer_fc2(string qName)
 
         if (GetCrewQuantity(pchar) > 0)
 	{
-		AddCharacterExpToSkill(PChar, "Leadership", 200);
 		MunityOnShip("ShipMunity");
 				}
 				else Pchar.questTemp.MunityOfficerIDX.begin = "0";

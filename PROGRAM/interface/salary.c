@@ -157,14 +157,14 @@ void CalculateInfoData()
 	ref mchref,chref;
 
 	mchref = GetMainCharacter();
-	float nLeaderShip = GetSummonSkillFromNameToOld(mchref,SKILL_LEADERSHIP);
+	float nSpeechcraft = GetSummonSkillFromNameToOld(mchref,SKILL_SPEECHCRAFT);
 	nPaymentQ = 0;
 	if( CheckAttribute(mchref,"CrewPayment") )
     {
 		nPaymentQ += makeint(mchref.CrewPayment); // а тут помним все до копейки!
 	}
 	
-	nMoraleDecreaseQ = 40-nLeaderShip;
+	nMoraleDecreaseQ = 40-nSpeechcraft;
 
     SetFormatedText("INFO_TEXT3",MakeMoneyShow(nPaymentQ, MONEY_SIGN,MONEY_DELIVER));
 	if( sti(mchref.Money) < nPaymentQ )

@@ -80,10 +80,9 @@ int GetMoneyForOfficer(ref Npchar)
 }
 int GetMoneyForOfficerFull(ref Npchar)
 {
-    float nLeaderShip = GetSummonSkillFromNameToOld(pchar, SKILL_LEADERSHIP);
-	float nCommerce   = GetSummonSkillFromNameToOld(pchar, SKILL_COMMERCE);
+    float nSpeechcraft = GetSummonSkillFromNameToOld(pchar, SKILL_SPEECHCRAFT);
 	
-	return makeint(GetMoneyForOfficer(Npchar)*2/(nLeaderShip + nCommerce) );
+	return makeint(GetMoneyForOfficer(Npchar)/nSpeechcraft);
 }
 
 float SalaryCoeff_GetSetting(string _param)
@@ -100,11 +99,10 @@ int GetSalaryForShip(ref chref)
     mchref = GetMainCharacter();
 	float SalaryCoeff = 1.0;
 
-	float nLeaderShip = GetSummonSkillFromNameToOld(mchref,SKILL_LEADERSHIP);
-	float nCommerce   = GetSummonSkillFromNameToOld(mchref,SKILL_COMMERCE);
+	float nSpeechcraft = GetSummonSkillFromNameToOld(mchref,SKILL_SPEECHCRAFT);
 
 	float shClass = GetCharacterShipClass(chref);
-	if (shClass   < 1) shClass   =7;
+	if (shClass   < 1) shClass = 7;
 	if (!GetRemovable(chref) && sti(chref.index) != GetMainCharacterIndex()) return 0; // считаем только своих, а то вских сопровождаемых кормить!!!
 	
 	SalaryCoeff = SalaryCoeff_GetSetting("SalaryComplex_Coeff");
@@ -119,12 +117,12 @@ int GetSalaryForShip(ref chref)
 	
 	// экипаж
 	fExp = (GetCrewExp(chref, "Sailors") + GetCrewExp(chref, "Cannoners") + GetCrewExp(chref, "Soldiers")) / 100.00; // средний коэф опыта 0..3
-	nPaymentQ += makeint( SalaryCoeff * fExp * stf((0.5 + MOD_SKILL_ENEMY_RATE/5.0)*200*GetCrewQuantity(chref))/stf(shClass) * (1.05 - (nLeaderShip + nCommerce)/ 40.0) );
+	nPaymentQ += makeint( SalaryCoeff * fExp * stf((0.5 + MOD_SKILL_ENEMY_RATE/5.0)*200*GetCrewQuantity(chref))/stf(shClass) * (1.05 - (nSpeechcraft/20.0) );
     
     // теперь самого капитана и его офицеров (тут  главный герой не считается) так что пассажиров и оффицеров ниже
     if(sti(chref.index) != GetMainCharacterIndex())
     {
-        nPaymentQ += makeint(SalaryCoeff * GetMoneyForOfficer(chref)*2/(nLeaderShip + nCommerce) );
+        nPaymentQ += makeint(SalaryCoeff * GetMoneyForOfficer(chref)/nSpeechcraft);
         // офицеры
         for(i = 1; i < 4; i++)  // в к3 нет офов у компаньона :(
 	    {
@@ -196,9 +194,8 @@ void AddPartyCrewMorale(ref chr, int add)
 
 int GetCharacterRaiseCrewMoraleMoney(ref chr)
 {
-	float nLeaderShip = GetSummonSkillFromNameToOld(GetMainCharacter(),SKILL_LEADERSHIP);
-	float nCommerce   = GetSummonSkillFromNameToOld(GetMainCharacter(),SKILL_COMMERCE); // boal
-	int nPaymentQ = 15 + GetCrewQuantity(chr)*(16 + MOD_SKILL_ENEMY_RATE*5 - nLeaderShip - nCommerce); // boal
+	float nSpeechcraft = GetSummonSkillFromNameToOld(GetMainCharacter(),SKILL_SPEECHCRAFT);
+	int nPaymentQ = 15 + GetCrewQuantity(chr)*(16 + MOD_SKILL_ENEMY_RATE*5 - nSpeechcraft*2);
 	float fExp = (GetCrewExp(chr, "Sailors") + GetCrewExp(chr, "Cannoners") + GetCrewExp(chr, "Soldiers")) / 100.00; // средний коэф опыта 0..3
 	nPaymentQ = makeint(nPaymentQ * fExp + 0.5);	
 	if (nPaymentQ < 5) nPaymentQ = 5;
@@ -325,7 +322,7 @@ int GetCrewPriceForTavern(string sColony)
 	ref rTown = &colonies[iColony];
 	
 	float fExp = (GetCrewExp(rTown, "Sailors") + GetCrewExp(rTown, "Cannoners") + GetCrewExp(rTown, "Soldiers")) / 100.00; // средний коэф опыта 0..3
-	float fSkill = GetSummonSkillFromNameToOld(GetMainCharacter(),SKILL_LEADERSHIP) + GetSummonSkillFromNameToOld(GetMainCharacter(),SKILL_COMMERCE); // 0-20
+	float fSkill = GetSummonSkillFromNameToOld(GetMainCharacter(),SKILL_SPEECHCRAFT)*2; // 0-20
 	int   nCrewCost = makeint((0.5 + MOD_SKILL_ENEMY_RATE/5.0)*30 * (1.0 - fSkill / 40.0));
 	
 	nCrewCost = makeint(fExp*nCrewCost + 0.5);
@@ -336,9 +333,9 @@ int GetCrewPriceForTavern(string sColony)
 
 int GetMaxCrewAble()
 {
-	float nLeaderShip = 0.5 + GetSummonSkillFromNameToOld(pchar, SKILL_LEADERSHIP);
+	float nSpeechcraft = 0.5 + GetSummonSkillFromNameToOld(pchar, SKILL_SPEECHCRAFT);
 	//MOD_SKILL_ENEMY_RATE
-	return makeint(nLeaderShip*(55.0 + 10*(5-MOD_SKILL_ENEMY_RATE) + nLeaderShip * 15.0) + 2*nLeaderShip*abs(REPUTATION_NEUTRAL - sti(pchar.reputation)));
+	return makeint(nSpeechcraft*(55.0 + 10*(5-MOD_SKILL_ENEMY_RATE) + nSpeechcraft * 15.0) + 2*nSpeechcraft*abs(REPUTATION_NEUTRAL - sti(pchar.reputation)));
 }
 
 int GetCurCrewEscadr()

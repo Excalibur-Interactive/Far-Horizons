@@ -1981,11 +1981,11 @@ int GetEnemyHiredCrew()
 	
 	if (CheckAttribute(xi_refCharacter, "Ship.Mode") && xi_refCharacter.Ship.Mode == "War") 
 	{
-		iEnemyHiredCrew = makeint(GetCrewQuantity(xi_refCharacter) * rand( makeint(GetSummonSkillFromName(pchar, SKILL_LEADERSHIP)*0.2))/100.0 + GetCrewQuantity(xi_refCharacter) * rand( makeint(GetCharacterSPECIAL(PChar, SPECIAL_L)*2))/100.0 );
+		iEnemyHiredCrew = makeint(GetCrewQuantity(xi_refCharacter) * rand( makeint(GetSummonSkillFromName(pchar, SKILL_SPEECHCRAFT)*0.2))/100.0 + GetCrewQuantity(xi_refCharacter) * rand( makeint(GetCharacterSPECIAL(PChar, SPECIAL_L)*2))/100.0 );
 	}
 	else // все остальные
 	{
-		iEnemyHiredCrew = makeint(GetCrewQuantity(xi_refCharacter) * rand(makeint(GetSummonSkillFromName(pchar, SKILL_LEADERSHIP)*0.7))/100.0);
+		iEnemyHiredCrew = makeint(GetCrewQuantity(xi_refCharacter) * rand(makeint(GetSummonSkillFromName(pchar, SKILL_SPEECHCRAFT)*0.7))/100.0);
 	}
 	int iDiffCrew = GetMaxCrewQuantity(refCharacter) - GetCrewQuantity(refCharacter);
 	// учет веса экипажа -- если нет места на корабле, то в команду не пойдут :(

@@ -3,7 +3,7 @@
 void SetRandSelfSkill(ref _ch, int _min, int _max)
 {
 	int iDelta = _max-_min;
-	_ch.skill.Leadership = _min + rand(iDelta);
+	_ch.skill.Speechcraft = _min + rand(iDelta);
 	_ch.skill.Fencing = _min + rand(iDelta);
 	_ch.skill.Pistol = _min + rand(iDelta);
 	_ch.skill.Sneak = _min + rand(iDelta);
@@ -13,7 +13,7 @@ void SetRandShipSkill(ref _ch, int _min, int _max)
 {
 	int iDelta = _max-_min;
 	_ch.skill.Sailing = _min + rand(iDelta);
-	_ch.skill.Commerce = _min + rand(iDelta);
+	_ch.skill.Speechcraft = _min + rand(iDelta);
 	_ch.skill.Cannons = _min + rand(iDelta);
 	_ch.skill.Repair = _min + rand(iDelta);
 	_ch.skill.Grappling = _min + rand(iDelta);

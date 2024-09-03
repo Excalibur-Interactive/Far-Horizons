@@ -39,8 +39,7 @@ void CalculateAppropriateSkillsParam(ref NPchar, float  MiddleK, int _complex)
     Npchar.skill.Fencing      = makeint(MiddleK + (frandSmall(fValue) + frandSmall((20* _complex / 3.0)) - 20));
     Npchar.skill.Pistol       = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
 
-    Npchar.skill.Leadership   = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
-    Npchar.skill.Commerce     = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
+    Npchar.skill.Speechcraft   = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
     Npchar.skill.Sailing      = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
     Npchar.skill.Cannons      = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
     Npchar.skill.Grappling    = makeint(MiddleK + (frandSmall(fValue) + frandSmall(fValue) - 30));
@@ -123,7 +122,7 @@ void CalculateAppropriateSkills(ref NPchar)
     	if (rank > (1400 / GetCharacterRankRate(Npchar)))
 		{
             SetSelfSkill(Npchar, SKILL_MAX, SKILL_MAX);
-            SetShipSkill(Npchar, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX);
+            SetShipSkill(Npchar, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX, SKILL_MAX);
 			return;
 		}
         CalculateSkillsFromRank(Npchar, rank);
@@ -133,10 +132,9 @@ void CalculateAppropriateSkills(ref NPchar)
 void SetRankFromSkill(ref Npchar)
 {
     Npchar.rank = 1 + makeint(
-                           sti(Npchar.skill.Pistol) + sti(Npchar.skill.Leadership) + sti(Npchar.skill.Fencing) +
-                           sti(Npchar.skill.Sailing) + sti(Npchar.skill.Cannons) +
-                           sti(Npchar.skill.Grappling) + sti(Npchar.skill.Repair) + sti(Npchar.skill.Defence) +
-                           sti(Npchar.skill.Commerce) + sti(Npchar.skill.Sneak) - 84) / GetCharacterRankRate(Npchar);
+                           sti(Npchar.skill.Pistol) + sti(Npchar.skill.Speechcraft) + sti(Npchar.skill.Fencing) +
+                           sti(Npchar.skill.Sailing) + sti(Npchar.skill.Cannons) + sti(Npchar.skill.Grappling) +
+						   sti(Npchar.skill.Repair) + sti(Npchar.skill.Defence) + sti(Npchar.skill.Sneak) - 84) / GetCharacterRankRate(Npchar);
     if (sti(Npchar.rank) < 1)
     {
         Npchar.rank = 1;
@@ -262,25 +260,25 @@ void Fantom_SetRandomSkills(ref rFantom, string sFantomType)
 		case "trade":
 		// комментируем лишеие - все равно ничего не меняют boal
             // умножение на 10 идет внутри метода
-            aFSkills.Leadership = Fantom_CalcSkill(rFantom, SKILL_LEADERSHIP,iSClass, 0, 0, 0, 1, 1, 2, 2, 3, 4);
+            aFSkills.Speechcraft = Fantom_CalcSkill(rFantom, SKILL_SPEECHCRAFT,iSClass, 0, 0, 0, 1, 1, 2, 2, 3, 4);
 			aFSkills.Cannons	= Fantom_CalcSkill(rFantom, SKILL_CANNONS,	iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 5);
 			aFSkills.Sailing	= Fantom_CalcSkill(rFantom, SKILL_SAILING,	iSClass, 0, 0, 0, 1, 1, 2, 3, 6, 7);
 			aFSkills.Defence	= Fantom_CalcSkill(rFantom, SKILL_DEFENCE,	iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 5);
 		break;
 		case "war":
-            aFSkills.Leadership = Fantom_CalcSkill(rFantom, SKILL_LEADERSHIP,iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 5);
+            aFSkills.Speechcraft = Fantom_CalcSkill(rFantom, SKILL_SPEECHCRAFT,iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 5);
 			aFSkills.Cannons	= Fantom_CalcSkill(rFantom, SKILL_CANNONS,	iSClass, 0, 0, 0, 1, 2, 3, 4, 7, 8);
 			aFSkills.Sailing	= Fantom_CalcSkill(rFantom, SKILL_SAILING,	iSClass, 0, 0, 0, 1, 2, 3, 4, 6, 7);
 			aFSkills.Defence	= Fantom_CalcSkill(rFantom, SKILL_DEFENCE,	iSClass, 0, 0, 0, 1, 2, 3, 4, 5, 7);
 		break;
 		case "pirate":
-            aFSkills.Leadership = Fantom_CalcSkill(rFantom, SKILL_LEADERSHIP,iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 4);
+            aFSkills.Speechcraft = Fantom_CalcSkill(rFantom, SKILL_SPEECHCRAFT,iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 4);
 			aFSkills.Cannons	= Fantom_CalcSkill(rFantom, SKILL_CANNONS,	iSClass, 0, 0, 0, 2, 3, 4, 5, 6, 7);
 			aFSkills.Sailing	= Fantom_CalcSkill(rFantom, SKILL_SAILING,	iSClass, 0, 0, 0, 2, 3, 4, 5, 7, 8);
             aFSkills.Defence	= Fantom_CalcSkill(rFantom, SKILL_DEFENCE,	iSClass, 0, 0, 0, 1, 2, 3, 4, 5, 6);
 		break;
 		case "special":
-            aFSkills.Leadership = Fantom_CalcSkill(rFantom, SKILL_LEADERSHIP,iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 4);
+            aFSkills.Speechcraft = Fantom_CalcSkill(rFantom, SKILL_SPEECHCRAFT,iSClass, 0, 0, 0, 1, 1, 2, 3, 4, 4);
 			aFSkills.Cannons	= Fantom_CalcSkill(rFantom, SKILL_CANNONS,	iSClass, 0, 0, 0, 2, 3, 4, 5, 6, 7);
 			aFSkills.Sailing	= Fantom_CalcSkill(rFantom, SKILL_SAILING,	iSClass, 0, 0, 0, 2, 3, 4, 5, 7, 8);
             aFSkills.Defence	= Fantom_CalcSkill(rFantom, SKILL_DEFENCE,	iSClass, 0, 0, 0, 1, 2, 3, 4, 5, 6);			

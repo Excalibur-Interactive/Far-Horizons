@@ -440,4 +440,3 @@ string LAi_tmpl_fight_GetFarIdle()
 	}
 	return ani;
 }
-

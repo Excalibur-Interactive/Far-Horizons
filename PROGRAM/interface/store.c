@@ -824,10 +824,7 @@ void TransactionOK()
 		moneyback = makeint(iShipPrice*stf(GameInterface.qty_edit.str) / iUnits + 0.5);
 		pchar.money = sti(pchar.money)  - moneyback;
 		Statistic_AddValue(Pchar, "Money_spend", moneyback);
-		// boal  check skill -->
-        AddCharacterExpToSkill(pchar, "Commerce", moneyback / 800.0);
     	WaitDate("",0,0,0, 0, 15);
-        // boal <--
 	}
  	else
 	{ // SELL
@@ -844,10 +841,7 @@ void TransactionOK()
 		moneyback = makeint(iStorePrice*stf(GameInterface.qty_edit.str) / iUnits + 0.5);
   		pchar.money = sti(pchar.money)  + moneyback;
 		Statistic_AddValue(Pchar, "Money_get", moneyback);
-		// boal  check skill -->
-        AddCharacterExpToSkill(pchar, "Commerce", moneyback / 1600.0);
     	WaitDate("",0,0,0, 0, 15);
-        // boal <--
 	}
 	AddToTable(FilterMode);
 	EndTooltip();
@@ -1119,7 +1113,6 @@ void Autotrade_Goods(ref rChar)
 	if(iMoneyQty != 0) // Если хоть что-то продали или купили
 	{
 		AddmoneyToCharacter(PChar, iMoneyQty);
-		AddCharacterExpToSkill(rTreasurer, "Commerce", MakeInt(abs(iMoneyQty) / 800) + rand(1) + 2) // Экспа в навык торговли
 	}
 }
 // Hokkins: использовал код из шип пака - надеюсь они не будут против <--

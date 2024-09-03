@@ -269,7 +269,7 @@ void ProcessDialogEvent()
 		
 		//  карты -->
         case "Card_Game":
-            if (!CheckNPCQuestDate(npchar, "Card_date_Yet") || sti(PChar.rank) < 4 || isBadReputation(pchar, 50) || GetCharacterSkillToOld(pchar, SKILL_LEADERSHIP) < rand(5))
+            if (!CheckNPCQuestDate(npchar, "Card_date_Yet") || sti(PChar.rank) < 4 || isBadReputation(pchar, 50) || GetCharacterSkillToOld(pchar, SKILL_SPEECHCRAFT) < rand(5))
             {
                 SetNPCQuestDate(npchar, "Card_date_Yet");
                 dialog.text = "Я не буду играть в азартные игры с разными проходимцами!";
@@ -394,7 +394,7 @@ void ProcessDialogEvent()
 
 	    //  Dice -->
         case "Dice_Game":
-            if (!CheckNPCQuestDate(npchar, "Dice_date_Yet") || sti(PChar.rank) < 4 || isBadReputation(pchar, 50) || GetCharacterSkillToOld(pchar, SKILL_LEADERSHIP) < rand(5))
+            if (!CheckNPCQuestDate(npchar, "Dice_date_Yet") || sti(PChar.rank) < 4 || isBadReputation(pchar, 50) || GetCharacterSkillToOld(pchar, SKILL_SPEECHCRAFT) < rand(5))
             {
                 SetNPCQuestDate(npchar, "Dice_date_Yet");
                 dialog.text = "Я не буду играть в азартные игры с разными проходимцами!";
@@ -543,7 +543,7 @@ void ProcessDialogEvent()
             }
             else
             {
-                if (bBettaTestMode || GetSummonSkillFromNameToOld(Pchar, SKILL_LEADERSHIP) > rand(5) || CheckCharacterItem(Pchar, "patent_" + NationShortName(sti(NPChar.nation))))// когда патен всегда
+                if (bBettaTestMode || GetSummonSkillFromNameToOld(Pchar, SKILL_SPEECHCRAFT) > rand(5) || CheckCharacterItem(Pchar, "patent_" + NationShortName(sti(NPChar.nation))))// когда патен всегда
                 {
                     cn = FindLocation(offref.location);
                 	if(cn < 0)
@@ -634,7 +634,7 @@ void ProcessDialogEvent()
             offref = GetCharacter(sti(pchar.GenQuest.GetPrisonerIdx));
             attrLoc =  "Итак, это капитан " + GetFullName(offref) + ", " + NationNameMan(sti(offref.nation))+ ".";
             // цена зависит от губернатора
-            qty = makeint(sti(offref.rank)*(800 + GetCharacterSPECIALSimple(NPChar, SPECIAL_L)*100) + GetCharacterSkillToOld(offref, "Leadership")*500 + GetCharacterSkillToOld(pchar, "commerce")*500);
+            qty = makeint(sti(offref.rank)*(800 + GetCharacterSPECIALSimple(NPChar, SPECIAL_L)*100) + GetCharacterSkillToOld(offref, "Speechcraft")*1000);
             if (sti(offref.nation) == sti(NPChar.nation))
             {
                 attrLoc = attrLoc + " Я готов выкупить соотечественника за " + FindRussianMoneyString(qty) + ".";
@@ -670,17 +670,13 @@ void ProcessDialogEvent()
 			AddMoneyToCharacter(pchar, sti(pchar.PrisonerSellPrice));
 			if (sti(offref.nation) == sti(NPChar.nation))
             {
-                AddCharacterExpToSkill(pchar, "Commerce", 25);
+               //to_do
             }
             else
             {
                 if (sti(offref.nation) == PIRATE)
                 {
                     ChangeCharacterReputation(pchar, -2);
-                }
-                else
-                {
-                    AddCharacterExpToSkill(pchar, "Commerce", 5);
                 }
             }
 
@@ -764,7 +760,6 @@ void ProcessDialogEvent()
         
         case "City":
             ChangeCharacterHunterScore(GetMainCharacter(), NationShortName(sti(NPChar.nation)) + "hunter", 40);
-            AddCharacterExpToSkill(GetMainCharacter(), "Leadership", 300);
 
             Pchar.GenQuestFort.fortCharacterIdx = FortChref.index;
             AddDialogExitQuest("Residence_Captured_Any");
@@ -849,7 +844,6 @@ void ProcessDialogEvent()
 			NPChar.NoGiveMoney = true;
 
             ChangeCharacterReputation(GetMainCharacter(), 5);
-            AddCharacterExpToSkill(GetMainCharacter(), "Leadership", 500);
             AddCharacterExpToSkill(GetMainCharacter(), "Sneak", 300);
             SetNationRelationBoth(sti(PChar.nation), sti(NPChar.nation), RELATION_ENEMY);
 

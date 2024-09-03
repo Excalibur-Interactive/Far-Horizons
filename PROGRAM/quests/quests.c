@@ -1958,7 +1958,6 @@ int TransferGoods_StartTransfer(ref rChar, string sColony) // rChar - кому �
 	if(iMoneyQty != 0) // Если хоть что-то продали или купили
 	{
 		AddmoneyToCharacter(PChar, iMoneyQty);
-		AddCharacterExpToSkill(rTreasurer, "Commerce", MakeInt(abs(iMoneyQty) / 800) + rand(1) + 2) // Экспа в навык торговли
 	}
 	
 	return buyGoodsWeight;

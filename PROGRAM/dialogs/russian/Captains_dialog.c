@@ -142,7 +142,7 @@ void ProcessDialogEvent()
 		break;
         // карты -->
         case "Card_Game":
-            if (!CheckNPCQuestDate(npchar, "Card_date_Yet") || isBadReputation(pchar, 30) || GetCharacterSkillToOld(pchar, SKILL_LEADERSHIP) < rand(3))
+            if (!CheckNPCQuestDate(npchar, "Card_date_Yet") || isBadReputation(pchar, 30) || GetCharacterSkillToOld(pchar, SKILL_SPEECHCRAFT) < rand(3))
             {
                 SetNPCQuestDate(npchar, "Card_date_Yet");
                 dialog.text = "Я не буду играть в азартные игры с разными проходимцами!";
@@ -231,7 +231,7 @@ void ProcessDialogEvent()
 	    // карты <--
 	    //  Dice -->
         case "Dice_Game":
-            if (!CheckNPCQuestDate(npchar, "Dice_date_Yet") || isBadReputation(pchar, 30) || GetCharacterSkillToOld(pchar, SKILL_LEADERSHIP) < rand(3))
+            if (!CheckNPCQuestDate(npchar, "Dice_date_Yet") || isBadReputation(pchar, 30) || GetCharacterSkillToOld(pchar, SKILL_SPEECHCRAFT) < rand(3))
             {
                 SetNPCQuestDate(npchar, "Dice_date_Yet");
                 dialog.text = "Я не буду играть в азартные игры с разными проходимцами!";
@@ -402,7 +402,7 @@ void ProcessDialogEvent()
             }
             else
             {
-                if(rand(21) > (GetSummonSkillFromNameToOld(PChar, SKILL_GRAPPLING) + GetSummonSkillFromNameToOld(PChar, SKILL_LEADERSHIP)) )
+                if(rand(21) > (GetSummonSkillFromNameToOld(PChar, SKILL_GRAPPLING) + GetSummonSkillFromNameToOld(PChar, SKILL_SPEECHCRAFT)) )
                 {
                     Dialog.text = "Напрасно вы затеяли свое грязное дело, капитан, на борту моего корабля. Я проявлю милосердие и позволю вам вернуться на свой корабль и утонуть вместе с ним.";
                     link.l1 = "Мы еще посмотрим, кто сегодня пойдет на корм акулам!";
@@ -446,7 +446,6 @@ void ProcessDialogEvent()
 			Link.l1.go = "exit";
 			AddMoneyToCharacter(pchar, sti(Pchar.GenQuest.MoneyForCaptureShip));
 			ChangeCharacterReputation(pchar, -5);
-			AddCharacterExpToSkill(pchar, "Leadership", 20);
 			ChangeCharacterHunterScore(pchar, NationShortName(sti(NPChar.nation)) + "hunter", 7 + rand(10));
         break;
 

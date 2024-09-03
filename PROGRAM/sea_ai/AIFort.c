@@ -436,7 +436,6 @@ void Fort_SetAbordageMode(ref rKillerCharacter, ref rFortCharacter)
 	{
 		// boal -->
 		AddCharacterExpToSkillSquadron(rKillerCharacter, "Grappling", 300);
-		AddCharacterExpToSkillSquadron(rKillerCharacter, "Leadership", 150);
 		AddCharacterExpToSkillSquadron(rKillerCharacter, "Sneak", 35);
 		AddCharacterExpToSkillSquadron(rKillerCharacter, "Cannons", 75);
 	    // boal <--

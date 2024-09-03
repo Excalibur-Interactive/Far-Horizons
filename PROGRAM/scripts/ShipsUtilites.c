@@ -1034,15 +1034,15 @@ int GetShipSellPrice(ref _chr, ref _shipyard)
 	price = makeint(price - 1.5*GetSailRepairCost(st, GetSailDamagePercent(_chr), _shipyard));
 	price = makeint(price - 1.5*GetHullRepairCost(st, GetHullDamagePercent(_chr), _shipyard));
 
-	float nCommerce   = GetSummonSkillFromNameToOld(GetMainCharacter(), SKILL_COMMERCE) + 0.001;
+	float nSpeechcraft = GetSummonSkillFromNameToOld(GetMainCharacter(), SKILL_SPEECHCRAFT) + 0.001;
 
-	if(CheckOfficersPerk(pchar,"AdvancedCommerce"))	{ nCommerce += 4; }
+	if(CheckOfficersPerk(pchar,"AdvancedCommerce"))	{ nSpeechcraft += 4; }
 	else
 	{
-		if(CheckOfficersPerk(pchar,"BasicCommerce"))	{ nCommerce += 2; }
+		if(CheckOfficersPerk(pchar,"BasicCommerce"))	{ nSpeechcraft += 2; }
 	}
 
-	price = price - price / (nCommerce*10.5);
+	price = price - price / (nSpeechcraft*10.5);
 
 	ref rRealShip = GetRealShip(st);
 
@@ -1062,15 +1062,15 @@ int GetShipSellPrice(ref _chr, ref _shipyard)
 int GetShipBuyPrice(int iType, ref _shipyard)
 {
 	// boal учет скилов торговли 22.01.2004 -->
-	float nCommerce   = GetSummonSkillFromNameToOld(GetMainCharacter(), SKILL_COMMERCE);
+	float nSpeechcraft = GetSummonSkillFromNameToOld(GetMainCharacter(), SKILL_SPEECHCRAFT);
 
-    if(CheckOfficersPerk(pchar,"AdvancedCommerce"))	{ nCommerce += 4; }
+    if(CheckOfficersPerk(pchar,"AdvancedCommerce"))	{ nSpeechcraft += 4; }
 	else
 	{
-		if(CheckOfficersPerk(pchar,"BasicCommerce"))	{ nCommerce += 2; }
+		if(CheckOfficersPerk(pchar,"BasicCommerce"))	{ nSpeechcraft += 2; }
 	}
 
-    return makeint(GetShipPriceByType(iType, _shipyard) + GetShipPriceByType(iType, _shipyard)/(nCommerce*10));
+    return makeint(GetShipPriceByType(iType, _shipyard) + GetShipPriceByType(iType, _shipyard)/(nSpeechcraft*10));
     // boal 22.01.2004 <--
 }
 
@@ -1208,12 +1208,11 @@ int GetPortManPrice(int Price, ref NPChar)
 // ugeen --> альтернативный расчет стоянки корабля в ПУ
 int GetPortManPriceExt(ref NPChar, ref chref)
 {
-	float fLeadership = 1.5 - GetSummonSkillFromName(pchar, SKILL_LEADERSHIP)/120.0; // учитываем авторитет
-	float fCommerce = 1.5 - GetSummonSkillFromName(pchar, SKILL_COMMERCE)/120.0; // учитываем торговлю
+	float fSpeechcraft = 1.5 - GetSummonSkillFromName(pchar, SKILL_SPEECHCRAFT)/120.0;
 	float fRelation = 1.0; // учитываем  - родная нация или нет
 	
 	if(sti(NPChar.nation) == GetBaseHeroNation()) fRelation = 0.5; // если нация родная- снижаем цену в два раза
-	int price = makeint(200 * MOD_SKILL_ENEMY_RATE * 1.56 * sqr(7.7 - sti(RealShips[sti(chref.Ship.Type)].Class)) * (1 + 0.5 * GetNationRelation2MainCharacter(sti(NPChar.nation))) * fRelation * fLeadership * fCommerce);
+	int price = makeint(200 * MOD_SKILL_ENEMY_RATE * 1.56 * sqr(7.7 - sti(RealShips[sti(chref.Ship.Type)].Class)) * (1 + 0.5 * GetNationRelation2MainCharacter(sti(NPChar.nation))) * fRelation * fSpeechcraft * fSpeechcraft);
 	
 	return price;
 }

@@ -649,7 +649,7 @@ void LAi_ReloadEndFade()
 		float fDefenceSkill = 0.9 + MakeFloat(GetSummonSkillFromName(mchar, SKILL_DEFENCE)) / SKILL_MAX;
 		int deadCrew    = makeint((boarding_player_base_crew - crew) / fDefenceSkill + 0.3); // бонус выжившим
 		int deadCrewWOMedic = makeint(boarding_player_base_crew - crew); // без бонуса
-		float leaderSkill = GetSummonSkillFromNameToOld(mchar, SKILL_LEADERSHIP);
+		float leaderSkill = GetSummonSkillFromNameToOld(mchar, SKILL_SPEECHCRAFT);
 		int iTemp;
 		if (leaderSkill < 1) leaderSkill = 1; //fix
 		
@@ -1178,8 +1178,8 @@ bool CheckForSurrender(ref mchr, ref echr, int _deck)
 	float fRep    = abs(REPUTATION_NEUTRAL - sti(mchr.reputation)) / 50.0; // приведение к 0..1
 	float emorale = stf(echr.ship.crew.morale) / MORALE_MAX; // 0..1  это рандом
 	float mmorale = stf(mchr.ship.crew.morale) / MORALE_MAX; // 0..1
-	float mskill  = (GetSummonSkillFromNameToOld(mchr, "Leadership") + GetSummonSkillFromNameToOld(mchr, "Grappling")) / 20.0;  // 0..10
-	float eskill  = (GetCharacterSkillToOld(echr, "Leadership") + GetCharacterSkillToOld(echr, "Defence")) / 20.0;    // 0..10
+	float mskill  = (GetSummonSkillFromNameToOld(mchr, "Speechcraft") + GetSummonSkillFromNameToOld(mchr, "Grappling")) / 20.0;  // 0..10
+	float eskill  = (GetCharacterSkillToOld(echr, "Speechcraft") + GetCharacterSkillToOld(echr, "Defence")) / 20.0;    // 0..10
 
     mcrew = mcrew * (mcrew * GetCrewExp(mchr, "Soldiers")) / (GetOptCrewQuantity(mchr) * GetCrewExpRate()); 
     ecrew = ecrew * (ecrew * GetCrewExp(echr, "Soldiers")) / (GetOptCrewQuantity(echr) * GetCrewExpRate());  // это рандом, а значит случайность

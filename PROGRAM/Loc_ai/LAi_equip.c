@@ -1,7 +1,7 @@
 #define PERK_TEMPLATE_SHIPDEFENCE	0	// 3 perks
 #define PERK_TEMPLATE_REPAIR		1	// 2 perks
 #define PERK_TEMPLATE_CANNONS		2	// 8 perks
-#define PERK_TEMPLATE_COMMERCE		3	// 5 perks
+#define PERK_TEMPLATE_SPEECHCRAFT	3	// 5 perks
 #define PERK_TEMPLATE_SAILING		4	// 5 perks
 #define PERK_TEMPLATE_GRAPPLING		5	// 3 perks
 #define PERK_TEMPLATE_MELEE		    6	// 9 perks
@@ -267,9 +267,9 @@ void LAi_NPC_EquipPerk(ref chr, string kind)
 		break;
 
 		case "treasurer" :
-			PerkTemplates[PERK_TEMPLATE_COMMERCE] = makeint((rank + rand(1)) / 5.0 + 1);
-			PerkTemplates[PERK_TEMPLATE_REPAIR]   = makeint((rank + rand(3)) / 5.0);
-			PerkTemplates[PERK_TEMPLATE_MELEE]    = makeint((rank + rand(3)) / 6.0);
+			PerkTemplates[PERK_TEMPLATE_SPEECHCRAFT] = makeint((rank + rand(1)) / 5.0 + 1);
+			PerkTemplates[PERK_TEMPLATE_REPAIR]      = makeint((rank + rand(3)) / 5.0);
+			PerkTemplates[PERK_TEMPLATE_MELEE]       = makeint((rank + rand(3)) / 6.0);
 			PerkTemplates[PERK_TEMPLATE_SHIPDEFENCE] = makeint((rank + rand(4)) / 7.0 + 1);
 		break;
 
@@ -296,7 +296,7 @@ void LAi_NPC_EquipPerk(ref chr, string kind)
 	NumPerks[PERK_TEMPLATE_SHIPDEFENCE] = 3;
 	NumPerks[PERK_TEMPLATE_REPAIR]      = 4;
 	NumPerks[PERK_TEMPLATE_CANNONS]     = 8;
-	NumPerks[PERK_TEMPLATE_COMMERCE]    = 2;
+	NumPerks[PERK_TEMPLATE_SPEECHCRAFT] = 2;
 	NumPerks[PERK_TEMPLATE_SAILING]     = 8;
 	NumPerks[PERK_TEMPLATE_GRAPPLING]   = 5;
 	NumPerks[PERK_TEMPLATE_MELEE]       = 12;

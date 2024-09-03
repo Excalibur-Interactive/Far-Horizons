@@ -417,9 +417,9 @@ void ProcessDialogEvent()
 		break;
 
 		case "trade":
-			if (GetSummonSkillFromNameToOld(pchar, SKILL_COMMERCE) >= Rand(12) && (sti(Npchar.quest.OfficerPrice) - GetCharacterSkillToOld(Pchar, "commerce")*100) >= sti(Npchar.quest.OfficerLowPrice))// bug fix
+			if (GetSummonSkillFromNameToOld(pchar, SKILL_SPEECHCRAFT) >= Rand(12) && (sti(Npchar.quest.OfficerPrice) - GetCharacterSkillToOld(Pchar, SKILL_SPEECHCRAFT)*100) >= sti(Npchar.quest.OfficerLowPrice))// bug fix
 			{
-				Npchar.quest.OfficerPrice = makeint(makeint(Npchar.quest.OfficerPrice) - GetCharacterSkillToOld(Pchar, "commerce")*100); // пусть будет коммерция перса голой
+				Npchar.quest.OfficerPrice = makeint(makeint(Npchar.quest.OfficerPrice) - GetCharacterSkillToOld(Pchar, "Speechcraft")*100); // пусть будет коммерция перса голой
 				dialog.text = "Хорошо... Пожалуй, я готов согласиться даже на " + Npchar.quest.OfficerPrice + " песо. Ну как?";
 				Link.l1 = "Вот это уже лучше. Ты принят.";
 				Link.l1.go = "hire";				
@@ -1112,7 +1112,7 @@ void ProcessDialogEvent()
 
         case "Gover_Tax":
             iTemp = GetNpcQuestPastDayParam(NPChar, "StartTaxDate");
-            iTax  = makeint((GetCharacterSkillSimple(NPChar, SKILL_COMMERCE) + GetCharacterSkillSimple(NPChar, SKILL_LEADERSHIP)) / 2);
+            iTax  = GetCharacterSkillSimple(NPChar, SKILL_SPEECHCRAFT);
             sld = GetColonyByIndex(sti(NPChar.ColonyIdx));
 			if (CheckAttribute(sld, "FortValue"))
 			{

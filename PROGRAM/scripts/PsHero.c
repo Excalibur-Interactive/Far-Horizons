@@ -395,8 +395,8 @@ void PGG_SetUpForTask(ref chr)
 		iQuantityGoods = GetSquadronFreeSpace(chr, iTradeGoods);
 		iQuantityGoods = iQuantityGoods - rand(makeint(iQuantityGoods/3)) - 10;
 		// 1.2.3 Это лишние миллионы в ПГГ
-		//iMoney = makeint((iQuantityGoods * sti(Goods[iTradeGoods].Weight) / sti(Goods[iTradeGoods].Units)) * (4+rand(3) + GetSummonSkillFromNameToOld(chr, SKILL_COMMERCE)) + 0.5);
-		iMoney = makeint((iQuantityGoods / sti(Goods[iTradeGoods].Units)) * sti(Goods[iTradeGoods].Cost) * GetSummonSkillFromNameToOld(chr, SKILL_COMMERCE)/8);
+		//iMoney = makeint((iQuantityGoods * sti(Goods[iTradeGoods].Weight) / sti(Goods[iTradeGoods].Units)) * (4+rand(3) + GetSummonSkillFromNameToOld(chr, SKILL_SPEECHCRAFT)) + 0.5);
+		iMoney = makeint((iQuantityGoods / sti(Goods[iTradeGoods].Units)) * sti(Goods[iTradeGoods].Cost) * GetSummonSkillFromNameToOld(chr, SKILL_SPEECHCRAFT)/8);
 	
 		if (iQuantityGoods < 0) iQuantityGoods = 0;
 		AddCharacterGoods(chr, iTradeGoods, iQuantityGoods);
@@ -435,7 +435,6 @@ void PGG_UpdateStats(ref chr, string sExpType)
 			//время кача в часах
 			fMod = MOD_SKILL_ENEMY_RATE + rand(12);
 			fMod = fMod*EXP_MODIFIER; 
-			AddCharacterExpToSkill(chr, SKILL_COMMERCE, fMod*25.2);
 		}
 		else
 		{
@@ -459,9 +458,7 @@ void PGG_UpdateStats(ref chr, string sExpType)
 		switch (chr.PGGAi.Task)
 		{
 		case PGG_TASK_WORKONMAYOR:
-            AddCharacterExpToSkill(chr, SKILL_LEADERSHIP, 20 + MOD_SKILL_ENEMY_RATE + rand(MOD_SKILL_ENEMY_RATE + 40));
-		    AddCharacterExpToSkill(chr, SKILL_COMMERCE, 3 + MOD_SKILL_ENEMY_RATE);
-			iMoney = Makeint(sti(chr.rank)*200 + (GetSummonSkillFromNameToOld(chr, SKILL_LEADERSHIP)*30 + 700 + rand(20)*100));
+			iMoney = Makeint(sti(chr.rank)*200 + (GetSummonSkillFromNameToOld(chr, SKILL_SPEECHCRAFT)*30 + 700 + rand(20)*100));
 			// + Кач за боевки
 			iRnd = rand(100);
 			//убить пирата
@@ -531,9 +528,7 @@ int PGG_AddShipsBattleExp(ref chr, int _shipsNum)
 		i = sti(chr.ship.crew.quantity);
 		AddCharacterExpToSkill(chr, SKILL_FENCING, fMod*FRAND(233.4));
 		AddCharacterExpToSkill(chr, SKILL_PISTOL, fMod*3.48);
-		AddCharacterExpToSkill(chr, SKILL_LEADERSHIP, fMod*(2.4 + fTmp*25));
 		AddCharacterExpToSkill(chr, SKILL_DEFENCE, fMod*(1.0 + fTmp*40));
-		AddCharacterExpToSkill(chr, SKILL_COMMERCE, fMod * 50 * fTmp);
 		AddCharacterExpToSkill(chr, SKILL_REPAIR, fMod * 60 * fTmp);
 
 		AddCharacterExpToSkill(chr, SKILL_GRAPPLING, ((1+i-rand(i))/3+0.5+110) + (fMod * 120 * fTmp));

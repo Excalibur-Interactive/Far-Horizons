@@ -41,7 +41,7 @@ int GetStoreGoodsQuantity(ref _refStore,int _Goods)
 }
 int GetStoreGoodsPrice(ref _refStore, int _Goods, int _PriceType, ref chref, int _qty)
 {
-	float _TradeSkill = GetSummonSkillFromNameToOld(chref,SKILL_COMMERCE); // 0..10.0
+	float _TradeSkill = GetSummonSkillFromNameToOld(chref,SKILL_SPEECHCRAFT); // 0..10.0
 	aref refGoods;
 	string tmpstr = Goods[_Goods].name;
 	int basePrice = MakeInt(Goods[_Goods].Cost);
@@ -101,7 +101,7 @@ int GetStoreGoodsPrice(ref _refStore, int _Goods, int _PriceType, ref chref, int
 float GetStoreGoodsRndPriceModify(ref _refStore, int _Goods, int _PriceType, ref chref, int _price)
 {
     float skillModify;
-	float _TradeSkill = GetSummonSkillFromNameToOld(chref,SKILL_COMMERCE);
+	float _TradeSkill = GetSummonSkillFromNameToOld(chref,SKILL_SPEECHCRAFT);
 	aref refGoods;
 	string tmpstr = Goods[_Goods].name;
 	int basePrice = MakeInt(Goods[_Goods].Cost);

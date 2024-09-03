@@ -488,7 +488,6 @@ void TWN_Capture_Forts()
         	PlaySound("Boarding_1");
         	if (isCityHasFort(sld.City))// довесок после форта
             {
-            	AddCharacterExpToSkillSquadron(Pchar, "Leadership", 230);
 			    AddCharacterExpToSkillSquadron(Pchar, "Sailing", 200);
 			    AddCharacterExpToSkillSquadron(Pchar, "Sneak", 200);
 		    }

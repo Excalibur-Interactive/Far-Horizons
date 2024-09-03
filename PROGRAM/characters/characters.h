@@ -58,11 +58,6 @@ string  LoyalityTable[MORALE_TABLE_SIZE];
 #define SPECIAL_A	"Agility"
 #define SPECIAL_L	"Luck"					//18
 
-// --> УДАЛЯЕМ
-#define SKILL_COMMERCE		"Commerce"
-#define SKILL_LEADERSHIP	"Leadership"
-// <-- УДАЛЯЕМ
-
 #define SPECIAL_TYPE	"SPECIAL"
 #define SKILL_TYPE	    "Skill"
 

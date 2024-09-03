@@ -626,10 +626,7 @@ void TransactionOK()
 		moneyback = makeint(iShipPrice*stf(GameInterface.qty_edit.str) / iUnits + 0.5);
 		pchar.money = sti(pchar.money)  - moneyback;
 		Statistic_AddValue(Pchar, "Money_spend", moneyback);
-		// boal  check skill -->
-        AddCharacterExpToSkill(pchar, "Commerce", moneyback / 600);
     	WaitDate("",0,0,0, 0, 15);
-        // boal <--
 	}
  	else
 	{ // SELL
@@ -646,10 +643,7 @@ void TransactionOK()
 		moneyback = makeint(iStorePrice*stf(GameInterface.qty_edit.str) / iUnits + 0.5);
   		pchar.money = sti(pchar.money)  + moneyback;
 		Statistic_AddValue(Pchar, "Money_get", moneyback);
-		// boal  check skill -->
-        AddCharacterExpToSkill(pchar, "Commerce", moneyback / 1200);
     	WaitDate("",0,0,0, 0, 15);
-        // boal <--
 	}
 	AddToTable();
 	EndTooltip();

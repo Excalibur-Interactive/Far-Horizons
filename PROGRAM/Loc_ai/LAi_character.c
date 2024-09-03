@@ -161,7 +161,7 @@ void LAi_AlcoholSetDrunk(aref chr, float alcoholDegree, float time)
 		chr.chr_ai.drunk.skill.Pistol       = -20;
 		//chr.chr_ai.drunk.skill.Fortune      = -20;
 		chr.chr_ai.drunk.skill.Sneak        = -20;
-		chr.chr_ai.drunk.skill.Leadership   = -20;
+		chr.chr_ai.drunk.skill.Speechcraft   = -20;
 	}
 	else
 	{

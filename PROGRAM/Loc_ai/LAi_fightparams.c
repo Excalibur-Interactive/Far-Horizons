@@ -819,7 +819,7 @@ void LAi_ApplyCharacterFireDamage(aref attack, aref enemy, float kDist)
 	    }
         AddCharacterExpToSkill(attack, SKILL_PISTOL, makefloat(15.0 + ((1 + re) / (1+ra))*12.0));
         AddCharacterExpToSkill(attack, SKILL_DEFENCE, 1);
-        AddCharacterExpToSkill(attack, SKILL_LEADERSHIP, 1);
+        AddCharacterExpToSkill(attack, SKILL_SPEECHCRAFT, 1);
 		// boal skill <--
 		// boal statistic info 17.12.2003 -->
         Statistic_KillChar(attack, enemy, "_g");

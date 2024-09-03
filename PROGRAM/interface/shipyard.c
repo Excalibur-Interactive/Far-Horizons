@@ -1152,7 +1152,6 @@ void DoSellShip(bool _refresh)
     	int sellPrice = GetShipSellPrice(chref, refNPCShipyard);
 
     	AddMoneyToCharacter(pchar, sellPrice);
-        AddCharacterExpToSkill(pchar, "Commerce", sellPrice / 1600.0);
         WaitDate("",0,0,0, 0, 30);
         Statistic_AddValue(pchar, "SellShip", 1);
 
@@ -1262,7 +1261,6 @@ void DoBuyShip()
 	DoSellShip(false);
 	AddMoneyToCharacter(pchar, -iBuyMoney);
 
-    AddCharacterExpToSkill(pchar, "Commerce", iBuyMoney / 700.0);
     WaitDate("",0,0,0, 0, 30);
     Statistic_AddValue(pchar, "BuyShip", 1);
 

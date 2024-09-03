@@ -607,7 +607,7 @@ void CalculateInfoDataS6()
     mc.skill.Fencing = iSkill;
     mc.skill.Pistol = iSkill;
 	mc.skill.Sneak = iSkill;
-	mc.skill.Leadership = iSkill;
+	mc.skill.Speechcraft = iSkill;
 	
     SetFormatedText("DEBUGER_INFO",totalInfo);
 }
@@ -636,7 +636,7 @@ void CalculateInfoDataS7()
 	
     mc.skill.Sailing = iSkill;
     mc.skill.Cannons = iSkill;
-    mc.skill.Commerce = iSkill;
+    mc.skill.Speechcraft = iSkill;
     mc.skill.Defence = iSkill;
     mc.skill.Repair = iSkill;
     mc.skill.Grappling = iSkill;

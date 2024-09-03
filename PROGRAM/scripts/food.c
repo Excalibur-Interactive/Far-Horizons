@@ -362,7 +362,7 @@ void DailyEatCrewUpdateForShip(ref rChar, bool IsCompanionTraveler) // IsCompani
 		// возможный бунт рабов
 		if (sti(rChar.index) == GetMainCharacterIndex() && GetCargoGoods(rChar, GOOD_SLAVES) > (GetCrewQuantity(rChar)*1.5 + sti(rChar.Ship.Crew.Morale)))
 		{
-			nMoraleDecreaseQ = 12 - GetSummonSkillFromNameToOld(rChar, SKILL_LEADERSHIP);
+			nMoraleDecreaseQ = 12 - GetSummonSkillFromNameToOld(rChar, SKILL_SPEECHCRAFT);
 			if(rand(2) == 1 && nMoraleDecreaseQ > rand(10))
 			{
 				if(IsEntity(worldMap))
@@ -403,7 +403,7 @@ void DailyEatCrewUpdateForShip(ref rChar, bool IsCompanionTraveler) // IsCompani
 		}
 		morale = sti(rChar.Ship.Crew.Morale);
 		
-		nMoraleDecreaseQ = 12 - GetSummonSkillFromNameToOld(rChar, SKILL_LEADERSHIP);
+		nMoraleDecreaseQ = 12 - GetSummonSkillFromNameToOld(rChar, SKILL_SPEECHCRAFT);
 		rChar.Ship.Crew.Morale = morale - nMoraleDecreaseQ;
 		if(sti(rChar.Ship.Crew.Morale) < MORALE_MIN) rChar.Ship.Crew.Morale = MORALE_MIN;  
 	}

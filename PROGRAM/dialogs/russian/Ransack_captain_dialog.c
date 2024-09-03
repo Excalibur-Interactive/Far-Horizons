@@ -181,7 +181,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "free_to_officer":
-			if ((GetSummonSkillFromName(pchar, "Leadership") + 20) <= GetSummonSkillFromName(npchar, "Leadership"))
+			if ((GetSummonSkillFromName(pchar, "Speechcraft") + 20) <= GetSummonSkillFromName(npchar, "Speechcraft"))
 			{
 				dialog.text = "Служить у вас? Нет уж, лучше кормить акул!";
 				link.l1 = "Попридержи язык, а то ведь так и сделаю.";
@@ -198,7 +198,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "free_to_officer_trader":
-			if (GetSummonSkillFromName(pchar, "Leadership") <= GetSummonSkillFromName(npchar, "Leadership"))
+			if (GetSummonSkillFromName(pchar, "Speechcraft") <= GetSummonSkillFromName(npchar, "Speechcraft"))
 			{
 				dialog.text = LinkRandPhrase("Это конечно лестное предложение, но я вынужден отказаться... по идейным, так сказать, соображениям.",
 					"Увы, после того, что вы сделали с моими товарищами, это вряд ли возможно...",
@@ -411,7 +411,6 @@ void ProcessDialogEvent()
 		case "PunishmentAction1":
 			OfficersReaction("bad");		
 			ChangeCharacterReputation(pchar, -2);			
-			AddCharacterExpToSkill(Pchar, "Leadership", -150);
 			if (rand(1) == 1)
             {
                 if (GetPrisonerQty() > 1)

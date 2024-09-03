@@ -492,7 +492,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "GetSkill":
-			AddCharacterExpToSkill(pchar, "leadership", 1000);
+			AddCharacterExpToSkill(pchar, "Speechcraft", 1000);
 			DialogExit_Self();
 		break;
 		

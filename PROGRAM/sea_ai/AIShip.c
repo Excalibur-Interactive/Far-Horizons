@@ -1941,8 +1941,6 @@ void ShipDead(int iDeadCharacterIndex, int iKillStatus, int iKillerCharacterInde
 		    }
 			if (iKillStatus != KILL_BY_SELF)
 			{
-		        AddCharacterExpToSkill(rKillerCharacter, "Leadership", stf(rKillerBaseShip.Class) / stf(rBaseShip.Class) * 25);
-
 	            // статистка по нации
 		    	Statistic_AddValue(rKillerCharacter, NationShortName(sti(rDead.nation))+"_KillShip", 1);
 		    	if (rand(8) < 3 && sti(rDead.nation) != PIRATE)  // 30% повышаем награду
@@ -2120,10 +2118,8 @@ void ShipTaken(int iDeadCharacterIndex, int iKillStatus, int iKillerCharacterInd
 		rKillerBaseShip = GetRealShip(sti(rKillerCharacter.Ship.Type));
 		bCompanion = IsCompanion(rKillerCharacter);
 		// boal  check skill -->
-        AddCharacterExpToSkill(rKillerCharacter, "Leadership", stf(rKillerBaseShip.Class) / stf(rBaseShip.Class) * 25);
         AddCharacterExpToSkill(rKillerCharacter, "Grappling", stf(rKillerBaseShip.Class) / stf(rBaseShip.Class) * 120);
 		AddCharacterExpToSkill(rKillerCharacter, "Sailing", stf(rKillerBaseShip.Class) / stf(rBaseShip.Class) * 70);
-		AddCharacterExpToSkill(rKillerCharacter, "Commerce", stf(rKillerBaseShip.Class) / stf(rBaseShip.Class) * 30);
 		AddCharacterExpToSkill(rKillerCharacter, "Repair", stf(rKillerBaseShip.Class) / stf(rBaseShip.Class) * 60);
 		AddCharacterExpToSkill(rKillerCharacter, "Defence", stf(rKillerBaseShip.Class) / stf(rBaseShip.Class) * 60);
         // boal <--
@@ -2168,7 +2164,6 @@ void ShipTakenFree(int iDeadCharacterIndex, int iKillStatus, int iKillerCharacte
 		rKillerCharacter = GetCharacter(iKillerCharacterIndex);
 		rKillerBaseShip = GetRealShip(sti(rKillerCharacter.Ship.Type));
 		
-        AddCharacterExpToSkill(rKillerCharacter, "Leadership", stf(rKillerBaseShip.Class) / stf(rBaseShip.Class) * 50);
         AddCharacterExpToSkill(rKillerCharacter, "Grappling", stf(rKillerBaseShip.Class) / stf(rBaseShip.Class) * 120);
 		AddCharacterExpToSkill(rKillerCharacter, "Sailing", stf(rKillerBaseShip.Class) / stf(rBaseShip.Class) * 80);
 		AddCharacterExpToSkill(rKillerCharacter, "Repair", stf(rKillerBaseShip.Class) / stf(rBaseShip.Class) * 10);
@@ -3300,12 +3295,12 @@ void Ship_UpdateParameters()
 			if (!bSkipTarget)
 			{
 				float fDistance = Ship_GetDistance2D(rCharacter, rTargetCharacter);
-				float fEnemyLeadership = stf(rTargetCharacter.TmpSkill.Leadership); 
+				float fEnemySpeechcraft = stf(rTargetCharacter.TmpSkill.Speechcraft); 
 				float fEnemyFencing = stf(rTargetCharacter.TmpSkill.Fencing); 
-				float fEnemyCrewFencing = (0.1 + fEnemyLeadership + fEnemyFencing * stf(rCharacter.Ship.Crew.Quantity));
-				float fOurLeadership = stf(rCharacter.TmpSkill.Leadership); 
+				float fEnemyCrewFencing = (0.1 + fEnemySpeechcraft + fEnemyFencing * stf(rCharacter.Ship.Crew.Quantity));
+				float fOurSpeechcraft = stf(rCharacter.TmpSkill.Speechcraft); 
 				float fOurFencing = stf(rCharacter.TmpSkill.Fencing);
-				float fOurCrewFencing = (0.1 + fOurLeadership + fOurFencing * stf(rTargetCharacter.Ship.Crew.Quantity));
+				float fOurCrewFencing = (0.1 + fOurSpeechcraft + fOurFencing * stf(rTargetCharacter.Ship.Crew.Quantity));
 				float fRatio = fEnemyCrewFencing / fOurCrewFencing;
 				if (sti(rCharacter.nation) == PIRATE) 
 				{ 
@@ -3467,7 +3462,7 @@ void Ship_UpdateTmpSkills(ref rCharacter)
     	aref aTmpSkill; makearef(aTmpSkill, rCharacter.TmpSkill);
 
     	// calc skills for speed optimization
-    	aTmpSkill.Leadership = MakeFloat(GetSummonSkillFromName(rCharacter, SKILL_LEADERSHIP)) / SKILL_MAX;
+    	aTmpSkill.Speechcraft = MakeFloat(GetSummonSkillFromName(rCharacter, SKILL_SPEECHCRAFT)) / SKILL_MAX;
     	aTmpSkill.Sneak     = MakeFloat(GetSummonSkillFromName(rCharacter, SKILL_SNEAK)) / SKILL_MAX;
     	aTmpSkill.Defence   = MakeFloat(GetSummonSkillFromName(rCharacter, SKILL_DEFENCE)) / SKILL_MAX;
     	aTmpSkill.Grappling = MakeFloat(GetSummonSkillFromName(rCharacter, SKILL_GRAPPLING)) / SKILL_MAX;

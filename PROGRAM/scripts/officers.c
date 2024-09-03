@@ -297,14 +297,14 @@ void SetOfficerParam(ref Npchar, int _type)
 	
 	ClearCharacterExpRate(Npchar); // трем все пороги экспы на всяк сулчай
 
-    Npchar.quest.LeadershipModify  = 0;
+    Npchar.quest.SpeechcraftModify = 0;
 	Npchar.quest.FencingModify     = 0;
 	Npchar.quest.SailingModify     = 0;
 	Npchar.quest.CannonsModify     = 0;
 	Npchar.quest.GrapplingModify   = 0;
 	Npchar.quest.RepairModify      = 0;
 	Npchar.quest.DefenseModify     = 0;
-	Npchar.quest.CommerceModify    = 0;
+	Npchar.quest.SpeechcraftModify    = 0;
 	Npchar.quest.SneakModify       = 0;
 	Npchar.quest.PistolModify      = 0;
 
@@ -315,7 +315,7 @@ void SetOfficerParam(ref Npchar, int _type)
 		case 0:
 			Npchar.quest.officertype = "boatswain";
 			Npchar.quest.officertype_2 = RandPhraseSimple("Могу и доктором побыть, если припрет. ", "Еще умею матросов беречь, кости им вправлять, когда подранят. ");
-			Npchar.quest.LeadershipModify     = frandSmall(2.0);
+			Npchar.quest.SpeechcraftModify = frandSmall(2.0);
 			Npchar.quest.FencingModify     = Rand(1);
 			Npchar.quest.GrapplingModify   = frandSmall(2.0) + 2;
 			Npchar.quest.DefenseModify     = frandSmall(2.0) + 2;
@@ -337,11 +337,11 @@ void SetOfficerParam(ref Npchar, int _type)
 			Npchar.quest.officertype_2 = RandPhraseSimple("Могу и корабль починить помочь. ", "Еще умею с пилой и рубанком обращаться. ");
 			Npchar.quest.officertype = "treasurer";
 			Npchar.quest.RepairModify        = frandSmall(2.0) + 3;
-			Npchar.quest.CommerceModify      = frandSmall(2.0) + 2;
+			Npchar.quest.SpeechcraftModify      = frandSmall(2.0) + 2;
 			Npchar.quest.SneakModify         = frandSmall(2.0) + 2;
 			
 			//Npchar.skill.Repair_rate = makeint(MOD_EXP_RATE * upSkill);
-            //Npchar.skill.Commerce_rate   = makeint(MOD_EXP_RATE * upSkill);
+            //Npchar.skill.Speechcraft_rate   = makeint(MOD_EXP_RATE * upSkill);
 		break;
 
 		case 3:
@@ -365,11 +365,11 @@ void SetOfficerParam(ref Npchar, int _type)
         // не при делах -->
         case 5:
 			//Npchar.quest.officertype = OFFIC_TYPE_FIRSTMATE;
-			Npchar.quest.LeadershipModify     = frandSmall(3.0) + 2;
+			Npchar.quest.SpeechcraftModify    = frandSmall(3.0) + 2;
 			Npchar.quest.SailingModify        = frandSmall(1.0) + 1;
 			Npchar.quest.SneakModify          = Rand(3) + 1;
 			
-			//Npchar.skill.Leadership_rate = makeint(MOD_EXP_RATE * upSkill);
+			//Npchar.skill.Speechcraft_rate = makeint(MOD_EXP_RATE * upSkill);
             //Npchar.skill.Sneak_rate   = makeint(MOD_EXP_RATE * upSkill);
 		break;
 		
@@ -392,28 +392,28 @@ void SetOfficerParam(ref Npchar, int _type)
 	//CalculateAppropriateSkills(NPchar);
 	float MiddleK = GetMiddleMainSkill();
 
-    Npchar.skill.Leadership    = MiddleK - frandSmall(10*MOD_SKILL_ENEMY_RATE / 1.5) + 7;
+    Npchar.skill.Speechcraft   = MiddleK - frandSmall(10*MOD_SKILL_ENEMY_RATE / 1.5) + 7;
 	Npchar.skill.Fencing       = MiddleK - frandSmall(10*MOD_SKILL_ENEMY_RATE / 1.5) + 7;
 	Npchar.skill.Sailing       = MiddleK - frandSmall(10*MOD_SKILL_ENEMY_RATE / 1.5) + 7;
 	Npchar.skill.Cannons       = MiddleK - frandSmall(10*MOD_SKILL_ENEMY_RATE / 1.5) + 7;
 	Npchar.skill.Grappling     = MiddleK - frandSmall(10*MOD_SKILL_ENEMY_RATE / 1.5) + 7;
 	Npchar.skill.Repair        = MiddleK - frandSmall(10*MOD_SKILL_ENEMY_RATE / 1.5) + 7;
 	Npchar.skill.Defence       = MiddleK - frandSmall(10*MOD_SKILL_ENEMY_RATE / 1.5) + 7;
-	Npchar.skill.Commerce      = MiddleK - frandSmall(10*MOD_SKILL_ENEMY_RATE / 1.5) + 7;
+	Npchar.skill.Speechcraft      = MiddleK - frandSmall(10*MOD_SKILL_ENEMY_RATE / 1.5) + 7;
 	Npchar.skill.Sneak         = MiddleK - frandSmall(10*MOD_SKILL_ENEMY_RATE / 1.5) + 7;
     Npchar.skill.Pistol        = MiddleK - frandSmall(10*MOD_SKILL_ENEMY_RATE / 1.5) + 7;
 
     CorrectSkillParam(Npchar); // привести к 0-1
     // boal fix 16.12.2003 <--
 
-	Npchar.skill.Leadership   = makeint(stf(Npchar.skill.Leadership)   + 10*stf(Npchar.quest.LeadershipModify));
+	Npchar.skill.Speechcraft  = makeint(stf(Npchar.skill.Speechcraft)  + 10*stf(Npchar.quest.SpeechcraftModify));
 	Npchar.skill.Fencing      = makeint(stf(Npchar.skill.Fencing)      + 10*stf(Npchar.quest.FencingModify));
 	Npchar.skill.Sailing      = makeint(stf(Npchar.skill.Sailing)      + 10*stf(Npchar.quest.SailingModify));
 	Npchar.skill.Cannons      = makeint(stf(Npchar.skill.Cannons)      + 10*stf(Npchar.quest.CannonsModify));
 	Npchar.skill.Grappling    = makeint(stf(Npchar.skill.Grappling)    + 10*stf(Npchar.quest.GrapplingModify));
 	Npchar.skill.Repair       = makeint(stf(Npchar.skill.Repair)       + 10*stf(Npchar.quest.RepairModify));
 	Npchar.skill.Defence      = makeint(stf(Npchar.skill.Defence)      + 10*stf(Npchar.quest.DefenseModify));
-	Npchar.skill.Commerce     = makeint(stf(Npchar.skill.Commerce)     + 10*stf(Npchar.quest.CommerceModify));
+	Npchar.skill.Speechcraft     = makeint(stf(Npchar.skill.Speechcraft)     + 10*stf(Npchar.quest.SpeechcraftModify));
 	Npchar.skill.Sneak        = makeint(stf(Npchar.skill.Sneak)        + 10*stf(Npchar.quest.SneakModify));
     Npchar.skill.Pistol       = makeint(stf(Npchar.skill.Pistol)       + 10*stf(Npchar.quest.PistolModify));
 

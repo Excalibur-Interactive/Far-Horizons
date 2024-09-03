@@ -493,10 +493,9 @@ void ProcessDialogEvent()
 //--> расчет аренды склада
 int GetStoragePriceExt(ref NPChar, ref chref)
 {
-	float fLeadership = 1.5 - GetSummonSkillFromName(pchar, SKILL_LEADERSHIP)/120.0; // учитываем авторитет
-	float fCommerce = 1.5 - GetSummonSkillFromName(pchar, SKILL_COMMERCE)/120.0; // учитываем торговлю
+	float fSpeechcraft = 1.5 - GetSummonSkillFromName(pchar, SKILL_SPEECHCRAFT)/120.0;
 	
-	int price = makeint(15000 * MOD_SKILL_ENEMY_RATE * fLeadership * fCommerce);
+	int price = makeint(15000 * MOD_SKILL_ENEMY_RATE * fSpeechcraft * fSpeechcraft);
 	
 	return price;
 }

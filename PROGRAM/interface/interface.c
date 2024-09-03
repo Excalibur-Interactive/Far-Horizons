@@ -1122,7 +1122,6 @@ void ReloadAfterFortCapture()
     pchar.GenQuest.Hunter2Pause = true;  // boal бойня в форте
 	// опыт
 	// boal -->
-    AddCharacterExpToSkillSquadron(GetMainCharacter(), "Leadership", 500);//добавка в городе, если  бой непрерывен
     AddCharacterExpToSkillSquadron(GetMainCharacter(), "Sailing", 500);
     AddCharacterExpToSkillSquadron(GetMainCharacter(), "Sneak", 300);
 

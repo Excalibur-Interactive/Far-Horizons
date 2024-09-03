@@ -757,10 +757,7 @@ void TransactionOK()
 		moneyback = makeint(iCharPrice*stf(GameInterface.qty_edit.str) + 0.5);
 		pchar.money = sti(pchar.money)  - moneyback;
 		Statistic_AddValue(Pchar, "Money_spend", moneyback);
-		// boal  check skill -->
-        AddCharacterExpToSkill(pchar, "Commerce", moneyback / 700.0);
     	WaitDate("",0,0,0, 0, 5);
-        // boal <--
 	}
  	else
 	{ // SELL
@@ -769,10 +766,7 @@ void TransactionOK()
 		moneyback = makeint(iStorePrice*stf(GameInterface.qty_edit.str) + 0.5);
   		pchar.money = sti(pchar.money)  + moneyback;
 		Statistic_AddValue(Pchar, "Money_get", moneyback);
-		// boal  check skill -->
-        AddCharacterExpToSkill(pchar, "Commerce", moneyback / 1000.0);
     	WaitDate("",0,0,0, 0, 5);
-        // boal <--
 	}
 	AddToTable(FilterMode);
 	EndTooltip();
@@ -949,7 +943,7 @@ int GetTradeItemPrice(int itmIdx, int tradeType)
 	
 	if(CheckAttribute(&Items[itmIdx], "fixedprice")) return itmprice;
 
-	float skillDelta = GetSummonSkillFromNameToOld(pchar, SKILL_COMMERCE);
+	float skillDelta = GetSummonSkillFromNameToOld(pchar, SKILL_SPEECHCRAFT);
 	float skillModify;
 	if(tradeType == PRICE_TYPE_BUY)
 	{

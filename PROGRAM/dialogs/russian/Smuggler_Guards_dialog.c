@@ -30,7 +30,7 @@ void ProcessDialogEvent()
 			dialog.text = RandPhraseSimple("Кажется, здесь происходит что-то незаконное.",
                                      "Именем "+NationKingsName(npchar)+ ", прекратить творить беззаконие!!!");
 			Link.l1 = "Нет-нет, офицер. Мы с друзьями просто отдыхаем у моря.";
-			if (makeint(Pchar.reputation) >= 70 && GetSummonSkillFromNameToOld(Pchar, SKILL_LEADERSHIP) >= 5)
+			if (makeint(Pchar.reputation) >= 70 && GetSummonSkillFromNameToOld(Pchar, SKILL_SPEECHCRAFT) >= 5)
 			{
 				Link.l1.go = "ThisTimeFree";
 			}
@@ -39,7 +39,7 @@ void ProcessDialogEvent()
 				Link.l1.go = "IDontBelieveYou";
 			}
 			Link.l2 = "Я раздаю золото. Это можно считать незаконным занятием?";
-			if(makeint(Pchar.rank) >= 4 && GetSummonSkillFromNameToOld(Pchar, SKILL_COMMERCE) >= 5)
+			if(makeint(Pchar.rank) >= 4 && GetSummonSkillFromNameToOld(Pchar, SKILL_SPEECHCRAFT) >= 5)
 			{
 				Link.l2.go = "GiveMeSomeMoneyToo";
 			}

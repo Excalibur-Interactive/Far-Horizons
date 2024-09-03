@@ -125,7 +125,7 @@ void ProcessDialogEvent()
 			Link.l2.go = "Loan";
 			Link.l3 = "Думаю, мне лучше не влезать в долги. До свидания.";
 			Link.l3.go = "ExitDelLoan1";
-			Pchar.Quest.Loans.(NPC_Area).Interest = 22 - makeint((GetSummonSkillFromName(pchar, "Commerce")+GetSummonSkillFromName(pchar, "Leadership"))/10);
+			Pchar.Quest.Loans.(NPC_Area).Interest = 22 - makeint(GetSummonSkillFromName(pchar, "Speechcraft")/5);
 		break;
 
 		case "Medium":
@@ -138,7 +138,7 @@ void ProcessDialogEvent()
 			Link.l2.go = "Loan";
 			Link.l3 = "Думаю, мне лучше не влезать в долги. До свидания.";
 			Link.l3.go = "ExitDelLoan1";
-			Pchar.Quest.Loans.(NPC_Area).Interest = 27 - makeint((GetSummonSkillFromName(pchar, "Commerce")+GetSummonSkillFromName(pchar, "Leadership"))/10);
+			Pchar.Quest.Loans.(NPC_Area).Interest = 27 - makeint(GetSummonSkillFromName(pchar, "Speechcraft")/5);
 		break;
 
 		case "Large":
@@ -151,11 +151,10 @@ void ProcessDialogEvent()
 			Link.l2.go = "Loan";
 			Link.l3 = "Думаю, мне лучше не влезать в долги. До свидания.";
 			Link.l3.go = "ExitDelLoan1";
-			Pchar.Quest.Loans.(NPC_Area).Interest = 37 - makeint((GetSummonSkillFromName(pchar, "Commerce")+GetSummonSkillFromName(pchar, "Leadership"))/10);
+			Pchar.Quest.Loans.(NPC_Area).Interest = 37 - makeint(GetSummonSkillFromName(pchar, "Speechcraft")/5);
 		break;
 
 		case "Interest":
-			//Pchar.Quest.Loans.(NPC_Area).Interest = 16 - makeint(Pchar.skill.commerce);
 			Dialog.snd = "voice\USDI\USDI020";
 			dialog.text = Pchar.Quest.Loans.(NPC_Area).Interest + "% в месяц. Основываясь на том, что я о вас знаю, я не могу предложить вам сейчас лучших условий."; 
 			Link.l1 = "Меня это вполне устраивает. Осталось обговорить срок.";
@@ -190,13 +189,6 @@ void ProcessDialogEvent()
 
 		case "loan_return":
 			addMoneyToCharacter(Pchar, -(makeint(Pchar.Quest.Loans.(NPC_Area).Result)));
-			// boal 27.01.2004 -->
-            if (npchar.quest.trade_date != lastspeak_date) // дыра с прокачкой была
-            {
-    			AddCharacterExpToSkill(Pchar, "Commerce", makeint(Pchar.Quest.Loans.(NPC_Area).Result) / 350);
-    			AddCharacterExpToSkill(Pchar, "Leadership", makeint(Pchar.Quest.Loans.(NPC_Area).Result) / 700);
-			}
-			// boal 27.01.2004 <--
 			DeleteAttribute(PChar, "quest.Loans_" + NPC_Area); // bug fix
 			DeleteAttribute(PChar, "quest.Loans." + NPC_Area);
 			Dialog.snd1 = "voice\USDI\USDI024";
@@ -222,7 +214,7 @@ void ProcessDialogEvent()
 		break;
 
 		case "result":
-			Pchar.QuestTemp.Deposits.(NPC_Area).Interest = makeint((GetSummonSkillFromName(pchar, "Commerce")+GetSummonSkillFromName(pchar, "Leadership"))/10.0/4.0 + 0.66) + 1; 
+			Pchar.QuestTemp.Deposits.(NPC_Area).Interest = makeint(GetSummonSkillFromName(pchar, "Speechcraft")/20.0 + 0.66) + 1; 
 			Pchar.QuestTemp.Deposits.(NPC_Area).Sum = dialogEditStrings[3];
 			iTemp = sti(dialogEditStrings[3]);
 			if (iTemp <= 0)

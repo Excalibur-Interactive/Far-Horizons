@@ -122,10 +122,9 @@ void SetSelfSkill(ref _refCharacter,, int _f, int _p)
     _refCharacter.Skill.Pistol        = _p;
 }
 
-void SetShipSkill(ref _refCharacter, int _ld, int _cr, int _cn, int _sl, int _re, int _gr, int _de, int _sn)
+void SetShipSkill(ref _refCharacter, int _ld, int _cn, int _sl, int _re, int _gr, int _de, int _sn)
 {
-    _refCharacter.Skill.Leadership = _ld;
-    _refCharacter.Skill.Commerce   = _cr;
+    _refCharacter.Skill.Speechcraft = _ld;
     _refCharacter.Skill.Cannons    = _cn;
     _refCharacter.Skill.Sailing    = _sl;
     _refCharacter.Skill.Repair     = _re;
@@ -167,20 +166,19 @@ void SetPIRATES(ref sld, int P, int I, int R, int A, int T, int E, int S)
 // Ну что за фигня, блин, зачем в функцию распределения КОРАБЕЛЬНЫХ умений вносить СКРЫТНОСТЬ и АВТОРИТЕТ?? Да ещё и вразнобой... Переделываем...
 void SetPersonalSkills(ref sld, int ld, int fs, int p, int sn)
 {
-	sld.Skill.Leadership = ld;
+	sld.Skill.Speechcraft = ld;
 	sld.Skill.Fencing   = fs;
 	sld.Skill.Pistol     = p;
     sld.Skill.Sneak      = sn;
 }
 
-void SetShipSkills(ref sld, int sl, int cn, int gr, int de, int re, int cr)
+void SetShipSkills(ref sld, int sl, int cn, int gr, int de, int re)
 {
 	sld.Skill.Sailing    = sl;
 	sld.Skill.Cannons    = cn;
 	sld.Skill.Grappling  = gr;
 	sld.Skill.Defence    = de;
 	sld.Skill.Repair     = re;
-    sld.Skill.Commerce   = cr;
 }
 
 /// влияет только на СПЕЦИАЛ
@@ -277,13 +275,12 @@ void InitRPGType()
     NullCharacter.SPECIALType.Agility = true;
     NullCharacter.SPECIALType.Luck = true;
     
-    NullCharacter.SelfType.Leadership = true;
+    NullCharacter.SelfType.Speechcraft = true;
     NullCharacter.SelfType.Fencing = true;
     NullCharacter.SelfType.Pistol = true;
     NullCharacter.SelfType.Sneak = true;
 	
     // остальные корабельные
-    NullCharacter.ShipType.Commerce = true;
     NullCharacter.ShipType.Cannons = true;
     NullCharacter.ShipType.Sailing = true;
     NullCharacter.ShipType.Repair = true;
@@ -600,11 +597,8 @@ float GetCharacterExpRate(ref _chref, string _skill)
             case SKILL_PISTOL:
                 divBy = GetCharacterSPECIAL(_chref, SPECIAL_A)*0.5 + GetCharacterSPECIAL(_chref, SPECIAL_L)*0.5;
             break;
-            case SKILL_LEADERSHIP:
+            case SKILL_SPEECHCRAFT:
                 divBy = GetCharacterSPECIAL(_chref, SPECIAL_I)*0.1 + GetCharacterSPECIAL(_chref, SPECIAL_C)*0.9;
-            break;
-            case SKILL_COMMERCE:
-                divBy = GetCharacterSPECIAL(_chref, SPECIAL_I)*0.8 + GetCharacterSPECIAL(_chref, SPECIAL_C)*0.2;
             break;
             case SKILL_CANNONS:
                 divBy = GetCharacterSPECIAL(_chref, SPECIAL_I)*0.6 + GetCharacterSPECIAL(_chref, SPECIAL_S)*0.4;
@@ -787,16 +781,16 @@ int SetCharacterSkillBySuit(ref rChar, String sSkillName)
 		break;
 		
 		case "suit_2": // Одежда торговца
-			if(sSkillName == SKILL_COMMERCE)
+			if(sSkillName == SKILL_SPEECHCRAFT)
 			{
-				iValue = 20;
+				iValue = 15;
 			}
 		break;
 		
 		case "suit_3": // Платье дворянина
-			if(sSkillName == SKILL_LEADERSHIP)
+			if(sSkillName == SKILL_SPEECHCRAFT)
 			{
-				iValue = 20;
+				iValue = 25;
 			}
 		break;
 	}
@@ -905,54 +899,54 @@ int GetCharacterSkillSimple(ref _refCharacter, string skillName)
 		}
 		//<--
 		
-		skillN = skillN + SetCharacterSkillByItem(_refCharacter, skillName, SKILL_LEADERSHIP, "Mineral16", -10);
+		skillN = skillN + SetCharacterSkillByItem(_refCharacter, skillName, SKILL_SPEECHCRAFT, "Mineral16", -10);
 		
 		if(GetCharacterItem(_refCharacter, "totem_32"))
 		{
-			if(skillName == SKILL_LEADERSHIP) skillN = skillN * 0.5;
+			if(skillName == SKILL_SPEECHCRAFT) skillN = skillN * 0.5;
 		}
 		
 		if(IsEquipCharacterByItem(_refCharacter, "cirass3"))
 		{
 			if(skillName == SKILL_SNEAK) skillN = skillN * 0.85;
-			if(skillName == SKILL_LEADERSHIP) skillN = skillN * 1.15;
+			if(skillName == SKILL_SPEECHCRAFT) skillN = skillN * 1.15;
 		}
 		
 		if(IsEquipCharacterByItem(_refCharacter, "cirass4"))
 		{
 			if(skillName == SKILL_SNEAK) skillN = skillN * 0.85;
-			if(skillName == SKILL_LEADERSHIP) skillN = skillN * 0.85;
+			if(skillName == SKILL_SPEECHCRAFT) skillN = skillN * 0.85;
 		}
 		
 		if(IsEquipCharacterByItem(_refCharacter, "cirass5"))
 		{
 			if(skillName == SKILL_SNEAK) skillN = skillN * 0.85;
-			if(skillName == SKILL_LEADERSHIP) skillN = skillN * 1.15;
+			if(skillName == SKILL_SPEECHCRAFT) skillN = skillN * 1.15;
 		}
 		
 		if(IsEquipCharacterByItem(_refCharacter, "cirass6"))
 		{
 			if(skillName == SKILL_SNEAK) skillN = skillN * 0.5;
-			if(skillName == SKILL_LEADERSHIP) skillN = skillN * 1.5;
+			if(skillName == SKILL_SPEECHCRAFT) skillN = skillN * 1.5;
 		}
 		
 		if(IsEquipCharacterByItem(_refCharacter, "cirass7"))
 		{
 			if(skillName == SKILL_SNEAK) skillN = skillN * 1.5;
-			if(skillName == SKILL_LEADERSHIP) skillN = skillN * 0.5;
+			if(skillName == SKILL_SPEECHCRAFT) skillN = skillN * 0.5;
 		}
 		
 		skillN += SetCharacterSkillBySpecialPotion(_refCharacter, skillName);
 		
 		skillN = makeint(skillN * AddMultiplySkillByEquippedItem(_refCharacter, skillName, SKILL_CANNONS,  "totem_12", 1.10));
-		skillN = makeint(skillN * AddMultiplySkillByEquippedItem(_refCharacter, skillName, SKILL_COMMERCE,  "totem_13", 1.15));
+		skillN = makeint(skillN * AddMultiplySkillByEquippedItem(_refCharacter, skillName, SKILL_SPEECHCRAFT,  "totem_13", 1.15));
 		
 		if(IsCharacterEquippedTalisman(_refCharacter, "totem_14"))
 		{
 			skillN += makeint(SetCharacterSkillByItem(_refCharacter, skillName, SKILL_SAILING, "totem_14", 10));
 	    }
 		
-		skillN = makeint(skillN * AddMultiplySkillByEquippedItem(_refCharacter, skillName, SKILL_LEADERSHIP,"totem_18", 1.15));
+		skillN = makeint(skillN * AddMultiplySkillByEquippedItem(_refCharacter, skillName, SKILL_SPEECHCRAFT,"totem_18", 1.15));
 		
 		if(CheckAttribute(_refCharacter, "SpeciaPotionEffect.Jaguar") && skillName == SKILL_PISTOL) 
 		{
@@ -1081,7 +1075,7 @@ int GetSummonSkillFromNameSimple(ref _refCharacter, string skillName)
 				iOfficer = sti(pchar.Fellows.Passengers.carpenter);
 			break;
 
-			case SKILL_COMMERCE:
+			case SKILL_SPEECHCRAFT:
 				iOfficer = sti(pchar.Fellows.Passengers.treasurer);
 			break;
 		}

@@ -25,7 +25,7 @@ int CreateBermudesCharacters(int n)
 	ch.reputation = "35";
     SetRandSPECIAL(ch);
     SetSelfSkill(ch, 90, 70);
-    SetShipSkill(ch, 90, 80, 10, 10, 20, 10, 10, 50);
+    SetShipSkill(ch, 90, 10, 10, 20, 10, 10, 50);
 	GiveItem2Character(ch, GUN_COMMON);
 	ch.equip.gun = GUN_COMMON;
 	GiveItem2Character(ch, BLADE_LONG);
@@ -55,7 +55,7 @@ int CreateBermudesCharacters(int n)
 	SetCharacterPerk(ch, "CriticalHit");
 	SetCharacterPerk(ch, "Sliding");
     SetSelfSkill(ch, 90, 60);
-    SetShipSkill(ch, 100, 10, 100, 90, 60, 80, 90, 50);
+    SetShipSkill(ch, 100, 100, 90, 60, 80, 90, 50);
 	LAi_NoRebirthDisable(ch);
 	LAi_RebirthOldName(ch);
 	LAi_SetHuberType(ch);

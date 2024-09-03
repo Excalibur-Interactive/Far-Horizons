@@ -403,8 +403,6 @@ void QuestComplete(string sQuestName, string qname)
 			if (!CheckAttribute(Pchar, "GenQuestFort.SoundOff"))
 			{
             	PlaySound("Landing_0");
-            	AddCharacterExpToSkill(Pchar, "Leadership", 100);
-			    AddCharacterExpToSkill(Pchar, "Sneak", 100);
             }
             else
             {
@@ -1015,8 +1013,6 @@ void QuestComplete(string sQuestName, string qname)
 			{
 				OfficersReaction("good");
 				AddCharacterExpToSkill(pchar, "Sailing", 100);
-				AddCharacterExpToSkill(pchar, "Leadership", 20);
-				AddCharacterExpToSkill(pchar, "COMMERCE", 5);
 				AddQuestRecord("convoy_quest", "4");
 				CloseQuestHeader("convoy_quest");
 				AddMoneyToCharacter(pchar, sti(pchar.ConvoyQuest.convoymoney));
