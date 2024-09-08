@@ -468,11 +468,11 @@ void FillCharacterTables(ref chr)	// таблица навыков ГГ
 	{
 		switch(i)
 		{
-			case 1:		sSkill = "navigation";			break;
-			case 2:		sSkill = "grappling";			break;
-			case 3:		sSkill = "cannons";				break;
-			case 4:		sSkill = "defence";				break;
-			case 5:		sSkill = "repair";				break;
+			case 1:	sSkill = "sailing";		break;
+			case 2:	sSkill = "grappling";	break;
+			case 3:	sSkill = "cannons";		break;
+			case 4:	sSkill = "defence";		break;
+			case 5:	sSkill = "repair";		break;
 		}
 		sNode = sChar + "_TABLE_SHIPSKILL";
 		sRow = "tr"+i;
