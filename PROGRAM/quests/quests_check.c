@@ -42,26 +42,19 @@ bool ProcessCondition(aref condition)
 	float fx,fy,fz;
 
 	sConditionName = GetAttributeValue(condition);
-	// boal -->
-	if(CheckAttribute(condition,"character"))
+	
+	if(CheckAttribute(condition,"character") && !CheckAttribute(condition,"characterIdx"))
 	{
-  		//condition.characterIdx = "" + GetCharacterIndex(condition.character);
-		// совместимость с кодом акеллы, где в character хранят не ID (строка), а IDX (число) -->
+		// совместимость с кодом акеллы, где в character хранят не ID (строка), а IDX (число)
 		i = GetCharacterIndex(condition.character);
 		if (i != -1) condition.characterIdx = i;
-		else condition.characterIdx = sti(condition.character); // делаем вывод, что это число
-		// совместимость с кодом акеллы, где в character хранят не ID (строка), а IDX (число) <--
+		else condition.characterIdx = sti(condition.character);
 	}
 	if(CheckAttribute(condition,"characterIdx"))
-	{
 		refCharacter = GetCharacter(sti(condition.characterIdx));
-	}
 	else
-	{
 		refCharacter = GetMainCharacter();
-	}
-	// boal <--
-
+	
 	switch(sConditionName)
 	{
 		case "MapEnter":
