@@ -814,7 +814,7 @@ string GetItemDescribe(int iGoodIndex)
 
 	if (CheckAttribute(arItm, "groupID"))
 	{
-		if(arItm.groupID == GUN_ITEM_TYPE)
+		if(arItm.groupID == GUN_ITEM_TYPE || arItm.groupID == MUSKET_ITEM_TYPE)
 		{
 			describeStr += GetAssembledString(
 				LanguageConvertString(lngFileID,"weapon gun parameters"),

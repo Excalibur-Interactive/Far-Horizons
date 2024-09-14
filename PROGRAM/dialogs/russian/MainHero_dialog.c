@@ -98,7 +98,7 @@ void ProcessDialogEvent()
 			sGun = GetCharacterEquipByGroup(pchar, GUN_ITEM_TYPE);
 			if(sGun != "")
 			{
-				if(CheckAttribute(pchar, "chr_ai.bulletNum") && sti(pchar.chr_ai.bulletNum) > 1)
+				if(CheckAttribute(pchar, "chr_ai.pistol.bulletNum") && sti(pchar.chr_ai.pistol.bulletNum) > 1)
 				{
 					Link.l8 = "Хочу выбрать тип боеприпаса для огнестрельного оружия.";
 					Link.l8.go = "SetGunBullets";
@@ -542,7 +542,7 @@ void ProcessDialogEvent()
 			sGun = GetCharacterEquipByGroup(pchar, GUN_ITEM_TYPE);
 			rItm = ItemsFromID(sGun);
 			makearef(rType, rItm.type);	
-			for (i = 0; i < sti(pchar.chr_ai.bulletNum); i++)
+			for (i = 0; i < sti(pchar.chr_ai.pistol.bulletNum); i++)
 			{
 				sAttr = GetAttributeName(GetAttributeN(rType, i));
 				sBullet = rItm.type.(sAttr).bullet;
@@ -559,8 +559,8 @@ void ProcessDialogEvent()
 			rItm = ItemsFromID(sGun);
 			sAttr = "t" + i;
 			sBullet = rItm.type.(sAttr).bullet;
-			LAi_SetCharacterUseBullet(pchar, sBullet);
-			LAi_GunSetUnload(pchar);
+			LAi_SetCharacterUseBullet(pchar, "pistol", sBullet);
+			LAi_GunSetUnload(pchar, "pistol");
 			NextDiag.CurrentNode = NextDiag.TempNode;
 			DeleteAttribute(pchar,"GenQuest.SetGunBullets");
 			DialogExit_Self();

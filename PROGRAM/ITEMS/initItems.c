@@ -90,14 +90,14 @@ int InitItems()
 	n = InitStdGun(n, "pistol10", "pistol10","items_placeholder", 3, "Quest",           800, "single-barrel",	20.0, 120.0, false,  50, 2.0, 1,"Excellent"); //Двузарядный пистолет 
 	n = InitStdGun(n, "pistol11",	"pistol11", "items_placeholder", 3,  "Quest",       800, "revolver",   20.0, 120.0, false,  50, 2.0, 5,  "Excellent"); //Револьвер
 	
-	n = InitStdGun(n, "mushket_matchlock",  "mushket1", "items_placeholder", 2,  "Mushketer",       10000, "single-barrel", 60.0, 180.0, false, 50, 10.0, 1,      "poor"); //Фитильный мушкет
-	n = InitStdGun(n, "mushket_Arquebus",   "mushket2", "items_placeholder", 2,  "Mushketer",       10000, "grapeshooter", 60.0, 180.0, true,  50, 10.0, 1,  "ordinary"); //Аркебуза
-	n = InitStdGun(n, "mushket_Bayonet",    "mushket3", "items_placeholder", 2,  "Mushketer",       10000, "single-barrel", 60.0, 180.0, false, 50, 10.0, 1,  "ordinary"); //Штыковой карабин
-	n = InitStdGun(n, "mushket_Portuguese", "mushket4", "items_placeholder", 2,  "Q_Mush",          10000, "grapeshooter", 60.0, 180.0, false, 50, 10.0, 1,      "good"); //Португальский мушкетон
-	n = InitStdGun(n, "mushket_sklopetta",  "mushket5", "items_placeholder", 2,  "Q_Mush",          10000, "bombard", 60.0, 180.0, true,  50, 10.0, 1,      "good"); //Склопетта
-	n = InitStdGun(n, "mushket_Shtuzer",    "mushket6", "items_placeholder", 2,  "Quest",           10000, "single-barrel", 60.0, 180.0, false, 50, 10.0, 1, "Excellent"); //Винтовальный штуцер
-	n = InitStdGun(n, "mushket_2x2",        "mushket7", "items_placeholder", 2,  "Quest",           10000, "multi-barrel", 60.0, 180.0, false, 50, 10.0, 1, "Excellent"); //Двуствольный штуцер
-	n = InitStdGun(n, "mushket_Bombard",    "mushket8", "items_placeholder", 2,  "Quest",           10000, "bombard", 60.0, 180.0, true,  50, 10.0, 1, "Excellent"); //Итальянская бомбарда
+	n = InitStdMusket(n, "mushket_matchlock",  "mushket1", "items_placeholder", 2,  "Mushketer",       10000, "single-barrel", 60.0, 180.0, false, 50, 10.0, 1,      "poor"); //Фитильный мушкет
+	n = InitStdMusket(n, "mushket_Arquebus",   "mushket2", "items_placeholder", 2,  "Mushketer",       10000, "grapeshooter", 60.0, 180.0, true,  50, 10.0, 1,  "ordinary"); //Аркебуза
+	n = InitStdMusket(n, "mushket_Bayonet",    "mushket3", "items_placeholder", 2,  "Mushketer",       10000, "single-barrel", 60.0, 180.0, false, 50, 10.0, 1,  "ordinary"); //Штыковой карабин
+	n = InitStdMusket(n, "mushket_Portuguese", "mushket4", "items_placeholder", 2,  "Q_Mush",          10000, "grapeshooter", 60.0, 180.0, false, 50, 10.0, 1,      "good"); //Португальский мушкетон
+	n = InitStdMusket(n, "mushket_sklopetta",  "mushket5", "items_placeholder", 2,  "Q_Mush",          10000, "bombard", 60.0, 180.0, true,  50, 10.0, 1,      "good"); //Склопетта
+	n = InitStdMusket(n, "mushket_Shtuzer",    "mushket6", "items_placeholder", 2,  "Quest",           10000, "single-barrel", 60.0, 180.0, false, 50, 10.0, 1, "Excellent"); //Винтовальный штуцер
+	n = InitStdMusket(n, "mushket_2x2",        "mushket7", "items_placeholder", 2,  "Quest",           10000, "multi-barrel", 60.0, 180.0, false, 50, 10.0, 1, "Excellent"); //Двуствольный штуцер
+	n = InitStdMusket(n, "mushket_Bombard",    "mushket8", "items_placeholder", 2,  "Quest",           10000, "bombard", 60.0, 180.0, true,  50, 10.0, 1, "Excellent"); //Итальянская бомбарда
 	
 	n = InitStdSuit(n, "cirass1", "0", "items_placeholder", 11, 1500, 5, "common",    1, false, 0.05, 0.0, 0.9, "");   //Кожаный корсет
 	n = InitStdSuit(n, "cirass2", "0", "items_placeholder", 11, 1500, 5, "rare",      1, false, 0.15, 0.15, 0.85, "BasicDefence"); //Укреплённая бригантина
@@ -1680,6 +1680,7 @@ int InitItems()
 	trace("Конечный специальный предмет: " + Items[ItemsForLocators_end].id);
 	
 	InitGunChargeExts();
+	InitMusketChargeExts();
 	InitMultiObjectAmulets();
 	InitItemsCraftingPerks();
 	InitRandItems();
@@ -1897,57 +1898,60 @@ void InitGunChargeExts()
 	InitGunChargeExt("pistol11", "t4", "Silver_cartridge", "", 5, 0);
 	rGun = ItemsFromID("pistol11");
 	rGun.ammo_type = "bullet";
+}
+
+void InitMusketChargeExts()
+{
+	ref rMus;	
+	InitMusketChargeExt("mushket_matchlock", "t1", "bullet", "gunpowder", 10, 1);
+	InitMusketChargeExt("mushket_matchlock", "t2", "cartridge", "", 5, 0);
+	InitMusketChargeExt("mushket_matchlock", "t3", "silver_bullet", "gunpowder", 10, 0);
+	InitMusketChargeExt("mushket_matchlock", "t4", "Silver_cartridge", "", 5, 0);
+	rMus = ItemsFromID("mushket_matchlock");
+	rMus.ammo_type = "bullet";
 	
+	InitMusketChargeExt("mushket_Arquebus",  "t1", "grapeshot", "gunpowder", 10, 1);
+	InitMusketChargeExt("mushket_Arquebus",  "t2", "GunEchin", "", 10, 0);
+	rMus = ItemsFromID("mushket_Arquebus");
+	rMus.ammo_type = "grape";
 	
-	InitGunChargeExt("mushket_matchlock", "t1", "bullet", "gunpowder", 10, 1);
-	InitGunChargeExt("mushket_matchlock", "t2", "cartridge", "", 5, 0);
-	InitGunChargeExt("mushket_matchlock", "t3", "silver_bullet", "gunpowder", 10, 0);
-	InitGunChargeExt("mushket_matchlock", "t4", "Silver_cartridge", "", 5, 0);
-	rGun = ItemsFromID("mushket_matchlock");
-	rGun.ammo_type = "bullet";
+	InitMusketChargeExt("mushket_Bayonet",   "t1", "bullet", "gunpowder", 10, 1);
+	InitMusketChargeExt("mushket_Bayonet",   "t2", "cartridge", "", 5, 0);
+	InitMusketChargeExt("mushket_Bayonet",   "t3", "silver_bullet", "gunpowder", 10, 0);
+	InitMusketChargeExt("mushket_Bayonet",   "t4", "Silver_cartridge", "", 5, 0);
+	rMus = ItemsFromID("mushket_Bayonet");
+	rMus.ammo_type = "bullet";
 	
-	InitGunChargeExt("mushket_Arquebus",  "t1", "grapeshot", "gunpowder", 10, 1);
-	InitGunChargeExt("mushket_Arquebus",  "t2", "GunEchin", "", 10, 0);
-	rGun = ItemsFromID("mushket_Arquebus");
-	rGun.ammo_type = "grape";
+	InitMusketChargeExt("mushket_Portuguese","t1", "grapeshot", "gunpowder", 10, 1);
+	InitMusketChargeExt("mushket_Portuguese","t2", "GunEchin", "", 10, 0);
+	rMus = ItemsFromID("mushket_Portuguese");
+	rMus.ammo_type = "grape";
 	
-	InitGunChargeExt("mushket_Bayonet",   "t1", "bullet", "gunpowder", 10, 1);
-	InitGunChargeExt("mushket_Bayonet",   "t2", "cartridge", "", 5, 0);
-	InitGunChargeExt("mushket_Bayonet",   "t3", "silver_bullet", "gunpowder", 10, 0);
-	InitGunChargeExt("mushket_Bayonet",   "t4", "Silver_cartridge", "", 5, 0);
-	rGun = ItemsFromID("mushket_Bayonet");
-	rGun.ammo_type = "bullet";
+	InitMusketChargeExt("mushket_sklopetta", "t1", "Grenade", "", 10, 1);
+	InitMusketChargeExt("mushket_sklopetta", "t2", "Petard", "", 10, 0);
+	InitMusketChargeExt("mushket_sklopetta", "t3", "Poison_bomb", "", 10, 0);
+	rMus = ItemsFromID("mushket_sklopetta");
+	rMus.ammo_type = "bomb";
 	
-	InitGunChargeExt("mushket_Portuguese","t1", "grapeshot", "gunpowder", 10, 1);
-	InitGunChargeExt("mushket_Portuguese","t2", "GunEchin", "", 10, 0);
-	rGun = ItemsFromID("mushket_Portuguese");
-	rGun.ammo_type = "grape";
+	InitMusketChargeExt("mushket_Shtuzer",   "t1", "bullet", "gunpowder", 10, 1);
+	InitMusketChargeExt("mushket_Shtuzer",   "t2", "cartridge", "", 5, 0);
+	InitMusketChargeExt("mushket_Shtuzer",   "t3", "silver_bullet", "gunpowder", 10, 0);
+	InitMusketChargeExt("mushket_Shtuzer",   "t4", "Silver_cartridge", "", 5, 0);
+	rMus = ItemsFromID("mushket_Shtuzer");
+	rMus.ammo_type = "bullet";
 	
-	InitGunChargeExt("mushket_sklopetta", "t1", "Grenade", "", 10, 1);
-	InitGunChargeExt("mushket_sklopetta", "t2", "Petard", "", 10, 0);
-	InitGunChargeExt("mushket_sklopetta", "t3", "Poison_bomb", "", 10, 0);
-	rGun = ItemsFromID("mushket_sklopetta");
-	rGun.ammo_type = "bomb";
+	InitMusketChargeExt("mushket_2x2",       "t1", "bullet", "gunpowder", 10, 1);
+	InitMusketChargeExt("mushket_2x2",       "t2", "cartridge", "", 5, 0);
+	InitMusketChargeExt("mushket_2x2",       "t3", "silver_bullet", "gunpowder", 10, 0);
+	InitMusketChargeExt("mushket_2x2",       "t4", "Silver_cartridge", "", 5, 0);
+	rMus = ItemsFromID("mushket_2x2");
+	rMus.ammo_type = "bullet";
 	
-	InitGunChargeExt("mushket_Shtuzer",   "t1", "bullet", "gunpowder", 10, 1);
-	InitGunChargeExt("mushket_Shtuzer",   "t2", "cartridge", "", 5, 0);
-	InitGunChargeExt("mushket_Shtuzer",   "t3", "silver_bullet", "gunpowder", 10, 0);
-	InitGunChargeExt("mushket_Shtuzer",   "t4", "Silver_cartridge", "", 5, 0);
-	rGun = ItemsFromID("mushket_Shtuzer");
-	rGun.ammo_type = "bullet";
-	
-	InitGunChargeExt("mushket_2x2",       "t1", "bullet", "gunpowder", 10, 1);
-	InitGunChargeExt("mushket_2x2",       "t2", "cartridge", "", 5, 0);
-	InitGunChargeExt("mushket_2x2",       "t3", "silver_bullet", "gunpowder", 10, 0);
-	InitGunChargeExt("mushket_2x2",       "t4", "Silver_cartridge", "", 5, 0);
-	rGun = ItemsFromID("mushket_2x2");
-	rGun.ammo_type = "bullet";
-	
-	InitGunChargeExt("mushket_Bombard",   "t1", "Grenade", "", 10, 1);
-	InitGunChargeExt("mushket_Bombard",   "t2", "Petard", "", 10, 1);
-	InitGunChargeExt("mushket_Bombard",   "t3", "Poison_bomb", "", 10, 1);
-	rGun = ItemsFromID("mushket_Bombard");
-	rGun.ammo_type = "bomb";
+	InitMusketChargeExt("mushket_Bombard",   "t1", "Grenade", "", 10, 1);
+	InitMusketChargeExt("mushket_Bombard",   "t2", "Petard", "", 10, 1);
+	InitMusketChargeExt("mushket_Bombard",   "t3", "Poison_bomb", "", 10, 1);
+	rMus = ItemsFromID("mushket_Bombard");
+	rMus.ammo_type = "bomb";
 }
 
 void InitMultiObjectAmulets()

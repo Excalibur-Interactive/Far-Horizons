@@ -1441,6 +1441,7 @@ void QuestComplete(string sQuestName, string qname)
 				LAi_SetHuberTypeNoGroup(sld);
 				RemoveCharacterEquip(pchar, BLADE_ITEM_TYPE);
 				RemoveCharacterEquip(pchar, GUN_ITEM_TYPE);
+				RemoveCharacterEquip(pchar, MUSKET_ITEM_TYPE);
 			}
         break;
 

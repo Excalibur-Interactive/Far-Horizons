@@ -115,8 +115,12 @@ void ExternControlsInit(bool bFirst)
 	CI_CreateAndSetControls( "PrimaryLand", "UsePoison", CI_GetKeyCode("KEY_X"), 0, true );// Отрава
     MapControlToGroup("UsePoison", "FightModeControls");
 	
-    
+	// evganat - мушкеты
+    CI_CreateAndSetControls( "PrimaryLand", "ChrMusket", CI_GetKeyCode("KEY_Y"), 0, true );
+	MapControlToGroup("ChrMusket", "FightModeControls");
+	
     // boal -->
+	
     CI_CreateAndSetControls( "PrimaryLand", "BOAL_DeadSearch", CI_GetKeyCode("KEY_1"), 0, true );
 	MapControlToGroup("BOAL_DeadSearch","FightModeControls");
 	// boal <--
@@ -138,7 +142,7 @@ void ExternControlsInit(bool bFirst)
 	CI_CreateAndSetControls("PrimaryLand", "Alchemy", CI_GetKeyCode("KEY_K"), 0, true); // Интерфейс мультиобъектов
 	MapControlToGroup("Alchemy","BattleInterfaceControls");
 	
-	CI_CreateAndSetControls( "PrimaryLand", "Say", CI_GetKeyCode("KEY_Y"), 0, true );
+//	CI_CreateAndSetControls( "PrimaryLand", "Say", CI_GetKeyCode("KEY_Y"), 0, true );
 
 	CI_CreateAndSetControls( "FightModeControls", "ChrBlock", CI_GetKeyCode("VK_SPACE"), 0, true );
 	CI_CreateAndSetControls( "FightModeControls", "ChrAltAttackBase", CI_GetKeyCode("VK_LBUTTON"), 0, true );   //2

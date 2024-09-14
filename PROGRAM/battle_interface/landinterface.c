@@ -1131,8 +1131,8 @@ void SetCharacterIconData(int chrindex, aref arData)
 	arData.chrindex = chrindex;
 	arData.health = LAi_GetCharacterRelHP(chref);
 	arData.energy = LAi_GetCharacterRelEnergy(chref);
-	arData.shootMax = LAi_GetCharacterChargeQuant(chref);
-	arData.shootCur = LAi_GetCharacterChargeCur(chref);
+	arData.shootMax = LAi_GetCharacterChargeQuant(chref, "pistol");
+	arData.shootCur = LAi_GetCharacterChargeCur(chref, "pistol");
 	if( CheckAttribute(chref,"FaceId") )
 	{
 		//arData.picture = chref.FaceId;

@@ -27,14 +27,14 @@ bool LAi_CheckCharacter(aref chr, string out)
 //Зарядился ли пистолет у персонажа
 bool LAi_CharacterCanFrie(aref chr)
 {
-	if(!CheckAttribute(chr, "chr_ai.chargeprc"))
+	if(!CheckAttribute(chr, "chr_ai.pistol.chargeprc"))
 	{
-		chr.chr_ai.chargeprc = "1";
-		chr.chr_ai.charge = 0;
+		chr.chr_ai.pistol.chargeprc = "1";
+		chr.chr_ai.pistol.charge = 0;
 		return false;
 	}
 	
-	if(stf(chr.chr_ai.charge) >= 1.0) return true;
+	if(stf(chr.chr_ai.pistol.charge) >= 1.0) return true;
 	
 	return false;
 }
@@ -496,7 +496,7 @@ ref LAi_CreateFantomCharacterEx(string model, string ani, string group, string l
 	chr.chr_ai.group   = LAI_DEFAULT_GROUP;
 	chr.chr_ai.alarmreact = LAI_DEFAULT_ALARMREACT;
 	chr.chr_ai.grpalarmr  = LAI_DEFAULT_GRPALARMR;
-	chr.chr_ai.charge  = LAI_DEFAULT_CHARGE;
+	chr.chr_ai.pistol.charge  = LAI_DEFAULT_CHARGE;
 	chr.chr_ai.FencingType  = "Middle"; //fix
 	SetEnergyToCharacter(chr); // boal
 	if(LAi_numloginedcharacters >= MAX_CHARS_IN_LOC)
@@ -931,8 +931,8 @@ void Dead_AddLoginedCharacter(aref chr)
 					 	}
 					}
 						
-					sBullet = LAi_GetCharacterBulletType(chr);						
-					sGunPowder = LAi_GetCharacterGunpowderType(chr);
+					sBullet = LAi_GetCharacterBulletType(chr, "pistol");						
+					sGunPowder = LAi_GetCharacterGunpowderType(chr, "pistol");
 					if (chr.model.animation != "mushketer") //с мушкетеров пуль меньше, слишком у них их много - халява
 					{
 						TakeNItems(chref, sBullet, GetCharacterItem(chr, sBullet));// boal gun bullet													

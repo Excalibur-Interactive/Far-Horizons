@@ -72,7 +72,7 @@ void LAi_NPC_Equip(ref chr, int rank, bool isWeapons, bool isGun)
 			GiveItem2Character(chr, gun);
 	    	EquipCharacterByItem(chr, gun);
 
-			LAi_SetCharacterDefaultBulletType(chr)
+			LAi_SetCharacterDefaultBulletType(chr, "pistol");
 		}
 	}
 	// boal выдаем пистоль <--
@@ -123,8 +123,8 @@ void LAi_NPC_MushketerEquip(ref chr)
 			AddItems(chr, "bullet", 	50);
 			AddItems(chr, "gunpowder", 	50);
 			if(CheckAttribute(chr, "MushketType") && 
-			   CheckAttribute(chr, "MushketBulletType")) 	LAi_SetCharacterUseBullet(chr, sBullet);
-			else											LAi_SetCharacterDefaultBulletType(chr);
+			   CheckAttribute(chr, "MushketBulletType")) 	LAi_SetCharacterUseBullet(chr, "musket", sBullet);
+			else											LAi_SetCharacterDefaultBulletType(chr, "musket");
 		break;
 		
 		case "mushket_Bayonet":
@@ -132,28 +132,28 @@ void LAi_NPC_MushketerEquip(ref chr)
 			AddItems(chr, "bullet", 	50);
 			AddItems(chr, "gunpowder", 	50);
 			if(CheckAttribute(chr, "MushketType") && 
-			   CheckAttribute(chr, "MushketBulletType")) 	LAi_SetCharacterUseBullet(chr, sBullet);
-			else											LAi_SetCharacterDefaultBulletType(chr);
+			   CheckAttribute(chr, "MushketBulletType")) 	LAi_SetCharacterUseBullet(chr, "musket", sBullet);
+			else											LAi_SetCharacterDefaultBulletType(chr, "musket");
 		break;
 		
 		case "mushket_Arquebus":
 			AddItems(chr, "grapeshot", 	50);
 			AddItems(chr, "gunpowder", 	50);
-			LAi_SetCharacterUseBullet(chr, "grapeshot");
+			LAi_SetCharacterUseBullet(chr, "musket", "grapeshot");
 		break;
 		
 		case "mushket_Portuguese":
 			AddItems(chr, "grapeshot", 	50);
 			AddItems(chr, "gunpowder", 	50);
-			LAi_SetCharacterUseBullet(chr, "grapeshot");
+			LAi_SetCharacterUseBullet(chr, "musket", "grapeshot");
 		break;
 		
 		case "mushket_sklopetta":
 			AddItems(chr, "grenade", 	50);
 			AddItems(chr, "petard", 	50);
 			if(CheckAttribute(chr, "MushketType") && 
-			   CheckAttribute(chr, "MushketBulletType")) 	LAi_SetCharacterUseBullet(chr, sBullet);
-			else											LAi_SetCharacterDefaultBulletType(chr);
+			   CheckAttribute(chr, "MushketBulletType")) 	LAi_SetCharacterUseBullet(chr, "musket", sBullet);
+			else											LAi_SetCharacterDefaultBulletType(chr, "musket");
 		break;
 		
 		case "mushket_Shtuzer":
@@ -161,8 +161,8 @@ void LAi_NPC_MushketerEquip(ref chr)
 			AddItems(chr, "bullet", 	50);
 			AddItems(chr, "gunpowder", 	50);
 			if(CheckAttribute(chr, "MushketType") && 
-			   CheckAttribute(chr, "MushketBulletType")) 	LAi_SetCharacterUseBullet(chr, sBullet);
-			else											LAi_SetCharacterDefaultBulletType(chr);
+			   CheckAttribute(chr, "MushketBulletType")) 	LAi_SetCharacterUseBullet(chr, "musket", sBullet);
+			else											LAi_SetCharacterDefaultBulletType(chr, "musket");
 		break;
 		
 		case "mushket_2x2":
@@ -170,16 +170,16 @@ void LAi_NPC_MushketerEquip(ref chr)
 			AddItems(chr, "bullet", 	50);
 			AddItems(chr, "gunpowder", 	50);
 			if(CheckAttribute(chr, "MushketType") && 
-			   CheckAttribute(chr, "MushketBulletType")) 	LAi_SetCharacterUseBullet(chr, sBullet);
-			else											LAi_SetCharacterDefaultBulletType(chr);
+			   CheckAttribute(chr, "MushketBulletType")) 	LAi_SetCharacterUseBullet(chr, "musket", sBullet);
+			else											LAi_SetCharacterDefaultBulletType(chr, "musket");
 		break;
 		
 		case "mushket_Bombard":
 			AddItems(chr, "grenade", 	50);
 			AddItems(chr, "petard", 	50);
 			if(CheckAttribute(chr, "MushketType") && 
-			   CheckAttribute(chr, "MushketBulletType")) 	LAi_SetCharacterUseBullet(chr, sBullet);
-			else											LAi_SetCharacterDefaultBulletType(chr);
+			   CheckAttribute(chr, "MushketBulletType")) 	LAi_SetCharacterUseBullet(chr, "musket", sBullet);
+			else											LAi_SetCharacterDefaultBulletType(chr, "musket");
 		break;
 	}
 	

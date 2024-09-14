@@ -23,6 +23,7 @@
 #define AMMO_ITEM_TYPE		    "ammo" // боеприпасы
 #define TALISMAN_ITEM_TYPE		"talisman" // амулеты и талисманы
 #define HAT_ITEM_TYPE		    "hat" // головные уборы
+#define MUSKET_ITEM_TYPE		"musket"	// evganat - мушкеты
 
 // целевые группы
 #define TGT_QUEST                 "quest"    // Квестовое оружие

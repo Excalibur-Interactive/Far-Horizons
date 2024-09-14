@@ -1012,6 +1012,60 @@ void InitGunChargeExt(string id, string sAttr, string sBullet, string sGunPowder
 	gun.type.(sAttr).Default        = isDefault;
 }
 
+// evganat - мушкеты
+int InitStdMusket(int ItemIndex, string id, string ModelID, string picTexture, int	picIndex, string TargetGroup, int Price, string subtype, float DmgMin, float DmgMax, bool MultiDamage, float Accuracy, float Weight, int Charges, int Quality)
+{
+	ref	mus;
+	int	musIndex;
+	string Rare
+	
+	musIndex = ItemIndex;
+	makeref(mus, Items[musIndex]);
+	
+	mus.id				= id;		
+	mus.groupID			= MUSKET_ITEM_TYPE;
+	mus.name			= "itmname_" + id;
+	mus.describe		= "itmdescr_" + id;		
+	mus.model			= ModelID;
+	mus.folder 			= "items";
+	mus.chargeQ			= Charges;
+	mus.picTexture		= picTexture;
+	mus.picIndex		= picIndex;
+	mus.dmg_min			= DmgMin;
+	mus.dmg_max			= DmgMax;
+	mus.price			= Price;	
+	mus.ItemType 		= "WEAPON";
+	mus.quality 		= Quality;
+	mus.target			= TargetGroup;
+	mus.Weight 			= Weight;
+	mus.multidmg        = MultiDamage;
+	mus.Accuracy        = Accuracy;
+	mus.accuracy 		= 50.0; // by default
+	mus.ChargeSpeed 	= 10.0; // by default
+	mus.subtype			= subtype;	// evganat - подтип огнестрела
+	
+	switch(Quality)
+	{
+		case "poor":      Rare = "common"; break;
+		case "ordinary":  Rare = "rare"; break;
+		case "good":      Rare = "epic"; break;
+		case "Excellent": Rare = "Legendary"; break;
+	}
+	mus.rare 				= Rare;
+	
+	musIndex++;
+	return musIndex;
+}
+
+void InitMusketChargeExt(string id, string sAttr, string sBullet, string sGunPowder, int ChargeSpeed, bool isDefault)
+{
+	ref mus = ItemsFromID(id);
+	mus.type.(sAttr).bullet 		= sBullet;
+	mus.type.(sAttr).gunpowder 		= sGunPowder;
+	mus.type.(sAttr).ChargeSpeed    = ChargeSpeed;
+	mus.type.(sAttr).Default        = isDefault;
+}
+
 // mitrokosta переинициализировать предмет с индексом - не использовать
 void InitItem(int n)
 {

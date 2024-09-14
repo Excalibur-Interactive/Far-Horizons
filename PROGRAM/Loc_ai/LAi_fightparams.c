@@ -354,9 +354,9 @@ float LAi_GunCalcProbability(aref attack, float kDist)
 	if(kDist >= 0.9) return 1.0;
 	//Расчитаем вероятность на конце отрезка
 	float pmin = 0.3;
- 	if(CheckAttribute(attack, "chr_ai.accuracy")) // boal это меткость самого пистолета, а не скил!
+ 	if(CheckAttribute(attack, "chr_ai.pistol.accuracy")) // boal это меткость самого пистолета, а не скил!
 	{
-		pmin = stf(attack.chr_ai.accuracy);
+		pmin = stf(attack.chr_ai.pistol.accuracy);
 	}
  	//Применим разброс от скила
 	// boal -->
@@ -383,16 +383,16 @@ float LAi_GunCalcDamage(aref attack, aref enemy)
 	float min = 10.0;
 	float max = 10.0;
 	
-	string sBullet = LAi_GetCharacterBulletType(attack);
+	string sBullet = LAi_GetCharacterBulletType(attack, "pistol");
 	
-	if(CheckAttribute(attack, "chr_ai.dmggunmin"))
+	if(CheckAttribute(attack, "chr_ai.pistol.dmggunmin"))
 	{
-		min = stf(attack.chr_ai.dmggunmin);
+		min = stf(attack.chr_ai.pistol.dmggunmin);
 	}
 	
-	if(CheckAttribute(attack, "chr_ai.dmggunmax"))
+	if(CheckAttribute(attack, "chr_ai.pistol.dmggunmax"))
 	{
-		max = stf(attack.chr_ai.dmggunmax);
+		max = stf(attack.chr_ai.pistol.dmggunmax);
 	}
 	//Учитываем скилы
 	float aSkill = LAi_GetCharacterGunLevel(attack);
@@ -453,9 +453,9 @@ float LAi_GunReloadSpeed(aref chr)
 {
 	//Получим текущее состояние скорости зарядки
 	float charge_dlt = LAI_DEFAULT_DLTCHRG;
-	if(CheckAttribute(chr, "chr_ai.charge_dlt"))
+	if(CheckAttribute(chr, "chr_ai.pistol.charge_dlt"))
 	{
-		charge_dlt = stf(chr.chr_ai.charge_dlt);
+		charge_dlt = stf(chr.chr_ai.pistol.charge_dlt);
 	}
 	//Модифицируем скилом
 	// boal -->

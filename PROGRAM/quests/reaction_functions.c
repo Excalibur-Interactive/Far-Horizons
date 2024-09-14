@@ -41,6 +41,7 @@ void MayorSitBack(string qName)
 		LAi_SetHuberTypeNoGroup(sld);
 		RemoveCharacterEquip(sld, BLADE_ITEM_TYPE);
 		RemoveCharacterEquip(sld, GUN_ITEM_TYPE);
+		RemoveCharacterEquip(sld, MUSKET_ITEM_TYPE);
 	}
 }
 

@@ -130,14 +130,14 @@ bool CreateCharacter(ref character)
 	}
 
 	float fCurCharge = 1000.0;
-	if (actLoadFlag == 1 && CheckAttribute(character,"chr_ai.charge")) 
+	if (actLoadFlag == 1 && CheckAttribute(character,"chr_ai.pistol.charge")) 
 	{
-		fCurCharge = stf(character.chr_ai.charge);
+		fCurCharge = stf(character.chr_ai.pistol.charge);
 	}
 	ExecuteCharacterEquip(character);
-	if(CheckAttribute(character,"chr_ai.charge") && fCurCharge<stf(character.chr_ai.charge))
+	if(CheckAttribute(character,"chr_ai.pistol.charge") && fCurCharge<stf(character.chr_ai.pistol.charge))
 	{
-		character.chr_ai.charge = fCurCharge;
+		character.chr_ai.pistol.charge = fCurCharge;
 	}
 
 	//Set fight level
@@ -316,10 +316,15 @@ void SetOverloadFight(ref character)
 {
     if(GetItemsWeight(character) > GetMaxItemsWeight(character) && !IsCharacterEquippedTalisman(character, "totem_01"))
     {
-       character.actions.fightwalk = "fight walk";
-	   character.actions.fightbackwalk = "fight back walk";
-	   character.actions.fightrun = "fight walk";
-	   character.actions.fightbackrun = "fight back walk";
+		string tag = "";
+		int isMusMode = 0;
+		SendMessage(character, "le", MSG_CHARACTER_GETMUSMODE, &isMusMode);
+		if(isMusMode)
+			tag = "_mus";
+        character.actions.fightwalk = "fight walk" + tag;
+	    character.actions.fightbackwalk = "fight back walk" + tag;
+	    character.actions.fightrun = "fight walk" + tag;
+	    character.actions.fightbackrun = "fight back walk" + tag;
     }
 }
 void CheckAndSetOverloadMode(ref character)
@@ -329,6 +334,11 @@ void CheckAndSetOverloadMode(ref character)
         BeginChangeCharacterActions(character);
         if(GetItemsWeight(character) > GetMaxItemsWeight(character) && !IsCharacterEquippedTalisman(character, "totem_01"))
         {
+			string tag = "";
+			int isMusMode = 0;
+			SendMessage(character, "le", MSG_CHARACTER_GETMUSMODE, &isMusMode);
+			if(isMusMode)
+				tag = "_mus";
             character.actions.walk = "walk";
 	        character.actions.backwalk = "back walk";
 	        character.actions.run = "walk";
@@ -338,10 +348,10 @@ void CheckAndSetOverloadMode(ref character)
             character.actions.stsDown = "stairs down";
             character.actions.stsDownRun = "stairs down";
 
-            character.actions.fightwalk = "fight walk";
-	        character.actions.fightbackwalk = "fight back walk";
-	        character.actions.fightrun = "fight walk";
-	        character.actions.fightbackrun = "fight back walk";
+            character.actions.fightwalk = "fight walk" + tag;
+	        character.actions.fightbackwalk = "fight back walk" + tag;
+	        character.actions.fightrun = "fight walk" + tag;
+	        character.actions.fightbackrun = "fight back walk" + tag;
         }
         else
         {
@@ -490,4 +500,49 @@ void SetHuberAnimation(ref character)
 	character.actions.idle.i5 = "Gov_think_2";
 	character.actions.idle.i6 = "Gov_think_3";
 	character.actions.HitNoFight = "HitNoFightSit";
+}
+
+// evganat - мушкеты
+#event_handler("Event_SetAnimations", "Character_SetAnimations");
+void Character_SetAnimations()
+{
+	aref character = GetEventData();
+	string tag = GetEventData();
+	if(GetItemsWeight(character) > GetMaxItemsWeight(character) && !IsCharacterEquippedTalisman(character, "totem_01"))
+	{
+		BeginChangeCharacterActions(character);
+		character.actions.run = "walk";
+		character.actions.backrun = "back run";
+		character.actions.fightrun = "fight walk" + tag;
+		character.actions.fightbackrun = "fight back walk" + tag;
+		character.actions.attack_fast.a1 = "attack_fast_1" + tag;
+		character.actions.attack_fast.a2 = "attack_fast_2" + tag;
+		character.actions.attack_fast.a3 = "attack_fast_3" + tag;
+		character.actions.attack_force.a1 = "attack_force_1" + tag;
+		character.actions.attack_force.a2 = "attack_force_2" + tag;
+		character.actions.attack_force.a3 = "attack_force_3" + tag;
+		character.actions.attack_force.a4 = "attack_force_4" + tag;
+		character.actions.attack_round.a1 = "attack_round_1" + tag;
+		character.actions.attack_round.a2 = "attack_round_1" + tag;
+		character.actions.attack_break.a1 = "attack_break_1" + tag;
+		character.actions.attack_break.a2 = "attack_break_1" + tag;
+		character.actions.attack_break.a3 = "attack_break_1" + tag;
+		character.actions.attack_break.a4 = "attack_break_1" + tag;
+		character.actions.attack_feint.a1 = "attack_feint_1" + tag;
+		character.actions.attack_feintc.a1 = "attack_feintc_1" + tag;
+		character.actions.attack_feint.a2 = "attack_feint_2" + tag;
+		character.actions.attack_feintc.a2 = "attack_feintc_2" + tag;
+		character.actions.attack_feint.a3 = "attack_feint_3" + tag;
+		character.actions.attack_feintc.a3 = "attack_feintc_3" + tag;
+		character.actions.attack_feint.a4 = "attack_feint_4" + tag;
+		character.actions.attack_feintc.a4 = "attack_feintc_4" + tag;
+		character.actions.hit_attack.h1 = "hit_attack_1" + tag;
+		character.actions.hit_attack.h2 = "hit_attack_2" + tag;
+		character.actions.hit_attack.h3 = "hit_attack_3" + tag;
+		character.actions.parry.p1 = "parry_1" + tag;
+		character.actions.parry.p2 = "parry_2" + tag;
+		character.actions.parry.p3 = "parry_3" + tag;
+		character.actions.parry.p4 = "parry_4" + tag;
+		EndChangeCharacterActions(character);
+	}
 }

@@ -374,7 +374,8 @@ void AddToTable(int _mode)
 		
 		// Снаряжение -->
 		ok = (groupID == BLADE_ITEM_TYPE) || 	 // холодное оружие
-		     (groupID == GUN_ITEM_TYPE)	||		 // огнестрельное оружие
+		     (groupID == GUN_ITEM_TYPE)	||		 // пистолеты
+			 (groupID == MUSKET_ITEM_TYPE)	||	 // мушкеты
              (groupID == SPYGLASS_ITEM_TYPE) ||  // подзорные трубы
 			 (groupID == CIRASS_ITEM_TYPE) ||    // костюмы и доспехи
 			 (sItem == "bullet") ||              // пули
@@ -440,7 +441,8 @@ void AddToTable(int _mode)
 		
 		// Снаряжение -->
 		ok = (groupID == BLADE_ITEM_TYPE) || 	 // холодное оружие
-		     (groupID == GUN_ITEM_TYPE)	||		 // огнестрельное оружие
+		     (groupID == GUN_ITEM_TYPE)	||		 // пистолеты
+			 (groupID == MUSKET_ITEM_TYPE)	||		 // мушкеты
              (groupID == SPYGLASS_ITEM_TYPE) ||  // подзорные трубы
 			 (groupID == CIRASS_ITEM_TYPE) ||    // костюмы и доспехи
 			 (sItem == "bullet") ||              // пули

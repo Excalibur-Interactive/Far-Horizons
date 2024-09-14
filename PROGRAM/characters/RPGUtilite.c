@@ -2139,7 +2139,7 @@ void initMainCharacterItem()
         	EquipCharacterbyItem(ch, "pistol1");
         	TakeNItems(ch, "bullet", 20);
         	TakeNItems(ch, "gunpowder", 20);
-	    	LAi_SetCharacterUseBullet(ch, "bullet");	
+	    	LAi_SetCharacterUseBullet(ch, "pistol", "bullet");	
 	    break;
 		
 		// стартовая экипировка кирасира

@@ -1959,7 +1959,7 @@ string FindCharacterItemByGroup(ref chref, string groupID)
 		if( !CheckAttribute(refItm,"groupID") ) continue;
 		if(refItm.groupID!=groupID) continue;
 		if( !CheckAttribute(chref,"items."+refItm.id) ) continue;
-		if(groupID==GUN_ITEM_TYPE)
+		if(groupID==GUN_ITEM_TYPE || groupID == MUSKET_ITEM_TYPE)	// evganat - мушкеты
 		{
 			if( !CheckAttribute(refItm,"chargeQ") ) continue;
 			n = sti(refItm.chargeQ);
@@ -2146,30 +2146,63 @@ void SetEquipedItemToCharacter(ref chref, string groupID, string itemID)
 		SendMessage(chref,"ls",MSG_CHARACTER_SETGUN,modelName);
 		if(itemID != "")
 		{
-			if(CheckAttribute(chref,"chr_ai.sGun") && itemID == chref.chr_ai.sGun)
+			if(CheckAttribute(chref,"chr_ai.pistol.sGun") && itemID == chref.chr_ai.pistol.sGun)
 			{
-				if(CheckAttribute(chref,"chr_ai.bullet"))
+				if(CheckAttribute(chref,"chr_ai.pistol.bullet"))
 				{
-					LAi_SetCharacterUseBullet(chref, chref.chr_ai.bullet);
+					LAi_SetCharacterUseBullet(chref, "pistol", chref.chr_ai.pistol.bullet);
 				}
 				else
 				{
-					LAi_SetCharacterDefaultBulletType(chref);
-					LAi_GunSetUnload(chref);
+					LAi_SetCharacterDefaultBulletType(chref, "pistol");
+					LAi_GunSetUnload(chref, "pistol");
 				}
 			}
 			else
 			{
-				LAi_SetCharacterDefaultBulletType(chref);
-				LAi_GunSetUnload(chref);
+				LAi_SetCharacterDefaultBulletType(chref, "pistol");
+				LAi_GunSetUnload(chref, "pistol");
 			}
 		}
 		else
 		{				
-			if(CheckAttribute(chref,"chr_ai.sGun"))			DeleteAttribute(chref,"chr_ai.sGun");
-			if(CheckAttribute(chref,"chr_ai.bullet"))		DeleteAttribute(chref,"chr_ai.bullet");
-			if(CheckAttribute(chref,"chr_ai.charge_max")) 	DeleteAttribute(chref,"chr_ai.charge_max");
-			if(CheckAttribute(chref,"chr_ai.chargeprc")) 	DeleteAttribute(chref,"chr_ai.chargeprc");
+			if(CheckAttribute(chref,"chr_ai.pistol.sGun"))			DeleteAttribute(chref,"chr_ai.pistol.sGun");
+			if(CheckAttribute(chref,"chr_ai.pistol.bullet"))		DeleteAttribute(chref,"chr_ai.pistol.bullet");
+			if(CheckAttribute(chref,"chr_ai.pistol.charge_max")) 	DeleteAttribute(chref,"chr_ai.pistol.charge_max");
+			if(CheckAttribute(chref,"chr_ai.pistol.chargeprc")) 	DeleteAttribute(chref,"chr_ai.pistol.chargeprc");
+		}
+	break;
+	
+	// evganat - мушкеты
+	case MUSKET_ITEM_TYPE:
+		if(CheckAttribute(arItm,"model"))	{modelName = arItm.model;}
+		SendMessage(chref, "ls", MSG_CHARACTER_SETMUS, modelName);
+		if(itemID != "")
+		{
+			if(CheckAttribute(chref,"chr_ai.musket.sGun") && itemID == chref.chr_ai.musket.sGun)
+			{
+				if(CheckAttribute(chref,"chr_ai.musket.bullet"))
+				{
+					LAi_SetCharacterUseBullet(chref, "musket", chref.chr_ai.musket.bullet);
+				}
+				else
+				{
+					LAi_SetCharacterDefaultBulletType(chref, "musket");
+					LAi_GunSetUnload(chref, "musket");
+				}
+			}
+			else
+			{
+				LAi_SetCharacterDefaultBulletType(chref, "musket");
+				LAi_GunSetUnload(chref, "musket");
+			}
+		}
+		else
+		{				
+			if(CheckAttribute(chref,"chr_ai.musket.sGun"))			DeleteAttribute(chref,"chr_ai.musket.sGun");
+			if(CheckAttribute(chref,"chr_ai.musket.bullet"))		DeleteAttribute(chref,"chr_ai.musket.bullet");
+			if(CheckAttribute(chref,"chr_ai.musket.charge_max")) 	DeleteAttribute(chref,"chr_ai.musket.charge_max");
+			if(CheckAttribute(chref,"chr_ai.musket.chargeprc")) 	DeleteAttribute(chref,"chr_ai.musket.chargeprc");
 		}
 	break;
 
@@ -2236,6 +2269,11 @@ void EquipCharacterByItem(ref chref, string itemID)
 	if( !CheckAttribute(arItm, "groupID") ) return;
 
 	string groupName = arItm.groupID;
+	// evganat - мушкеты
+	if(groupName == MUSKET_ITEM_TYPE)
+	{
+		LAi_GunSetUnload(chref, "musket");
+	}
 	
 	string oldItemID = GetCharacterEquipByGroup(chref, groupName);
 	if(oldItemID==itemID) return;	
@@ -2268,7 +2306,7 @@ void EquipCharacterByItem(ref chref, string itemID)
 	}
 	if(groupName==GUN_ITEM_TYPE && sti(chref.index) == GetMainCharacterIndex())
 	{
-		LAi_GunSetUnload(chref);
+		LAi_GunSetUnload(chref, "pistol");
 	}
 }
 
@@ -2297,10 +2335,12 @@ void EquipOfficerByItem(ref chref, string itemID)
 
 void ExecuteCharacterEquip(ref chref)
 {
-	stmp = GetCharacterEquipByGroup(chref,BLADE_ITEM_TYPE);
+	string stmp = GetCharacterEquipByGroup(chref,BLADE_ITEM_TYPE);
 	if(stmp!="")	{SetEquipedItemToCharacter(chref, BLADE_ITEM_TYPE, stmp);}
-	string stmp = GetCharacterEquipByGroup(chref,GUN_ITEM_TYPE);
+	stmp = GetCharacterEquipByGroup(chref,GUN_ITEM_TYPE);
 	if(stmp!="")	{SetEquipedItemToCharacter(chref, GUN_ITEM_TYPE, stmp);}
+	stmp = GetCharacterEquipByGroup(chref,MUSKET_ITEM_TYPE);	// evganat - мушкеты
+	if(stmp!="")	{SetEquipedItemToCharacter(chref, MUSKET_ITEM_TYPE, stmp);}
 }
 
 bool IsCanEquiping(ref chref, string equiping_group)
@@ -2327,6 +2367,7 @@ void EnableEquip(ref chref, string equiping_group, bool enable)
 		{
 			string stmp;
 			stmp = GUN_ITEM_TYPE;		chref.equip.disabled_group.(stmp) = true;
+			stmp = MUSKET_ITEM_TYPE;	chref.equip.disabled_group.(stmp) = true;	// evganat - мушкеты
 			stmp = BLADE_ITEM_TYPE;		chref.equip.disabled_group.(stmp) = true;
 			stmp = SPYGLASS_ITEM_TYPE;	chref.equip.disabled_group.(stmp) = true;
 		}
@@ -3078,7 +3119,7 @@ bool SetMainCharacterToMushketer(string sMushket, bool _ToMushketer) // если
 		//if(!CanEquipMushketOnLocation(PChar.Location)) return false; //мушкеты в тавернах - Gregg
 
 		sLastGun = GetCharacterEquipByGroup(PChar, GUN_ITEM_TYPE);
-		PChar.bullets.pistol = LAi_GetCharacterBulletType(pchar);	// evganat
+		PChar.bullets.pistol = LAi_GetCharacterBulletType(pchar, "pistol");	// evganat
 		PChar.DefaultAnimation = PChar.model.Animation;
 		PChar.IsMushketer = true; // Ставим флаг "ГГ - мушкетер"
 		PChar.IsMushketer.MushketID = sMushket; // Запомним, какой мушкет надели
@@ -3103,14 +3144,14 @@ bool SetMainCharacterToMushketer(string sMushket, bool _ToMushketer) // если
 		}
 		Characters_RefreshModel(PChar); // Обновим модель. Важно: обновлять модель нужно ДО экипировки мушкетом
 		EquipCharacterByItem(PChar, sMushket); // Экипируем мушкет
-		if(CheckAttribute(pchar, "bullets.mushket"))	// evganat
-			LAi_SetCharacterBulletType(pchar, pchar.bullets.mushket);
+		if(CheckAttribute(pchar, "bullets.musket"))	// evganat
+			LAi_SetCharacterBulletType(pchar, pchar.bullets.musket);
 		PChar.Equip.TempGunID = sLastGun; // Пистоль оставляем экипированным, но в другой группе
 
 	}
 	else // Делаем ГГ обычным фехтовальщиком
 	{
-		PChar.bullets.mushket = LAi_GetCharacterBulletType(pchar);	// evganat
+		PChar.bullets.musket = LAi_GetCharacterBulletType(pchar, "musket");	// evganat
 		PChar.model = FindStringBeforeChar(PChar.model, "_mush"); // Вернем модель и анимацию
 		PChar.model.Animation = PChar.DefaultAnimation;
 		Characters_RefreshModel(PChar);

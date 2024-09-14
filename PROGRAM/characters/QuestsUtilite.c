@@ -507,12 +507,12 @@ void FantomMakeCoolFighter(ref _Character, int _Rank, int _Fencing, int _Pistol,
 			GiveItem2Character(_Character, _Gun);
 			EquipCharacterbyItem(_Character, _Gun);
 			LAi_SetCharacterBulletType(_Character, _Bullet);
-			string sGunpowder = LAi_GetCharacterGunpowderType(_Character);
+			string sGunpowder = LAi_GetCharacterGunpowderType(_Character, "pistol");
 			if(sGunPowder != "")
 			{
 				AddItems(_Character, sGunpowder, 30 + rand(20)); // Warship. Порох
 			}	
-			LAi_SetCharacterUseBullet(_Character, _Bullet);
+			LAi_SetCharacterUseBullet(_Character, "pistol", _Bullet);
 		}
 	}
     FaceMaker(_Character);
@@ -1021,7 +1021,7 @@ void SetNewModelToChar(ref chref)
     float liveTime = 0.1;
 	int colors = argb(64, 64, 64, 64);
 	int colore = argb(0, 32, 32, 32);
-
+	ref rItem;
     if (IsEntity(chref))
     {
     	if(CheckAttribute(chref, "model"))
@@ -1034,8 +1034,13 @@ void SetNewModelToChar(ref chref)
         }
         if(CheckAttribute(chref, "equip.blade"))
         {
-			ref rItem = ItemsFromID(chref.equip.blade);
+			rItem = ItemsFromID(chref.equip.blade);
 			SendMessage(chref, "llsfll", MSG_CHARACTER_SETBLADE, 0, rItem.model, liveTime, colors, colore);
+        }
+		if(CheckAttribute(chref, "equip.musket"))	// evganat - мушкет
+        {
+			rItem = ItemsFromID(chref.equip.musket);
+            SendMessage(chref, "ls", MSG_CHARACTER_SETMUS, rItem.model);
         }
     }
 }

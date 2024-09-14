@@ -40,7 +40,6 @@
 
 # Файлы моделей
 *.qch
-*.gm
 *.dat
 *.COL
 *.xps
@@ -78,7 +77,6 @@
 *Program/__cache__/
 *SAVE/
 *RESOURCE/foam/
-*RESOURCE/MODELS/
 *RESOURCE/Particles/
 *RESOURCE/Sea/
 *RESOURCE/Sounds/

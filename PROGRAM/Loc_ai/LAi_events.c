@@ -291,13 +291,13 @@ void LAi_CharacterFire()
 	float kDist = GetEventData();	//0..1
 	int isFindedEnemy = GetEventData();
 	//Заряд персонажа
-	if(!CheckAttribute(attack, "chr_ai.charge")) attack.chr_ai.charge = "0";
-	float charge = stf(attack.chr_ai.charge) - 1.0;
+	if(!CheckAttribute(attack, "chr_ai.pistol.charge")) attack.chr_ai.pistol.charge = "0";
+	float charge = stf(attack.chr_ai.pistol.charge) - 1.0;
 	// boal gun bullet убираем пулю после выстрела -->
-	sBullet = LAi_GetCharacterBulletType(attack);
+	sBullet = LAi_GetCharacterBulletType(attack, "pistol");
 	TakeItemFromCharacter(attack, sBullet);
 	// boal gun bullet убираем пулю после выстрела <--
-	sGunPowder = LAi_GetCharacterGunpowderType(attack);
+	sGunPowder = LAi_GetCharacterGunpowderType(attack, "pistol");
 	if(sGunPowder != "")
 	{
 		RemoveItems(attack, sGunPowder, 1); // Warship. Забираем порох
@@ -305,12 +305,12 @@ void LAi_CharacterFire()
 	if(charge <= 0.0)
 	{
 		charge = 0.0;
-		attack.chr_ai.chargeprc = "1";
+		attack.chr_ai.pistol.chargeprc = "1";
 	}
 	// boal fix любой выстрел врубает дозарядку! -->
-	attack.chr_ai.chargeprc = "1";
+	attack.chr_ai.pistol.chargeprc = "1";
 	// boal <--
-	attack.chr_ai.charge = charge;
+	attack.chr_ai.pistol.charge = charge;
 	//Если промахнулись, то ничего не делаем
 	if(isFindedEnemy == 0)
 	{
@@ -324,7 +324,7 @@ void LAi_CharacterFire()
 	aref weapon;
 	Items_FindItem(weaponID, &weapon);
 	
-	if(CheckAttribute(attack, "chr_ai.multidmg") && sti(attack.chr_ai.multidmg) > 0)
+	if(CheckAttribute(attack, "chr_ai.pistol.multidmg") && sti(attack.chr_ai.pistol.multidmg) > 0)
 	{
 		int num = FindNearCharacters(enemy, 2.5, -1.0, -1.0, 0.001, false, true);
 		for (int j = 0; j < num; j++)
@@ -350,7 +350,7 @@ void LAi_CharacterFire()
 	LAi_group_Attack(attack, enemy);
 	//Начисление повреждений
 	LAi_ApplyCharacterFireDamage(attack, enemy, kDist);
-	if(CheckAttribute(attack, "chr_ai.multidmg") && sti(attack.chr_ai.multidmg) > 0)
+	if(CheckAttribute(attack, "chr_ai.pistol.multidmg") && sti(attack.chr_ai.pistol.multidmg) > 0)
 	{
 		if(stf(enemy.chr_ai.hp) < 1.0 && enemy.chr_ai.group == LAI_GROUP_PLAYER) enemy.chr_ai.hp = 5;
 		LAi_CheckKillCharacter( enemy );

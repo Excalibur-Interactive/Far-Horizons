@@ -113,9 +113,9 @@ bool LAi_CharacterLogin(aref chr, string locID)
 	{
 		chr.chr_ai.hp_max = LAI_DEFAULT_HP_MAX;
 	}
-	if(CheckAttribute(chr, "chr_ai.charge") == false)
+	if(CheckAttribute(chr, "chr_ai.pistol.charge") == false)
 	{
-		chr.chr_ai.charge = LAI_DEFAULT_CHARGE;
+		chr.chr_ai.pistol.charge = LAI_DEFAULT_CHARGE;
 	}
 	SetEnergyToCharacter(chr);  // boal
 	

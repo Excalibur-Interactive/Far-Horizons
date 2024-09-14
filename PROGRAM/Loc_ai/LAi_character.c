@@ -585,17 +585,17 @@ bool LAi_CheckFightMode(aref chr)
 
 
 //Получить относительный заряд пистолета
-float LAi_GetCharacterRelCharge(aref chr)
+float LAi_GetCharacterRelCharge(aref chr, string sType)
 {
-	if(CheckAttribute(chr, "chr_ai.charge"))
+	if(CheckAttribute(chr, "chr_ai."+sType+".charge"))
 	{
-		if(CheckAttribute(chr, "chr_ai.chargeprc"))
+		if(CheckAttribute(chr, "chr_ai."+sType+".chargeprc"))
 		{
-			if(sti(chr.chr_ai.chargeprc))
+			if(sti(chr.chr_ai.(sType).chargeprc))
 			{
-				if(!CheckAttribute(chr, "chr_ai.charge_max")) return 0.0;
-				float charge = stf(chr.chr_ai.charge);
-				float chargemax = stf(chr.chr_ai.charge_max);
+				if(!CheckAttribute(chr, "chr_ai."+sType+".charge_max")) return 0.0;
+				float charge = stf(chr.chr_ai.(sType).charge);
+				float chargemax = stf(chr.chr_ai.(sType).charge_max);
 				if(chargemax <= 0) return 0.0;
 				if(charge >= chargemax) charge = chargemax;
 				charge = charge/chargemax;
@@ -606,44 +606,44 @@ float LAi_GetCharacterRelCharge(aref chr)
 				return 1.0;
 			}
 		}else{
-			chr.chr_ai.chargeprc = "1";
+			chr.chr_ai.(sType).chargeprc = "1";
 		}
 	}
 	return 0.0;
 }
 
 //Получить максимальное количество зарядов пистолета
-int LAi_GetCharacterChargeQuant(aref chr)
+int LAi_GetCharacterChargeQuant(aref chr, string sType)
 {
-	if(CheckAttribute(chr, "chr_ai.charge_max"))
+	if(CheckAttribute(chr, "chr_ai."+sType+".charge_max"))
 	{
-		return sti(chr.chr_ai.charge_max);
+		return sti(chr.chr_ai.(sType).charge_max);
 	}
 	return 0;
 }
 
 //Получить текущее количество зарядов пистолета
-int LAi_GetCharacterChargeCur(aref chr)
+int LAi_GetCharacterChargeCur(aref chr, string sType)
 {
-	if(CheckAttribute(chr, "chr_ai.charge"))
+	if(CheckAttribute(chr, "chr_ai."+sType+".charge"))
 	{
-		float charge = stf(chr.chr_ai.charge);
+		float charge = stf(chr.chr_ai.(sType).charge);
 		return MakeInt(charge);
 	}
 	return 0;
 }
 
 //Установить количество зарядов
-void LAi_GunSetChargeQuant(aref chr, int quant)
+void LAi_GunSetChargeQuant(aref chr, string sType, int quant)
 {
 	if(quant < 0) quant = 0;
 	if(quant > 5) quant = 5;
-	chr.chr_ai.charge_max = quant;
+	chr.chr_ai.(sType).charge_max = quant;
 	
-	int iCharge = iGetPistolChargeNum(chr, quant);
-	chr.chr_ai.charge = iCharge;
+	int iCharge = iGetPistolChargeNum(chr, sType, quant);
+	chr.chr_ai.(sType).charge = iCharge;
 	
-	chr.chr_ai.chargeprc = "1";
+	chr.chr_ai.(sType).chargeprc = "1";
 }
 
 void LAi_SetCharacterBulletType(ref rChar, string sBullet)
@@ -678,45 +678,57 @@ void LAi_SetCharacterBulletType(ref rChar, string sBullet)
 }
 
 // ugeen --> получим тип пуль на одетом огнестрельном оружии
-string LAi_GetCharacterBulletType(ref rChar)
+string LAi_GetCharacterBulletType(ref rChar, string sType)
 {
 	string sBulletType = "";	
-	string sGun = GetCharacterEquipByGroup(rChar, GUN_ITEM_TYPE);
+	string sGun;
+	if(sType == "pistol")
+		sGun = GetCharacterEquipByGroup(rChar, GUN_ITEM_TYPE);
+	else
+		sGun = GetCharacterEquipByGroup(rChar, MUSKET_ITEM_TYPE);
 	
 	if(sGun != "") 
 	{
-		if(CheckAttribute(rChar,"chr_ai.bullet"))		
+		if(CheckAttribute(rChar,"chr_ai."+sType+".bullet"))		
 		{
-			sBulletType 	= rChar.chr_ai.bullet;
+			sBulletType 	= rChar.chr_ai.(sType).bullet;
 		}	
 	}			
 	return sBulletType;
 }
 
 // ugeen --> получим тип пороха на одетом огнестрельном оружии и известном типе пуль
-string LAi_GetCharacterGunpowderType(ref rChar)
+string LAi_GetCharacterGunpowderType(ref rChar, string sType)
 {
 	string sGunpowderType = "";		
-	string sGun = GetCharacterEquipByGroup(rChar, GUN_ITEM_TYPE);
+	string sGun;
+	if(sType == "pistol")
+		sGun = GetCharacterEquipByGroup(rChar, GUN_ITEM_TYPE);
+	else
+		sGun = GetCharacterEquipByGroup(rChar, MUSKET_ITEM_TYPE);
 	
 	if(sGun != "") 
 	{
-		if(CheckAttribute(rChar,"chr_ai.gunpowder"))		
+		if(CheckAttribute(rChar,"chr_ai."+sType+".gunpowder"))		
 		{
-			sGunPowderType  = rChar.chr_ai.gunpowder;
+			sGunPowderType  = rChar.chr_ai.(sType).gunpowder;
 		}	
 	}			
 	return sGunpowderType;
 }
 
-string LAi_SetCharacterDefaultBulletType(ref rChar)
+string LAi_SetCharacterDefaultBulletType(ref rChar, string sType)
 {
 	string sAttr;
 	string sBulletType = "";
 	int iNum;
 	bool isBulletSet = false;
 	aref rType;
-	string sGun = GetCharacterEquipByGroup(rChar, GUN_ITEM_TYPE);
+	string sGun;
+	if(sType == "pistol")
+		sGun = GetCharacterEquipByGroup(rChar, GUN_ITEM_TYPE);
+	else
+		sGun = GetCharacterEquipByGroup(rChar, MUSKET_ITEM_TYPE);
 	
 	if(sGun != "") 
 	{
@@ -729,7 +741,7 @@ string LAi_SetCharacterDefaultBulletType(ref rChar)
 			if(sti(rItm.type.(sAttr).Default) > 0)
 			{
 				sBulletType = rItm.type.(sAttr).bullet;
-				isBulletSet = LAi_SetCharacterUseBullet(rChar, sBulletType);
+				isBulletSet = LAi_SetCharacterUseBullet(rChar, sType, sBulletType);
 			}
 		}
 		if(!isBulletSet) trace("can't set default bullet for character id " + rChar.id);
@@ -737,25 +749,21 @@ string LAi_SetCharacterDefaultBulletType(ref rChar)
 	return sBulletType;
 }
 
-bool LAi_SetCharacterUseBullet(ref rChar, string sBullet)
+bool LAi_SetCharacterUseBullet(ref rChar, string sType, string sBullet)
 {
 	string 	sAttr;
 	string 	sBulletType = "";
 	int 	iNum;
 	aref 	rType;
-	
-	string sGun = GetCharacterEquipByGroup(rChar, GUN_ITEM_TYPE);
+	string	sGun;
+	if(sType == "pistol")
+		sGun = GetCharacterEquipByGroup(rChar, GUN_ITEM_TYPE);
+	else
+		sGun = GetCharacterEquipByGroup(rChar, MUSKET_ITEM_TYPE);
 	
 	if(sGun != "") 
 	{
-		if(HasSubStr(sGun, "mushket"))
-		{
-			rChar.bullets.mushket = sBullet;
-		}
-		else
-		{
-			rChar.bullets.pistol = sBullet;
-		}
+		rChar.bullets.(sType) = sBullet;
 		ref rItm = ItemsFromID(sGun); 
 		makearef(rType, rItm.type);
 		iNum = GetAttributesNum(rType);		
@@ -765,26 +773,26 @@ bool LAi_SetCharacterUseBullet(ref rChar, string sBullet)
 			sBulletType = rItm.type.(sAttr).bullet;
 			if(sBulletType == sBullet)
 			{
-				rChar.chr_ai.sGun			= sGun;
-				rChar.chr_ai.bulletType		= sAttr;
-				rChar.chr_ai.bulletNum 		= iNum;
-				rChar.chr_ai.bullet 		= sBulletType;
-				rChar.chr_ai.gunpowder		= rItm.type.(sAttr).gunpowder;
-				rChar.chr_ai.chargespeed	= rItm.type.(sAttr).ChargeSpeed;
-				rChar.chr_ai.MultiDmg       = rItm.multidmg;
+				rChar.chr_ai.(sType).sGun			= sGun;
+				rChar.chr_ai.(sType).bulletType		= sAttr;
+				rChar.chr_ai.(sType).bulletNum 		= iNum;
+				rChar.chr_ai.(sType).bullet 		= sBulletType;
+				rChar.chr_ai.(sType).gunpowder		= rItm.type.(sAttr).gunpowder;
+				rChar.chr_ai.(sType).chargespeed	= rItm.type.(sAttr).ChargeSpeed;
+				rChar.chr_ai.(sType).MultiDmg       = rItm.multidmg;
 				
 				rItm.ChargeSpeed			= rItm.type.(sAttr).ChargeSpeed;
 				
-				if(CheckAttribute(rItm,"chargeQ"))										LAi_GunSetChargeQuant(rChar,sti(rItm.chargeQ));
-				else																	LAi_GunSetChargeQuant(rChar, 0);						
-				if(CheckAttribute(rItm,"chargespeed") && stf(rItm.chargespeed) > 0.0)	LAi_GunSetChargeSpeed(rChar, 1.0/stf(rItm.chargespeed));
-				else																	LAi_GunSetChargeSpeed(rChar, 0.0);				
-				if(CheckAttribute(rItm,"dmg_min"))										LAi_GunSetDamageMin(rChar,stf(rItm.dmg_min));
-				else																	LAi_GunSetDamageMin(rChar, 0.0);				
-				if(CheckAttribute(rItm,"dmg_max"))										LAi_GunSetDamageMax(rChar,stf(rItm.dmg_max));
-				else																	LAi_GunSetDamageMax(rChar, 0.0);				
-				if(CheckAttribute(rItm,"accuracy"))										LAi_GunSetAccuracy(rChar,stf(rItm.accuracy)*0.01);
-				else																	LAi_GunSetAccuracy(rChar,0.0);
+				if(CheckAttribute(rItm,"chargeQ"))										LAi_GunSetChargeQuant(rChar, sType, sti(rItm.chargeQ));
+				else																	LAi_GunSetChargeQuant(rChar, sType, 0);						
+				if(CheckAttribute(rItm,"chargespeed") && stf(rItm.chargespeed) > 0.0)	LAi_GunSetChargeSpeed(rChar, sType, 1.0/stf(rItm.chargespeed));
+				else																	LAi_GunSetChargeSpeed(rChar, sType, 0.0);				
+				if(CheckAttribute(rItm,"dmg_min"))										LAi_GunSetDamageMin(rChar, sType, stf(rItm.dmg_min));
+				else																	LAi_GunSetDamageMin(rChar, sType, 0.0);				
+				if(CheckAttribute(rItm,"dmg_max"))										LAi_GunSetDamageMax(rChar, sType, stf(rItm.dmg_max));
+				else																	LAi_GunSetDamageMax(rChar, sType, 0.0);				
+				if(CheckAttribute(rItm,"accuracy"))										LAi_GunSetAccuracy(rChar, sType, stf(rItm.accuracy)*0.01);
+				else																	LAi_GunSetAccuracy(rChar, sType, 0.0);
 			
 				return true;	
 			}
@@ -794,11 +802,11 @@ bool LAi_SetCharacterUseBullet(ref rChar, string sBullet)
 }
 
 // Warship. Методы по зарядке пистоля -->
-int iGetMinPistolChargeNum(ref rChar) // Чего меньше, пороха или пуль?
+int iGetMinPistolChargeNum(ref rChar, string sType) // Чего меньше, пороха или пуль?
 {
-	string sBulletType = LAi_GetCharacterBulletType(rChar);	 					// узнаем тип пуль
+	string sBulletType = LAi_GetCharacterBulletType(rChar, sType);	 					// узнаем тип пуль
 	int iBulletQty = GetCharacterItem(rChar, sBulletType);   					// считаем кол-во пуль
-	string sGunPowderType = LAi_GetCharacterGunpowderType(rChar); 				// тип пороха
+	string sGunPowderType = LAi_GetCharacterGunpowderType(rChar, sType); 		// тип пороха
 	if(sGunPowderType != "")
 	{
 		int iGunPowderQty = GetCharacterItem(rChar, sGunPowderType); 				// кол-во пороха		
@@ -808,9 +816,9 @@ int iGetMinPistolChargeNum(ref rChar) // Чего меньше, пороха и�
 	return iBulletQty;
 }
 
-int iGetPistolChargeNum(ref rChar, int iQuant) // Скока можем зарядить
+int iGetPistolChargeNum(ref rChar, string sType, int iQuant) // Скока можем зарядить
 {
-	int iChargeQty = iGetMinPistolChargeNum(rChar);
+	int iChargeQty = iGetMinPistolChargeNum(rChar, sType);
 
 	if(iChargeQty == 0) return 0;
 	if(iChargeQty >= iQuant) return iQuant;
@@ -819,38 +827,38 @@ int iGetPistolChargeNum(ref rChar, int iQuant) // Скока можем заря
 // <-- Методы по зарядке пистоля
 
 //Разрядить пистлет
-void LAi_GunSetUnload(aref chr)
+void LAi_GunSetUnload(aref chr, string sType)
 {
-	chr.chr_ai.charge = "0";
-	chr.chr_ai.chargeprc = "1";
+	chr.chr_ai.(sType).charge = "0";
+	chr.chr_ai.(sType).chargeprc = "1";
 }
 
 //Установить скорость заряда пистолета
-void LAi_GunSetChargeSpeed(aref chr, float speed)
+void LAi_GunSetChargeSpeed(aref chr, string sType, float speed)
 {
 	if(speed < 0.0) speed = 0.0;
 	if(speed > 4.0) speed = 4.0;
-	chr.chr_ai.charge_dlt = speed;
+	chr.chr_ai.(sType).charge_dlt = speed;
 }
 
 //Установить минимальный урон от пистолета
-void LAi_GunSetDamageMin(aref chr, float min)
+void LAi_GunSetDamageMin(aref chr, string sType, float min)
 {
-	chr.chr_ai.dmggunmin = min;
+	chr.chr_ai.(sType).dmggunmin = min;
 }
 
 //Установить максимальный урон от пистолета
-void LAi_GunSetDamageMax(aref chr, float max)
+void LAi_GunSetDamageMax(aref chr, string sType, float max)
 {
-	chr.chr_ai.dmggunmax = max;
+	chr.chr_ai.(sType).dmggunmax = max;
 }
 
 //Установить вероятность попадания на максимальной дальности стрельбы
-void LAi_GunSetAccuracy(aref chr, float accuracy)
+void LAi_GunSetAccuracy(aref chr, string sType, float accuracy)
 {
 	if(accuracy < 0.0) accuracy = 0.0;
 	if(accuracy > 1.0) accuracy = 1.0;
-	chr.chr_ai.accuracy = accuracy;
+	chr.chr_ai.(sType).accuracy = accuracy;
 }
 
 //Установить минимальный урон от сабли
@@ -1031,38 +1039,38 @@ void LAi_AllCharactersUpdate(float dltTime)
 			LAi_CheckKillCharacter(chr);
 			//Востоновление заряда
 			float chargemax = 0.0;
-			if(CheckAttribute(chr_ai, "charge_max"))
+			if(CheckAttribute(chr_ai, "pistol.charge_max"))
 			{
-				chargemax = stf(chr_ai.charge_max);
+				chargemax = stf(chr_ai.pistol.charge_max);
 			}
 
 			if(chargemax > 0.0)
 			{
-				if(sti(chr_ai.chargeprc))
+				if(sti(chr_ai.pistol.chargeprc))
 				{
 					// boal 22/07/05 зарядка не в бою. eddy.но если мушкетер, то пофиг
 					if (IsCharacterPerkOn(chr, "Musketeer") || !LAi_IsFightMode(chr) || chr.model.animation == "mushketer")
 					{
-						float charge = stf(chr_ai.charge);
+						float charge = stf(chr_ai.pistol.charge);
 	                    // boal сюда добавть проверку на наличие пуль gun bullet-->
-	                    if((iGetMinPistolChargeNum(chr) - charge) > 0) // Warship. Переделка, т.к. появился порох
+	                    if((iGetMinPistolChargeNum(chr, "pistol") - charge) > 0) // Warship. Переделка, т.к. появился порох
 		                {
 							//zagolski. убираем тормоза при зарядке
-							if(!CheckAttribute(chr_ai, "charge_pSkill"))
+							if(!CheckAttribute(chr_ai, "pistol.charge_pSkill"))
 							{
 							    //Скорость зарядки
-								chr_ai.charge_pSkill = LAi_GunReloadSpeed(chr);
+								chr_ai.pistol.charge_pSkill = LAi_GunReloadSpeed(chr, "pistol");
 							}
 
-							float dltcharge = stf(chr_ai.charge_pSkill);
+							float dltcharge = stf(chr_ai.pistol.charge_pSkill);
 
 							//Подзаряжаем пистолет
 							charge = charge + dltcharge*dltTime;
 							if(charge >= chargemax)
 							{
 								charge = chargemax;
-								chr_ai.chargeprc = "0";
-								DeleteAttribute(chr_ai, "charge_pSkill");
+								chr_ai.pistol.chargeprc = "0";
+								DeleteAttribute(chr_ai, "pistol.charge_pSkill");
 
 								// boal 24.04.04 озвучка зарядки пистоля -->
 								if (Characters[idx].index == GetMainCharacterIndex() && LAi_IsFightMode(pchar))
@@ -1070,7 +1078,7 @@ void LAi_AllCharactersUpdate(float dltTime)
 									PlaySound("Reload");
 								}
 							}
-						    chr_ai.charge = charge;
+						    chr_ai.pistol.charge = charge;
 						}
 						// boal сюда добавть проверку на наличие пуль gun bullet <--
 					} // boal 22/07/05 зарядка не в бою
@@ -1078,7 +1086,7 @@ void LAi_AllCharactersUpdate(float dltTime)
 			}
 			else
 			{
-				chr_ai.charge = "0";
+				chr_ai.pistol.charge = "0";
 			}
 
 			//Востоновление энергии

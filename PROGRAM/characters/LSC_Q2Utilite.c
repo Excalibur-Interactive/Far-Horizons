@@ -37,6 +37,7 @@ void RemoveAllCharacterItems(ref _ch, bool _removemoney)
 {
 	RemoveCharacterEquip(_ch, BLADE_ITEM_TYPE);
 	RemoveCharacterEquip(_ch, GUN_ITEM_TYPE);
+	RemoveCharacterEquip(_ch, MUSKET_ITEM_TYPE);	// evganat - мушкеты
 	RemoveCharacterEquip(_ch, SPYGLASS_ITEM_TYPE);
 	RemoveCharacterEquip(_ch, CIRASS_ITEM_TYPE);
 	
