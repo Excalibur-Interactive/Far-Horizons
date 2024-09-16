@@ -130,11 +130,11 @@ int LocationInitTrinidad(int n)
 	n = n + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// ТАВЕРНА // --> Джин-Бейн
+	// ТАВЕРНА
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "PortSpein_tavern";
 	locations[n].id.label = "Tavern";
-	locations[n].filespath.models = "locations\inside\tavern06";
+	locations[n].filespath.models = "locations\inside\tavern01\";
 	locations[n].image = "loading\inside\tavern.tga";
 	locations[n].habitues = 1;
 	//Town sack
@@ -143,34 +143,26 @@ int LocationInitTrinidad(int n)
 	//Sound
 	locations[n].type = "tavern";
 	locations[n].fastreload = "PortSpein";
-	locations[n].islandId = "Trinidad";
+ 	locations[n].islandId = "Trinidad";
 	//Models
 	//Always
-	locations[n].models.always.tavern = "Tavern_Maracaibo";
+	locations[n].models.always.tavern = "Tavern01";
 	locations[n].models.always.tavern.level = 65538;
-	locations[n].models.always.window = "Tavern06MaracaiboWindovs";
+	locations[n].models.always.locators = "Tavern01_locators";
+	locations[n].models.always.window = "tavern01_windows";
 	locations[n].models.always.window.tech = "LocationWindows";
 	locations[n].models.always.window.level = 65539;
-	locations[n].models.always.Tavern_Maracaibo_inside_back_Lv1 = "Tavern_Maracaibo_inside_back_Lv1";
-	locations[n].models.always.Maracaibo_inside_back_locators = "Maracaibo_inside_back_locators";
 	locations[n].models.always.back = "..\inside_back";
-	locations[n].models.always.back.level = 65529;
-	
+	locations[n].models.always.window.level = 65529;
 	//Day
-	locations[n].models.day.locators = "Tavern06_Maracaibo_locators_day";
-	locations[n].models.day.charactersPatch = "Tavern06_Maracaibo_Patch";
-	locations[n].models.day.Tavern_Maracaibo_Breakfast = "Tavern_Maracaibo_Breakfast";
-	locations[n].models.day.fonar = "Maracaibo_back_fd";
+	locations[n].models.day.charactersPatch = "tavern01_patch";
 	//Night
-	locations[n].models.night.locators = "Tavern06_Maracaibo_locators_night";
-	locations[n].models.night.charactersPatch = "Tavern06_Maracaibo_Patch";
-	locations[n].models.night.Tavern_Maracaibo_Dinner = "Tavern_Maracaibo_Dinner";
-	locations[n].models.night.fonar = "Maracaibo_back_fn";
+	locations[n].models.night.charactersPatch = "tavern01_patch";
 	//Environment
 	locations[n].environment.weather = "true";
-	locations[n].environment.sea = "true";
+	locations[n].environment.sea = "false";
 	//Reload map
-	locations[n].reload.l1.name = "reload1";
+	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "PortSpein_town";
 	locations[n].reload.l1.emerge = "reload4";
 	locations[n].reload.l1.autoreload = "0";
@@ -178,24 +170,19 @@ int LocationInitTrinidad(int n)
 
 	locations[n].reload.l2.name = "reload2_back";
 	locations[n].reload.l2.go = "PortSpein_tavern_upstairs";
-	locations[n].reload.l2.emerge = "reload1_back";
+	locations[n].reload.l2.emerge = "reload1";
 	locations[n].reload.l2.autoreload = "0";
 	locations[n].reload.l2.label = "Tavern upstairs";
 	locations[n].reload.l2.disable = 1; // закроем, но связку сделаем для квестовых нужд.
 	LAi_LocationFightDisable(&locations[n], true);
+	n = n + 1;
 
-	/* locations[n].reload.l3.name = "reload3_back";
-	locations[n].reload.l3.go = "Maracaibo_town";
-	locations[n].reload.l3.emerge = "reload41";
-	locations[n].reload.l3.autoreload = "0";
-	locations[n].reload.l3.label = "Street"; */
-	n = n + 1; 
-	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// КОМНАТА В ТАВЕРНЕ
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "PortSpein_tavern_upstairs";
-	locations[n].id.label = "Room";
+	locations[n].id.label = "Tavern upstairs";
+	locations[n].filespath.models = "locations\inside\Tavern_room";
 	locations[n].image = "loading\inside\tavern.tga";
 	//Town sack
 	locations[n].townsack = "PortSpein";
@@ -206,42 +193,30 @@ int LocationInitTrinidad(int n)
  	locations[n].islandId = "Trinidad";
 	//Models
 	//Always
-	locations[n].filespath.models = "locations\inside\tavern06";
-	locations[n].models.always.Maracaibo_inside_back_locators = "Maracaibo_inside_back_locators";
+	locations[n].models.always.locators = "Tavern_room_locators";
+	locations[n].models.always.tavern = "Tavern_room";
+	locations[n].models.always.tavern.level = 65538;
+	locations[n].models.always.window = "tavern_room_window";
+	locations[n].models.always.window.tech = "LocationWindows";
+	locations[n].models.always.window.level = 65539;
+
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	locations[n].models.day.charactersPatch = "Tavern_MR_rooms_L2_Patch";
-	locations[n].models.day.tavern = "Tavern_MR_rooms_L2";
-	locations[n].models.day.tavern.level = 65538;
-	locations[n].models.day.Tavern_Maracaibo_inside_back_Lv2 = "Tavern_Maracaibo_inside_back_Lv2";
-	locations[n].models.day.fonar = "Maracaibo_back_fd";
-	locations[n].models.day.locators = "Tavern_MR_rooms_L2_locators";
-	locations[n].models.day.window = "Tavern_MR_rooms_L2_Windovs";
-	locations[n].models.day.window.tech = "LocationWindows";
-	locations[n].models.day.window.level = 65539;
+	locations[n].models.day.charactersPatch = "Tavern_room_patch";
 	//Night
-	locations[n].models.night.charactersPatch = "Tavern_MR_rooms_L3_Patch";
-	locations[n].models.night.tavern = "Tavern_MR_rooms_L3";
-	locations[n].models.night.tavern.level = 65538;
-	locations[n].models.night.Tavern_Maracaibo_inside_back_Lv3 = "Tavern_Maracaibo_inside_back_Lv3";
-	locations[n].models.night.fonar = "Maracaibo_back_fn";
-	locations[n].models.night.locators = "Tavern_MR_rooms_L3_locators";
-	locations[n].models.night.window = "Tavern_MR_rooms_L3_Windovs";
-	locations[n].models.night.window.tech = "LocationWindows";
-	locations[n].models.night.window.level = 65539;
+	locations[n].models.night.charactersPatch = "Tavern_room_patch";
 	//Environment
 	locations[n].environment.weather = "true";
-	locations[n].environment.sea = "true";
+	locations[n].environment.sea = "false";
 	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "PortSpein_tavern";
-	locations[n].reload.l1.emerge = "reload2_back";
+	locations[n].reload.l1.emerge = "reload2";
 	locations[n].reload.l1.autoreload = "0";
 	locations[n].reload.l1.label = "Tavern";
 	locations[n].locators_radius.reload.reload1 = 0.8;
 	n = n + 1;
-	//<-- Джин-Бейн
 
  	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// МАГАЗИН
