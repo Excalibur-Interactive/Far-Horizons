@@ -22,5 +22,8 @@ void Catherine_Start()
 	ChangeCrewExp(pchar, "Cannoners", 100);
 	ChangeCrewExp(pchar, "Soldiers", 100);
 	
-	LoadMainCharacterInFirstLocationGroup("LaVega_port", "reload", "sea");
+	SetCharacterPerk(pchar, "Musketeer");
+	TakeNItems(pchar, "mushket_matchlock", 1);
+	EquipCharacterByItem(pchar, "mushket_matchlock");
+	LoadMainCharacterInFirstLocationGroup("FortFrance_ExitTown", "reload", "reload1");
 }
