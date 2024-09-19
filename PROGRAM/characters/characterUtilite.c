@@ -2176,7 +2176,11 @@ void SetEquipedItemToCharacter(ref chref, string groupID, string itemID)
 	// evganat - мушкеты
 	case MUSKET_ITEM_TYPE:
 		if(CheckAttribute(arItm,"model"))	{modelName = arItm.model;}
-		SendMessage(chref, "ls", MSG_CHARACTER_SETMUS, modelName);
+		
+		//Rosarak. Пока нет универсальной системы с пресетами режимов, надо так
+		if(IsMainCharacter(chref)) SendMessage(chref, "ls", MSG_CHARACTER_SETMUS, modelName);
+		else SendMessage(chref,"ls",MSG_CHARACTER_SETGUN,modelName);
+		
 		if(itemID != "")
 		{
 			if(CheckAttribute(chref,"chr_ai.musket.sGun") && itemID == chref.chr_ai.musket.sGun)
@@ -2269,34 +2273,9 @@ void EquipCharacterByItem(ref chref, string itemID)
 	if( !CheckAttribute(arItm, "groupID") ) return;
 
 	string groupName = arItm.groupID;
-	// evganat - мушкеты
-	if(groupName == MUSKET_ITEM_TYPE)
-	{
-		LAi_GunSetUnload(chref, "musket");
-	}
-	
+
 	string oldItemID = GetCharacterEquipByGroup(chref, groupName);
-	if(oldItemID==itemID) return;	
-	
-	if (chref.model.animation == "mushketer")
-	{
-		if(chref.index != GetMainCharacterIndex())
-		{
-			if(groupName == BLADE_ITEM_TYPE && itemID != "unarmed")
-			{
-			    return;
-		    }
-		
-		    if (chref.index != GetMainCharacterIndex() && groupName == GUN_ITEM_TYPE && !HasSubStr(arItm.id, "mushket"))
-		    {
-		    	return;
-		    }
-		}
-	}
-	else
-	{
-		//Пока ничего
-	}
+	if(oldItemID==itemID) return;
 	
 	chref.equip.(groupName) = itemID;
 
@@ -2304,9 +2283,14 @@ void EquipCharacterByItem(ref chref, string itemID)
 	{
 		SetEquipedItemToCharacter(chref, groupName, itemID);
 	}
-	if(groupName==GUN_ITEM_TYPE && sti(chref.index) == GetMainCharacterIndex())
+	
+	//Игрок после переодевания заряжает заново
+	if(IsMainCharacter(chref))
 	{
-		LAi_GunSetUnload(chref, "pistol");
+		if(groupName == GUN_ITEM_TYPE)
+			LAi_GunSetUnload(chref, "pistol");
+		if(groupName == MUSKET_ITEM_TYPE)
+			LAi_GunSetUnload(chref, "musket");
 	}
 }
 
@@ -2339,7 +2323,7 @@ void ExecuteCharacterEquip(ref chref)
 	if(stmp!="")	{SetEquipedItemToCharacter(chref, BLADE_ITEM_TYPE, stmp);}
 	stmp = GetCharacterEquipByGroup(chref,GUN_ITEM_TYPE);
 	if(stmp!="")	{SetEquipedItemToCharacter(chref, GUN_ITEM_TYPE, stmp);}
-	stmp = GetCharacterEquipByGroup(chref,MUSKET_ITEM_TYPE);	// evganat - мушкеты
+	stmp = GetCharacterEquipByGroup(chref,MUSKET_ITEM_TYPE); // evganat - мушкеты
 	if(stmp!="")	{SetEquipedItemToCharacter(chref, MUSKET_ITEM_TYPE, stmp);}
 }
 
@@ -3103,104 +3087,6 @@ int GetCharacterbyLocation(string location, string group, string locator)
 	return -1;
 }
 
-// Warship -->
-// Сделать ГГ мушкетером или обычным фехтовальщиком
-bool SetMainCharacterToMushketer(string sMushket, bool _ToMushketer) // если _ToMushketer == true, значит делаем мушкетером, иначе - делаем ГГ фехтовальщиком
-{
-	int iItem;
-	string sLastGun = "";
-
-	if(_ToMushketer && sMushket != "") // Делаем ГГ мушкетером
-	{
-		iItem = GetItemIndex(sMushket);
-		if(iItem == -1) return false;
-
-		// Стоит проверка при надевании предмета. Если каким-то образом дошло до сюда, то тут не разрешим
-		//if(!CanEquipMushketOnLocation(PChar.Location)) return false; //мушкеты в тавернах - Gregg
-
-		sLastGun = GetCharacterEquipByGroup(PChar, GUN_ITEM_TYPE);
-		PChar.bullets.pistol = LAi_GetCharacterBulletType(pchar, "pistol");	// evganat
-		PChar.DefaultAnimation = PChar.model.Animation;
-		PChar.IsMushketer = true; // Ставим флаг "ГГ - мушкетер"
-		PChar.IsMushketer.MushketID = sMushket; // Запомним, какой мушкет надели
-		PChar.IsMushketer.LastGunID = sLastGun; // Запомним ID предыдущего пистоля
-		PChar.model = PChar.model + "_mush";
-		if (pchar.sex == "woman")
-		{
-			aref weapon;
-			Items_FindItem(sMushket, &weapon);
-			if (CheckAttribute(weapon, "fromHip"))
-			{
-				PChar.model.animation = "mushketer_whisper_short"; // Сменим анимацию
-			}
-			else
-			{
-				PChar.model.animation = "mushketer_whisper"; // Сменим анимацию
-			}
-		}
-		else
-		{
-			PChar.model.animation = "mushketer"; // Сменим анимацию
-		}
-		Characters_RefreshModel(PChar); // Обновим модель. Важно: обновлять модель нужно ДО экипировки мушкетом
-		EquipCharacterByItem(PChar, sMushket); // Экипируем мушкет
-		if(CheckAttribute(pchar, "bullets.musket"))	// evganat
-			LAi_SetCharacterBulletType(pchar, pchar.bullets.musket);
-		PChar.Equip.TempGunID = sLastGun; // Пистоль оставляем экипированным, но в другой группе
-
-	}
-	else // Делаем ГГ обычным фехтовальщиком
-	{
-		PChar.bullets.musket = LAi_GetCharacterBulletType(pchar, "musket");	// evganat
-		PChar.model = FindStringBeforeChar(PChar.model, "_mush"); // Вернем модель и анимацию
-		PChar.model.Animation = PChar.DefaultAnimation;
-		Characters_RefreshModel(PChar);
-		RemoveCharacterEquip(PChar, GUN_ITEM_TYPE); // Снимим мушкет
-		if(PChar.IsMushketer.LastGunID != "" && GetCharacterItem(PChar, PChar.IsMushketer.LastGunID) > 0)
-		{
-			EquipCharacterByItem(PChar, PChar.IsMushketer.LastGunID); // Оденем прошлый пистоль
-		}
-		if(CheckAttribute(pchar, "bullets.pistol"))	// evganat
-			LAi_SetCharacterBulletType(pchar, pchar.bullets.pistol);
-		DeleteAttribute(PChar, "IsMushketer");
-		DeleteAttribute(PChar, "Equip.TempGunID");
-	}
-
-	return true;
-}
-
-// Можно-ли экипировать мушкет в локации?
-bool CanEquipMushketOnLocation(string LocationID)
-{
-	int iLocation = FindLocation(LocationID);
-	if(iLocation == -1) return false;
-	
-	if(HasSubStr(LocationID, "Tavern")) // В таверне нельзя
-	{
-		return false;
-	}
-	
-	if(!IsPCharHaveMushketerModel())
-	{
-		return false;
-	}
-	
-	return true;
-}
-
-// Есть ли для нашего ГГ мушкетерская модель?
-bool IsPCharHaveMushketerModel()
-{
-	String sModel = PChar.Model;
-	
-	if(HasSubStr(sModel, "Angellica")) // Вписать, когда ГГ появятся!
-	{
-		return true;
-	}
-	
-	return false;
-}
-
 // Создадим клона персонажа. Корабль не копируется
 int CreateCharacterClone(ref Character, int iLifeDay)
 {
@@ -3296,9 +3182,8 @@ bool SetCharacterTalent(ref chref, string TalentName)
 //Вычисляем: Является ли персонаж мушкетером?
 bool CharIsMushketer(ref rChar)
 {
-	if(GetCharacterAnimation(rChar) == "mushketer") return true;
-	else return false;
-	
+	//Либо это чистый мушкетёр на старой анимации, либо универсал в мушкетном режиме
+	if(GetCharacterAnimation(rChar) == "mushketer" || LAi_CheckFightMode(rChar) == 2) return true;
 	return false;
 }
 
@@ -3306,7 +3191,6 @@ bool CharIsMushketer(ref rChar)
 bool CharIsUndead(ref rChar)
 {
 	if(GetCharacterAnimation(rChar) == "skeleton" || rChar.sex == "skeleton" || HasSubstr(rChar.model, "Skel")) return true;
-	else return false;
 	
 	return false;
 }

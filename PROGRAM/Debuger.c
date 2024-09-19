@@ -67,7 +67,8 @@ void ActiveF12Control()
             Log_SetStringToLog("Клинок - " + GetAssembledString(LanguageConvertString(lngFileID, rIFID.name), rIFID));
         }
 		
-        if (bChar && CheckAttribute(findCh, "equip.gun"))
+		//TO_DO: оба огнестрела
+        /*if (bChar && CheckAttribute(findCh, "equip.gun"))
         {
 			sEBG = GetCharacterEquipByGroup(findCh, GUN_ITEM_TYPE);
     	    rIFID = ItemsFromID(sEBG);
@@ -92,7 +93,7 @@ void ActiveF12Control()
     	            Log_SetStringToLog("Порох не требуется");	
 	    	    }
 	        }
-        }
+        }*/
 
 	    if (bBettaTestMode)
         {

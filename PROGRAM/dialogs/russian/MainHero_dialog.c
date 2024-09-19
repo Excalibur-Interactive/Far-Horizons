@@ -13,7 +13,7 @@ void ProcessDialogEvent()
     float  fTemp;
     bool bOk;
 	int i, iTemp;
-	string sAttr, sGun, sBullet, attrL;
+	string sAttr, sGun, sMusket, sBullet, attrL;
 	aref rType;
     
 	int iST;
@@ -32,6 +32,13 @@ void ProcessDialogEvent()
         i = findsubstr(sAttr, "_" , 0);
 	 	PChar.GenQuest.SetGunBullets = strcut(sAttr, i + 1, strlen(sAttr) - 1); // индекс в конце
  	    Dialog.CurrentNode = "SetGunBullets2";
+ 	}
+	
+	if (findsubstr(sAttr, "SetMusketBullets1_" , 0) != -1)
+ 	{
+        i = findsubstr(sAttr, "_" , 0);
+	 	PChar.GenQuest.SetMusketBullets = strcut(sAttr, i + 1, strlen(sAttr) - 1); // индекс в конце
+ 	    Dialog.CurrentNode = "SetMusketBullets2";
  	}
  	// генератор ИДХ по кейсу <--
 
@@ -100,13 +107,23 @@ void ProcessDialogEvent()
 			{
 				if(CheckAttribute(pchar, "chr_ai.pistol.bulletNum") && sti(pchar.chr_ai.pistol.bulletNum) > 1)
 				{
-					Link.l8 = "Хочу выбрать тип боеприпаса для огнестрельного оружия.";
+					Link.l8 = "Хочу выбрать тип боеприпаса для пистолета.";
 					Link.l8.go = "SetGunBullets";
 				}	
 			}
 			
-			link.l9 = "Получить предметы";
-			link.l9.go = "GetItems";
+			sMusket = GetCharacterEquipByGroup(pchar, MUSKET_ITEM_TYPE);
+			if(sMusket != "")
+			{
+				if(CheckAttribute(pchar, "chr_ai.musket.bulletNum") && sti(pchar.chr_ai.musket.bulletNum) > 1)
+				{
+					Link.l9 = "Хочу выбрать тип боеприпаса для мушкета.";
+					Link.l9.go = "SetMusketBullets";
+				}	
+			}
+			
+			link.l10 = "Получить предметы";
+			link.l10.go = "GetItems";
 			
 			link.l11 = "Увеличить умение";
 			link.l11.go = "GetSkill";
@@ -118,8 +135,8 @@ void ProcessDialogEvent()
 			link.l13.go = "ChangeShip";
 
 	        
-			Link.l10 = RandPhraseSimple("Не сейчас. Нет времени.", "Некогда. Дела ждут.");
-			Link.l10.go = "exit";
+			Link.l14 = RandPhraseSimple("Не сейчас. Нет времени.", "Некогда. Дела ждут.");
+			Link.l14.go = "exit";
 		break;
 		
 		case "ChangeShip":
@@ -566,6 +583,35 @@ void ProcessDialogEvent()
 			DialogExit_Self();
 		break;
 		
+		case "SetMusketBullets":
+			Dialog.Text = "Выбор типа боеприпаса :";
+			sMusket = GetCharacterEquipByGroup(pchar, MUSKET_ITEM_TYPE);
+			rItm = ItemsFromID(sMusket);
+			makearef(rType, rItm.type);	
+			for (i = 0; i < sti(pchar.chr_ai.musket.bulletNum); i++)
+			{
+				sAttr = GetAttributeName(GetAttributeN(rType, i));
+				sBullet = rItm.type.(sAttr).bullet;
+				rItem = ItemsFromID(sBullet);								
+				attrL = "l" + i;
+				Link.(attrL) = GetConvertStr(rItem.name, "ItemsDescribe.txt");;
+				Link.(attrL).go = "SetMusketBullets1_" + i;
+			}
+		break;
+		
+		case "SetMusketBullets2":
+			i = sti(PChar.GenQuest.SetMusketBullets) + 1; 
+			sMusket = GetCharacterEquipByGroup(pchar, MUSKET_ITEM_TYPE);
+			rItm = ItemsFromID(sMusket);
+			sAttr = "t" + i;
+			sBullet = rItm.type.(sAttr).bullet;
+			LAi_SetCharacterUseBullet(pchar, "musket", sBullet);
+			LAi_GunSetUnload(pchar, "musket");
+			NextDiag.CurrentNode = NextDiag.TempNode;
+			DeleteAttribute(pchar,"GenQuest.SetMusketBullets");
+			DialogExit_Self();
+		break;
+
 		case "TalkSelf_StartWait":
 			NextDiag.CurrentNode = NextDiag.TempNode;
 			DialogExit_Self();

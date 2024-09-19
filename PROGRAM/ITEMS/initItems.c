@@ -99,15 +99,16 @@ int InitItems()
 	n = InitStdMusket(n, "mushket_2x2",        "mushket7", "items_placeholder", 2,  "Quest",           10000, "multi-barrel", 60.0, 180.0, false, 50, 10.0, 1, "Excellent"); //Двуствольный штуцер
 	n = InitStdMusket(n, "mushket_Bombard",    "mushket8", "items_placeholder", 2,  "Quest",           10000, "bombard", 60.0, 180.0, true,  50, 10.0, 1, "Excellent"); //Итальянская бомбарда
 	
-	n = InitStdSuit(n, "cirass1", "0", "items_placeholder", 11, 1500, 5, "common",    1, false, 0.05, 0.0, 0.9, "");   //Кожаный корсет
-	n = InitStdSuit(n, "cirass2", "0", "items_placeholder", 11, 1500, 5, "rare",      1, false, 0.15, 0.15, 0.85, "BasicDefence"); //Укреплённая бригантина
-	n = InitStdSuit(n, "cirass3", "0", "items_placeholder", 11, 1500, 5, "epic",      1, false, 0.25, 0.25, 0.75, "BasicDefense"); //Миланская кираса
+	//TO_DO: ПЕРЕИМЕНОВАТЬ
+	n = InitStdSuit(n, "cirass1", "1", "items_placeholder", 11, 1500, 5, "common",    1, false, 0.05, 0.0, 0.9, "");   //Кожаный корсет
+	n = InitStdSuit(n, "cirass2", "2", "items_placeholder", 11, 1500, 5, "rare",      1, false, 0.15, 0.15, 0.85, "BasicDefence"); //Укреплённая бригантина
+	n = InitStdSuit(n, "cirass3", "3", "items_placeholder", 11, 1500, 5, "epic",      1, false, 0.25, 0.25, 0.75, "BasicDefense"); //Миланская кираса
 	
-	n = InitStdSuit(n, "cirass4", "0", "items_placeholder", 11, 1500, 5, "rare",      1, false, 0.35, 0.35, 0.65, "Knight"); //Траншейный доспех
-	n = InitStdSuit(n, "cirass5", "0", "items_placeholder", 11, 1500, 5, "Epic",      1, false, 0.5, 0.5, 0.5, "Knight");    //Рейтарский доспех
+	n = InitStdSuit(n, "cirass4", "4", "items_placeholder", 11, 1500, 5, "rare",      1, false, 0.35, 0.35, 0.65, "Knight"); //Траншейный доспех
+	n = InitStdSuit(n, "cirass5", "5", "items_placeholder", 11, 1500, 5, "Epic",      1, false, 0.5, 0.5, 0.5, "Knight");    //Рейтарский доспех
 	
-	n = InitStdSuit(n, "cirass6", "0", "items_placeholder", 11, 1500, 5, "Legendary", 1, true, 0.55, 0.55, 0.55, "");  //Доспех королевского мушкетёра
-	n = InitStdSuit(n, "cirass7", "0", "items_placeholder", 11, 1500, 5, "Legendary", 1, true, 0.55, 0.55, 0.55, "");  //Костюм Лиги Теней
+	n = InitStdSuit(n, "cirass6", "6", "items_placeholder", 11, 1500, 5, "Legendary", 1, true, 0.55, 0.55, 0.55, "");  //Доспех королевского мушкетёра
+	n = InitStdSuit(n, "cirass7", "7", "items_placeholder", 11, 1500, 5, "Legendary", 1, true, 0.55, 0.55, 0.55, "");  //Костюм Лиги Теней
 	
 	//(Все коммоны, кроме "Трозо" падают со всех, кроме Вуду и индианов) (На земле и в сундуках)
 	n = InitStdAmulet(n, "totem_01", "purseL", "ITEMS_TALISMAN", 1, 1500, "common",    0.5, 1, "");          //Гонтер

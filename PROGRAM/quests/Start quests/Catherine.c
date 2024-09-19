@@ -22,8 +22,17 @@ void Catherine_Start()
 	ChangeCrewExp(pchar, "Cannoners", 100);
 	ChangeCrewExp(pchar, "Soldiers", 100);
 	
+	//Для мушкетных тестов
+	SetCharacterPerk(pchar, "BasicDefense");
 	SetCharacterPerk(pchar, "Musketeer");
+	SetCharacterPerk(pchar, "Shooter");
+	SetCharacterPerk(pchar, "Breter");
+	SetCharacterPerk(pchar, "Knight");
 	TakeNItems(pchar, "mushket_matchlock", 1);
 	EquipCharacterByItem(pchar, "mushket_matchlock");
+	TakeNItems(pchar, "cirass1", 1);
+	EquipCharacterByItem(pchar, "cirass1");
+	AddItems(pchar, "bullet", 	50);
+	AddItems(pchar, "gunpowder",50);
 	LoadMainCharacterInFirstLocationGroup("FortFrance_ExitTown", "reload", "reload1");
 }

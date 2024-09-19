@@ -519,7 +519,7 @@ void FantomMakeCoolFighter(ref _Character, int _Rank, int _Fencing, int _Pistol,
     SetNewModelToChar(_Character);  // перерисуем модель на лету
 }
 
-//Мелкая вещица, чтобы нужных пацанов экипироват правильно...
+//Мелкая вещица, чтобы нужных пацанов экипировать правильно...
 void EquipCharacterByPhantomType(ref rChar, string sType, bool bBlade, bool bPistol)
 {
     rChar.PhantomType = sType;
@@ -567,6 +567,7 @@ bool SetLocationQuestRandItem(int _index, aref _location, string _locatorName, a
     pchar.GenQuestRandItem.QC_Port.randitem1 = "pistol6";
     pchar.GenQuestRandItem.QC_Port.randitem2 = "pistol1";
  	*/
+	
 	lastSpawnTimeString = _location.id;
     if (CheckAttribute(pchar , "GenQuestRandItem." + lastSpawnTimeString) && CheckAttribute(pchar , "GenQuestRandItem." + lastSpawnTimeString +"."+_locatorName))
     {

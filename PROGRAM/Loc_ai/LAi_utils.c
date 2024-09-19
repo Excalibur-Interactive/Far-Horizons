@@ -24,17 +24,29 @@ bool LAi_CheckCharacter(aref chr, string out)
 	return true;
 }
 
-//Зарядился ли пистолет у персонажа
+//Зарядилось ли используемое персонажем огнестрельное оружие
 bool LAi_CharacterCanFrie(aref chr)
 {
-	if(!CheckAttribute(chr, "chr_ai.pistol.chargeprc"))
+	if(!CharIsMushketer(chr))
 	{
-		chr.chr_ai.pistol.chargeprc = "1";
-		chr.chr_ai.pistol.charge = 0;
-		return false;
+		if(!CheckAttribute(chr, "chr_ai.pistol.chargeprc"))
+		{
+			chr.chr_ai.pistol.chargeprc = "1";
+			chr.chr_ai.pistol.charge = 0;
+			return false;
+		}
+		if(stf(chr.chr_ai.pistol.charge) >= 1.0) return true;
 	}
-	
-	if(stf(chr.chr_ai.pistol.charge) >= 1.0) return true;
+	else
+	{
+		if(!CheckAttribute(chr, "chr_ai.musket.chargeprc"))
+		{
+			chr.chr_ai.musket.chargeprc = "1";
+			chr.chr_ai.musket.charge = 0;
+			return false;
+		}
+		if(stf(chr.chr_ai.musket.charge) >= 1.0) return true;
+	}
 	
 	return false;
 }
@@ -497,6 +509,7 @@ ref LAi_CreateFantomCharacterEx(string model, string ani, string group, string l
 	chr.chr_ai.alarmreact = LAI_DEFAULT_ALARMREACT;
 	chr.chr_ai.grpalarmr  = LAI_DEFAULT_GRPALARMR;
 	chr.chr_ai.pistol.charge  = LAI_DEFAULT_CHARGE;
+	chr.chr_ai.musket.charge  = LAI_DEFAULT_CHARGE;
 	chr.chr_ai.FencingType  = "Middle"; //fix
 	SetEnergyToCharacter(chr); // boal
 	if(LAi_numloginedcharacters >= MAX_CHARS_IN_LOC)
@@ -772,13 +785,11 @@ bool LAi_IsSetBlade(aref chr)
 //В режиме боя
 bool LAi_IsFightMode(aref chr)
 {
-	// boal fix -->
-	if ((bLandInterfaceStart) && CheckAttribute(chr, "equip.blade"))
+	if (bLandInterfaceStart && CheckAttribute(chr, "equip.blade"))
     {
         return (SendMessage(&chr, "ls", MSG_CHARACTER_EX_MSG, "IsFightMode") != 0);
     }
     return false;
-    // boal fix <--
 }
 
 //Установить флажёк для востановления хитпойнтов и отношений
@@ -930,23 +941,25 @@ void Dead_AddLoginedCharacter(aref chr)
 				 			}
 					 	}
 					}
-						
-					sBullet = LAi_GetCharacterBulletType(chr, "pistol");						
-					sGunPowder = LAi_GetCharacterGunpowderType(chr, "pistol");
-					if (chr.model.animation != "mushketer") //с мушкетеров пуль меньше, слишком у них их много - халява
+					
+					if(!CheckAttribute(chr, "equip.musket")) //Для простых работяг без мушкетов
 					{
-						TakeNItems(chref, sBullet, GetCharacterItem(chr, sBullet));// boal gun bullet													
+						sBullet = LAi_GetCharacterBulletType(chr, "pistol");
+						sGunPowder = LAi_GetCharacterGunpowderType(chr, "pistol");
+						TakeNItems(chref, sBullet, GetCharacterItem(chr, sBullet));
 						if(sGunPowder != "")
 						{
-							AddItems(chref, sGunPowder, GetCharacterItem(chr, sGunPowder)); // 21.03.09 Warship fix Порох
+							AddItems(chref, sGunPowder, GetCharacterItem(chr, sGunPowder));
 						}
 					}
-					else
-					{
-						TakeNItems(chref, sBullet, makeint(GetCharacterItem(chr, sBullet)/2));// boal gun bullet											
+					else //Для мушкетёров и универсалов
+					{	 //TO_DO: Я здесь пока оставляю логику только для мушкетов, хотя у них могут быть разные снаряды под разное оружие
+						sBullet = LAi_GetCharacterBulletType(chr, "musket");
+						sGunPowder = LAi_GetCharacterGunpowderType(chr, "musket");
+						TakeNItems(chref, sBullet, makeint(GetCharacterItem(chr, sBullet)/2));
 						if(sGunPowder != "")
 						{
-							AddItems(chref, sGunPowder, makeint(GetCharacterItem(chr, sGunPowder)/2)); // 21.03.09 Warship fix Порох
+							AddItems(chref, sGunPowder, makeint(GetCharacterItem(chr, sGunPowder)/2));
 						}
 					}
 				}

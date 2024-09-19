@@ -285,19 +285,32 @@ void LAi_CharacterAttack()
 
 void LAi_CharacterFire()
 {
-	string sBullet, sGunPowder;
+	string sBullet, sGunPowder, sType, weaponID;
 	aref attack = GetEventData();
 	aref enemy = GetEventData();
 	float kDist = GetEventData();	//0..1
 	int isFindedEnemy = GetEventData();
+	
+	//Rosarak. Чем стреляли?
+	if(!CharIsMushketer(attack))
+	{
+		sType = "pistol";
+		weaponID = GetCharacterEquipByGroup(attack, GUN_ITEM_TYPE);
+	}
+	else
+	{
+		sType = "musket";
+		weaponID = GetCharacterEquipByGroup(attack, MUSKET_ITEM_TYPE);
+	}
+	
 	//Заряд персонажа
-	if(!CheckAttribute(attack, "chr_ai.pistol.charge")) attack.chr_ai.pistol.charge = "0";
-	float charge = stf(attack.chr_ai.pistol.charge) - 1.0;
+	if(!CheckAttribute(attack, "chr_ai." + sType + ".charge")) attack.chr_ai.(sType).charge = "0";
+	float charge = stf(attack.chr_ai.(sType).charge) - 1.0;
 	// boal gun bullet убираем пулю после выстрела -->
-	sBullet = LAi_GetCharacterBulletType(attack, "pistol");
+	sBullet = LAi_GetCharacterBulletType(attack, sType);
 	TakeItemFromCharacter(attack, sBullet);
 	// boal gun bullet убираем пулю после выстрела <--
-	sGunPowder = LAi_GetCharacterGunpowderType(attack, "pistol");
+	sGunPowder = LAi_GetCharacterGunpowderType(attack, sType);
 	if(sGunPowder != "")
 	{
 		RemoveItems(attack, sGunPowder, 1); // Warship. Забираем порох
@@ -305,26 +318,24 @@ void LAi_CharacterFire()
 	if(charge <= 0.0)
 	{
 		charge = 0.0;
-		attack.chr_ai.pistol.chargeprc = "1";
 	}
-	// boal fix любой выстрел врубает дозарядку! -->
-	attack.chr_ai.pistol.chargeprc = "1";
-	// boal <--
-	attack.chr_ai.pistol.charge = charge;
+	
+	//Любой выстрел инициирует дозарядку, остальная логика в LAi_AllCharactersUpdate
+	attack.chr_ai.(sType).chargeprc = "1";
+	attack.chr_ai.(sType).charge = charge;
+	
 	//Если промахнулись, то ничего не делаем
 	if(isFindedEnemy == 0)
 	{
-		//здесь можно поднимать тревогу в случае близкого выстрела
+		//TO_DO: Здесь можно поднимать тревогу в случае близкого выстрела
 		return;
 	}
 	
-	// ugeen -> мультиурон и прочее(27.07.10)
-	
-	string weaponID = GetCharacterEquipByGroup(attack, GUN_ITEM_TYPE);
+	// --> ugeen. мультиурон и прочее
 	aref weapon;
-	Items_FindItem(weaponID, &weapon);
+	Items_FindItem(weaponID, &weapon); //TO_DO: А-ТЯ-ТЯ! В данный момент не используется, не вся логика прописана!
 	
-	if(CheckAttribute(attack, "chr_ai.pistol.multidmg") && sti(attack.chr_ai.pistol.multidmg) > 0)
+	if(CheckAttribute(attack, "chr_ai." + sType + ".multidmg") && sti(attack.chr_ai.(sType).multidmg) > 0)
 	{
 		int num = FindNearCharacters(enemy, 2.5, -1.0, -1.0, 0.001, false, true);
 		for (int j = 0; j < num; j++)
@@ -344,16 +355,16 @@ void LAi_CharacterFire()
 			//}	
 		}
 	}
-	// <-- ugeen
+	// <-- ugeen. мультиурон и прочее
 	
 	//Реакция груп на атаку
 	LAi_group_Attack(attack, enemy);
 	//Начисление повреждений
 	LAi_ApplyCharacterFireDamage(attack, enemy, kDist);
-	if(CheckAttribute(attack, "chr_ai.pistol.multidmg") && sti(attack.chr_ai.pistol.multidmg) > 0)
+	if(CheckAttribute(attack, "chr_ai." + sType + ".multidmg") && sti(attack.chr_ai.(sType).multidmg) > 0)
 	{
 		if(stf(enemy.chr_ai.hp) < 1.0 && enemy.chr_ai.group == LAI_GROUP_PLAYER) enemy.chr_ai.hp = 5;
-		LAi_CheckKillCharacter( enemy );
+		LAi_CheckKillCharacter(enemy);
 	}
 	//Исполнение типа
 	string func = attack.chr_ai.type;

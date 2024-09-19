@@ -1313,8 +1313,8 @@ int InitStdSuit(int	ItemIndex, string id, string ModelID, string picTexture, int
 	
 	if(Critical > 0.0)
 	{
-		suit.critical			= Critical;
-		suit.info.critical = makeint(100 - Critical*100);
+		suit.critical		= Critical;
+		suit.info.critical	= makeint(100 - Critical*100);
 	}	
 	
 	suit.info.barmor = makeint(CirassLevel_blade*100);

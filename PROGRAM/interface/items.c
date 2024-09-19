@@ -923,8 +923,6 @@ void FillItemsSelected()	// заполнение слотов экипировк
 {
 	int i;
 	string sGood;
-	int iLastGunItem;
-	ref rLastGunItem;
 	
 	// Скроем по умолчанию
 	SetEquipDefaultPicture("blade");
@@ -2421,11 +2419,10 @@ void CheckButtons()	// проверка доступности кнопок "э�
 			break;
 			case MUSKET_ITEM_TYPE:
 				if(!CheckAttribute(itmRef,"chargeQ")) return;
-				if(IsCharacterPerkOn(pchar,"Breter"))// && CanEquipMushketOnLocation(PChar.Location))
-					SetNodeUsing("EQUIP_BUTTON", true);
+				if(!IsCharacterPerkOn(pchar,"Breter")) return;
+				SetNodeUsing("EQUIP_BUTTON", true);
 			break;
 			case CIRASS_ITEM_TYPE:
-				if(sti(itmRef.Clothes) == 0) return;
 				if(itmRef.needPerk != "" && !IsCharacterPerkOn(pchar, itmRef.needPerk)) return;
 				SetNodeUsing("EQUIP_BUTTON", true);
 				return;

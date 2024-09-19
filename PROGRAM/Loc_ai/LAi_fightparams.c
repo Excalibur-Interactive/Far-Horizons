@@ -348,20 +348,19 @@ float Lai_UpdateEnergyPerDltTime(aref chr, float curEnergy, float dltTime)
 //--------------------------------------------------------------------------------
 
 //Расчитаем вероятность попадания
-float LAi_GunCalcProbability(aref attack, float kDist)
+float LAi_GunCalcProbability(aref attack, float kDist, string sType)
 {
 	//Если близко, то попадём точно
 	if(kDist >= 0.9) return 1.0;
 	//Расчитаем вероятность на конце отрезка
 	float pmin = 0.3;
- 	if(CheckAttribute(attack, "chr_ai.pistol.accuracy")) // boal это меткость самого пистолета, а не скил!
-	{
-		pmin = stf(attack.chr_ai.pistol.accuracy);
-	}
+	
+	//Точность оружия (НЕ SKILL_PISTOL)
+ 	if(CheckAttribute(attack, "chr_ai." + sType + ".accuracy"))
+		pmin = stf(attack.chr_ai.(sType).accuracy);
+	
  	//Применим разброс от скила
-	// boal -->
 	float aSkill = LAi_GetCharacterGunLevel(attack);
-	// boal <--
 
 	pmin = pmin + 0.3*aSkill;
 
@@ -377,29 +376,29 @@ float LAi_GunCalcProbability(aref attack, float kDist)
 }
 
 //Получить повреждение от пистолета
-float LAi_GunCalcDamage(aref attack, aref enemy)
+float LAi_GunCalcDamage(aref attack, aref enemy, string sType)
 {
 	//Расчитываем повреждение
 	float min = 10.0;
 	float max = 10.0;
 	
-	string sBullet = LAi_GetCharacterBulletType(attack, "pistol");
+	string sBullet = LAi_GetCharacterBulletType(attack, sType);
 	
-	if(CheckAttribute(attack, "chr_ai.pistol.dmggunmin"))
+	if(CheckAttribute(attack, "chr_ai." + sType + ".dmggunmin"))
 	{
-		min = stf(attack.chr_ai.pistol.dmggunmin);
+		min = stf(attack.chr_ai.(sType).dmggunmin);
 	}
 	
-	if(CheckAttribute(attack, "chr_ai.pistol.dmggunmax"))
+	if(CheckAttribute(attack, "chr_ai." + sType + ".dmggunmax"))
 	{
-		max = stf(attack.chr_ai.pistol.dmggunmax);
+		max = stf(attack.chr_ai.(sType).dmggunmax);
 	}
 	//Учитываем скилы
 	float aSkill = LAi_GetCharacterGunLevel(attack);
 	float eSkill = LAi_GetCharacterLuckLevel(enemy); // good luck
 	
 	float dmg = min + (max - min)*frandSmall(aSkill);
-	//Модифицировать повреждение от pistol с учетом скилов
+	//Модифицировать повреждение от оружия с учетом скилов
     if(aSkill < eSkill)
 	{
 		dmg = dmg * (1.0 + 0.7 * (aSkill - eSkill));
@@ -449,22 +448,21 @@ float LAi_GunCalcExperience(aref attack, aref enemy, float dmg)
 }
 
 //Расчитаем текущую скорость перезарядки пистолета
-float LAi_GunReloadSpeed(aref chr)
+float LAi_GunReloadSpeed(aref chr, string sType)
 {
 	//Получим текущее состояние скорости зарядки
 	float charge_dlt = LAI_DEFAULT_DLTCHRG;
-	if(CheckAttribute(chr, "chr_ai.pistol.charge_dlt"))
+	if(CheckAttribute(chr, "chr_ai." + sType + ".charge_dlt"))
 	{
-		charge_dlt = stf(chr.chr_ai.pistol.charge_dlt);
+		charge_dlt = stf(chr.chr_ai.(sType).charge_dlt);
 	}
+	
 	//Модифицируем скилом
-	// boal -->
 	//float skill = LAi_GetCharacterFightLevel(chr);
 	float skill = LAi_GetCharacterGunLevel(chr);
-	// boal <--
-
-	charge_dlt = charge_dlt*(1.0 + 0.3*skill);//boal
-	//УчтЈм абилити
+	charge_dlt = charge_dlt*(1.0 + 0.3*skill);
+	
+	//Учтём абилити
 	if(IsCharacterPerkOn(chr, "Shooter"))
 	{
 		charge_dlt = charge_dlt*1.25;
@@ -506,7 +504,6 @@ void LAi_ApplyCharacterAttackDamage(aref attack, aref enemy, string attackType, 
 	float critical = 0.0;
 	int iCrtChance = 0;
 	int Ddgchance = 0;
-	float iCirassLevel = 0;
 	
 	string weaponID = GetCharacterEquipByGroup(attack, BLADE_ITEM_TYPE);
     aref weapon;
@@ -589,13 +586,13 @@ void LAi_ApplyCharacterAttackDamage(aref attack, aref enemy, string attackType, 
 	dmg = dmg *(1 + critical);//dmg + critical;
 	if(CheckAttribute(enemy, "cirassId"))
 	{
-		iCirassLevel = 1.0 - stf(Items[sti(enemy.cirassId)].B_CirassLevel);
+		float fCirassLevel = 1.0 - stf(Items[sti(enemy.cirassId)].B_CirassLevel);
 		if(CheckCharacterTalent(pchar, "Agility"))
 		{
-			if(Items[sti(enemy.cirassId)].id == "Cirass1" || Items[sti(enemy.cirassId)].id == "Cirass2" || Items[sti(enemy.cirassId)].id == "Cirass3" || Items[sti(enemy.cirassId)].id == "Cirass6" || Items[sti(enemy.cirassId)].id == "Cirass7") iCirassLevel = iCirassLevel * 0.75;
-			else iCirassLevel = iCirassLevel * 1.25;
+			if(Items[sti(enemy.cirassId)].id == "Cirass1" || Items[sti(enemy.cirassId)].id == "Cirass2" || Items[sti(enemy.cirassId)].id == "Cirass3" || Items[sti(enemy.cirassId)].id == "Cirass6" || Items[sti(enemy.cirassId)].id == "Cirass7") fCirassLevel = fCirassLevel * 0.75;
+			else fCirassLevel = fCirassLevel * 1.25;
 		}
-		dmg = dmg * iCirassLevel;
+		dmg = dmg * fCirassLevel;
 	}
 	
 	if(CheckCharacterPerk(enemy, "BladeDancer")) Ddgchance = Ddgchance + 5;
@@ -738,8 +735,21 @@ void LAi_SetResultOfDeath(ref attack, ref enemy, bool isSetBlade)
 //Начисление повреждений при попадании
 void LAi_ApplyCharacterFireDamage(aref attack, aref enemy, float kDist)
 {
-	ref rItm = ItemsFromID(GetCharacterEquipByGroup(attack, GUN_ITEM_TYPE));
-	int iCirassLevel;
+	ref rItm;
+	
+	//Rosarak. Чем стреляли?
+	string sType;
+	if(!CharIsMushketer(attack))
+	{
+		sType = "pistol";
+		rItm = ItemsFromID(GetCharacterEquipByGroup(attack, GUN_ITEM_TYPE));
+	}
+	else
+	{
+		sType = "musket";
+		rItm = ItemsFromID(GetCharacterEquipByGroup(attack, MUSKET_ITEM_TYPE));
+	}
+	
 	Lai_CharacterChangeEnergy(attack, -4); // жрем энергию за выстрел boal 20/06/06
 	//Если неубиваемый, то нетрогаем его
 	if(CheckAttribute(enemy, "chr_ai.immortal"))
@@ -749,33 +759,28 @@ void LAi_ApplyCharacterFireDamage(aref attack, aref enemy, float kDist)
 			return;
 		}
 	}
-	//Вероятность поподания
-	float p = LAi_GunCalcProbability(attack, kDist);
+	//Вероятность попадания
+	float p = LAi_GunCalcProbability(attack, kDist, sType);
 	
 	if(IsCharacterEquippedTalisman(enemy, "totem_04"))  p = p * 0.95;
 	
 	//Если промахнулись, то выйдем
 	if(rand(10000) > p*10000) return;	  
-	// boal брон работает всегда, а не токо в блоке 23.05.2004 -->
+	
+	// boal брон работает всегда, а не токо в блоке 23.05.2004
 	if(CheckAttribute(enemy, "cirassId"))
 	{
-		iCirassLevel = (1.0 - stf(Items[sti(enemy.cirassId)].G_CirassLevel));
+		float fCirassLevel = 1.0 - stf(Items[sti(enemy.cirassId)].G_CirassLevel);
 		if(CheckCharacterTalent(pchar, "Agility"))
 		{
-			if(Items[sti(enemy.cirassId)].id == "Cirass1" || Items[sti(enemy.cirassId)].id == "Cirass2" || Items[sti(enemy.cirassId)].id == "Cirass3" || Items[sti(enemy.cirassId)].id == "Cirass6" || Items[sti(enemy.cirassId)].id == "Cirass7") iCirassLevel = iCirassLevel * 0.75;
-			else iCirassLevel = iCirassLevel * 1.25;
+			if(Items[sti(enemy.cirassId)].id == "Cirass1" || Items[sti(enemy.cirassId)].id == "Cirass2" || Items[sti(enemy.cirassId)].id == "Cirass3" || Items[sti(enemy.cirassId)].id == "Cirass6" || Items[sti(enemy.cirassId)].id == "Cirass7") fCirassLevel = fCirassLevel * 0.75;
+			else fCirassLevel = fCirassLevel * 1.25;
 		}
-		damage = damage * iCirassLevel;
+		damage = damage * fCirassLevel;
 	}
-	// boal 23.05.2004 <--
-	//Начисляем повреждение
-	float damage = LAi_GunCalcDamage(attack, enemy);
 	
-	if(CheckCharacterTalent(pchar, "Agility"))
-	{
-	    if(HasSubStr(rItm.id, "pistol")) damage = damage * 1.25;
-	    else damage = damage * 0.75;
-	}
+	//Начисляем повреждение
+	float damage = LAi_GunCalcDamage(attack, enemy, sType);
 	
 	damage = damage + makeint(isEquippedTalismanUse(attack, "totem_20", 0.0, 10.0));
 

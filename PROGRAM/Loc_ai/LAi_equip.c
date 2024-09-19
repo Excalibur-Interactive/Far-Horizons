@@ -112,7 +112,7 @@ void LAi_NPC_MushketerEquip(ref chr)
 			}
 		}
 	}
-			
+	
 	GiveItem2Character(chr, sMush);
 	EquipCharacterbyItem(chr, sMush);
 	

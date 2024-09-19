@@ -660,7 +660,7 @@ void PGG_UpdateEquip(ref chr)
 
 		if(rand(1000) < MOD_SKILL_ENEMY_RATE * sti(chr.rank) * 8)
 		{
-			//трем пистолеты.
+			//трем пистолеты
 			blade = FindCharacterItemByGroup(chr, GUN_ITEM_TYPE);
 			while(blade != "")
 			{

@@ -129,16 +129,20 @@ bool CreateCharacter(ref character)
 		return false;
 	}
 
-	float fCurCharge = 1000.0;
-	if (actLoadFlag == 1 && CheckAttribute(character,"chr_ai.pistol.charge")) 
-	{
-		fCurCharge = stf(character.chr_ai.pistol.charge);
+	float fCurChargePistol = 1000.0;
+	float fCurChargeMusket = 1000.0;
+	if(actLoadFlag)
+	{	//После перезагрузки вернуть заряженность огнестрельного оружия персонажа
+		if(CheckAttribute(character,"chr_ai.pistol.charge"))
+			fCurChargePistol = stf(character.chr_ai.pistol.charge);
+		if(CheckAttribute(character,"chr_ai.musket.charge"))
+			fCurChargeMusket = stf(character.chr_ai.musket.charge);
 	}
 	ExecuteCharacterEquip(character);
-	if(CheckAttribute(character,"chr_ai.pistol.charge") && fCurCharge<stf(character.chr_ai.pistol.charge))
-	{
-		character.chr_ai.pistol.charge = fCurCharge;
-	}
+	if(CheckAttribute(character,"chr_ai.pistol.charge") && fCurChargePistol < stf(character.chr_ai.pistol.charge))
+		character.chr_ai.pistol.charge = fCurChargePistol;
+	if(CheckAttribute(character,"chr_ai.musket.charge") && fCurChargeMusket < stf(character.chr_ai.musket.charge))
+		character.chr_ai.musket.charge = fCurChargeMusket;
 
 	//Set fight level
 	if(!CheckAttribute(&character, "sex"))

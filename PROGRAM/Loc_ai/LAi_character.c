@@ -573,8 +573,8 @@ void LAi_LockFightMode(aref chr, bool isLockFightMode)
 	SendMessage(&chr, "lsl", MSG_CHARACTER_EX_MSG, "LockFightMode", isLockFightMode);
 }
 
-//Получить режим боя (вытащена ли сабля)
-bool LAi_CheckFightMode(aref chr)
+//Получить режим боя (2 - мушкетный у универсалов, 1 - сабля у универсалов и просто боевой у остальных, 0 - мирный)
+int LAi_CheckFightMode(aref chr)
 {
 	return SendMessage(&chr, "ls", MSG_CHARACTER_EX_MSG, "CheckFightMode");
 }
@@ -582,7 +582,6 @@ bool LAi_CheckFightMode(aref chr)
 //------------------------------------------------------------------------------------------
 //Weapons
 //------------------------------------------------------------------------------------------
-
 
 //Получить относительный заряд пистолета
 float LAi_GetCharacterRelCharge(aref chr, string sType)
@@ -602,12 +601,10 @@ float LAi_GetCharacterRelCharge(aref chr, string sType)
 				if(charge < 0.0) charge = 0.0;
 				if(charge > 1.0) charge = 1.0;
 				return charge;
-			}else{
-				return 1.0;
 			}
-		}else{
-			chr.chr_ai.(sType).chargeprc = "1";
+			else return 1.0;
 		}
+		else chr.chr_ai.(sType).chargeprc = "1";
 	}
 	return 0.0;
 }
@@ -801,16 +798,16 @@ bool LAi_SetCharacterUseBullet(ref rChar, string sType, string sBullet)
 	return false;
 }
 
-// Warship. Методы по зарядке пистоля -->
+// Warship. Методы по зарядке огнестрельного оружия -->
 int iGetMinPistolChargeNum(ref rChar, string sType) // Чего меньше, пороха или пуль?
 {
-	string sBulletType = LAi_GetCharacterBulletType(rChar, sType);	 					// узнаем тип пуль
+	string sBulletType = LAi_GetCharacterBulletType(rChar, sType);	 			// узнаем тип пуль
 	int iBulletQty = GetCharacterItem(rChar, sBulletType);   					// считаем кол-во пуль
 	string sGunPowderType = LAi_GetCharacterGunpowderType(rChar, sType); 		// тип пороха
 	if(sGunPowderType != "")
 	{
-		int iGunPowderQty = GetCharacterItem(rChar, sGunPowderType); 				// кол-во пороха		
-		int iChargeQty = func_min(iBulletQty, iGunPowderQty); 						// Узнаем, чего меньше
+		int iGunPowderQty = GetCharacterItem(rChar, sGunPowderType); 			// кол-во пороха		
+		int iChargeQty = func_min(iBulletQty, iGunPowderQty); 					// Узнаем, чего меньше
 		return iChargeQty;
 	}		
 	return iBulletQty;
@@ -824,16 +821,16 @@ int iGetPistolChargeNum(ref rChar, string sType, int iQuant) // Скока мо�
 	if(iChargeQty >= iQuant) return iQuant;
 	if(iChargeQty < iQuant) return iChargeQty;
 }
-// <-- Методы по зарядке пистоля
+// <-- Методы по зарядке огнестрельного оружия
 
-//Разрядить пистлет
+//Разрядить оружие
 void LAi_GunSetUnload(aref chr, string sType)
 {
 	chr.chr_ai.(sType).charge = "0";
 	chr.chr_ai.(sType).chargeprc = "1";
 }
 
-//Установить скорость заряда пистолета
+//Установить скорость заряда оружия
 void LAi_GunSetChargeSpeed(aref chr, string sType, float speed)
 {
 	if(speed < 0.0) speed = 0.0;
@@ -841,13 +838,13 @@ void LAi_GunSetChargeSpeed(aref chr, string sType, float speed)
 	chr.chr_ai.(sType).charge_dlt = speed;
 }
 
-//Установить минимальный урон от пистолета
+//Установить минимальный урон от оружия
 void LAi_GunSetDamageMin(aref chr, string sType, float min)
 {
 	chr.chr_ai.(sType).dmggunmin = min;
 }
 
-//Установить максимальный урон от пистолета
+//Установить максимальный урон от оружия
 void LAi_GunSetDamageMax(aref chr, string sType, float max)
 {
 	chr.chr_ai.(sType).dmggunmax = max;
@@ -1037,59 +1034,92 @@ void LAi_AllCharactersUpdate(float dltTime)
 			LAi_ProcessCheckMinHP(chr);
 			//Проверка на смерть
 			LAi_CheckKillCharacter(chr);
-			//Востоновление заряда
-			float chargemax = 0.0;
-			if(CheckAttribute(chr_ai, "pistol.charge_max"))
+			
+			//--> Восстановление зарядов огнестрельного оружия
+			//Rosarak. Пока оставил тестовый вариант, когда в мирном режиме одновременно копятся оба заряда
+			float charge, dltcharge;
+			float ChargeMax = 0.0;
+			bool bMus = CharIsMushketer(chr);
+			bool bPeace = !LAi_IsFightMode(chr);
+			
+			//Для пистолетов в мирном режиме и/или при наличии перка "Мушкетёр" (TO_DO: потом перк будет другой)
+			if(!bMus) //НО НЕ В МУШКЕТНОМ
 			{
-				chargemax = stf(chr_ai.pistol.charge_max);
-			}
-
-			if(chargemax > 0.0)
-			{
-				if(sti(chr_ai.pistol.chargeprc))
+				if(CheckAttribute(chr_ai, "pistol.charge_max")) ChargeMax = stf(chr_ai.pistol.charge_max);
+				if(ChargeMax > 0.0)
 				{
-					// boal 22/07/05 зарядка не в бою. eddy.но если мушкетер, то пофиг
-					if (IsCharacterPerkOn(chr, "Musketeer") || !LAi_IsFightMode(chr) || chr.model.animation == "mushketer")
+					if(sti(chr_ai.pistol.chargeprc))
 					{
-						float charge = stf(chr_ai.pistol.charge);
-	                    // boal сюда добавть проверку на наличие пуль gun bullet-->
-	                    if((iGetMinPistolChargeNum(chr, "pistol") - charge) > 0) // Warship. Переделка, т.к. появился порох
-		                {
-							//zagolski. убираем тормоза при зарядке
-							if(!CheckAttribute(chr_ai, "pistol.charge_pSkill"))
+						if(bPeace || IsCharacterPerkOn(chr, "Musketeer"))
+						{
+							charge = stf(chr_ai.pistol.charge);
+							if((iGetMinPistolChargeNum(chr, "pistol") - charge) > 0)
 							{
-							    //Скорость зарядки
-								chr_ai.pistol.charge_pSkill = LAi_GunReloadSpeed(chr, "pistol");
-							}
-
-							float dltcharge = stf(chr_ai.pistol.charge_pSkill);
-
-							//Подзаряжаем пистолет
-							charge = charge + dltcharge*dltTime;
-							if(charge >= chargemax)
-							{
-								charge = chargemax;
-								chr_ai.pistol.chargeprc = "0";
-								DeleteAttribute(chr_ai, "pistol.charge_pSkill");
-
-								// boal 24.04.04 озвучка зарядки пистоля -->
-								if (Characters[idx].index == GetMainCharacterIndex() && LAi_IsFightMode(pchar))
-								{
-									PlaySound("Reload");
+								if(!CheckAttribute(chr_ai, "pistol.charge_pSkill"))
+								{	//Скорость зарядки
+									chr_ai.pistol.charge_pSkill = LAi_GunReloadSpeed(chr, "pistol");
 								}
-							}
-						    chr_ai.pistol.charge = charge;
-						}
-						// boal сюда добавть проверку на наличие пуль gun bullet <--
-					} // boal 22/07/05 зарядка не в бою
-				}
-			}
-			else
-			{
-				chr_ai.pistol.charge = "0";
-			}
 
-			//Востоновление энергии
+								dltcharge = stf(chr_ai.pistol.charge_pSkill);
+
+								//Подзаряжаем пистолет
+								charge = charge + dltcharge*dltTime;
+								if(charge >= ChargeMax)
+								{
+									charge = ChargeMax;
+									chr_ai.pistol.chargeprc = "0";
+									DeleteAttribute(chr_ai, "pistol.charge_pSkill");
+
+									if(IsMainCharacter(chr) && LAi_IsFightMode(pchar))
+										PlaySound("Reload"); // Озвучка зарядки пистоля
+								}
+								chr_ai.pistol.charge = charge;
+							}
+						}
+					}
+				}
+				else chr_ai.pistol.charge = "0";
+			}
+			
+			//Для мушкетов в мирном режиме и/или держат его в руках
+			if(bPeace || bMus) //НО НЕ В САБЕЛЬНОМ
+			{
+				ChargeMax = 0.0;
+				if(CheckAttribute(chr_ai, "musket.charge_max")) ChargeMax = stf(chr_ai.musket.charge_max);
+				if(ChargeMax > 0.0)
+				{
+					if(sti(chr_ai.musket.chargeprc))
+					{
+						charge = stf(chr_ai.musket.charge);
+						if((iGetMinPistolChargeNum(chr, "musket") - charge) > 0)
+						{
+							if(!CheckAttribute(chr_ai, "musket.charge_pSkill"))
+							{	//Скорость зарядки
+								chr_ai.musket.charge_pSkill = LAi_GunReloadSpeed(chr, "musket");
+							}
+
+							dltcharge = stf(chr_ai.musket.charge_pSkill);
+
+							//Подзаряжаем мушкет
+							charge = charge + dltcharge*dltTime;
+							if(charge >= ChargeMax)
+							{
+								charge = ChargeMax;
+								chr_ai.musket.chargeprc = "0";
+								DeleteAttribute(chr_ai, "musket.charge_pSkill");
+
+								if (IsMainCharacter(chr) && LAi_IsFightMode(pchar))
+									PlaySound("Reload"); //TO_DO: А надо бы отдельный звук
+							}
+							chr_ai.musket.charge = charge;
+						}
+					}
+				}
+				else chr_ai.musket.charge = "0";
+			}
+			//<-- Восстановление зарядов огнестрельного оружия
+			
+			//Востановление энергии
 			if(CheckAttribute(chr_ai, "energy"))
 			{
 				float energy = Lai_UpdateEnergyPerDltTime(chr, stf(chr_ai.energy), dltTime);
