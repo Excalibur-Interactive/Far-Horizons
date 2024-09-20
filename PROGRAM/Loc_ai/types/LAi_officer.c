@@ -39,7 +39,7 @@ void LAi_type_officer_Init(aref chr)
      	LAi_tmpl_SetFollow(chr, pchar, -1.0);
 	}
 	//Установим анимацию персонажу
-	if (chr.model.animation == "mushketer" && !CheckAttribute(chr, "CanTakeMushket") && !CheckAttribute(chr, "isMusketer.weapon"))
+	if (chr.model.animation == "mushketer" && !CheckAttribute(chr, "MusketOutfit"))
 	{
 		LAi_NPC_MushketerEquip(chr);
 	}

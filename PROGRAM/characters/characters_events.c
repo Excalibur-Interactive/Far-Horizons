@@ -306,7 +306,6 @@ bool chrIsNowEnableReload()
 	return true;
 }
 
-
 #event_handler("EventStartQuestMovie","chrChangeReloadStateHndl");
 #event_handler("EndStartQuestMovie","chrChangeReloadStateHndl");
 #event_handler(EVENT_DIALOG_START,"chrChangeReloadStateHndl");
@@ -315,7 +314,7 @@ bool chrIsNowEnableReload()
 #event_handler("chrCheckChangeOpenStateEvent","chrCheckChangeOpenState");
 #event_handler("eGetWeaponID","funcGetWeaponID");
 
-
+//Это старая дурная проверка, от неё зависит, будет ли анимация блока топором или нет
 string g_strRetParam;
 ref funcGetWeaponID()
 {
@@ -325,7 +324,7 @@ ref funcGetWeaponID()
 	if (iTemp != -1)
 	{
 		ref itm = ItemsFromID(characters[iTemp].equip.blade);
-		if (!CheckAttribute(&characters[iTemp], "IsMushketer") && findsubstr(itm.SubType, "axe" , 0) != -1)	g_strRetParam = "topor";
+		if (!CharIsMushketer(&characters[iTemp]) && findsubstr(itm.SubType, "axe" , 0) != -1)	g_strRetParam = "topor";
 	}	
 	return &g_strRetParam;
 }

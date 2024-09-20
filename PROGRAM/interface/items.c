@@ -1328,17 +1328,6 @@ void RemovePress()	// снять
 	ref itmRef = &Items[iGoodIndex];
 	if(!CheckAttribute(itmRef, "groupID"))
 		return;
-	if(itmRef.groupID == AMMO_ITEM_TYPE)
-	{
-		if(CheckAttribute(pchar, "IsMushketer"))
-		{
-			DeleteAttribute(pchar, "bullets.musket");
-		}
-		else
-		{
-			DeleteAttribute(pchar, "bullets.pistol");
-		}
-	}
 	RemoveCharacterEquip(pchar, itmRef.groupID);
 	RefreshItems();
 }

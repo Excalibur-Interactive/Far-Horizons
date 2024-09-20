@@ -1619,7 +1619,7 @@ int GetMaxItemsToTake(ref _char, String _item)
 	return MakeInt((maxWeight - curWeight) / itemWeight);
 }
 
-void OfficerReincarnation(ref rPassanger);
+void OfficerReincarnation(ref rPassanger); //TO_DO
 {
 	ref rOff = GetCharacter(NPC_GenerateCharacter("Clon", "none", rPassanger.sex, rPassanger.model.animation, 1, sti(rPassanger.nation), -1, false, F_OFFICER));
 	ChangeAttributesFromCharacter(rOff, rPassanger, true);
@@ -1631,8 +1631,8 @@ void OfficerReincarnation(ref rPassanger);
 	RemoveCharacterEquip(rOff, CIRASS_ITEM_TYPE);
 	DeleteAttribute(rOff, "items");
 	rOff.items = "";
-	DeleteAttribute(rOff, "isMusketer.weapon");
-	DeleteAttribute(pchar, "items.mushket2x2");
+	//DeleteAttribute(rOff, "MusketOutfit");
+	//DeleteAttribute(pchar, "items.mushket2x2");
 	AddPassenger(pchar, rOff, false);
 	Log_Info("Абордажник " + GetFullName(rOff) + " реанимирован.");
 }

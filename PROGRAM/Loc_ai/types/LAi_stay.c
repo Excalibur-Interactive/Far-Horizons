@@ -20,7 +20,7 @@ void LAi_type_stay_Init(aref chr)
 	chr.chr_ai.type.time = 0;
 	LAi_tmpl_stay_InitTemplate(chr);
 	//Установим анимацию персонажу
-	if (chr.model.animation == "mushketer" && !CheckAttribute(chr, "isMusketer.weapon"))
+	if (chr.model.animation == "mushketer" && !CheckAttribute(chr, "MusketOutfit"))
 	{
         LAi_NPC_MushketerEquip(chr);
 	}

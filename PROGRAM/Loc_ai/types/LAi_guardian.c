@@ -52,7 +52,7 @@ void LAi_type_guardian_Init(aref chr)
 		}
 	}
 	//Установим анимацию персонажу
-	if (chr.model.animation == "mushketer" && !CheckAttribute(chr, "isMusketer.weapon"))
+	if (chr.model.animation == "mushketer" && !CheckAttribute(chr, "MusketOutfit"))
 	{
 		LAi_NPC_MushketerEquip(chr);
 	}

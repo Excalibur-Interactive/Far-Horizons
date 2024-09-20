@@ -1944,13 +1944,14 @@ string FindCharacterItemByGroup(ref chref, string groupID)
 	ref refItm;
     float  maxBladeValue, curBladeValue;
     string resultItemId;
-    // boal 17.06.05 офицерам даем кулаки -->
-	if (groupID == BLADE_ITEM_TYPE && IsOfficer(chref) && IsEquipCharacterByItem(chref, "unarmed") && !CheckAttribute(chref, "isMusketer"))
+
+    // забираем кулаки у офицеров перед поиском
+	if (groupID == BLADE_ITEM_TYPE && IsOfficer(chref) && IsEquipCharacterByItem(chref, "unarmed"))
 	{
         RemoveCharacterEquip(chref, BLADE_ITEM_TYPE);
         TakeItemFromCharacter(chref, "unarmed");
 	}
-	// boal 17.06.05 офицерам даем кулаки <--
+
 	maxBladeValue = 0;
 	resultItemId  = "";
 	for(i=TOTAL_ITEMS-1; i>=0; i--)
@@ -2002,13 +2003,14 @@ string FindCharacterItemByGroup(ref chref, string groupID)
 	{
         return resultItemId;
 	}
-	// boal 17.06.05 офицерам даем кулаки -->
-	if (groupID == BLADE_ITEM_TYPE && IsOfficer(chref) && sti(chref.index) != GetMainCharacterIndex() && !CheckAttribute(chref, "isMusketer"))
+
+	// выдаём кулаки офицерам, если ничего не нашлось
+	if (groupID == BLADE_ITEM_TYPE && IsOfficer(chref) && !IsMainCharacter(chref))
 	{
         GiveItem2Character(chref, "unarmed");
         EquipCharacterByItem(chref, "unarmed");
 	}
-	// boal 17.06.05 офицерам даем кулаки <--
+
 	return "";  //ничего не делать далее
 }
 
@@ -3179,7 +3181,8 @@ bool SetCharacterTalent(ref chref, string TalentName)
 	return false;
 }
 
-//Вычисляем: Является ли персонаж мушкетером?
+//Пользуется ли персонаж мушкетом в данный момент?
+//Это не то же самое, есть ли у него мушкет в слоте
 bool CharIsMushketer(ref rChar)
 {
 	//Либо это чистый мушкетёр на старой анимации, либо универсал в мушкетном режиме

@@ -57,7 +57,7 @@ void LAi_type_warrior_Init(aref chr)
 		if(!CheckAttribute(chr, "chr_ai.type.dialog")) chr.chr_ai.type.dialog = "1"; 
 	}
 	//Установим анимацию персонажу
-	if (chr.model.animation == "mushketer" && !CheckAttribute(chr, "isMusketer.weapon"))
+	if (chr.model.animation == "mushketer" && !CheckAttribute(chr, "MusketOutfit"))
 	{
 		LAi_NPC_MushketerEquip(chr);
 	}

@@ -770,13 +770,14 @@ void LAi_FadeDelay(float _delayTime, string sPath)
 	InterfaceStates.Buttons.Save.enable = 0;
 }
 
-void FadeDelay()    // относится к методу выше.
+void FadeDelay() // относится к методу выше
 {
 	LAi_FadeEndFadeIn();
 	LAi_FadeEndFadeOut();
 }
 
-//Есть ли оружие у персонада
+//Есть ли оружие у персонажа
+//КУЛАКИ СЧИТАЮТСЯ ОРУЖИЕМ
 bool LAi_IsSetBlade(aref chr)
 {
 	return (SendMessage(chr, "ls", MSG_CHARACTER_EX_MSG, "IsSetBalde") != 0);
