@@ -102,7 +102,7 @@ bool LAi_type_player_CanDialog(aref chr, aref by)
 	//Если уже говорим, то откажем
 	if(chr.chr_ai.tmpl == LAI_TMPL_DIALOG) return false;
 	//Если сражаемся, то откажем
-	if(SendMessage(chr, "ls", MSG_CHARACTER_EX_MSG, "IsFightMode") != 0) return false;
+	if(SendMessage(chr, "ls", MSG_CHARACTER_EX_MSG, "CheckFightMode") != 0) return false;
 	//Согласимся на диалог
 	return true;
 }

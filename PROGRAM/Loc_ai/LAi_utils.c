@@ -787,7 +787,7 @@ bool LAi_IsFightMode(aref chr)
 {
 	if (bLandInterfaceStart && CheckAttribute(chr, "equip.blade"))
     {
-        return (SendMessage(&chr, "ls", MSG_CHARACTER_EX_MSG, "IsFightMode") != 0);
+        return (SendMessage(&chr, "ls", MSG_CHARACTER_EX_MSG, "CheckFightMode") != 0);
     }
     return false;
 }

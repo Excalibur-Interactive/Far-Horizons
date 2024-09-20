@@ -1358,7 +1358,7 @@ void ProcessInterfaceKey()
 	}
 	else
 	{
-		if( SendMessage(GetMainCharacter(),"ls",MSG_CHARACTER_EX_MSG,"IsFightMode") != 0 )
+		if( SendMessage(pchar,"ls",MSG_CHARACTER_EX_MSG,"CheckFightMode") != 0 )
 			{return;}
 		if( CheckAttribute(&objLandInterface,"ComState") && sti(objLandInterface.ComState) != 0 )
 			{return;}

@@ -42,8 +42,6 @@ bool LAi_tmpl_fight_IsGo(aref chr)
 
 bool LAi_tmpl_fight_InitTemplate(aref chr)
 {
-	bool isRes = SendMessage(&chr, "ls", MSG_CHARACTER_EX_MSG, "IsFightMode");
-	if(!LAi_IsInitedAI) isRes = true;
 	CharacterPlayAction(chr, "");
 	bool isNew = false;
 	if(CheckAttribute(chr, "chr_ai.tmpl"))
@@ -89,7 +87,7 @@ bool LAi_tmpl_fight_InitTemplate(aref chr)
 void LAi_tmpl_fight_CharacterUpdate(aref chr, float dltTime)
 {
 	//Если не в режиме боя переведём в него
-	if(SendMessage(&chr, "ls", MSG_CHARACTER_EX_MSG, "IsFightMode") == 0)
+	if(SendMessage(&chr, "ls", MSG_CHARACTER_EX_MSG, "CheckFightMode") == 0)
 	{
 		SendMessage(&chr, "lsl", MSG_CHARACTER_EX_MSG, "LockFightMode", false);
 		SendMessage(&chr, "lsl", MSG_CHARACTER_EX_MSG, "ChangeFightMode", true);

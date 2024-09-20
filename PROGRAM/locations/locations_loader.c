@@ -726,12 +726,11 @@ bool UnloadLocation(aref loc)
 	//trace("UnloadLocation(aref loc) " + loc.id);
 	DialogExit();
 
-	ref mainCharacter = GetMainCharacter();
-	if(SendMessage(&mainCharacter, "ls", MSG_CHARACTER_EX_MSG, "IsFightMode") != 0)
+	if(SendMessage(pchar, "ls", MSG_CHARACTER_EX_MSG, "CheckFightMode") != 0)
 	{
-		mainCharacter.lastFightMode = "1";
+		pchar.lastFightMode = "1";
 	}else{
-		mainCharacter.lastFightMode = "0";
+		pchar.lastFightMode = "0";
 	}
 
 	Event(EVENT_LOCATION_UNLOAD,"");

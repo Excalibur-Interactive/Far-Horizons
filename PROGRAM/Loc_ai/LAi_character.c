@@ -549,6 +549,7 @@ void LAi_SetFightMode(aref chr, bool isFightMode)
 {
 	SendMessage(chr, "lsl", MSG_CHARACTER_EX_MSG, "ChangeFightMode", isFightMode);
 }
+
 // boal
 void LAi_SetFightModeForOfficers(bool isFightMode)
 {

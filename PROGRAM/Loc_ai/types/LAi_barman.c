@@ -78,7 +78,7 @@ void LAi_type_barman_CharacterUpdate(aref chr, float dltTime)
 				bool isTrp = true;
 				if(IsEntity(&Characters[ichr]))
 				{
-					if(SendMessage(&Characters[ichr], "ls", MSG_CHARACTER_EX_MSG, "IsFightMode") != 0)
+					if(SendMessage(&Characters[ichr], "ls", MSG_CHARACTER_EX_MSG, "CheckFightMode") != 0)
 					{
 						isTrp = false;
 					}

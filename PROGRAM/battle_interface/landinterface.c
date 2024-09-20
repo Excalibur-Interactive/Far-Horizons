@@ -696,8 +696,6 @@ void BLI_UpdateObjectData()
 
 void BLI_SetPossibleCommands()
 {
-	int chrMode = SendMessage(pchar,"ls",MSG_CHARACTER_EX_MSG,"IsFightMode");
-
 	bool bTmpBool;
 	bool bUseCommand = false;
 	int i;
@@ -710,7 +708,7 @@ void BLI_SetPossibleCommands()
 		curcom.enable = false;
 	}
 
-	if(chrMode==0)
+	if(SendMessage(pchar,"ls",MSG_CHARACTER_EX_MSG,"CheckFightMode") == 0)
 	{
 		bTmpBool = true;
 		if(LAi_group_IsActivePlayerAlarm()) bTmpBool = false;

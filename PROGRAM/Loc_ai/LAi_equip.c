@@ -8,7 +8,7 @@
 #define PERK_TEMPLATE_PERSONAL		7	// 6 perks
 #define PERK_TEMPLATE_LAST          8
 
-//Экипировать NPC оружием и перками (переделал полнсотью 11/11/04 boal)
+//Экипировать NPC оружием и перками (переделал полностью 11/11/04 boal)
 void LAi_NPC_Equip(ref chr, int rank, bool isWeapons, bool isGun)
 {
 	// boal не нужно - ранг и так точно расчитан r = rank + rand(3) - 1;
