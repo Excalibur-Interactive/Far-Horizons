@@ -915,7 +915,7 @@ void Dead_AddLoginedCharacter(aref chr)
 				}
 			}
 				
-			if(CheckAttribute(chr, "equip.gun"))
+			if(CheckAttribute(chr, "equip.gun") || CheckAttribute(chr, "equip.musket"))
 			{
 				if(rand(MOD_SKILL_ENEMY_RATE + 10) == 2)
 				{
