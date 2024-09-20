@@ -170,6 +170,3 @@ string CharacterGetTask(ref character)
 	if(SendMessage(character, "le", MSG_NPCHARACTER_GETTASK, &str) == 0) str = "";
 	return str;
 }
-
-
-

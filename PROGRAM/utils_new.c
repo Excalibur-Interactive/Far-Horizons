@@ -139,12 +139,5 @@ void DeleteAttributeEx(object obj, string str)
 }
 
 //Rosarak. Помогает не плодить лишние bool'ы
-bool Con(bool a, bool b) //КОНЪЮНКЦИЯ
-{
-	return a && b;
-}
-
-bool Dis(bool a, bool b) //ДИЗЪЮНКЦИЯ
-{
-	return a || b;
-}
+bool Con(bool a, bool b) {return a && b;} //КОНЪЮНКЦИЯ
+bool Dis(bool a, bool b) {return a || b;} //ДИЗЪЮНКЦИЯ

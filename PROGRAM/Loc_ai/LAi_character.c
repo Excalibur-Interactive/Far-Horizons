@@ -1037,7 +1037,6 @@ void LAi_AllCharactersUpdate(float dltTime)
 			LAi_CheckKillCharacter(chr);
 			
 			//--> Восстановление зарядов огнестрельного оружия
-			//Rosarak. Пока оставил тестовый вариант, когда в мирном режиме одновременно копятся оба заряда
 			float charge, dltcharge;
 			float ChargeMax = 0.0;
 			bool bMus = CharIsMushketer(chr);
@@ -1082,8 +1081,8 @@ void LAi_AllCharactersUpdate(float dltTime)
 				else chr_ai.pistol.charge = "0";
 			}
 			
-			//Для мушкетов в мирном режиме и/или держат его в руках
-			if(bPeace || bMus) //НО НЕ В САБЕЛЬНОМ
+			//Для мушкетов в мирном режиме без тревоги и/или держат его в руках
+			if(Con(bPeace, !LAi_grp_alarmactive) || bMus) //НО НЕ В САБЕЛЬНОМ
 			{
 				ChargeMax = 0.0;
 				if(CheckAttribute(chr_ai, "musket.charge_max")) ChargeMax = stf(chr_ai.musket.charge_max);
