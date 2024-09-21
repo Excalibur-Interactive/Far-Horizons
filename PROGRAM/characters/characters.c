@@ -321,9 +321,7 @@ void SetOverloadFight(ref character)
     if(GetItemsWeight(character) > GetMaxItemsWeight(character) && !IsCharacterEquippedTalisman(character, "totem_01"))
     {
 		string tag = "";
-		int isMusMode = 0;
-		SendMessage(character, "le", MSG_CHARACTER_GETMUSMODE, &isMusMode);
-		if(isMusMode)
+		if(SendMessage(character, "ls", MSG_CHARACTER_EX_MSG, "CheckFightMode") == 2)
 			tag = "_mus";
         character.actions.fightwalk = "fight walk" + tag;
 	    character.actions.fightbackwalk = "fight back walk" + tag;
@@ -339,9 +337,7 @@ void CheckAndSetOverloadMode(ref character)
         if(GetItemsWeight(character) > GetMaxItemsWeight(character) && !IsCharacterEquippedTalisman(character, "totem_01"))
         {
 			string tag = "";
-			int isMusMode = 0;
-			SendMessage(character, "le", MSG_CHARACTER_GETMUSMODE, &isMusMode);
-			if(isMusMode)
+			if(SendMessage(character, "ls", MSG_CHARACTER_EX_MSG, "CheckFightMode") == 2)
 				tag = "_mus";
             character.actions.walk = "walk";
 	        character.actions.backwalk = "back walk";

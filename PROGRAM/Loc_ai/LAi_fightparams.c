@@ -82,11 +82,6 @@ float LAi_CalcDamageForBlade(aref attack, aref enemy, string attackType, bool is
 			dmg = dmg * (4.0 + MOD_SKILL_ENEMY_RATE) / 10.0;
 		}
 		
-		if (attack.model.animation == "mushketer" && IsMainCharacter(attack))
-		{
-			dmg = dmg / 3.0;
-		}
-		
 		return dmg;
 	}
 	
