@@ -530,8 +530,8 @@ void LAi_LoadLocation(string locationID, int locType)
 			//Расставляем персонажей
 			LAi_SetBoardingActors(locationID);
 			// boal <--
-			//Вытащим саблю
-			SendMessage(&mchr, "lsl", MSG_CHARACTER_EX_MSG, "SetFightMode", 1);
+			//Вытащим оружие
+			LAi_InstantFightMode(mchr);
 			//Запретим диалог
 			dialogDisable = true;
 		}else{

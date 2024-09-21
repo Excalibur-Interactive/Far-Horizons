@@ -561,7 +561,7 @@ bool LoadLocation(ref loc)
 		{
 			if(CheckAttribute(loc, "noFight") && loc.noFight != "1") //eddy. для переходов в режиме боя, чтобы не було эррорлога. счас только при читовых телепортах вылазит, сам смотри.
 			{
-				SendMessage(&mainCharacter, "lsl", MSG_CHARACTER_EX_MSG, "SetFightMode", 1);
+				LAi_InstantFightMode(mainCharacter);
 			}
 		}
 	}

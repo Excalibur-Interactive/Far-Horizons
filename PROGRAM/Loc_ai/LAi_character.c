@@ -544,10 +544,13 @@ void LAi_CharacterPlaySound(aref chr, string soundname)
 	SendMessage(chr, "s", soundname);
 }
 
-//Переключиться в режим боя и обратно
+//Переключиться в боевой или мирный режим
 void LAi_SetFightMode(aref chr, bool isFightMode)
 {
-	SendMessage(chr, "lsl", MSG_CHARACTER_EX_MSG, "ChangeFightMode", isFightMode);
+	if(isFightMode && CheckAttribute(chr, "chr_ai.priority_mode"))
+		SendMessage(chr, "lsl", MSG_CHARACTER_EX_MSG, "ChangeFightMode", sti(chr.chr_ai.priority_mode));
+	else
+		SendMessage(chr, "lsl", MSG_CHARACTER_EX_MSG, "ChangeFightMode", isFightMode);
 }
 
 // boal
@@ -566,6 +569,15 @@ void LAi_SetFightModeForOfficers(bool isFightMode)
             SendMessage(chr, "lsl", MSG_CHARACTER_EX_MSG, "ChangeFightMode", isFightMode);
 	    }
 	}
+}
+
+//Присвоить персонажу боевой режим (для появления без анимации доставания оружия на абордажах, штурмах и т.д.)
+void LAi_InstantFightMode(aref chr)
+{
+	if(CheckAttribute(chr, "chr_ai.priority_mode"))
+		SendMessage(chr, "lsl", MSG_CHARACTER_EX_MSG, "SetFightMode", sti(chr.chr_ai.priority_mode));
+	else
+		SendMessage(chr, "lsl", MSG_CHARACTER_EX_MSG, "SetFightMode", 1);
 }
 
 //Заблокировать текущий режим (!!! сбрасывается при смене шаблона !!!)
@@ -1042,7 +1054,7 @@ void LAi_AllCharactersUpdate(float dltTime)
 			bool bMus = CharIsMushketer(chr);
 			bool bPeace = !LAi_IsFightMode(chr);
 			
-			//Для пистолетов в мирном режиме и/или при наличии перка "Мушкетёр" (TO_DO: потом перк будет другой)
+			//Для пистолета в мирном режиме и/или при наличии перка "Мушкетёр" (TO_DO: потом перк будет другой)
 			if(!bMus) //НО НЕ В МУШКЕТНОМ
 			{
 				if(CheckAttribute(chr_ai, "pistol.charge_max")) ChargeMax = stf(chr_ai.pistol.charge_max);
@@ -1081,7 +1093,7 @@ void LAi_AllCharactersUpdate(float dltTime)
 				else chr_ai.pistol.charge = "0";
 			}
 			
-			//Для мушкетов в мирном режиме без тревоги и/или держат его в руках
+			//Для мушкета в мирном режиме без тревоги и/или если его держат в руках
 			if(Con(bPeace, !LAi_grp_alarmactive) || bMus) //НО НЕ В САБЕЛЬНОМ
 			{
 				ChargeMax = 0.0;
