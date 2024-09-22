@@ -1,4 +1,3 @@
-
 #include "characters\characters_ai.c"
 #include "characters\characters_events.c"
 #include "characters\characters_login.c"
@@ -13,7 +12,6 @@
 
 object chrFindNearCharacters[MAX_CHARS_IN_LOC];
 bool isBoardingLoading = false;
-
 
 void CharactersInit()
 {
@@ -300,68 +298,53 @@ void SetDialogStayIdle(ref character)
 	character.actions.idle.i7 = "dialog_stay7";
 	character.actions.idle.i8 = "dialog_stay8";
 }
-// boal -->
+
 void SetOverloadNormWalk(ref character)
 {
-    if(GetItemsWeight(character) > GetMaxItemsWeight(character) && !IsCharacterEquippedTalisman(character, "totem_01"))
-    {
-        character.actions.walk = "walk";
-	    character.actions.backwalk = "back walk";
-	    character.actions.run = "walk";
-	    character.actions.backrun = "back run";
-        character.actions.stsUp = "stairs up";
-        character.actions.stsUpRun = "stairs up";
-        character.actions.stsDown = "stairs down";
-        character.actions.stsDownRun = "stairs down";
-    }
+	if(GetItemsWeight(character) > GetMaxItemsWeight(character) && !IsCharacterEquippedTalisman(character, "totem_01"))
+	{
+		character.actions.run = "walk";
+		character.actions.backrun = "back walk";
+		character.actions.stsUpRun = "stairs up";
+		character.actions.stsUpRunBack = "back stairs up";
+		character.actions.stsDownRun = "stairs down";
+		character.actions.stsDownRunBack = "back stairs down";
+	}
 }
 
 void SetOverloadFight(ref character)
 {
-    if(GetItemsWeight(character) > GetMaxItemsWeight(character) && !IsCharacterEquippedTalisman(character, "totem_01"))
-    {
-		string tag = "";
-		if(SendMessage(character, "ls", MSG_CHARACTER_EX_MSG, "CheckFightMode") == 2)
-			tag = "_mus";
-        character.actions.fightwalk = "fight walk" + tag;
-	    character.actions.fightbackwalk = "fight back walk" + tag;
-	    character.actions.fightrun = "fight walk" + tag;
-	    character.actions.fightbackrun = "fight back walk" + tag;
-    }
+	if(GetItemsWeight(character) > GetMaxItemsWeight(character) && !IsCharacterEquippedTalisman(character, "totem_01"))
+	{
+		character.actions.fightrun = "fight walk";
+		character.actions.fightbackrun = "fight back walk";
+	}
 }
 void CheckAndSetOverloadMode(ref character)
 {
 	if (CheckAttribute(character, "actions")) // сундуки не трогаем
 	{
-        BeginChangeCharacterActions(character);
-        if(GetItemsWeight(character) > GetMaxItemsWeight(character) && !IsCharacterEquippedTalisman(character, "totem_01"))
-        {
-			string tag = "";
-			if(SendMessage(character, "ls", MSG_CHARACTER_EX_MSG, "CheckFightMode") == 2)
-				tag = "_mus";
-            character.actions.walk = "walk";
-	        character.actions.backwalk = "back walk";
-	        character.actions.run = "walk";
-	        character.actions.backrun = "back run";
-            character.actions.stsUp = "stairs up";
-            character.actions.stsUpRun = "stairs up";
-            character.actions.stsDown = "stairs down";
-            character.actions.stsDownRun = "stairs down";
-
-            character.actions.fightwalk = "fight walk" + tag;
-	        character.actions.fightbackwalk = "fight back walk" + tag;
-	        character.actions.fightrun = "fight walk" + tag;
-	        character.actions.fightbackrun = "fight back walk" + tag;
-        }
-        else
-        {
-            SetDefaultNormWalk(character);
-            SetDefaultFight(character);
-        }
-        EndChangeCharacterActions(character);
-    }
+		BeginChangeCharacterActions(character);
+		if(GetItemsWeight(character) > GetMaxItemsWeight(character) && !IsCharacterEquippedTalisman(character, "totem_01"))
+		{
+			character.actions.run = "walk";
+			character.actions.backrun = "back walk";
+			character.actions.stsUpRun = "stairs up";
+			character.actions.stsUpRunBack = "back stairs up";
+			character.actions.stsDownRun = "stairs down";
+			character.actions.stsDownRunBack = "back stairs down";
+			character.actions.fightrun = "fight walk";
+			character.actions.fightbackrun = "fight back walk";
+		}
+		else
+		{
+			SetDefaultNormWalk(character);
+			SetDefaultFight(character);
+		}
+		EndChangeCharacterActions(character);
+	}
 }
-// boal <--
+
 void SetDefaultNormWalk(ref character)
 {
 	character.actions.walk = "walk";
@@ -397,9 +380,9 @@ void SetDefaultFight(ref character)
 	character.actions.fightbackrun = "fight back run";
 	
 	// boal 21.01.2004 -->
-    SetOverloadFight(character);
-    // boal 21.01.2004 <--
-    
+	SetOverloadFight(character);
+	// boal 21.01.2004 <--
+
 	//Действия в режиме боя
 	//Fast (max 3) --------------------------------------------------
 	character.actions.attack_fast.a1 = "attack_fast_1";
@@ -502,7 +485,6 @@ void SetHuberAnimation(ref character)
 	character.actions.HitNoFight = "HitNoFightSit";
 }
 
-// evganat - мушкеты
 #event_handler("Event_SetAnimations", "Character_SetAnimations");
 void Character_SetAnimations()
 {
@@ -511,38 +493,78 @@ void Character_SetAnimations()
 	if(GetItemsWeight(character) > GetMaxItemsWeight(character) && !IsCharacterEquippedTalisman(character, "totem_01"))
 	{
 		BeginChangeCharacterActions(character);
+		
+		//Rosarak. Нужно обновить лишь те экшены, которые меняются при перегрузе,
+		//отличны от дефолтных, либо чьё количество захардкожено в движке в виде
+		//numActionIdles, numActionIdles, numActionDead, numActionFightDead,
+		//numAttackFast, numAttackForce, numAttackRound, numAttackBreak,
+		//numAttackFeint, numParry, numHits, иначе сбросятся num-счётчики
+		
+		//Для перегруза
 		character.actions.run = "walk";
-		character.actions.backrun = "back run";
-		character.actions.fightrun = "fight walk" + tag;
-		character.actions.fightbackrun = "fight back walk" + tag;
+		character.actions.backrun = "back walk";
+		character.actions.stsUpRun = "stairs up";
+		character.actions.stsUpRunBack = "back stairs up";
+		character.actions.stsDownRun = "stairs down";
+		character.actions.stsDownRunBack = "back stairs down";
+		character.actions.fightwalk = "fight walk" + tag;
+		character.actions.fightrun  = "fight walk" + tag;
+		character.actions.fightbackwalk = "fight back walk" + tag;
+		character.actions.fightbackrun  = "fight back walk" + tag;
+		
+		//С num-счётчиком
 		character.actions.attack_fast.a1 = "attack_fast_1" + tag;
 		character.actions.attack_fast.a2 = "attack_fast_2" + tag;
 		character.actions.attack_fast.a3 = "attack_fast_3" + tag;
+		
 		character.actions.attack_force.a1 = "attack_force_1" + tag;
 		character.actions.attack_force.a2 = "attack_force_2" + tag;
 		character.actions.attack_force.a3 = "attack_force_3" + tag;
 		character.actions.attack_force.a4 = "attack_force_4" + tag;
+		
 		character.actions.attack_round.a1 = "attack_round_1" + tag;
-		character.actions.attack_round.a2 = "attack_round_1" + tag;
+
 		character.actions.attack_break.a1 = "attack_break_1" + tag;
-		character.actions.attack_break.a2 = "attack_break_1" + tag;
-		character.actions.attack_break.a3 = "attack_break_1" + tag;
-		character.actions.attack_break.a4 = "attack_break_1" + tag;
+		
 		character.actions.attack_feint.a1 = "attack_feint_1" + tag;
-		character.actions.attack_feintc.a1 = "attack_feintc_1" + tag;
 		character.actions.attack_feint.a2 = "attack_feint_2" + tag;
-		character.actions.attack_feintc.a2 = "attack_feintc_2" + tag;
 		character.actions.attack_feint.a3 = "attack_feint_3" + tag;
-		character.actions.attack_feintc.a3 = "attack_feintc_3" + tag;
 		character.actions.attack_feint.a4 = "attack_feint_4" + tag;
+		
+		character.actions.attack_feintc.a1 = "attack_feintc_1" + tag;
+		character.actions.attack_feintc.a2 = "attack_feintc_2" + tag;
+		character.actions.attack_feintc.a3 = "attack_feintc_3" + tag;
 		character.actions.attack_feintc.a4 = "attack_feintc_4" + tag;
+		
 		character.actions.hit_attack.h1 = "hit_attack_1" + tag;
 		character.actions.hit_attack.h2 = "hit_attack_2" + tag;
 		character.actions.hit_attack.h3 = "hit_attack_3" + tag;
+		//character.actions.hit_attack.h4 = "hit_attack_4" + tag;
+		
 		character.actions.parry.p1 = "parry_1" + tag;
 		character.actions.parry.p2 = "parry_2" + tag;
 		character.actions.parry.p3 = "parry_3" + tag;
 		character.actions.parry.p4 = "parry_4" + tag;
+
+		character.actions.fightidle.i1 = "fight stand_1" + tag;
+		character.actions.fightidle.i2 = "fight stand_2" + tag;
+		character.actions.fightidle.i3 = "fight stand_3" + tag;
+		character.actions.fightidle.i4 = "fight stand_4" + tag;
+		character.actions.fightidle.i5 = "fight stand_5" + tag;
+		character.actions.fightidle.i6 = "fight stand_6" + tag;
+		character.actions.fightidle.i7 = "fight stand_7" + tag;
+		character.actions.fightidle.i8 = "fight stand_8" + tag;
+		
+		character.actions.fightdead.d1 = "death_0" + tag;
+		character.actions.fightdead.d2 = "death_1" + tag;
+		character.actions.fightdead.d3 = "death_2" + tag;
+		character.actions.fightdead.d4 = "death_3" + tag;
+		
+		//С num-счётчиком, но можно оставить дефолтные,
+		//либо будет переназначено в темплейте поведения
+		//numActionIdles - character.actions.idle
+		//numActionDead  - character.actions.dead
+		
 		EndChangeCharacterActions(character);
 	}
 }
