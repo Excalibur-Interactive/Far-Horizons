@@ -469,7 +469,7 @@ data = "Turn speed", "5.5"
 	event = "SndAlliace_recoil", 6850, normal
 	
 ;Смещение влево (A) 	
-[straif_weapon_left]
+[strafeleft]
 	start_time = 7190
 	end_time = 7204
 	data = "Blend time", "0.1"		; sec
@@ -481,7 +481,7 @@ data = "Turn speed", "5.5"
 	event = "SndAlliace_recoil", 7199, normal
 	
 ;Смещение вправо (D) 
-[straif_weapon_right]
+[straferight]
 	start_time = 7175
 	end_time = 7189
 	data = "Blend time", "0.1"		; sec
@@ -3690,7 +3690,7 @@ data = "Turn speed", "5.5"
     	data = "Turn speed", "0.1"		; rad/sec
 
 ;Отскок влево
-[straif_weapon_left_mus]
+[strafeleft_mus]
 	start_time = 20362
 	end_time = 20379
 	data = "Blend time", "0.0"		; sec
@@ -3703,7 +3703,7 @@ data = "Turn speed", "5.5"
 	type = normal
 
 ;Отскок вправо
-[straif_weapon_right_mus]
+[straferight_mus]
 	start_time = 20380
 	end_time = 20398
 	data = "Blend time", "0.0"		; sec

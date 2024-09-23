@@ -102,8 +102,7 @@ void ProcessDialogEvent()
 	    		Link.l7.go = "TalkSelf_StartWait";
 	    	}
 			
-			sGun = GetCharacterEquipByGroup(pchar, GUN_ITEM_TYPE);
-			if(sGun != "")
+			if(CheckAttribute(pchar, "equip.gun"))
 			{
 				if(CheckAttribute(pchar, "chr_ai.pistol.bulletNum") && sti(pchar.chr_ai.pistol.bulletNum) > 1)
 				{
@@ -112,31 +111,32 @@ void ProcessDialogEvent()
 				}	
 			}
 			
-			sMusket = GetCharacterEquipByGroup(pchar, MUSKET_ITEM_TYPE);
-			if(sMusket != "")
+			if(CheckAttribute(pchar, "equip.musket"))
 			{
 				if(CheckAttribute(pchar, "chr_ai.musket.bulletNum") && sti(pchar.chr_ai.musket.bulletNum) > 1)
 				{
 					Link.l9 = "Хочу выбрать тип боеприпаса для мушкета.";
 					Link.l9.go = "SetMusketBullets";
-				}	
+				}
+					Link.l10 = "Хочу выбрать приоритетное оружие для боя.";
+					Link.l10.go = "SetPriorityMode";
 			}
 			
-			link.l10 = "Получить предметы";
-			link.l10.go = "GetItems";
+			link.l11 = "Получить предметы";
+			link.l11.go = "GetItems";
 			
-			link.l11 = "Увеличить умение";
-			link.l11.go = "GetSkill";
+			link.l12 = "Увеличить умение";
+			link.l12.go = "GetSkill";
 			
-			link.l12 = "Получить офицеров";
-			link.l12.go = "GetOfficer";
+			link.l13 = "Получить офицеров";
+			link.l13.go = "GetOfficer";
 			
-			link.l13 = "Сменить корабль";
-			link.l13.go = "ChangeShip";
+			link.l14 = "Сменить корабль";
+			link.l14.go = "ChangeShip";
 
 	        
-			Link.l14 = RandPhraseSimple("Не сейчас. Нет времени.", "Некогда. Дела ждут.");
-			Link.l14.go = "exit";
+			Link.l15 = RandPhraseSimple("Не сейчас. Нет времени.", "Некогда. Дела ждут.");
+			Link.l15.go = "exit";
 		break;
 		
 		case "ChangeShip":
@@ -555,7 +555,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "SetGunBullets":
-			Dialog.Text = "Выбор типа боеприпаса :";
+			Dialog.Text = "Выбор типа боеприпаса:";
 			sGun = GetCharacterEquipByGroup(pchar, GUN_ITEM_TYPE);
 			rItm = ItemsFromID(sGun);
 			makearef(rType, rItm.type);	
@@ -584,7 +584,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "SetMusketBullets":
-			Dialog.Text = "Выбор типа боеприпаса :";
+			Dialog.Text = "Выбор типа боеприпаса:";
 			sMusket = GetCharacterEquipByGroup(pchar, MUSKET_ITEM_TYPE);
 			rItm = ItemsFromID(sMusket);
 			makearef(rType, rItm.type);	
@@ -609,6 +609,24 @@ void ProcessDialogEvent()
 			LAi_GunSetUnload(pchar, "musket");
 			NextDiag.CurrentNode = NextDiag.TempNode;
 			DeleteAttribute(pchar,"GenQuest.SetMusketBullets");
+			DialogExit_Self();
+		break;
+		
+		case "SetPriorityMode":
+			Dialog.Text = "В начале боя я буду доставать:";
+			Link.l1 = "Холодное оружие";
+			Link.l1.go = "BladePriorityMode";
+			Link.l2 = "Мушкет";
+			Link.l2.go = "MusketPriorityMode";
+		break;
+		
+		case "BladePriorityMode":
+			pchar.chr_ai.priority_mode = 1;
+			DialogExit_Self();
+		break;
+		
+		case "MusketPriorityMode":
+			pchar.chr_ai.priority_mode = 2;
 			DialogExit_Self();
 		break;
 

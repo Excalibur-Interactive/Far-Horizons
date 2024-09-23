@@ -2113,34 +2113,34 @@ void SetEquipedItemToCharacter(ref chref, string groupID, string itemID)
 			setTelescopeInitParameters(arItm);
 		}
 	break;
-    // boal -->
-    case CIRASS_ITEM_TYPE:
-        if (CheckAttribute(chref, "HeroModel")) // все, у кого есть что одеть
-        {
-            if (CheckAttribute(arItm, "model"))
-            {
-                chref.model = GetSubStringByNum(chref.HeroModel, sti(arItm.model));
-                chref.cirassId = itemNum;
-            }
-            else
-            {
-                chref.model = GetSubStringByNum(chref.HeroModel, 0);
-                DeleteAttribute(chref, "cirassId");
-            }
-        }
-        else
-        {
-            // тут анализ модели офицера или пирата
-            if(CheckAttribute(arItm, "model"))
-            {
-                chref.cirassId = itemNum;
-            }
-            else
-            {
-                DeleteAttribute(chref, "cirassId");
-            }
-        }
-        SetNewModelToChar(chref);//boal
+	// boal -->
+	case CIRASS_ITEM_TYPE:
+		if (CheckAttribute(chref, "HeroModel")) // все, у кого есть что одеть
+		{
+			if (CheckAttribute(arItm, "model"))
+			{
+				chref.model = GetSubStringByNum(chref.HeroModel, sti(arItm.model));
+				chref.cirassId = itemNum;
+			}
+			else
+			{
+				chref.model = GetSubStringByNum(chref.HeroModel, 0);
+				DeleteAttribute(chref, "cirassId");
+			}
+		}
+		else
+		{
+			// тут анализ модели офицера или пирата
+			if(CheckAttribute(arItm, "model"))
+			{
+				chref.cirassId = itemNum;
+			}
+			else
+			{
+				DeleteAttribute(chref, "cirassId");
+			}
+		}
+		SetNewModelToChar(chref);//boal
 	break;
     // boal <--
 	case GUN_ITEM_TYPE:
@@ -2167,7 +2167,7 @@ void SetEquipedItemToCharacter(ref chref, string groupID, string itemID)
 			}
 		}
 		else
-		{				
+		{
 			if(CheckAttribute(chref,"chr_ai.pistol.sGun"))			DeleteAttribute(chref,"chr_ai.pistol.sGun");
 			if(CheckAttribute(chref,"chr_ai.pistol.bullet"))		DeleteAttribute(chref,"chr_ai.pistol.bullet");
 			if(CheckAttribute(chref,"chr_ai.pistol.charge_max")) 	DeleteAttribute(chref,"chr_ai.pistol.charge_max");
@@ -2204,11 +2204,12 @@ void SetEquipedItemToCharacter(ref chref, string groupID, string itemID)
 			}
 		}
 		else
-		{				
+		{
 			if(CheckAttribute(chref,"chr_ai.musket.sGun"))			DeleteAttribute(chref,"chr_ai.musket.sGun");
 			if(CheckAttribute(chref,"chr_ai.musket.bullet"))		DeleteAttribute(chref,"chr_ai.musket.bullet");
 			if(CheckAttribute(chref,"chr_ai.musket.charge_max")) 	DeleteAttribute(chref,"chr_ai.musket.charge_max");
 			if(CheckAttribute(chref,"chr_ai.musket.chargeprc")) 	DeleteAttribute(chref,"chr_ai.musket.chargeprc");
+			if(CheckAttribute(chref,"chr_ai.priority_mode")) 		DeleteAttribute(chref,"chr_ai.priority_mode"); //Сброс на сабельный
 		}
 	break;
 

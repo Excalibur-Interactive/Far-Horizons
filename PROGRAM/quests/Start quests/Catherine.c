@@ -34,5 +34,5 @@ void Catherine_Start()
 	EquipCharacterByItem(pchar, "cirass1");
 	AddItems(pchar, "bullet", 	50);
 	AddItems(pchar, "gunpowder",50);
-	LoadMainCharacterInFirstLocationGroup("FortFrance_ExitTown", "reload", "reload1");
+	LoadMainCharacterInFirstLocationGroup("PortPax_ExitTown", "goto", "goto6");
 }
