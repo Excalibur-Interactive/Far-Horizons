@@ -3190,6 +3190,14 @@ bool CharUseMusket(ref rChar)
 	return false;
 }
 
+//То же самое для движка
+#event_handler("evntCharUseMusket","NativeCharUseMusket");
+bool NativeCharUseMusket()
+{
+	aref rChar = GetEventData();
+	return CharUseMusket(rChar);
+}
+
 //Есть ли у персонажа мушкет?
 bool IsMusketer(ref rChar)
 {

@@ -41,7 +41,7 @@
 #define MSG_BLADE_GUNFIRE 21010       // l
 #define MSG_CHARACTER_BLADEHAND 21011 //"ll", boolBladeInHand
 #define MSG_BLADE_ALPHA 21012         //"ll", alpha|0xFFFFFF
-// evganat - мушкетные месседжи 15.01.23
+// evganat - мушкеты 15.01.23
 #define MSG_MUSKET_HAND 21013
 #define MSG_MUSKET_BELT 21014
 #define MSG_MUS_SET 21015
@@ -193,12 +193,9 @@
 // "lfff" output about the damage inflicted on the character f - inflicted, f - current hp, f - total hp
 #define MSG_CHARACTER_VIEWDAMAGE 30372
 #define MSG_CHARACTER_EX_MSG 30373
-// evganat - мушкетные месседжи
+// evganat - мушкеты
 #define MSG_CHARACTER_SETMUS 30374				// экипировать модель мушкета на персонажа, "ls", s - модель мушкета
-#define MSG_CHARACTER_SETANIMATIONTYPE 30375	// сменить режим боевой анимации, "ll", l - тип анимации (0 - сабля с пистолетом, 1 - мушкет)
-#define MSG_CHARACTER_MUSHAND 30376				// привязать модель мушкета к разным местам персонажа, "ll", l - тип привязки (0 - за спиной, 1 - в руках)
-#define MSG_CHARACTER_MUSKETMODE 30377			// включить/выключить мушкетный боевой режим, "l"
-#define MSG_CHARACTER_GETMUSMODE 30378			// получить текущий боевой режим, "le", e - int тип режима (0 - сабля с пистолетом, 1 - мушкет)
+#define MSG_CHARACTER_MUSHAND 30375				// привязать модель мушкета к разным местам персонажа, "ll", l - тип привязки (0 - за спиной, 1 - в руках)
 
 // Procedural head look
 #define MSG_CHARACTER_HEADLOOK_DEFAULT 30380    // "l" default (ani)

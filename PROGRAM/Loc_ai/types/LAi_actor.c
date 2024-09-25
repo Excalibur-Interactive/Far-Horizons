@@ -45,8 +45,7 @@ void LAi_type_actor_Init(aref chr)
 		if(!CheckAttribute(chr, "chr_ai.type.mode")) chr.chr_ai.type.mode = "stay";
 	}
 	//Установим анимацию персонажу
-	// Warship fix 25.04.09 - сделал проверку на "не ГГ ли" - у ГГ при мушкетере все оружие забиралось
-	if (chr.model.animation == "mushketer" && !CheckAttribute(chr, "MusketOutfit") && !IsMainCharacter(chr))
+	if (chr.model.animation == "mushketer" && !CheckAttribute(chr, "MusketOutfit"))
 	{	
 		LAi_NPC_MushketerEquip(chr);
 	}
