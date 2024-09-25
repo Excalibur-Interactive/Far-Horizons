@@ -1130,7 +1130,7 @@ void SetCharacterIconData(int chrindex, aref arData)
 	arData.health = LAi_GetCharacterRelHP(chref);
 	arData.energy = LAi_GetCharacterRelEnergy(chref);
 	
-	if(!CharIsMushketer(chref))
+	if(!CharUseMusket(chref))
 	{
 		arData.shootMax = LAi_GetCharacterChargeQuant(chref, "pistol");
 		arData.shootCur = LAi_GetCharacterChargeCur(chref, "pistol");

@@ -3183,12 +3183,17 @@ bool SetCharacterTalent(ref chref, string TalentName)
 }
 
 //Пользуется ли персонаж мушкетом в данный момент?
-//Это не то же самое, есть ли у него мушкет в слоте
-bool CharIsMushketer(ref rChar)
+bool CharUseMusket(ref rChar)
 {
 	//Либо это чистый мушкетёр на старой анимации, либо универсал в мушкетном режиме
 	if(GetCharacterAnimation(rChar) == "mushketer" || LAi_CheckFightMode(rChar) == 2) return true;
 	return false;
+}
+
+//Есть ли у персонажа мушкет?
+bool IsMusketer(ref rChar)
+{
+	return CheckAttribute(rChar, "equip.musket");
 }
 
 //Вычисляем: Является ли персонаж нежитью?

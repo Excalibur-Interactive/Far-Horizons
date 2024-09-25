@@ -27,7 +27,7 @@ bool LAi_CheckCharacter(aref chr, string out)
 //Зарядилось ли используемое персонажем огнестрельное оружие
 bool LAi_CharacterCanFrie(aref chr)
 {
-	if(!CharIsMushketer(chr))
+	if(!CharUseMusket(chr))
 	{
 		if(!CheckAttribute(chr, "chr_ai.pistol.chargeprc"))
 		{

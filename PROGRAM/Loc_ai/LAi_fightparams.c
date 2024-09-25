@@ -734,7 +734,7 @@ void LAi_ApplyCharacterFireDamage(aref attack, aref enemy, float kDist)
 	
 	//Rosarak. Чем стреляли?
 	string sType;
-	if(!CharIsMushketer(attack))
+	if(!CharUseMusket(attack))
 	{
 		sType = "pistol";
 		rItm = ItemsFromID(GetCharacterEquipByGroup(attack, GUN_ITEM_TYPE));

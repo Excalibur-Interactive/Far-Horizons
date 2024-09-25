@@ -45,7 +45,7 @@ void ActiveF12Control()
 		
 		bool bChar = findCh.chr_ai.group == LAI_GROUP_PLAYER || bBettaTestMode;//Экку Korsar - некоторую инфу можно узнать только, если персонаж в команде игрока.
 		
-		if(CharIsMushketer(findCh)) dopinfo = " (Мушкетёр)";
+		if(CharUseMusket(findCh)) dopinfo = " (Мушкетёр)";
 		else
 		{
 		    if(CheckAttribute(findCh, "equip.blade")) dopinfo = " (Фехтовальщик)";

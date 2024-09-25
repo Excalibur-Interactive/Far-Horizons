@@ -324,7 +324,7 @@ ref funcGetWeaponID()
 	if (iTemp != -1)
 	{
 		ref itm = ItemsFromID(characters[iTemp].equip.blade);
-		if (!CharIsMushketer(&characters[iTemp]) && findsubstr(itm.SubType, "axe" , 0) != -1)	g_strRetParam = "topor";
+		if (!CharUseMusket(&characters[iTemp]) && findsubstr(itm.SubType, "axe" , 0) != -1)	g_strRetParam = "topor";
 	}	
 	return &g_strRetParam;
 }

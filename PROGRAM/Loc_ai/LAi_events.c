@@ -292,7 +292,7 @@ void LAi_CharacterFire()
 	int isFindedEnemy = GetEventData();
 	
 	//Rosarak. Чем стреляли?
-	if(!CharIsMushketer(attack))
+	if(!CharUseMusket(attack))
 	{
 		sType = "pistol";
 		weaponID = GetCharacterEquipByGroup(attack, GUN_ITEM_TYPE);

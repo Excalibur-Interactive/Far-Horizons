@@ -1051,7 +1051,7 @@ void LAi_AllCharactersUpdate(float dltTime)
 			//--> Восстановление зарядов огнестрельного оружия
 			float charge, dltcharge;
 			float ChargeMax = 0.0;
-			bool bMus = CharIsMushketer(chr);
+			bool bMus = CharUseMusket(chr);
 			bool bPeace = !LAi_IsFightMode(chr);
 			
 			//Для пистолета в мирном режиме и/или при наличии перка "Мушкетёр" (TO_DO: потом перк будет другой)
