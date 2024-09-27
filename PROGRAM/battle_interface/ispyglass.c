@@ -81,13 +81,13 @@ void SetSpyGlassData()
 	
 	int nFace = sti(chref.faceID);
 	string sCaptainName = GetCharacterFullName(chref.id);
-	int nFencingSkill = GetCharacterSkill(chref,SKILL_DEFENCE);   // защита
+	int nDefenceSkill = GetCharacterSkill(chref,SKILL_DEFENCE);   // защита
 	int nCannonSkill = GetCharacterSkill(chref,SKILL_GRAPPLING);    // абордаж
 	int nAccuracySkill = GetCharacterSkill(chref,SKILL_CANNONS); // орудия
 	int nNavigationSkill = GetCharacterSkill(chref,SKILL_CANNONS); // меткость SKILL_ACCURACY
 	int nBoardingSkill = GetCharacterSkill(chref,SKILL_SAILING);  // навигация
 	if( !CheckAttribute(arScopeItm,"scope.show.captain_skills") || sti(arScopeItm.scope.show.captain_skills)==0 ) {
-		nFencingSkill = -1;
+		nDefenceSkill = -1;
 		nCannonSkill = -1;
 		nAccuracySkill = -1;
 		nNavigationSkill = -1;
@@ -252,7 +252,7 @@ void SetSpyGlassData()
 		shipHull,shipSail,shipCrew,	shipSpeed, fDistance,
 		shipCannons,shipMaxCannons,
 		shipCharge,shipNation, nSailState,nFace,
-		nFencingSkill,nCannonSkill,nAccuracySkill,nNavigationSkill,nBoardingSkill,
+		nDefenceSkill,nCannonSkill,nAccuracySkill,nNavigationSkill,nBoardingSkill,
 		sCaptainName,"",shipClass);
 	SendMessage(&objISpyGlass,"lsffff",MSG_ISG_SET_SHIPICON, sTextureName, uvLeft,uvTop,uvRight,uvBottom);
 	SendMessage(&objISpyGlass,"ll",MSG_ISG_VISIBLE,true);
@@ -362,9 +362,9 @@ void FillISpyGlassParameters()
 	objISpyGlass.captain.face.texture = "INTERFACES\\PORTRAITS\\64\\face_0.tga";
 	objISpyGlass.captain.face.pos = RecalculateHIconScaled(924)+","+(ntop+RecalculateVIconScaled(20)) + "," + RecalculateHIconScaled(988)+","+(ntop+RecalculateVIconScaled(84));
 	
-	objISpyGlass.captain.fencing.texture = "interfaces\\icons_spec.tga";
-	objISpyGlass.captain.fencing.pos = RecalculateHIconScaled(830)+","+(ntop+RecalculateVIconScaled(42)) + "," + RecalculateHIconScaled(878)+","+(ntop+RecalculateVIconScaled(90));
-	objISpyGlass.captain.fencing.uv = "0.875,0.125,1.0,0.25";   // защита
+	objISpyGlass.captain.defence.texture = "interfaces\\icons_spec.tga";
+	objISpyGlass.captain.defence.pos = RecalculateHIconScaled(830)+","+(ntop+RecalculateVIconScaled(42)) + "," + RecalculateHIconScaled(878)+","+(ntop+RecalculateVIconScaled(90));
+	objISpyGlass.captain.defence.uv = "0.875,0.125,1.0,0.25";   // защита
 	objISpyGlass.captain.cannon.texture = "interfaces\\icons_spec.tga";
 	objISpyGlass.captain.cannon.pos = RecalculateHIconScaled(758)+","+(ntop+RecalculateVIconScaled(42)) + "," + RecalculateHIconScaled(806)+","+(ntop+RecalculateVIconScaled(90));
 	objISpyGlass.captain.cannon.uv = "0.75,0.125,0.875,0.25";  // абордаж
@@ -421,11 +421,11 @@ void FillISpyGlassParameters()
 	objISpyGlass.captext.capname.color = argb(255,255,255,168);
 	objISpyGlass.captext.capname.scale = fBaseScale * 1.6;
 	//
-	objISpyGlass.captext.fencing.font = "interface_normal";
-	objISpyGlass.captext.fencing.pos = RecalculateHIconScaled(856)+","+(ntop+RecalculateVIconScaled(26));
-	objISpyGlass.captext.fencing.align = "center";
-	objISpyGlass.captext.fencing.color = argb(255,255,255,168);
-	objISpyGlass.captext.fencing.scale = fBaseScale * 1.4;
+	objISpyGlass.captext.defence.font = "interface_normal";
+	objISpyGlass.captext.defence.pos = RecalculateHIconScaled(856)+","+(ntop+RecalculateVIconScaled(26));
+	objISpyGlass.captext.defence.align = "center";
+	objISpyGlass.captext.defence.color = argb(255,255,255,168);
+	objISpyGlass.captext.defence.scale = fBaseScale * 1.4;
 	//
 	objISpyGlass.captext.cannon.font = "interface_normal";
 	objISpyGlass.captext.cannon.pos = RecalculateHIconScaled(784)+","+(ntop+RecalculateVIconScaled(26));
