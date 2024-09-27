@@ -2077,6 +2077,10 @@ string GetCharacterEquipPictureByGroup(ref chref, string groupID)
 
 void RemoveCharacterEquip(ref chref, string groupID)
 {
+	if(groupID == GUN_ITEM_TYPE)
+		DeleteAttribute(chref, "bullets.pistol");
+	if(groupID == MUSKET_ITEM_TYPE)
+		DeleteAttribute(chref, "bullets.musket");
 	DeleteAttribute(chref,"equip."+groupID);
 	SetEquipedItemToCharacter(chref,groupID,"");
 }

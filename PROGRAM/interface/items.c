@@ -323,6 +323,8 @@ void ProcessCommandExecute()	// считывание команд
 			}
 		break;
 		case "FRAME_PISTOL":
+			if(comName == "dblclick")
+				RemoveEquipByType(GUN_ITEM_TYPE);
 			if(comName == "click")
 			{
 				if(sFavVariant != "")
@@ -351,6 +353,8 @@ void ProcessCommandExecute()	// считывание команд
 			}
 		break;
 		case "FRAME_SPYGLASS":
+			if(comName == "dblclick")
+				RemoveEquipByType(SPYGLASS_ITEM_TYPE);
 			if(comName == "click")
 			{
 				if(sFavVariant != "")
@@ -361,6 +365,8 @@ void ProcessCommandExecute()	// считывание команд
 			}
 		break;
 		case "FRAME_CUIRASS":
+			if(comName == "dblclick")
+				RemoveEquipByType(CIRASS_ITEM_TYPE);
 			if(comName == "click")
 			{
 				if(sFavVariant != "")
@@ -371,6 +377,8 @@ void ProcessCommandExecute()	// считывание команд
 			}
 		break;
 		case "FRAME_TALISMAN":
+			if(comName == "dblclick")
+				RemoveEquipByType(TALISMAN_ITEM_TYPE);
 			if(comName == "click")
 			{
 				if(sFavVariant != "")
@@ -381,6 +389,8 @@ void ProcessCommandExecute()	// считывание команд
 			}
 		break;
 		case "FRAME_MUSHKET":
+			if(comName == "dblclick")
+				RemoveEquipByType(MUSKET_ITEM_TYPE);
 			if(comName == "click")
 			{
 				if(sFavVariant != "")
@@ -409,6 +419,8 @@ void ProcessCommandExecute()	// считывание команд
 			}
 		break;
 		case "FRAME_HAT":
+			if(comName == "dblclick")
+				RemoveEquipByType(HAT_ITEM_TYPE);
 			if(comName == "click")
 			{
 				if(sFavVariant != "")
@@ -547,6 +559,7 @@ void MoveFinished()	// обработка конца движения групп
 				SetNodeUsing("TITLE_ITEMS_FALSE", false);
 				SetNodeUsing("INFO_TEXT_NAME", true);
 				SetNodeUsing("TITLE_ITEMS", true);
+				CheckButtons();
 			}
 			if(tag == "close")
 			{
@@ -1300,11 +1313,9 @@ void EquipPress()	// экипировать
 	int iGoodIndex = sti(GameInterface.(CurTable).(CurRow).index);
 	ref itmRef = &Items[iGoodIndex];
 	
-	if (CheckAttribute(itmRef, "groupID") && itmRef.groupID != AMMO_ITEM_TYPE)
-	{
-		string itmGroup = itmRef.groupID;
-	    EquipCharacterByItem(pchar, itmRef.id);
-	}
+	if (CheckAttribute(itmRef, "groupID"))
+		EquipCharacterByItem(pchar, itmRef.id);
+
 	RefreshItems();
 }
 
@@ -1324,11 +1335,20 @@ void EquipAmmo(string sType)
 
 void RemovePress()	// снять
 {
-	int  iGoodIndex = sti(GameInterface.(CurTable).(CurRow).index);
+	int iGoodIndex = sti(GameInterface.(CurTable).(CurRow).index);
 	ref itmRef = &Items[iGoodIndex];
-	if(!CheckAttribute(itmRef, "groupID"))
+	if(CheckAttribute(itmRef, "groupID"))
+	{
+		string groupName = itmRef.groupID;
+		RemoveEquipByType(groupName);
+	}
+}
+
+void RemoveEquipByType(string groupName)
+{
+	if(groupName == BLADE_ITEM_TYPE)
 		return;
-	RemoveCharacterEquip(pchar, itmRef.groupID);
+	RemoveCharacterEquip(pchar, groupName);
 	RefreshItems();
 }
 
@@ -2126,39 +2146,6 @@ void SetRareGlow(string sNode, string rarity)	// выставление свеч
 		case "epic":		SendMessage(&GameInterface,"lsls",MSG_INTERFACE_MSG_TO_NODE,sNode, 0, "interfaces\lightE.tga");		break;
 		case "Legendary":	SendMessage(&GameInterface,"lsls",MSG_INTERFACE_MSG_TO_NODE,sNode, 0, "interfaces\lightL.tga");		break;
 	}
-}
-
-// снятие экипировки по двойному клику -->
-void RemovePistol()
-{
-	DeleteAttribute(pchar, "bullets.pistol");
-	RemoveCharacterEquip(pchar, GUN_ITEM_TYPE);
-	RefreshItems();
-}
-
-void RemoveMushket()
-{
-	DeleteAttribute(pchar, "bullets.musket");
-	RemoveCharacterEquip(pchar, MUSKET_ITEM_TYPE);
-	RefreshItems();
-}
-
-void RemoveSpyglass()
-{
-	RemoveCharacterEquip(pchar, SPYGLASS_ITEM_TYPE);
-	RefreshItems();
-}
-
-void RemoveCuirass()
-{
-	RemoveCharacterEquip(pchar, CIRASS_ITEM_TYPE);
-	RefreshItems();
-}
-
-void RemoveTalisman()
-{
-	RemoveCharacterEquip(pchar, TALISMAN_ITEM_TYPE);
-	RefreshItems();
 }
 
 void RemovePotion1()
