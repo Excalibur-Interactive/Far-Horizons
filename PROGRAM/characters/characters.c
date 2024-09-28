@@ -434,8 +434,8 @@ void SetDefaultFight(ref character)
 	character.actions.parry.p4 = "parry_4";
 	//Strafes--------------------------------------------------------------------
 	character.actions.recoil = "recoil";					//Назад
-	character.actions.strafeleft = "straif_weapon_left";	//Влево
-	character.actions.straferight = "straif_weapon_right";	//Вправо
+	character.actions.strafeleft = "strafeleft";	//Влево
+	character.actions.straferight = "straferight";	//Вправо
 	//Death
 	SetDefaultFightDead(character);
 	//Idle анимация в режиме боя

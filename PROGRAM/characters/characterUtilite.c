@@ -2185,7 +2185,11 @@ void SetEquipedItemToCharacter(ref chref, string groupID, string itemID)
 		
 		//Rosarak. Пока нет универсальной системы с пресетами режимов, надо так
 		if(IsMainCharacter(chref)) SendMessage(chref, "ls", MSG_CHARACTER_SETMUS, modelName);
-		else SendMessage(chref,"ls",MSG_CHARACTER_SETGUN,modelName);
+		else
+		{
+			SendMessage(chref, "lsl", MSG_CHARACTER_EX_MSG, "SetMusketer", itemID != ""); //Флаг в движок на мушкетёрский ИИ
+			SendMessage(chref, "ls", MSG_CHARACTER_SETGUN, modelName);
+		}
 		
 		if(itemID != "")
 		{
@@ -3192,14 +3196,6 @@ bool CharUseMusket(ref rChar)
 	//Либо это чистый мушкетёр на старой анимации, либо универсал в мушкетном режиме
 	if(GetCharacterAnimation(rChar) == "mushketer" || LAi_CheckFightMode(rChar) == 2) return true;
 	return false;
-}
-
-//То же самое для движка
-#event_handler("evntCharUseMusket","NativeCharUseMusket");
-bool NativeCharUseMusket()
-{
-	aref rChar = GetEventData();
-	return CharUseMusket(rChar);
 }
 
 //Есть ли у персонажа мушкет?
