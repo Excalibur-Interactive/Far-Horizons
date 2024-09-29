@@ -160,9 +160,3 @@ void SetModelPirate(ref ChrefPirate)
     ChrefPirate.model = ModelPirate;
     FaceMaker(ChrefPirate);
 }
-
-// Warship. Обновим персу модель и анимацию. Пока-что здесь
-void Characters_RefreshModel(ref rChar)
-{
-	SendMessage(rChar, "lss", MSG_CHARACTER_SETMODEL, rChar.model, rChar.model.animation);
-}

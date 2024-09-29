@@ -2102,11 +2102,15 @@ void SetEquipedItemToCharacter(ref chref, string groupID, string itemID)
 	string modelName = "";
 	makearef(arItm,emptyItm);
  	int itemNum; // boal 23.01.2004
-
-	if(itemID!="")
+	bool bEquip = (itemID != "");
+	
+	//if(!CheckAttribute(chref, "equip." + groupID) && !bEquip) return;
+	
+	if(bEquip)
 	{
 		if( !CheckCharacterItem(chref,itemID) ) return;
 		itemNum = Items_FindItem(itemID,&arItm);// boal 23.01.2004
+		if(CheckAttribute(arItm,"model")) modelName = arItm.model;
 	}
 
 	switch(groupID)
@@ -2117,7 +2121,7 @@ void SetEquipedItemToCharacter(ref chref, string groupID, string itemID)
 			setTelescopeInitParameters(arItm);
 		}
 	break;
-	// boal -->
+	
 	case CIRASS_ITEM_TYPE:
 		if (CheckAttribute(chref, "HeroModel")) // все, у кого есть что одеть
 		{
@@ -2144,88 +2148,24 @@ void SetEquipedItemToCharacter(ref chref, string groupID, string itemID)
 				DeleteAttribute(chref, "cirassId");
 			}
 		}
-		SetNewModelToChar(chref);//boal
+		SetNewModelToChar(chref);
 	break;
-    // boal <--
+    
 	case GUN_ITEM_TYPE:
-		if(CheckAttribute(arItm,"model"))	{modelName = arItm.model;}
-		SendMessage(chref,"ls",MSG_CHARACTER_SETGUN,modelName);
-		if(itemID != "")
-		{
-			if(CheckAttribute(chref,"chr_ai.pistol.sGun") && itemID == chref.chr_ai.pistol.sGun)
-			{
-				if(CheckAttribute(chref,"chr_ai.pistol.bullet"))
-				{
-					LAi_SetCharacterUseBullet(chref, "pistol", chref.chr_ai.pistol.bullet);
-				}
-				else
-				{
-					LAi_SetCharacterDefaultBulletType(chref, "pistol");
-					LAi_GunSetUnload(chref, "pistol");
-				}
-			}
-			else
-			{
-				LAi_SetCharacterDefaultBulletType(chref, "pistol");
-				LAi_GunSetUnload(chref, "pistol");
-			}
-		}
-		else
-		{
-			if(CheckAttribute(chref,"chr_ai.pistol.sGun"))			DeleteAttribute(chref,"chr_ai.pistol.sGun");
-			if(CheckAttribute(chref,"chr_ai.pistol.bullet"))		DeleteAttribute(chref,"chr_ai.pistol.bullet");
-			if(CheckAttribute(chref,"chr_ai.pistol.charge_max")) 	DeleteAttribute(chref,"chr_ai.pistol.charge_max");
-			if(CheckAttribute(chref,"chr_ai.pistol.chargeprc")) 	DeleteAttribute(chref,"chr_ai.pistol.chargeprc");
-		}
+		SendMessage(chref, "ls", MSG_CHARACTER_SETGUN, modelName);
+		SetGunParameters(chref, "pistol", itemID, bEquip);
 	break;
 	
-	// evganat - мушкеты
 	case MUSKET_ITEM_TYPE:
-		if(CheckAttribute(arItm,"model"))	{modelName = arItm.model;}
-		
-		//Rosarak. Пока нет универсальной системы с пресетами режимов, надо так
-		if(IsMainCharacter(chref)) SendMessage(chref, "ls", MSG_CHARACTER_SETMUS, modelName);
-		else
-		{
-			SendMessage(chref, "lsl", MSG_CHARACTER_EX_MSG, "SetMusketer", itemID != ""); //Флаг в движок на мушкетёрский ИИ
-			SendMessage(chref, "ls", MSG_CHARACTER_SETGUN, modelName);
-		}
-		
-		if(itemID != "")
-		{
-			if(CheckAttribute(chref,"chr_ai.musket.sGun") && itemID == chref.chr_ai.musket.sGun)
-			{
-				if(CheckAttribute(chref,"chr_ai.musket.bullet"))
-				{
-					LAi_SetCharacterUseBullet(chref, "musket", chref.chr_ai.musket.bullet);
-				}
-				else
-				{
-					LAi_SetCharacterDefaultBulletType(chref, "musket");
-					LAi_GunSetUnload(chref, "musket");
-				}
-			}
-			else
-			{
-				LAi_SetCharacterDefaultBulletType(chref, "musket");
-				LAi_GunSetUnload(chref, "musket");
-			}
-		}
-		else
-		{
-			if(CheckAttribute(chref,"chr_ai.musket.sGun"))			DeleteAttribute(chref,"chr_ai.musket.sGun");
-			if(CheckAttribute(chref,"chr_ai.musket.bullet"))		DeleteAttribute(chref,"chr_ai.musket.bullet");
-			if(CheckAttribute(chref,"chr_ai.musket.charge_max")) 	DeleteAttribute(chref,"chr_ai.musket.charge_max");
-			if(CheckAttribute(chref,"chr_ai.musket.chargeprc")) 	DeleteAttribute(chref,"chr_ai.musket.chargeprc");
-			if(CheckAttribute(chref,"chr_ai.priority_mode")) 		DeleteAttribute(chref,"chr_ai.priority_mode"); //Сброс на сабельный
-		}
+		//SendMessage(chref, "ls", MSG_CHARACTER_SETMUS, modelName);
+		MusketEquipOldLogic(chref, modelName, bEquip);
+		SetGunParameters(chref, "musket", itemID, bEquip);
 	break;
 
 	case BLADE_ITEM_TYPE:
 		float liveTime = 0.1;
 		int colors = argb(64, 64, 64, 64);
 		int colore = argb(0, 32, 32, 32);
-		if(CheckAttribute(arItm,"model"))	{modelName = arItm.model;}
 		if(CheckAttribute(arItm, "blade.time"))	{liveTime = stf(arItm.blade.time);}
 		if(CheckAttribute(arItm, "blade.colorstart"))	{colors = sti(arItm.blade.colorstart);}
 		if(CheckAttribute(arItm, "blade.colorend"))	{colore = sti(arItm.blade.colorend);}
@@ -2267,6 +2207,75 @@ void SetEquipedItemToCharacter(ref chref, string groupID, string itemID)
 		// boal <--
 	break;
 	}
+}
+
+void SetGunParameters(ref chref, string sType, string itemID, bool bEquip)
+{
+	if(bEquip)
+	{
+		if(CheckAttribute(chref,"chr_ai." + sType + ".sGun") && itemID == chref.chr_ai.(sType).sGun)
+		{
+			if(CheckAttribute(chref,"chr_ai." + sType + ".bullet"))
+			{
+				LAi_SetCharacterUseBullet(chref, sType, chref.chr_ai.(sType).bullet);
+			}
+			else
+			{
+				LAi_SetCharacterDefaultBulletType(chref, sType);
+				LAi_GunSetUnload(chref, sType);
+			}
+		}
+		else
+		{
+			LAi_SetCharacterDefaultBulletType(chref, sType);
+			LAi_GunSetUnload(chref, sType);
+		}
+	}
+	else
+	{
+		if(CheckAttribute(chref,"chr_ai." + sType + ".sGun"))		DeleteAttribute(chref,"chr_ai." + sType + ".sGun");
+		if(CheckAttribute(chref,"chr_ai." + sType + ".bullet"))		DeleteAttribute(chref,"chr_ai." + sType + ".bullet");
+		if(CheckAttribute(chref,"chr_ai." + sType + ".charge_max")) DeleteAttribute(chref,"chr_ai." + sType + ".charge_max");
+		if(CheckAttribute(chref,"chr_ai." + sType + ".chargeprc")) 	DeleteAttribute(chref,"chr_ai." + sType + ".chargeprc");
+		if(sType == "musket" && CheckAttribute(chref,"chr_ai.priority_mode")) DeleteAttribute(chref,"chr_ai.priority_mode"); //Сброс на сабельный
+	}	
+}
+
+//Rosarak. Пока нет универсальной системы с пресетами режимов, надо так
+void MusketEquipOldLogic(ref chref, string modelName, bool bEquip)
+{
+	if(IsMainCharacter(chref))
+	{
+		SendMessage(chref, "ls", MSG_CHARACTER_SETMUS, modelName);
+		return;
+	}
+	
+	if(!bEquip)
+	{
+		if(CheckAttribute(chref, "equip.gun"))
+		{
+			aref arItm;
+			Items_FindItem(chref.equip.gun, &arItm);
+			modelName = arItm.model;
+		}
+		if(GetCharacterAnimation(chref) == "mushketer")
+		{
+			chref.model = FindStringBeforeChar(chref.model, "_mush");
+			chref.model.animation = "man"; //Можно и через резерв
+		}
+	}
+	else
+	{
+		if(GetCharacterAnimation(chref) != "mushketer")
+		{
+			chref.model = chref.model + "_mush";
+			chref.model.animation = "mushketer";
+		}
+	}
+	
+	SendMessage(chref, "lss", MSG_CHARACTER_SETMODEL, chref.model, chref.model.animation);
+	SendMessage(chref, "lsl", MSG_CHARACTER_EX_MSG, "SetMusketer", bEquip); //Флаг в движок на мушкетёрский ИИ
+	SendMessage(chref, "ls",  MSG_CHARACTER_SETGUN, modelName);
 }
 
 // коэф траты энергии от веса сабли
