@@ -81,17 +81,17 @@ void SetSpyGlassData()
 	
 	int nFace = sti(chref.faceID);
 	string sCaptainName = GetCharacterFullName(chref.id);
-	int nDefenceSkill = GetCharacterSkill(chref,SKILL_DEFENCE);   // защита
-	int nCannonSkill = GetCharacterSkill(chref,SKILL_GRAPPLING);    // абордаж
-	int nAccuracySkill = GetCharacterSkill(chref,SKILL_CANNONS); // орудия
-	int nNavigationSkill = GetCharacterSkill(chref,SKILL_CANNONS); // меткость SKILL_ACCURACY
-	int nBoardingSkill = GetCharacterSkill(chref,SKILL_SAILING);  // навигация
+	int nDefenceSkill = GetCharacterSkill(chref,SKILL_DEFENCE);		// защита
+	int nBoardingSkill = GetCharacterSkill(chref,SKILL_GRAPPLING);	// абордаж
+	int nCannonsSkill = GetCharacterSkill(chref,SKILL_CANNONS);		// орудия 
+	int nAccuracySkill = GetCharacterSkill(chref,SKILL_CANNONS);	// меткость SKILL_ACCURACY
+	int nNavigationSkill = GetCharacterSkill(chref,SKILL_SAILING);	// навигация
 	if( !CheckAttribute(arScopeItm,"scope.show.captain_skills") || sti(arScopeItm.scope.show.captain_skills)==0 ) {
 		nDefenceSkill = -1;
-		nCannonSkill = -1;
+		nBoardingSkill = -1;
+		nCannonsSkill = -1;
 		nAccuracySkill = -1;
 		nNavigationSkill = -1;
-		nBoardingSkill = -1;
 	}
 
 	// Warship 08.07.09 Запрет спуска парусов
@@ -252,7 +252,7 @@ void SetSpyGlassData()
 		shipHull,shipSail,shipCrew,	shipSpeed, fDistance,
 		shipCannons,shipMaxCannons,
 		shipCharge,shipNation, nSailState,nFace,
-		nDefenceSkill,nCannonSkill,nAccuracySkill,nNavigationSkill,nBoardingSkill,
+		nDefenceSkill,nBoardingSkill,nAccuracySkill,nCannonsSkill,nNavigationSkill,
 		sCaptainName,"",shipClass);
 	SendMessage(&objISpyGlass,"lsffff",MSG_ISG_SET_SHIPICON, sTextureName, uvLeft,uvTop,uvRight,uvBottom);
 	SendMessage(&objISpyGlass,"ll",MSG_ISG_VISIBLE,true);

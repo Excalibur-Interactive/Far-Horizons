@@ -915,32 +915,29 @@ void Dead_AddLoginedCharacter(aref chr)
 					}
 				}
 			}
-				
+			
 			if(CheckAttribute(chr, "equip.gun") || CheckAttribute(chr, "equip.musket"))
 			{
 				if(rand(MOD_SKILL_ENEMY_RATE + 10) == 2)
 				{
-					rItem = ItemsFromID(chr.equip.gun);
+					rItem = ItemsFromID(chr.equip.gun); //TO_DO: Мушкеты пока мимо
 					if(CheckAttribute(rItem,"rare") && rItem.rare != "Legendary") // ugeen --> на обычных трупах топовое оружие не даем !!!
 					{
-						rItem = ItemsFromID(chr.equip.gun);
-				      	if(CheckAttribute(rItem,"rare") && rItem.rare != "Legendary") // ugeen --> на обычных трупах топовое оружие не даем !!!
-				     	{	// Даем трупу сгенеренное оружие
- 							if(rItem.rare == "common")
-	 						{
-		 						AddItems(chref, GetGeneratedItem(chr.equip.gun), 1); 
-							}
-							
-			 				if(rItem.rare == "rare" && sti(mchr.rank) >= 7)
-				 			{
- 								AddItems(chref, GetGeneratedItem(chr.equip.gun), 1); 
-	 						}
-							
-		 					if(rItem.rare == "Epic" && sti(mchr.rank) >= 21)	
-							{
-			 					AddItems(chref, GetGeneratedItem(chr.equip.gun), 1); 
-				 			}
-					 	}
+						// Даем трупу сгенеренное оружие
+						if(rItem.rare == "common")
+						{
+							AddItems(chref, GetGeneratedItem(chr.equip.gun), 1); 
+						}
+						
+						if(rItem.rare == "rare" && sti(mchr.rank) >= 7)
+						{
+							AddItems(chref, GetGeneratedItem(chr.equip.gun), 1); 
+						}
+						
+						if(rItem.rare == "Epic" && sti(mchr.rank) >= 21)	
+						{
+							AddItems(chref, GetGeneratedItem(chr.equip.gun), 1); 
+						}
 					}
 					
 					if(!CheckAttribute(chr, "equip.musket")) //Для простых работяг без мушкетов
@@ -954,7 +951,7 @@ void Dead_AddLoginedCharacter(aref chr)
 						}
 					}
 					else //Для мушкетёров и универсалов
-					{	 //TO_DO: Я здесь пока оставляю логику только для мушкетов, хотя у них могут быть разные снаряды под разное оружие
+					{	 //TO_DO: Я здесь пока оставляю логику только для мушкетов, хотя у универсалов могут быть разные снаряды под разное оружие
 						sBullet = LAi_GetCharacterBulletType(chr, "musket");
 						sGunPowder = LAi_GetCharacterGunpowderType(chr, "musket");
 						TakeNItems(chref, sBullet, makeint(GetCharacterItem(chr, sBullet)/2));

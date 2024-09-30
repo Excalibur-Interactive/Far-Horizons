@@ -161,6 +161,8 @@ void ProcessDialogEvent()
 		case "GetOfficer":
 			chr = GetCharacter(NPC_GenerateCharacter("TestPsg1", "Pirate_1", "man", "man", 10, PIRATE, -1, false, "abc"));
 			chr.FaceId = rand(31)+3;
+			chr.dialog.filename = "Enc_Officer_dialog";
+			chr.dialog.currentnode = "Hired";
 			chr.sea_spec = "navigator";
 			chr.skill.fencing = rand(99)+1;
 			chr.skill.pistol = rand(99)+1;
@@ -181,6 +183,8 @@ void ProcessDialogEvent()
 			
 			chr = GetCharacter(NPC_GenerateCharacter("TestPsg2", "Pirate_1", "man", "man", 10, PIRATE, -1, false, "abc"));
 			chr.FaceId = rand(31)+3;
+			chr.dialog.filename = "Enc_Officer_dialog.c";
+			chr.dialog.currentnode = "Hired";
 			chr.sea_spec = "boatswain";
 			chr.skill.fencing = rand(99)+1;
 			chr.skill.pistol = rand(99)+1;
@@ -207,6 +211,8 @@ void ProcessDialogEvent()
 			
 			chr = GetCharacter(NPC_GenerateCharacter("TestPsg3", "Pirate_1", "man", "man", 10, PIRATE, -1, false, "abc"));
 			chr.FaceId = rand(31)+3;
+			chr.dialog.filename = "Enc_Officer_dialog.c";
+			chr.dialog.currentnode = "Hired";
 			chr.sea_spec = "boatswain";
 			chr.skill.fencing = rand(99)+1;
 			chr.skill.pistol = rand(99)+1;
@@ -235,6 +241,8 @@ void ProcessDialogEvent()
 			
 			chr = GetCharacter(NPC_GenerateCharacter("TestPsg4", "Pirate_1", "man", "man", 10, PIRATE, -1, false, "abc"));
 			chr.FaceId = rand(31)+3;
+			chr.dialog.filename = "Enc_Officer_dialog.c";
+			chr.dialog.currentnode = "Hired";
 			chr.sea_spec = "cannoner";
 			chr.skill.fencing = rand(99)+1;
 			chr.skill.pistol = rand(99)+1;
@@ -255,6 +263,8 @@ void ProcessDialogEvent()
 			
 			chr = GetCharacter(NPC_GenerateCharacter("TestPsg5", "Pirate_1", "man", "man", 10, PIRATE, -1, false, "abc"));
 			chr.FaceId = rand(31)+3;
+			chr.dialog.filename = "Enc_Officer_dialog.c";
+			chr.dialog.currentnode = "Hired";
 			chr.sea_spec = "doctor";
 			chr.skill.fencing = rand(99)+1;
 			chr.skill.pistol = rand(99)+1;
@@ -275,6 +285,8 @@ void ProcessDialogEvent()
 			
 			chr = GetCharacter(NPC_GenerateCharacter("TestPsg6", "Pirate_1", "man", "man", 10, PIRATE, -1, false, "abc"));
 			chr.FaceId = rand(31)+3;
+			chr.dialog.filename = "Enc_Officer_dialog.c";
+			chr.dialog.currentnode = "Hired";
 			chr.sea_spec = "doctor";
 			chr.skill.fencing = rand(99)+1;
 			chr.skill.pistol = rand(99)+1;
@@ -295,6 +307,8 @@ void ProcessDialogEvent()
 			
 			chr = GetCharacter(NPC_GenerateCharacter("TestPsg7", "Pirate_1", "man", "man", 10, PIRATE, -1, false, "abc"));
 			chr.FaceId = rand(31)+3;
+			chr.dialog.filename = "Enc_Officer_dialog.c";
+			chr.dialog.currentnode = "Hired";
 			chr.sea_spec = "cannoner";
 			chr.skill.fencing = rand(99)+1;
 			chr.skill.pistol = rand(99)+1;
@@ -319,6 +333,8 @@ void ProcessDialogEvent()
 			
 			chr = GetCharacter(NPC_GenerateCharacter("TestPsg8", "Pirate_1", "man", "man", 10, PIRATE, -1, false, "abc"));
 			chr.FaceId = rand(31)+3;
+			chr.dialog.filename = "Enc_Officer_dialog.c";
+			chr.dialog.currentnode = "Hired";
 			chr.sea_spec = "carpenter";
 			chr.skill.fencing = rand(99)+1;
 			chr.skill.pistol = rand(99)+1;
@@ -339,6 +355,8 @@ void ProcessDialogEvent()
 			
 			chr = GetCharacter(NPC_GenerateCharacter("TestPsg9", "Pirate_1", "man", "man", 10, PIRATE, -1, false, "abc"));
 			chr.FaceId = rand(31)+3;
+			chr.dialog.filename = "Enc_Officer_dialog.c";
+			chr.dialog.currentnode = "Hired";
 			chr.sea_spec = "carpenter";
 			chr.skill.fencing = rand(99)+1;
 			chr.skill.pistol = rand(99)+1;
@@ -359,6 +377,8 @@ void ProcessDialogEvent()
 			
 			chr = GetCharacter(NPC_GenerateCharacter("TestPsg10", "Pirate_1", "man", "man", 10, PIRATE, -1, false, "abc"));
 			chr.FaceId = rand(31)+3;
+			chr.dialog.filename = "Enc_Officer_dialog.c";
+			chr.dialog.currentnode = "Hired";
 			chr.sea_spec = "navigator";
 			chr.skill.fencing = rand(99)+1;
 			chr.skill.pistol = rand(99)+1;
@@ -379,6 +399,8 @@ void ProcessDialogEvent()
 			
 			chr = GetCharacter(NPC_GenerateCharacter("TestPsg11", "Pirate_1", "man", "man", 10, PIRATE, -1, false, "abc"));
 			chr.FaceId = rand(31)+3;
+			chr.dialog.filename = "Enc_Officer_dialog.c";
+			chr.dialog.currentnode = "Hired";
 			chr.sea_spec = "navigator";
 			chr.skill.fencing = rand(99)+1;
 			chr.skill.pistol = rand(99)+1;
@@ -399,6 +421,8 @@ void ProcessDialogEvent()
 			
 			chr = GetCharacter(NPC_GenerateCharacter("TestPsg12", "Pirate_1", "man", "man", 10, PIRATE, -1, false, "abc"));
 			chr.FaceId = rand(31)+3;
+			chr.dialog.filename = "Enc_Officer_dialog.c";
+			chr.dialog.currentnode = "Hired";
 			chr.sea_spec = "navigator";
 			chr.skill.fencing = rand(99)+1;
 			chr.skill.pistol = rand(99)+1;

@@ -478,15 +478,13 @@ void ProcessDialogEvent()
 			Diag.TempNode = "Hired";
 		break;
         
-        // boal 05.09.03 offecer need to go to abordage -->
         case "stay_follow":
             dialog.text = "Какие будут приказания?";
             Link.l1 = "Стой здесь!";
             Link.l1.go = "Boal_Stay";
             Link.l2 = "Следуй за мной и не отставай!";
             Link.l2.go = "Boal_Follow";
-            // boal 05.09.03 offecer need to go to abordage <--
-			if (npchar.id == "OffMushketer")
+			if (CharUseMusket(NPChar))
 			{
 				Link.l3 = "Я хочу, чтобы ты держался на определенном расстоянии от цели.";
 				Link.l3.go = "TargetDistance";

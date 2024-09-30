@@ -773,7 +773,7 @@ void TWN_FightInTown_OpenNext()
 			if(j != GetMainCharacterIndex())
 			{
 				sld = &Characters[j];
-				if(LAi_IsDead(sld) == false && !IsOfficer(sld) && sld.model.animation != "mushketer") // не нужны офицеры для матросов
+				if(!LAi_IsDead(sld) && !IsOfficer(sld) && sld.model.animation != "mushketer") // не нужны офицеры для матросов
 				{
 					if (sld.chr_ai.group == LAI_GROUP_PLAYER)
 					{

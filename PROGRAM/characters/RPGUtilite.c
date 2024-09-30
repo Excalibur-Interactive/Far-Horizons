@@ -1850,11 +1850,15 @@ void ChangeAttributesFromCharacter(ref CopyChref, ref PastChref, bool _dialogCop
 
     if (CheckAttribute(PastChref, "equip.blade"))
     {
-		CopyChref.equip.blade =   PastChref.equip.blade;
+		CopyChref.equip.blade  =   PastChref.equip.blade;
 	}
 	if (CheckAttribute(PastChref, "equip.gun"))
     {
-		CopyChref.equip.gun   =   PastChref.equip.gun;
+		CopyChref.equip.gun    =   PastChref.equip.gun;
+	}
+	if (CheckAttribute(PastChref, "equip.musket"))
+    {
+		CopyChref.equip.musket =   PastChref.equip.musket;
 	}
 	// health
 	if (CheckAttribute(PastChref, "Health.TotalDamg"))

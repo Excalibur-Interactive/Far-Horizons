@@ -1030,7 +1030,7 @@ float LAi_NPC_GetFireActive()
 			npc_return_tmp = npc_return_tmp + 0.1 * MOD_SKILL_ENEMY_RATE / 10.0;
 		}
 	}
-	if(chr.model.animation == "mushketer") npc_return_tmp = 0.99;
+	if(CharUseMusket(chr)) npc_return_tmp = 0.99;
 	
 	return npc_return_tmp;
 }
