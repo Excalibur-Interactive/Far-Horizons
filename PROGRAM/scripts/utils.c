@@ -467,7 +467,7 @@ void CreateModel(int iChar, string sType, int iSex)
 			break;
 			
 			case HOLLAND:
-				sPrefix = "_dut_";
+				sPrefix = "_hol_";
 			break;
 			
 			case PIRATE:

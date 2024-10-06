@@ -134,7 +134,7 @@ int LocationInitTrinidad(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "PortSpein_tavern";
 	locations[n].id.label = "Tavern";
-	locations[n].filespath.models = "locations\inside\tavern01\";
+	locations[n].filespath.models = "locations\inside\tavern06";
 	locations[n].image = "loading\inside\tavern.tga";
 	locations[n].habitues = 1;
 	//Town sack
@@ -146,21 +146,28 @@ int LocationInitTrinidad(int n)
  	locations[n].islandId = "Trinidad";
 	//Models
 	//Always
-	locations[n].models.always.tavern = "Tavern01";
+	locations[n].models.always.tavern = "Tavern_Maracaibo";
 	locations[n].models.always.tavern.level = 65538;
-	locations[n].models.always.locators = "Tavern01_locators";
-	locations[n].models.always.window = "tavern01_windows";
+	locations[n].models.always.window = "Tavern06MaracaiboWindovs";
 	locations[n].models.always.window.tech = "LocationWindows";
 	locations[n].models.always.window.level = 65539;
+	//locations[n].models.always.Tavern_Maracaibo_inside_back_Lv1 = "Tavern_Maracaibo_inside_back_Lv1";
+	//locations[n].models.always.Maracaibo_inside_back_locators = "Maracaibo_inside_back_locators";
 	locations[n].models.always.back = "..\inside_back";
-	locations[n].models.always.window.level = 65529;
+	locations[n].models.always.back.level = 65529;
 	//Day
-	locations[n].models.day.charactersPatch = "tavern01_patch";
+	locations[n].models.day.locators = "Tavern06_Maracaibo_locators_day";
+	locations[n].models.day.charactersPatch = "Tavern06_Maracaibo_Patch";
+	locations[n].models.day.Tavern_Maracaibo_Breakfast = "Tavern_Maracaibo_Breakfast";
+	locations[n].models.day.fonar = "Maracaibo_back_fd";
 	//Night
-	locations[n].models.night.charactersPatch = "tavern01_patch";
+	locations[n].models.night.locators = "Tavern06_Maracaibo_locators_night";
+	locations[n].models.night.charactersPatch = "Tavern06_Maracaibo_Patch";
+	locations[n].models.night.Tavern_Maracaibo_Dinner = "Tavern_Maracaibo_Dinner";
+	locations[n].models.night.fonar = "Maracaibo_back_fn";
 	//Environment
 	locations[n].environment.weather = "true";
-	locations[n].environment.sea = "false";
+	locations[n].environment.sea = "true";
 	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "PortSpein_town";
@@ -182,7 +189,7 @@ int LocationInitTrinidad(int n)
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	locations[n].id = "PortSpein_tavern_upstairs";
 	locations[n].id.label = "Tavern upstairs";
-	locations[n].filespath.models = "locations\inside\Tavern_room";
+	locations[n].filespath.models = "locations\inside\tavern06";
 	locations[n].image = "loading\inside\tavern.tga";
 	//Town sack
 	locations[n].townsack = "PortSpein";
@@ -193,22 +200,32 @@ int LocationInitTrinidad(int n)
  	locations[n].islandId = "Trinidad";
 	//Models
 	//Always
-	locations[n].models.always.locators = "Tavern_room_locators";
-	locations[n].models.always.tavern = "Tavern_room";
-	locations[n].models.always.tavern.level = 65538;
-	locations[n].models.always.window = "tavern_room_window";
-	locations[n].models.always.window.tech = "LocationWindows";
-	locations[n].models.always.window.level = 65539;
-
+	//locations[n].models.always.Maracaibo_inside_back_locators = "Maracaibo_inside_back_locators";
 	locations[n].models.always.back = "..\inside_back";
 	locations[n].models.always.back.level = 65529;
 	//Day
-	locations[n].models.day.charactersPatch = "Tavern_room_patch";
+	locations[n].models.day.charactersPatch = "Tavern_MR_rooms_L2_Patch";
+	locations[n].models.day.tavern = "Tavern_MR_rooms_L2";
+	locations[n].models.day.tavern.level = 65538;
+	//locations[n].models.day.Tavern_Maracaibo_inside_back_Lv2 = "Tavern_Maracaibo_inside_back_Lv2";
+	locations[n].models.day.fonar = "Maracaibo_back_fd";
+	locations[n].models.day.locators = "Tavern_MR_rooms_L2_locators";
+	locations[n].models.day.window = "Tavern_MR_rooms_L2_Windovs";
+	locations[n].models.day.window.tech = "LocationWindows";
+	locations[n].models.day.window.level = 65539;
 	//Night
-	locations[n].models.night.charactersPatch = "Tavern_room_patch";
+	locations[n].models.night.charactersPatch = "Tavern_MR_rooms_L3_Patch";
+	locations[n].models.night.tavern = "Tavern_MR_rooms_L3";
+	locations[n].models.night.tavern.level = 65538;
+	//locations[n].models.night.Tavern_Maracaibo_inside_back_Lv3 = "Tavern_Maracaibo_inside_back_Lv3";
+	locations[n].models.night.fonar = "Maracaibo_back_fn";
+	locations[n].models.night.locators = "Tavern_MR_rooms_L3_locators";
+	locations[n].models.night.window = "Tavern_MR_rooms_L3_Windovs";
+	locations[n].models.night.window.tech = "LocationWindows";
+	locations[n].models.night.window.level = 65539;
 	//Environment
 	locations[n].environment.weather = "true";
-	locations[n].environment.sea = "false";
+	locations[n].environment.sea = "true";
 	//Reload map
 	locations[n].reload.l1.name = "reload1_back";
 	locations[n].reload.l1.go = "PortSpein_tavern";

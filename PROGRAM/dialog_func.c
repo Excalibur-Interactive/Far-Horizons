@@ -17,7 +17,7 @@ void Set_inDialog_Attributes()
 		Address_Form.Spa = "сеньор";
 		Address_Form.Fra = "месье";
 		Address_Form.Eng = "сэр";
-		Address_Form.Dut = "минхер";
+		Address_Form.Hol = "минхер";
 		Address_Form.Pir = "сэр";
     }
     else
@@ -25,49 +25,49 @@ void Set_inDialog_Attributes()
 		Address_Form.Spa = "сеньорита";
 		Address_Form.Fra = "мадмуазель";
 		Address_Form.Eng = "мисс";
-		Address_Form.Dut = "мефрау";
+		Address_Form.Hol = "мефрау";
 		Address_Form.Pir = "мисс";
 	}
 	Address_Form.Spa.Title1 = "Корсар";
 	Address_Form.Fra.Title1 = "Приватир";
 	Address_Form.Eng.Title1 = "Капер";
-	Address_Form.Dut.Title1 = "Флибустьер";
+	Address_Form.Hol.Title1 = "Флибустьер";
 	Address_Form.Pir.Title1 = "Пират";
 
     Address_Form.Spa.Title2 = "Коммандер";
 	Address_Form.Fra.Title2 = "Коммандер";
 	Address_Form.Eng.Title2 = "Коммандер";
-	Address_Form.Dut.Title2 = "Коммандер";
+	Address_Form.Hol.Title2 = "Коммандер";
 	Address_Form.Pir.Title2 = "Коммандер";
 	
 	Address_Form.Spa.Title3 = "Капитан";
 	Address_Form.Fra.Title3 = "Капитан";
 	Address_Form.Eng.Title3 = "Капитан";
-	Address_Form.Dut.Title3 = "Капитан";
+	Address_Form.Hol.Title3 = "Капитан";
 	Address_Form.Pir.Title3 = "Капитан";
 
 	Address_Form.Spa.Title4 = "Коммодор";
 	Address_Form.Fra.Title4 = "Коммодор";
 	Address_Form.Eng.Title4 = "Коммодор";
-	Address_Form.Dut.Title4 = "Коммодор";
+	Address_Form.Hol.Title4 = "Коммодор";
 	Address_Form.Pir.Title4 = "Коммодор";
 
 	Address_Form.Spa.Title5 = "Адмирал";
 	Address_Form.Fra.Title5 = "Адмирал";
 	Address_Form.Eng.Title5 = "Адмирал";
-	Address_Form.Dut.Title5 = "Адмирал";
+	Address_Form.Hol.Title5 = "Адмирал";
 	Address_Form.Pir.Title5 = "Адмирал";
 
 	Address_Form.Spa.woman = "сеньора";
 	Address_Form.Fra.woman = "мадам";
 	Address_Form.Eng.woman = "миссис";
-	Address_Form.Dut.woman = "фрау";
+	Address_Form.Hol.woman = "фрау";
 	Address_Form.Pir.woman = "миссис";
 
 	Address_Form.Spa.man = "сеньор";
 	Address_Form.Fra.man = "месье";
 	Address_Form.Eng.man = "сэр";
-	Address_Form.Dut.man = "минхер";
+	Address_Form.Hol.man = "минхер";
 	Address_Form.Pir.man = "сэр";
 }
 

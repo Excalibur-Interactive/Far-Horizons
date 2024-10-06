@@ -160,40 +160,40 @@ void InitNations()
 	//Holland
 	makeref(rNation,Nations[HOLLAND]);
 	rNation.Name = "Holland";
-	rNation.ShortName = "Dut";
+	rNation.ShortName = "Hol";
 	rNation.worldMapShip = "dutch";
 	rNation.fort = 0;
 	//Location fantom models
-	rNation.fantomModel.m0 = "sold_dut_1";
-	rNation.fantomModel.m1 = "sold_dut_1";
-	rNation.fantomModel.m2 = "sold_dut_1";
-	rNation.fantomModel.m3 = "sold_dut_1";
-	rNation.fantomModel.m4 = "sold_dut_1";
-	rNation.fantomModel.m5 = "sold_dut_1";
-	rNation.fantomModel.m6 = "sold_dut_1";
-	rNation.fantomModel.m7 = "sold_dut_1";
-	rNation.fantomModel.m8 = "sold_dut_1";
-	rNation.fantomModel.m9 = "sold_dut_1";
+	rNation.fantomModel.m0 = "sold_hol_1";
+	rNation.fantomModel.m1 = "sold_hol_1";
+	rNation.fantomModel.m2 = "sold_hol_1";
+	rNation.fantomModel.m3 = "sold_hol_1";
+	rNation.fantomModel.m4 = "sold_hol_1";
+	rNation.fantomModel.m5 = "sold_hol_1";
+	rNation.fantomModel.m6 = "sold_hol_1";
+	rNation.fantomModel.m7 = "sold_hol_1";
+	rNation.fantomModel.m8 = "sold_hol_1";
+	rNation.fantomModel.m9 = "sold_hol_1";
 	//Boarding models
-	rNation.boardingModel.enemy.m1 = "sold_dut_1"; // "Off_hol_1";
+	rNation.boardingModel.enemy.m1 = "sold_hol_1"; // "Off_hol_1";
 	rNation.boardingModel.enemy.m1.ani = "man";
-	rNation.boardingModel.enemy.m2 = "sold_dut_1"; // "Off_hol_2";
+	rNation.boardingModel.enemy.m2 = "sold_hol_1"; // "Off_hol_2";
 	rNation.boardingModel.enemy.m2.ani = "man";
-	rNation.boardingModel.enemy.m3 = "sold_dut_1";
+	rNation.boardingModel.enemy.m3 = "sold_hol_1";
 	rNation.boardingModel.enemy.m3.ani = "man";
-	rNation.boardingModel.enemy.m4 = "sold_dut_1";
+	rNation.boardingModel.enemy.m4 = "sold_hol_1";
 	rNation.boardingModel.enemy.m4.ani = "man";
-	rNation.boardingModel.enemy.m5 = "sold_dut_1";
+	rNation.boardingModel.enemy.m5 = "sold_hol_1";
 	rNation.boardingModel.enemy.m5.ani = "man";
-	rNation.boardingModel.enemy.m6 = "sold_dut_1";
+	rNation.boardingModel.enemy.m6 = "sold_hol_1";
 	rNation.boardingModel.enemy.m6.ani = "man";
-	rNation.boardingModel.enemy.m7 = "sold_dut_1";
+	rNation.boardingModel.enemy.m7 = "sold_hol_1";
 	rNation.boardingModel.enemy.m7.ani = "man";
-	rNation.boardingModel.enemy.m8 = "sold_dut_1";
+	rNation.boardingModel.enemy.m8 = "sold_hol_1";
 	rNation.boardingModel.enemy.m8.ani = "man";
-	rNation.boardingModel.enemy.m9 = "sold_dut_1";
+	rNation.boardingModel.enemy.m9 = "sold_hol_1";
 	rNation.boardingModel.enemy.m9.ani = "man";
-	rNation.boardingModel.enemy.m10 = "sold_dut_1";
+	rNation.boardingModel.enemy.m10 = "sold_hol_1";
 	rNation.boardingModel.enemy.m10.ani = "man";
 
 

@@ -132,7 +132,7 @@ void CalculateHunter()
      CreateImage("Eng", "NATIONS", "ENGLAND",  610, 136, 640,168 );
      CreateImage("Fra", "NATIONS", "FRANCE",  610, 192, 640, 224);
      CreateImage("Spa", "NATIONS", "SPAIN",  610, 248, 640, 282);
-     CreateImage("Dut", "NATIONS", "HOLLAND",  610, 304, 640, 336);
+     CreateImage("Hol", "NATIONS", "HOLLAND",  610, 304, 640, 336);
 
      GameInterface.strings.EngH = XI_ConvertString("England");
      GameInterface.strings.FraH = XI_ConvertString("France");

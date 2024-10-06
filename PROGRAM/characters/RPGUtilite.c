@@ -1611,7 +1611,7 @@ int ChangeCharacterHunterScore(ref chref, string _huntName, int incr)
 		    case "enghunter":  iNation = ENGLAND; break;
 		    case "frahunter":  iNation = FRANCE; break;
 		    case "spahunter":  iNation = SPAIN; break;
-		    case "duthunter":  iNation = HOLLAND; break;
+		    case "holhunter":  iNation = HOLLAND; break;
 		}
 		string prevName = GetNationReputationName(iNation, -prevVal);
 		string newName  = GetNationReputationName(iNation, -newVal);
@@ -1663,7 +1663,7 @@ string NationShortName(int iNation)
             return "spa";
 		break;
 		case HOLLAND:
-			return "dut";
+			return "hol";
 		break;
 		case PIRATE:
 			return "pir";

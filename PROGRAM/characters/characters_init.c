@@ -65,7 +65,7 @@ void CreateCharacters()
     ch.reputation.Enghunter = "-5";
     ch.reputation.Frahunter = "-5";
     ch.reputation.Spahunter = "-5";
-    ch.reputation.duthunter = "-5";
+    ch.reputation.holhunter = "-5";
     
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ОСТАЛЬНЫЕ ПЕРСОНАЖИ

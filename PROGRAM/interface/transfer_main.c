@@ -1285,7 +1285,7 @@ void GoToShipChange() // нажатие ОК на табличке ок-отме
 		
 		// отпустить кэпа
 		case "ShipGoFreeAsk":		
-			sld = GetCharacter(NPC_GenerateCharacter(refEnemyCharacter.id + "_free", "off_dut_2", "man", "man", 60, sti(refEnemyCharacter.nation), 0, true, sti(refEnemyCharacter.fraction))); // фантом, на время 
+			sld = GetCharacter(NPC_GenerateCharacter(refEnemyCharacter.id + "_free", "off_hol_1", "man", "man", 60, sti(refEnemyCharacter.nation), 0, true, sti(refEnemyCharacter.fraction))); // фантом, на время 
 			ChangeAttributesFromCharacter(sld, refEnemyCharacter, false);
 			DeleteAttribute(sld, "ship");
 			sld.ship = "";

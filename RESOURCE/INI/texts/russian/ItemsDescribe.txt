@@ -1489,8 +1489,8 @@ itmdescr_cirass7
 Шаблон
 }
 
-itmname_DutTradeLicence {Лицензия ГВИК}
-itmdescr_DutTradeLicence
+itmname_HolTradeLicence {Лицензия ГВИК}
+itmdescr_HolTradeLicence
 {
 Лицензия Голландской Вест-Индской Торговой Компании.
 }

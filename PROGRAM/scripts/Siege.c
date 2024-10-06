@@ -124,7 +124,7 @@ void NationForceBalance(aref base)
 	Log_TestInfo("Eng = "+base.nation_0);
 	Log_TestInfo("Fra = "+base.nation_1);
 	Log_TestInfo("Spa = "+base.nation_2);
-	Log_TestInfo("Dut = "+base.nation_3);
+	Log_TestInfo("Hol = "+base.nation_3);
 	Log_TestInfo("Pir = "+base.nation_4);
 }
 
@@ -253,7 +253,7 @@ int MakeSiegeSquadron(int ination)
     int icon = sti(aData.ishipcount);
     for (int i = 1; i <= icon; i++)
     {
-        sld = GetCharacter(NPC_GenerateCharacter(sCapId + i, "off_hol_2", "man", "man", 5, ination, 30, true), F_MILITARY);
+        sld = GetCharacter(NPC_GenerateCharacter(sCapId + i, "off_hol_1", "man", "man", 5, ination, 30, true), F_MILITARY);
 
         sld.dialog.filename = "captains_dialog.c";
 	    sld.dialog.currentnode = "Siegehelp";

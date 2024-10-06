@@ -2,8 +2,8 @@
 #define VERSION_NUM_PRE  99940
 
 #define VERSION_NUMBER1       "Far Horizons: Blood & Sand  " // Корсары: ГПК modding base #1
-#define VERSION_NUMBER2       "ver. 0.0.8 (21.07.24)"
-#define VERSION_NUMBER3       "Blood & Sand Team"
+#define VERSION_NUMBER2       "ver. 0.0.9 (06.10.24)"
+#define VERSION_NUMBER3       "Excalibur Interactive"
 #define MOD_BETTATESTMODE     "On"
 
 // запрет всех случаек на суше (офицеры и клады тоже)

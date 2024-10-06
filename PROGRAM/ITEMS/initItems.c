@@ -410,9 +410,9 @@ int InitItems()
 	n++;
 	
 	makeref(itm,Items[n]); //Лицензия ГВИК
-	itm.id = "DutTradeLicence";
-	itm.name = "itmname_DutTradeLicence";
-	itm.describe = "itmdescr_DutTradeLicence";
+	itm.id = "HolTradeLicence";
+	itm.name = "itmname_HolTradeLicence";
+	itm.describe = "itmdescr_HolTradeLicence";
 	itm.model = "pursel";
 	itm.picIndex = 2;
 	itm.picTexture = "ITEMS_QUEST1";

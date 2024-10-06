@@ -941,7 +941,7 @@ void SetItemInfo()
 		    SendMessage(&GameInterface,"lslll",MSG_INTERFACE_MSG_TO_NODE,"INFO_TEXT_DMG", 8,0, nColor2);
 			if(describeStr == "" && describeStr2 == "") SetFormatedText("INFO_TEXT_TYPE", NewStr() + "Ингредиент");
 	    }	
-		else if(Items[iGoodIndex].id == "lockpick" || HasSubStr(Items[iGoodIndex].id, "key") || Items[iGoodIndex].id == "DutTradeLicence" || Items[iGoodIndex].id == "Chest_open" || HasSubStr(Items[iGoodIndex].id, "Instrument"))
+		else if(Items[iGoodIndex].id == "lockpick" || HasSubStr(Items[iGoodIndex].id, "key") || Items[iGoodIndex].id == "HolTradeLicence" || Items[iGoodIndex].id == "Chest_open" || HasSubStr(Items[iGoodIndex].id, "Instrument"))
 		{
 			SetFormatedText("INFO_TEXT_TYPE", "Особый предмет");
 			switch(Items[iGoodIndex].id)
@@ -1006,7 +1006,7 @@ void SetItemInfo()
 		    		describeStr2 = "";
 		    	break;
 				
-				case "DutTradeLicence":
+				case "HolTradeLicence":
 		    		describeStr = NewStr() + "Действует 90 дней";
 		    		describeStr2 = "";
 		    	break;

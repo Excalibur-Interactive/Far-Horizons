@@ -1212,7 +1212,7 @@ void SetItemInfo()	// отображение информации, провер�
 				nColor1 = argb(255, 255, 136, 0);
 			}
 	    }	
-		else if(itmRef.id == "lockpick" || HasSubStr(itmRef.id, "key") || itmRef.id == "DutTradeLicence" || HasSubStr(itmRef.id, "Instrument"))
+		else if(itmRef.id == "lockpick" || HasSubStr(itmRef.id, "key") || itmRef.id == "HolTradeLicence" || HasSubStr(itmRef.id, "Instrument"))
 		{
 			SetFormatedText("INFO_TEXT_TYPE", "Особый предмет");
 			if(CheckAttribute(itmRef, "days"))

@@ -1309,7 +1309,7 @@ void TWN_Siege_Any(string city)
 	    sTemp = "End_Siege_" + city;
         for (i = 1; i <= 6; i++)
 	    {
-	        rCap = GetCharacter(NPC_GenerateCharacter(sCapId + i, "off_dut_1", "man", "man", 5, sti(sld.Default.nation), iDay + 2, true, F_MILITARY));
+	        rCap = GetCharacter(NPC_GenerateCharacter(sCapId + i, "off_hol_1", "man", "man", 5, sti(sld.Default.nation), iDay + 2, true, F_MILITARY));
 
 	        SetShipSquadron(rCap);
 	        SetFantomParamHunter(rCap); //крутые парни
