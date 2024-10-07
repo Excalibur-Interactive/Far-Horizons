@@ -148,7 +148,7 @@ int WeightRandomMethod(ref iMassive, string sRandType)
 {
 	int i, n;
 	int Size = GetArraySize(iMassive);
-	int Summ = -1; //чтобы рандомило от 0 до size-1
+	int Summ = -1; //чтобы рандомило от 0 до Summ-1
 	for(i = 0; i < Size; i++) Summ += iMassive[i];
 	switch(sRandType) //Тянем билет (call func не поможет)
 	{
