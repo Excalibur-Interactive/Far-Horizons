@@ -141,3 +141,68 @@ void DeleteAttributeEx(object obj, string str)
 //Rosarak. Помогает не плодить лишние bool'ы
 bool Con(bool a, bool b) {return a && b;} //КОНЪЮНКЦИЯ
 bool Dis(bool a, bool b) {return a || b;} //ДИЗЪЮНКЦИЯ
+
+//Rosarak. Лотерея для целочисленных массивов (она же развесовка)
+//Здесь нет проверки валидности, так как массив предварительно подготавливается в WeightRandom
+int WeightRandomMethod(ref iMassive, string sRandType)
+{
+	int i, n;
+	int Size = GetArraySize(iMassive);
+	int Summ = -1; //чтобы рандомило от 0 до size-1
+	for(i = 0; i < Size; i++) Summ += iMassive[i];
+	switch(sRandType) //Тянем билет (call func не поможет)
+	{
+		case "rand":    n = rand(Summ);  break;
+		case "drand":   n = drand(Summ); break;
+		case "drandex": n = drandex(Summ, false); break;
+		//...
+	}
+	for(i = 0; n >= 0; i++) n -= iMassive[i]; //Определяем победителя
+	return i-1; //После победителя был инкремент, поэтому -1
+}
+
+//Rosarak. Подготовка участников лотереи
+int WeightRandom(aref Lottery, string sRandType)
+{
+	aref participant;
+	string sNumber; //Для конвертации
+	int num = GetAttributesNum(Lottery);
+	if(num == 0) return -1; //Нет участников
+	int iMassive[2]; //Меньше 2 нельзя!
+	int k = 0;
+	SetArraySize(&iMassive, num);
+	for(int i = 0; i < num; i++)
+	{
+		participant = GetAttributeN(Lottery,i);
+		if(CheckAttribute(participant, "weight") && sti(participant.weight) > 0)
+		{
+			sNumber = k;
+			TEV.LotteryProcess.(sNumber) = i; //Общий номер участника
+			iMassive[k] = sti(participant.weight); //Сколько билетов купил
+			k++;
+		}
+	}
+	if(k == 0) return -1; //Нет валидных участников
+	SetArraySize(&iMassive, k); //Срезаем лишнее
+	sNumber = WeightRandomMethod(&iMassive, sRandType); //Проводим лотерею
+	sNumber = TEV.LotteryProcess.(sNumber);
+	DeleteAttribute(&TEV, "LotteryProcess");
+	return sti(sNumber); //Победил атрибут под номером sNumber!
+}
+
+//Rosarak. Покупка лотерейных билетов (TO_DO)
+void SetWeightParameters(aref Lottery, string sCase)
+{
+	//Если нужно корректировать веса в зависимости от места, где проходит лотерея,
+	//то можно прописать соответствующую логику здесь и в аналогичных функциях
+}
+
+//Rosarak. Получить ссылку на победителя лотереи
+aref GetRandomAttrByWeight(aref Lottery, string sRandType)
+{
+	aref aError;
+	makearef(aError, TEV.Error);
+	int iWinner = WeightRandom(Lottery, sRandType);
+	if(iWinner == -1) return aError;
+	return GetAttributeN(Lottery, iWinner);
+}

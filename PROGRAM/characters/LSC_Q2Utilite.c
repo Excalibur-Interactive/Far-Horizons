@@ -366,6 +366,7 @@ void SetAlchemyRecipeKnown(string Recipe)
 
 void initStartState2Character(ref ch)
 {// метод вызывается в момент новой игры, заполняет главного героя атрибутами, чтоб убрать лишние проверки в if
+    TEV.Error = "";
     NullCharacter.Siege = "";
     
 	ch.SystemInfo.SaveCount = 0;
