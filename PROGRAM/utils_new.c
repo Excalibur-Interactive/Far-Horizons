@@ -150,13 +150,7 @@ int WeightRandomMethod(ref iMassive, string sRandType)
 	int Size = GetArraySize(iMassive);
 	int Summ = -1; //чтобы рандомило от 0 до Summ-1
 	for(i = 0; i < Size; i++) Summ += iMassive[i];
-	switch(sRandType) //Тянем билет (call func не поможет)
-	{
-		case "rand":    n = rand(Summ);  break;
-		case "drand":   n = drand(Summ); break;
-		case "drandex": n = drandex(Summ, false); break;
-		//...
-	}
+	n = call sRandType(Summ);
 	for(i = 0; n >= 0; i++) n -= iMassive[i]; //Определяем победителя
 	return i-1; //После победителя был инкремент, поэтому -1
 }
@@ -203,6 +197,10 @@ aref GetRandomAttrByWeight(aref Lottery, string sRandType)
 	aref aError;
 	makearef(aError, TEV.Error);
 	int iWinner = WeightRandom(Lottery, sRandType);
-	if(iWinner == -1) return aError;
+	if (iWinner == -1) return aError;
 	return GetAttributeN(Lottery, iWinner);
 }
+
+//Rosarak. Для согласования кол-ва аргументов в общем вызове через call
+int drandex_f(int n) {return drandex(n, false);}
+int drandex_t(int n) {return drandex(n, true);}
