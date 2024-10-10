@@ -1981,17 +1981,13 @@ void initNewMainCharacter()
     		SetCharacterTalent(ch, "Seducer");
 		break;
 		case 2:
-		    SetCharacterTalent(ch, "KeenEye");
-			SetCharacterTalent(ch, "ShadowMaster");
-			SetCharacterPerk(ch, "spy");
-		break;
-		case 3:
 		    SetCharacterTalent(ch, "BigBoy");
 			SetCharacterTalent(ch, "Thug");
 		break;
-		case 4:
-		    SetCharacterTalent(ch, "NaturalLeader");
-			SetCharacterTalent(ch, "DiligentStudent");
+		case 3:
+		    SetCharacterTalent(ch, "KeenEye");
+			SetCharacterTalent(ch, "ShadowMaster");
+			SetCharacterPerk(ch, "spy");
 		break;
 	}
 	
@@ -2055,29 +2051,18 @@ void initNewMainCharacter()
 	SetSPECIAL(ch, 4,4,4,4,4,4,4); //фикс для любителей стирать тип ГГ в файле - была дыра
 	switch (ch.HeroParam.HeroType)
 	{
-		// Rebbebion, новые классы, переименовал
-		// следопыт
-        case "Pathfinder":
-		SetPIRATES(ch, 4, 9, 9, 2, 5, 8, 5);
-		break;
-
-        // негоциант
-	    case "Negotiant":
-		SetPIRATES(ch, 3, 3, 7, 9, 9, 3, 8);
-	    break;
-
-        // рейтар
+        // Рейтар
 	    case "Reiter":
 		SetPIRATES(ch, 5, 7, 9, 4, 5, 5, 7);
 	    break;
 		
-		// кирасир
+		// Кирасир
 		case "Cuirassier":
 		SetPIRATES(ch, 9, 3, 7, 4, 4, 9, 6);
 		break;
 		
-		// вор
-		case "Thief":
+		// Шпион
+		case "Spy":
 		SetPIRATES(ch, 4, 8, 5, 4, 8, 4, 8);
 		break;
 	}
@@ -2116,24 +2101,7 @@ void initMainCharacterItem()
 		
 	switch (ch.HeroParam.HeroType)
 	{
-		// стартовая экипировка следопыта
-        case "Pathfinder":
-			ch.money = 500;
-			itemID = GetGeneratedItem("blade_03");	// итальянская рапира
-        	GiveItem2Character(ch, itemID);
-        	EquipCharacterbyItem(ch, itemID);
-        	TakeNItems(ch, "potion1", 3);
-	    break;
-
-        // стартовая экипировка негоцианта
-	    case "Negotiant":
-	        ch.money = 2000;
-			itemID = GetGeneratedItem("blade_18");	// дюссак
-    	    GiveItem2Character(ch, itemID);
-        	EquipCharacterbyItem(ch, itemID);
-	    break;
-
-        // стартовая экипировка рейтара
+        // Рейтар
 	    case "Reiter":
 			ch.money = 300;
 			itemID = GetGeneratedItem("blade_02");	// стилет
@@ -2145,17 +2113,17 @@ void initMainCharacterItem()
         	TakeNItems(ch, "gunpowder", 20);
 	    	LAi_SetCharacterUseBullet(ch, "pistol", "bullet");	
 	    break;
-		
-		// стартовая экипировка кирасира
+
+        // Кирасир
 		case "Cuirassier":
 			ch.money = 1000;
 			itemID = GetGeneratedItem("blade_37");	// гросс-мессер
         	GiveItem2Character(ch, itemID);
         	EquipCharacterbyItem(ch, itemID);
 		break;
-		
-		// стартовая экипировка вора
-		case "Thief":
+
+        // Шпион
+		case "Spy":
 			ch.money = 1000;
 			itemID = GetGeneratedItem("blade_02");	// стилет
         	GiveItem2Character(ch, itemID);
@@ -2266,25 +2234,9 @@ string GetNewMainCharacterType(int _startHeroType)
 
     switch (ret) // нужно по английски для квестбука
 	{
-        case "Следопыт":
-    	    ret = "Pathfinder";
-	    break;
-
-	    case "Негоциант":
-            ret = "Negotiant";
-	    break;
-
-	    case "Рейтар":
-            ret = "Reiter";
-	    break;
-		
-		case "Кирасир":
-            ret = "Cuirassier";
-	    break;
-		
-		case "Вор":
-            ret = "Thief";
-	    break;
+		case "Рейтар":  ret = "Reiter";     break;
+		case "Кирасир": ret = "Cuirassier"; break;
+		case "Шпион":   ret = "Spy";        break;
 	}
 
 	return ret;

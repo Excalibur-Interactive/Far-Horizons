@@ -697,59 +697,26 @@ string GetCharacterType(string type, int direction)
 {
     switch (type)
 	{
-        case "Pathfinder":
-            if (direction > 0)
-            {
-    	    	type = "Negotiant";
-    	    }
-    	    else
-    	    {
-    	        type = "Thief";
-    	    }
-	    break;
-
-	    case "Negotiant":
-            if (direction > 0)
-            {
-    	    	type = "Reiter";
-    	    }
-    	    else
-    	    {
-    	        type = "Pathfinder";
-    	    }
-	    break;
 
 	    case "Reiter":
             if (direction > 0)
-            {
     	    	type = "Cuirassier";
-    	    }
     	    else
-    	    {
-    	        type = "Negotiant";
-    	    }
+    	        type = "Spy";
 	    break;
 		
 		case "Cuirassier":
             if (direction > 0)
-            {
-    	    	type = "Thief";
-    	    }
+    	    	type = "Spy";
     	    else
-    	    {
     	        type = "Reiter";
-    	    }
 	    break;
 		
-		case "Thief":
+		case "Spy":
             if (direction > 0)
-            {
-    	    	type = "Pathfinder";
-    	    }
+				type = "Reiter";
     	    else
-    	    {
     	        type = "Cuirassier";
-    	    }
 	    break;
 	}
 
